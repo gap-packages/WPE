@@ -9,3 +9,6 @@ ReadPackage( "WreathProductElements", "gap/WreathProductElements.gi");
 
 ## Perm
 ReadPackage( "WreathProductElements", "gap/WreathProductPerm.gi");
+
+## Matrix
+ReadPackage( "WreathProductElements", "gap/WreathProductMat.gi");
