@@ -40,6 +40,27 @@ DeclareGlobalFunction( "WPE_ConvertPermToRep" );
 DeclareGlobalFunction( "WPE_ConvertRepToPerm" );
 
 #! @Description
+#! Creates a generic wreath product from a matrix group
+#! @Returns generic wreath product
+#! @Arguments G
+DeclareGlobalFunction( "WPE_GenericMatWreathProduct" );
+
+#! @Description
+#! Convert perm g from matrix wreath product G = K wr H 
+#! into expanded rep of abstract wreath product.
+#! Expanded rep is a tupel (g_1, ..., g_m, pi), where g_i in K, pi in H.
+#! @Returns generic wreath product element
+#! @Arguments G, W, g
+DeclareGlobalFunction( "WPE_ConvertMatToRep" );
+
+#! @Description
+#! Convert rep from abstract wreath product into matrix of 
+#! matrix wreath product G = K wr H.
+#! @Returns permutation
+#! @Arguments G, W, rep
+DeclareGlobalFunction( "WPE_ConvertRepToMat" );
+
+#! @Description
 #! G = K wr H, where K acts on n points and H acts on m points,
 #! is embedded in S_{n + m} in its imprimitive action.
 #! Convert a point from the induced action in the symmetric group 
