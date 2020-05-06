@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/github/FriedrichRober/WreathProductElements.svg?branch=master)](https://travis-ci.com/github/FriedrichRober/WreathProductElements)
+[![Build Status](https://travis-ci.com/FriedrichRober/WreathProductElements.svg?branch=master)](https://travis-ci.com/FriedrichRober/WreathProductElements)
 [![Code Coverage](https://codecov.io/gh/FriedrichRober/WreathProductElements/coverage.svg?branch=master&token=)](https://codecov.io/gh/FriedrichRober/WreathProductElements)
 
 # The GAP package WreathProductElements
