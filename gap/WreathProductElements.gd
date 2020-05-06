@@ -95,3 +95,5 @@ DeclareGlobalFunction( "WPE_ConvertTupelToPoint" );
 #! @Returns list of generic wreath product element
 #! @Arguments G, rep
 DeclareGlobalFunction( "WPE_WreathCycleDecomposition" );
+
+DeclareGlobalFunction( "WPE_IsCagedCycle" );

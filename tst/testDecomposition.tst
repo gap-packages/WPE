@@ -1,0 +1,30 @@
+gap> TestDecomp := function(iso, n)
+>     local W, i, x, decomp;
+>     W := Range(iso);
+>     for i in [1..n] do
+>         x := PseudoRandom(W);
+>         decomp := WPE_WreathCycleDecomposition(x);
+>         if Product(decomp) <> x then
+>             return false;
+>         fi;
+>         if ForAny(decomp, y -> not WPE_IsCagedCycle(y)) then
+>             return false;
+>         fi;
+>     od;
+>     return true;
+> end;;
+gap> # [Perm, Perm]
+gap> K := AlternatingGroup(5);;
+gap> H := SymmetricGroup(7);;
+gap> G := WreathProduct(K, H);;
+gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> TestDecomp(iso, 10);
+true
+gap> # [Mat, Perm]
+gap> K := GL(3,5);;
+gap> H := SymmetricGroup(4);;
+gap> G := WreathProduct(K, H);;
+gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> TestDecomp(iso, 10);
+true
+gap> 
