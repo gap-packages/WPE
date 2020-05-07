@@ -3,7 +3,7 @@ function(G)
     local W, iso;
 
     W := WPE_GenericMatWreathProduct(G);
-    iso := GroupHomomorphismByFunction(G,W,g->WPE_ConvertMatToRep(G,W,g), rep -> WPE_ConvertRepToMat(G,W,rep));
+    iso := GroupHomomorphismByFunction(G,W,g->WPE_ConvertMatToRep(G,W,g), x -> WPE_ConvertRepToMat(G,W,x));
     return iso;
 end);
 
@@ -18,7 +18,7 @@ end);
 
 InstallGlobalFunction( WPE_ConvertMatToRep,
 function(G, W, g)
-    local info, degI, dimA, field, base, top, topImages, block, k, l, rep;
+    local info, degI, dimA, field, base, top, topImages, block, k, l, x;
 
     info := WreathProductInfo(G);
     degI := info.degI;
@@ -38,19 +38,19 @@ function(G, W, g)
         od;
     od;
     top := PermList(topImages);
-    rep := Concatenation(base, [top]);
-    return Objectify(WreathProductInfo(W).family!.defaultType, rep);
+    x := Concatenation(base, [top]);
+    return Objectify(WreathProductInfo(W).family!.defaultType, x);
 end);
 
 InstallGlobalFunction( WPE_ConvertRepToMat,
-function(G, W, rep)
+function(G, W, x)
     local info, base, top, i, prod;
 
     info := WreathProductInfo(G);
-    top := Image(Embedding(G, info.degI + 1), rep![info.degI + 1]);
+    top := Image(Embedding(G, info.degI + 1), x![info.degI + 1]);
     base := [];
     for i in [1..info.degI] do
-        Add(base, Image(Embedding(G, i), rep![i]));
+        Add(base, Image(Embedding(G, i), x![i]));
     od;
     prod := Product(Concatenation(base, [top]));
     return prod;

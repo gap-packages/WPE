@@ -6,20 +6,37 @@
 
 InstallMethod( IsomorphismToGenericWreathProduct, "Perm to Generic", true, [HasWreathProductInfo and IsPermGroup], 0,
 function(G)
-    local W, iso;
+    local 
+      W,            # generic wreath product
+      iso;          # isomorphism from G to W
 
     if WreathProductInfo(G).permimpr <> true then
         Error("G must be an imprimitive wreath product");
     fi;
 
     W := WPE_GenericPermWreathProduct(G);
-    iso := GroupHomomorphismByFunction(G,W,g->WPE_ConvertPermToRep(G,W,g), rep -> WPE_ConvertRepToPerm(G,W,rep));
+    iso := GroupHomomorphismByFunction(G,W,g->WPE_ConvertPermToRep(G,W,g), x -> WPE_ConvertRepToPerm(G,W,x));
     return iso;
 end);
 
 InstallGlobalFunction( WPE_GenericPermWreathProduct,
 function(G)
-    local infoPerm,K,H,alpha,I,info,fam,typ,gens,hgens,id,i,e,W,p,n;
+    local 
+      infoPerm,     # wreath product info of G
+      K,H,          # G = K wr H
+      alpha,        # homomorphism from H to perm group
+      I,            # image under alpha, perm group
+      n,            # degree of I
+      W,            # generic wreath product
+      info,         # wreath product info of W
+      fam,          # family of generic wreath product elements
+      typ,          # type of generic wreath product elements
+      gens,         # generators of W
+      hgens,        # top generators of W
+      id,           # identity vector
+      i,            # generator of K, loop var
+      e,            # element of W, loop var
+      p;            # index point, loop var
 
     infoPerm := WreathProductInfo(G);
     K := infoPerm.groups[1];
@@ -90,7 +107,13 @@ end);
 
 InstallGlobalFunction( WPE_ConvertPermToRep,
 function(G, W, g)
-    local info, base, top, f, i, rep;
+    local 
+      info,         # wreath product info of G
+      base,         # base components of g, list
+      top,          # top component of g, perm
+      f,            # base element in G, embedding of base component of g
+      i,            # index point, loop var
+      x;            # generic wreath product element
 
     info := WreathProductInfo(G);
     top := g^Projection(G);
@@ -99,22 +122,27 @@ function(G, W, g)
     for i in [1..info.degI] do
         Add(base, RestrictedPerm(f, info.components[i])^info.perms[i]);
     od;
-    rep := Concatenation(base, [top]);
-    return Objectify(WreathProductInfo(W).family!.defaultType, rep);
+    x := Concatenation(base, [top]);
+    return Objectify(WreathProductInfo(W).family!.defaultType, x);
 end);
 
 InstallGlobalFunction( WPE_ConvertRepToPerm,
-function(G, W, rep)
-    local info, base, top, i, prod;
+function(G, W, x)
+    local 
+        info,       # wreath product info of G
+        base,       # base components of x, list
+        top,        # top component of x, perm
+        i,          # index point, loop var
+        g;          # perm wreath product element
 
     info := WreathProductInfo(G);
-    top := Image(Embedding(G, info.degI + 1), rep![info.degI + 1]);
+    top := Image(Embedding(G, info.degI + 1), x![info.degI + 1]);
     base := [];
     for i in [1..info.degI] do
-        Add(base, Image(Embedding(G, i), rep![i]));
+        Add(base, Image(Embedding(G, i), x![i]));
     od;
-    prod := Product(Concatenation(base, [top]));
-    return prod;
+    g := Product(Concatenation(base, [top]));
+    return g;
 end);
 
 InstallGlobalFunction( WPE_ConvertPointToTupel,
