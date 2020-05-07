@@ -1,42 +1,50 @@
 #
 # WreathProductElements: Provides efficient methods for working with generic wreath products.
 #
-#! @Chapter Introduction
-#!
-#! WreathProductElements is a package which does some
-#! interesting and cool things
-#!
-#! @Chapter Functionality
-#!
-#!
-#! @Section Methods
-#!
 
-#! @Description
-#! This constructs an isomorphism from a specialized wreath product to a generic wreath product
-#! @Returns isomorphism
-#! @Arguments G
+## <#GAPDoc Label="IsomorphismToGenericWreathProduct">
+## <ManSection>
+## <Oper Name="IsomorphismToGenericWreathProduct" Arg="G"/>
+## <Description>
+##   returns an isomorphism from a specialized wreath product <A>G</A>
+##   to a generic wreath product.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
 
-#! @Description
-#! Creates a generic wreath product from a perm group
-#! @Returns generic wreath product
-#! @Arguments G
+## <#GAPDoc Label="WPE_GenericPermWreathProduct">
+## <ManSection>
+## <Func Name="WPE_GenericPermWreathProduct" Arg="G"/>
+## <Description>
+##   returns a generic wreath product from a perm wreath product.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareGlobalFunction( "WPE_GenericPermWreathProduct" );
 
-#! @Description
-#! Convert perm g from imprimitive permutation wreath product G = K wr H 
-#! into expanded rep of abstract wreath product.
-#! Expanded rep is a tupel (g_1, ..., g_m, pi), where g_i in K, pi in H.
-#! @Returns generic wreath product element
-#! @Arguments G, W, g
+## <#GAPDoc Label="WPE_ConvertPermToRep">
+## <ManSection>
+## <Func Name="WPE_ConvertPermToRep" Arg="G, W, g"/>
+## <Description>
+##   returns the generic representation of an element <A>g</A> in <A>G</A>,
+##   where <A>G</A> is a wreath product in permutation representation
+##   and <A>W</A> is the same wreath product in generic representation.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareGlobalFunction( "WPE_ConvertPermToRep" );
 
-#! @Description
-#! Convert rep from abstract wreath product into perm of 
-#! imprimitive wreath product G = K wr H.
-#! @Returns permutation
-#! @Arguments G, W, rep
+## <#GAPDoc Label="WPE_ConvertRepToPerm">
+## <ManSection>
+## <Func Name="WPE_ConvertRepToPerm" Arg="G, W, x"/>
+## <Description>
+##   returns the permutation representation of an element <A>x</A> in <A>W</A>,
+##   where <A>G</A> is a wreath product in permutation representation
+##   and <A>W</A> is the same wreath product in generic representation.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareGlobalFunction( "WPE_ConvertRepToPerm" );
 
 #! @Description
