@@ -1,0 +1,80 @@
+<!--
+This chapter gives a short introduction and explains the notation
+behind the package.
+-->
+
+<Chapter Label="Introduction">
+<Heading>Introduction</Heading>
+
+<Section Label="Intro Overview">
+<Heading>Overview</Heading>
+
+This package is about wreath product elements in their general representation.
+This representation is more intuitive to the User when working with wreath products
+and additionally may have computational benefits over other representations. <P/>
+
+[TODO:: Add references]
+
+</Section>
+
+<Section Label="Notation">
+<Heading>Notation</Heading>
+
+Let <M>G = K \wr H</M> be a wreath product, 
+where <M>H</M> is a permutation group of degree <M>m</M>.
+The wreath product is defined as the semidirect product 
+of the function space <M>K^m</M> with <M>H</M>,
+where <M>\sigma \in H</M> acts on <M>f \in K^m</M> 
+by setting <M>f^{\sigma} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\sigma^{{-1}}]f</M>. <P/>
+
+Formally we can write elements of <M>G</M> as a tupel <M>g = (f, \sigma) \in G</M>,
+where <M>f \in K^m </M> is a function <M>f : \{1, \ldots, m\} \rightarrow K </M>
+and <M>\sigma \in H \leq Sym(m)</M> is a permutation on <M>m</M> points.
+We call <M>f</M> the base component and <M>\sigma</M> the top component of <M>g</M>. <P/>
+
+We can naturally identify a map <M>f \in K^m</M> with a tupel <M>(g_1, \ldots, g_m)</M>,
+where each <M>g_i \in K</M> is the image of <M>i \in \{1, \ldots, m\}</M> under <M>f</M>.
+This yields a second useful notations for elements in <M>G</M> by writing 
+<M>g = (g_1, \ldots, g_m; \sigma)</M>.
+Note that we use a semicolon to seperate the base component from the top component.
+Further we call the element <M>g_i</M> the <M>i</M>-th base component of <M>g</M>.
+
+</Section>
+
+<Section Label="caged">
+<Heading>Caged Cycle Decomposition</Heading>
+
+In a permutation group we have the well-known concept of a cycle decomposition.
+For wreath products we have a similar concept called <E>caged cycle decomposition</E>
+that allows us to solve certain computational tasks more efficiently. <P/>
+
+First we introduce the concept of the territory.
+We define the <E>territory</E> of an element <M>g = (g_1, \ldots, g_m; \sigma) \in G</M>
+by <M>terr(g) := supp(\sigma) \cup \{i : g_i \neq 1\}</M>. <P/>
+
+An element <M>g = (g_1, \ldots, g_m; \sigma) \in G</M> is called a <E>caged cycle</E> if
+either <M>\sigma</M> is a cycle and <M>g_i = 1</M> for all <M>i \in fix(\sigma)</M>
+or <M>|terr(g)| = 1</M>. <P/>
+
+The idea is to write an arbitrary element of the wreath product <M>G = K \wr H</M> 
+as a product of disjoint caged cycles as follows: <P/>
+
+Decompose <M>\sigma</M> into cycles, say <M>\sigma = c_1 ... c_l</M>.
+For a set <M>I \leq \{1, \ldots, m\}</M> we define <M>f_I</M> 
+as an element of <M>K^m</M> by setting
+<List>
+    <Item> <M>[i]f_I := g_i</M>, if <M>i \in I</M> </Item>
+    <Item> <M>[i]f_I := 1_K</M>, else </Item>
+</List>
+For each cycle <M>c_r</M> we define <M>top_r := (f_{{supp(c_r)}}, c_r)</M>.
+For each point <M>i</M> such that <M>i \not \in supp(\sigma)</M> and <M>g_i \neq 1_K</M>
+we define <M>base_i := f_i</M>.
+Then <M>g</M> can be written as a product of the <M>top_r</M> and <M>base_i</M> elements
+and each such element is a caged cycle with pairwise disjoint territory.
+Thus in particular these elements commute pairwise. <P/>
+
+</Section>
+
+<!-- ############################################################ -->
+
+</Chapter>
