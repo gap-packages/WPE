@@ -1,13 +1,27 @@
 gap> TestDecomp := function(iso, n)
->     local W, i, x, decomp;
+>     local W, i, x, decomp, normal, conj;
 >     W := Range(iso);
 >     for i in [1..n] do
 >         x := PseudoRandom(W);
->         decomp := WPE_WreathCycleDecomposition(x);
+>         decomp := CagedCycleDecomposition(x);
+>         normal := NormalCycleDecomposition(x);
+>         conj := NormalConjugator(x);
 >         if Product(decomp) <> x then
 >             return false;
 >         fi;
->         if ForAny(decomp, y -> not WPE_IsCagedCycle(y)) then
+>         if ForAny(decomp, y -> not IsCagedCycle(y)) then
+>             return false;
+>         fi;
+>         if ForAny(normal, y -> not IsNormalCycle(y)) then
+>             return false;
+>         fi;
+>         if Length(decomp) <> Length(normal) or Length(decomp) <> Length(conj) then
+>             return false;
+>         fi;
+>         if ForAny([1..Length(decomp)], i -> decomp[i]^conj[i] <> normal[i]) then
+>             return false;
+>         fi;
+>         if x^Product(conj) <> Product(normal) then
 >             return false;
 >         fi;
 >     od;
