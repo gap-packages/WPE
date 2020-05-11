@@ -5,7 +5,7 @@ gap> TestDecomp := function(iso, n)
 >         x := PseudoRandom(W);
 >         decomp := CagedCycleDecomposition(x);
 >         normal := NormalCycleDecomposition(x);
->         conj := NormalConjugator(x);
+>         conj := ConjugatorCagedToNormal(x);
 >         if Product(decomp) <> x then
 >             return false;
 >         fi;

@@ -7,24 +7,111 @@
 # Wreath Product Elements:
 #############################################################################
 
-#! @Description
-DeclareAttribute( "CagedCycleDecomposition", IsWreathProductElement );
-#! @Description
-DeclareAttribute( "NormalCycleDecomposition", IsWreathProductElement );
-#! @Description
-DeclareAttribute( "NormalConjugator", IsWreathProductElement );
-#! @Description
-DeclareProperty( "IsCagedCycle", IsWreathProductElement );
-#! @Description
-DeclareProperty( "IsNormalCycle", IsWreathProductElement );
-#! @Description
+## <#GAPDoc Label="Territory">
+## <ManSection>
+## <Attr Name="Territory" Arg="x"/>
+## <Description>
+##   returns the territory of <A>x</A>.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Caged"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareAttribute( "Territory", IsWreathProductElement );
-#! @Description
+
+## <#GAPDoc Label="IsCagedCycle">
+## <ManSection>
+## <Attr Name="IsCagedCycle" Arg="x"/>
+## <Description>
+##   tests whether <A>x</A> is a caged cycle.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Caged"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareProperty( "IsCagedCycle", IsWreathProductElement );
+
+## <#GAPDoc Label="IsNormalCycle">
+## <ManSection>
+## <Attr Name="IsNormalCycle" Arg="x"/>
+## <Description>
+##   tests whether <A>x</A> is a normal cycle.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Caged"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareProperty( "IsNormalCycle", IsWreathProductElement );
+
+## <#GAPDoc Label="CagedCycleDecomposition">
+## <ManSection>
+## <Attr Name="CagedCycleDecomposition" Arg="x"/>
+## <Description>
+##   returns the caged cycle decomposition of <A>x</A>.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Caged"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareAttribute( "CagedCycleDecomposition", IsWreathProductElement );
+
+## <#GAPDoc Label="NormalCycleDecomposition">
+## <ManSection>
+## <Attr Name="NormalCycleDecomposition" Arg="x"/>
+## <Description>
+##   returns the normal cycle decomposition of <A>x</A>.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Caged"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareAttribute( "NormalCycleDecomposition", IsWreathProductElement );
+
+## <#GAPDoc Label="ConjugatorCagedToNormal">
+## <ManSection>
+## <Attr Name="ConjugatorCagedToNormal" Arg="x"/>
+## <Description>
+##   returns a list of wreath product elements <M>n_1, \ldots, n_l</M>,
+##   such that for each caged cycle <M>c_k</M> in the decompositon of <A>x</A>,
+##   the element <M>c_k^{{n_k}}</M> is the corresponding normal cycle
+##   in the normal cycle decomposition of <A>x</A>.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Caged"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareAttribute( "ConjugatorCagedToNormal", IsWreathProductElement );
+
+## <#GAPDoc Label="Top">
+## <ManSection>
+## <Func Name="Top" Arg="x"/>
+## <Description>
+##   returns the top component of <A>x</A>.
+##   The argument <A>x</A> must be a generic wreath product element. 
+##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareGlobalFunction( "Top" );
-#! @Description
+
+## <#GAPDoc Label="Base">
+## <ManSection>
+## <Func Name="Base" Arg="x, [i]"/>
+## <Description>
+##   returns the base component of <A>x</A>.
+##   If the optional argument <A>i</A> is provided,
+##   the function returns the <A>i</A>-th base component of <A>x</A>.
+##   The argument <A>x</A> must be a generic wreath product element
+##   and the optional argument <A>i</A> must be an integer.
+##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
 DeclareGlobalFunction( "Base" );
+
 #! @Description
 DeclareAttribute( "WPE_Determinant", IsCagedCycle );
+
 #! @Description
 DeclareGlobalFunction( "WPE_ChooseDeterminantPoint" );
 

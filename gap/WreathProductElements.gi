@@ -98,9 +98,9 @@ function(x)
     return Concatenation(List(decomposition, NormalCycleDecomposition));
 end);
 
-InstallMethod( NormalConjugator,"normal cycle wreath elements",true,[IsNormalCycle],2, function(x) return [One(x)]; end);
+InstallMethod( ConjugatorCagedToNormal,"normal cycle wreath elements",true,[IsNormalCycle],2, function(x) return [One(x)]; end);
 
-InstallMethod( NormalConjugator,"caged cycle wreath elements",true,[IsCagedCycle],1,
+InstallMethod( ConjugatorCagedToNormal,"caged cycle wreath elements",true,[IsCagedCycle],1,
 function(x)
     local info, i, j, max, det, ord, k, y, conj;
 
@@ -126,13 +126,13 @@ function(x)
     return [conj];
 end);
 
-InstallMethod( NormalConjugator,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( ConjugatorCagedToNormal,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
     local info, decomposition;
 
     info := FamilyObj(x)!.info;
     decomposition := CagedCycleDecomposition(x);
-    return Concatenation(List(decomposition, NormalConjugator));
+    return Concatenation(List(decomposition, ConjugatorCagedToNormal));
 end);
 
 InstallTrueMethod( IsCagedCycle,IsNormalCycle);

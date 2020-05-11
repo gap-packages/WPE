@@ -1,0 +1,24 @@
+<Chapter Label="Operations">
+<Heading>Operations</Heading>
+
+The generic wreath product elements and in particular their caged and normal decompositions
+can be used to speed up many operations in wreath products. <P/>
+
+TODO:: Add tests or scripts that show that these operations are indeed faster in practice. 
+(Unloaded vs. Loaded package) and (Perm vs. Generic)
+
+<Section Label="Operations List">
+<Heading>Operations List</Heading>
+
+Here we include a list of operations that take advantage 
+of the generic wreath product elements representation. <P/>
+
+<List>
+<Item> <C>Order</C> </Item>
+</List>
+
+</Section>
+
+<!-- ############################################################ -->
+
+</Chapter>
