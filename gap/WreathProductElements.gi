@@ -52,6 +52,9 @@ function(x)
     od;
 
     # caged cycles that are of top type
+    if IsEmpty(suppTop) then
+        return decomposition;
+    fi;
     topCycleList := Cycles(x![info.degI + 1], suppTop);
     for topCycle in topCycleList do
         cagedCycle := ShallowCopy(id);
@@ -220,6 +223,9 @@ function(x)
 
     info := FamilyObj(x)!.info;
     decomposition := CagedCycleDecomposition(x);
+    if IsEmpty(decomposition) then
+        return 1;
+    fi;
     return Lcm(List(decomposition, Order));
 end);
 
