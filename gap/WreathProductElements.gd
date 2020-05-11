@@ -198,19 +198,29 @@ DeclareGlobalFunction( "WPE_ConvertPermToRep" );
 ## <#/GAPDoc>
 DeclareGlobalFunction( "WPE_ConvertRepToPerm" );
 
+#############################################################################
+# Action:
+#############################################################################
+
 #! @Description
 #! G = K wr H, where K acts on n points and H acts on m points,
 #! is embedded in S_{n + m} in its imprimitive action.
 #! Convert a point from the induced action in the symmetric group
-#! into a tupel (i,j) on which the abstract wreath product acts.
+#! into a tuple (i,j) on which the abstract wreath product acts.
 #! @Returns permutation
 #! @Arguments G, W, rep
-DeclareGlobalFunction( "WPE_ConvertPointToTupel" );
+DeclareGlobalFunction( "WPE_ImprimitiveConvertPointToTuple" );
 
 #! @Description
 #! @Returns permutation
 #! @Arguments G, W, rep
-DeclareGlobalFunction( "WPE_ConvertTupelToPoint" );
+DeclareGlobalFunction( "WPE_ImprimitiveConvertTupleToPoint" );
+
+#! @Description
+DeclareGlobalFunction( "WPE_ImprimitiveAction" );
+
+#! @Description
+DeclareGlobalFunction( "WPE_ProductAction" );
 
 #############################################################################
 # Matrix Representation:
@@ -225,7 +235,7 @@ DeclareGlobalFunction( "WPE_GenericMatWreathProduct" );
 #! @Description
 #! Convert perm g from matrix wreath product G = K wr H
 #! into expanded rep of abstract wreath product.
-#! Expanded rep is a tupel (g_1, ..., g_m, pi), where g_i in K, pi in H.
+#! Expanded rep is a tuple (g_1, ..., g_m, pi), where g_i in K, pi in H.
 #! @Returns generic wreath product element
 #! @Arguments G, W, g
 DeclareGlobalFunction( "WPE_ConvertMatToRep" );

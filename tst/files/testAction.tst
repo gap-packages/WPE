@@ -1,18 +1,28 @@
 gap> TestAction := function(iso, n)
->     local G,K,H,W,i,point,tupel;
+>     local G,K,H,W,i,point,tuple,g,x,pointImage,tupleImage;
 >     G := Source(iso);
 >     W := Range(iso);
 >     K := WreathProductInfo(W).groups[1];
 >     H := WreathProductInfo(W).groups[2];
 >     for i in [1..n] do
 >         point := PseudoRandom(ExternalSet(G));
->         tupel := WPE_ConvertPointToTupel(G, point);
->         if point <> WPE_ConvertTupelToPoint(G, tupel) then
+>         tuple := WPE_ImprimitiveConvertPointToTuple(G, point);
+>         if point <> WPE_ImprimitiveConvertTupleToPoint(G, tuple) then
 >             return false;
 >         fi;
->         tupel := PseudoRandom(Cartesian(ExternalSet(K),ExternalSet(H)));
->         point := WPE_ConvertTupelToPoint(G, tupel);
->         if tupel <> WPE_ConvertPointToTupel(G, point) then
+>         tuple := PseudoRandom(Cartesian(ExternalSet(K),ExternalSet(H)));
+>         point := WPE_ImprimitiveConvertTupleToPoint(G, tuple);
+>         if tuple <> WPE_ImprimitiveConvertPointToTuple(G, point) then
+>             return false;
+>         fi;
+>         g := PseudoRandom(G);
+>         x := g^iso;
+>         pointImage := OnPoints(point, g);
+>         tupleImage := WPE_ImprimitiveAction(tuple, x);
+>         if pointImage <> WPE_ImprimitiveConvertTupleToPoint(G, tupleImage) then
+>             return false;
+>         fi;
+>         if tupleImage <> WPE_ImprimitiveConvertPointToTuple(G, pointImage) then
 >             return false;
 >         fi;
 >     od;

@@ -13,5 +13,8 @@ ReadPackage( "WreathProductElements", "gap/ConjugacyProblem.gi");
 ## Perm
 ReadPackage( "WreathProductElements", "gap/WreathProductPerm.gi");
 
+## Action
+ReadPackage( "WreathProductElements", "gap/WreathProductAction.gi");
+
 ## Matrix
 ReadPackage( "WreathProductElements", "gap/WreathProductMat.gi");
