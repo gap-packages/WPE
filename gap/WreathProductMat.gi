@@ -27,7 +27,7 @@ function(G, W, g)
 
     base := [];
     topImages := [];
-    for k in [1..degI] do 
+    for k in [1..degI] do
         for l in [1..degI] do
             block := g{[dimA * (k-1) + 1..dimA * k]}{[dimA * (l-1) + 1..dimA * l]};
             if block <> NullMat(dimA, dimA, field) then

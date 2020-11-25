@@ -19,7 +19,7 @@ from such wreath products to the generic wreath product provided in this package
 If <M>K</M> is given as a permutation group the command <C>WreathProduct(K, H)</C> in &GAP;
 returns the imprimitive wreath product that is embedded into the symmetric group. <P/>
 
-Here we list the internal commands that are used to translate 
+Here we list the internal commands that are used to translate
 between the permutation representation and the generic representation.
 
 <#Include Label="WPE_GenericPermWreathProduct">

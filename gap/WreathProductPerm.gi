@@ -6,7 +6,7 @@
 
 InstallMethod( IsomorphismToGenericWreathProduct, "Perm to Generic", true, [HasWreathProductInfo and IsPermGroup], 0,
 function(G)
-    local 
+    local
       W,            # generic wreath product
       iso;          # isomorphism from G to W
 
@@ -21,7 +21,7 @@ end);
 
 InstallGlobalFunction( WPE_GenericPermWreathProduct,
 function(G)
-    local 
+    local
       infoPerm,     # wreath product info of G
       K,H,          # G = K wr H
       alpha,        # homomorphism from H to perm group
@@ -44,7 +44,7 @@ function(G)
     I := infoPerm.I;
     n := infoPerm.degI;
     alpha := infoPerm.alpha;
-    
+
     fam:=NewFamily("WreathProductElemFamily",IsWreathProductElement);
     typ:=NewType(fam,IsWreathProductElementDefaultRep);
     fam!.defaultType:=typ;
@@ -107,7 +107,7 @@ end);
 
 InstallGlobalFunction( WPE_ConvertPermToRep,
 function(G, W, g)
-    local 
+    local
       info,         # wreath product info of G
       base,         # base components of g, list
       top,          # top component of g, perm
@@ -128,7 +128,7 @@ end);
 
 InstallGlobalFunction( WPE_ConvertRepToPerm,
 function(G, W, x)
-    local 
+    local
         info,       # wreath product info of G
         base,       # base components of x, list
         top,        # top component of x, perm
@@ -151,7 +151,7 @@ function(G, point)
     info := WreathProductInfo(G);
     for i in [1..info.degI] do
         if point in info.components[i] then
-            return [point^info.perms[i], i]; 
+            return [point^info.perms[i], i];
         fi;
     od;
     Error("point not in action set of G");
