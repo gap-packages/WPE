@@ -12,7 +12,7 @@
 ## <Attr Name="Territory" Arg="x"/>
 ## <Description>
 ##   returns the territory of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Caged"/>)
 ## </Description>
 ## </ManSection>
@@ -24,7 +24,7 @@ DeclareAttribute( "Territory", IsWreathProductElement );
 ## <Attr Name="IsCagedCycle" Arg="x"/>
 ## <Description>
 ##   tests whether <A>x</A> is a caged cycle.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Caged"/>)
 ## </Description>
 ## </ManSection>
@@ -36,7 +36,7 @@ DeclareProperty( "IsCagedCycle", IsWreathProductElement );
 ## <Attr Name="IsNormalCycle" Arg="x"/>
 ## <Description>
 ##   tests whether <A>x</A> is a normal cycle.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Caged"/>)
 ## </Description>
 ## </ManSection>
@@ -48,7 +48,7 @@ DeclareProperty( "IsNormalCycle", IsWreathProductElement );
 ## <Attr Name="CagedCycleDecomposition" Arg="x"/>
 ## <Description>
 ##   returns the caged cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Caged"/>)
 ## </Description>
 ## </ManSection>
@@ -60,7 +60,7 @@ DeclareAttribute( "CagedCycleDecomposition", IsWreathProductElement );
 ## <Attr Name="NormalCycleDecomposition" Arg="x"/>
 ## <Description>
 ##   returns the normal cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Caged"/>)
 ## </Description>
 ## </ManSection>
@@ -75,7 +75,7 @@ DeclareAttribute( "NormalCycleDecomposition", IsWreathProductElement );
 ##   such that for each caged cycle <M>c_k</M> in the decompositon of <A>x</A>,
 ##   the element <M>c_k^{{n_k}}</M> is the corresponding normal cycle
 ##   in the normal cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Caged"/>)
 ## </Description>
 ## </ManSection>
@@ -87,7 +87,7 @@ DeclareAttribute( "ConjugatorCagedToNormal", IsWreathProductElement );
 ## <Func Name="Top" Arg="x"/>
 ## <Description>
 ##   returns the top component of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element. 
+##   The argument <A>x</A> must be a generic wreath product element.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)
 ## </Description>
 ## </ManSection>
@@ -172,7 +172,7 @@ DeclareGlobalFunction( "WPE_ConvertRepToPerm" );
 #! @Description
 #! G = K wr H, where K acts on n points and H acts on m points,
 #! is embedded in S_{n + m} in its imprimitive action.
-#! Convert a point from the induced action in the symmetric group 
+#! Convert a point from the induced action in the symmetric group
 #! into a tupel (i,j) on which the abstract wreath product acts.
 #! @Returns permutation
 #! @Arguments G, W, rep
@@ -194,7 +194,7 @@ DeclareGlobalFunction( "WPE_ConvertTupelToPoint" );
 DeclareGlobalFunction( "WPE_GenericMatWreathProduct" );
 
 #! @Description
-#! Convert perm g from matrix wreath product G = K wr H 
+#! Convert perm g from matrix wreath product G = K wr H
 #! into expanded rep of abstract wreath product.
 #! Expanded rep is a tupel (g_1, ..., g_m, pi), where g_i in K, pi in H.
 #! @Returns generic wreath product element
@@ -202,7 +202,7 @@ DeclareGlobalFunction( "WPE_GenericMatWreathProduct" );
 DeclareGlobalFunction( "WPE_ConvertMatToRep" );
 
 #! @Description
-#! Convert rep from abstract wreath product into matrix of 
+#! Convert rep from abstract wreath product into matrix of
 #! matrix wreath product G = K wr H.
 #! @Returns permutation
 #! @Arguments G, W, rep

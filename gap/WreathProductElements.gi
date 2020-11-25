@@ -22,14 +22,14 @@ InstallMethod( CagedCycleDecomposition,"generic wreath elements",true,[IsCagedCy
 
 InstallMethod( CagedCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
-    local 
+    local
       info,             # wreath product info
       decomposition,    # caged cycle decomposition of x
       suppTop,          # support of top component, list
       suppBase,         # non-trivial base component indices, list
       id,               # identity vector
       i,                # index point, loop var
-      cagedCycle,       # caged cycle, loop var 
+      cagedCycle,       # caged cycle, loop var
       topCycleList,     # cycle decomposition of top component, list
       topCycle;         # cycle of top component, loop var
 
@@ -73,7 +73,7 @@ end);
 
 InstallMethod( NormalCycleDecomposition,"normal cycle wreath elements",true,[IsNormalCycle],2, function(x) return [x]; end);
 
-InstallMethod( NormalCycleDecomposition,"caged cycle wreath elements",true,[IsCagedCycle],1, 
+InstallMethod( NormalCycleDecomposition,"caged cycle wreath elements",true,[IsCagedCycle],1,
 function(x)
     local info, det, i, normalCycle;
 
