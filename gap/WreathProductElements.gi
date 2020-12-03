@@ -75,18 +75,18 @@ InstallMethod( SparseWreathCycleDecomposition,"sparse wreath cycle wreath elemen
 
 InstallMethod( SparseWreathCycleDecomposition,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
-    local info, det, i, normalCycle;
+    local info, yade, i, sparseWreathCycle;
 
     info := FamilyObj(x)!.info;
-    det := Yade(x);
+    yade := Yade(x);
     i := Maximum(Territory(x));
-    normalCycle := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
-    Add(normalCycle, x![info.degI + 1]);
-    normalCycle[i] := det;
+    sparseWreathCycle := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
+    Add(sparseWreathCycle, x![info.degI + 1]);
+    sparseWreathCycle[i] := yade;
 
-    SetIsSparseWreathCycle(normalCycle, true);
+    SetIsSparseWreathCycle(sparseWreathCycle, true);
 
-    return [Objectify(info.family!.defaultType,normalCycle)];
+    return [Objectify(info.family!.defaultType,sparseWreathCycle)];
 end);
 
 InstallMethod( SparseWreathCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
@@ -102,13 +102,13 @@ InstallMethod( ConjugatorWreathCycleToSparse,"sparse wreath cycle wreath element
 
 InstallMethod( ConjugatorWreathCycleToSparse,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
-    local info, i, j, max, det, ord, k, y, conj;
+    local info, i, j, max, yade, ord, k, y, conj;
 
     info := FamilyObj(x)!.info;
     ord := Order(x![info.degI + 1]);
     i := WPE_ChooseYadePoint(x);
     max := Maximum(Territory(x));
-    det := Yade(x);
+    yade := Yade(x);
     conj := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
     Add(conj, One(info.groups[2]));
     conj := Objectify(info.family!.defaultType,conj);
@@ -117,7 +117,7 @@ function(x)
     for k in [1..ord] do
         y := x![j]^-1 * y;
         if j = max then
-            y := y * det;
+            y := y * yade;
         fi;
         j := i^(x![info.degI + 1]^k);
         conj![j] := y;
