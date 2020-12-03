@@ -13,74 +13,74 @@
 ## <Description>
 ##   returns the territory of <A>x</A>.
 ##   The argument <A>x</A> must be a generic wreath product element.
-##   (see&nbsp;<Ref Sect="Caged"/>)
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareAttribute( "Territory", IsWreathProductElement );
 
-## <#GAPDoc Label="IsCagedCycle">
+## <#GAPDoc Label="IsWreathCycle">
 ## <ManSection>
-## <Attr Name="IsCagedCycle" Arg="x"/>
+## <Attr Name="IsWreathCycle" Arg="x"/>
 ## <Description>
-##   tests whether <A>x</A> is a caged cycle.
+##   tests whether <A>x</A> is a wreath cycle.
 ##   The argument <A>x</A> must be a generic wreath product element.
-##   (see&nbsp;<Ref Sect="Caged"/>)
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareProperty( "IsCagedCycle", IsWreathProductElement );
+DeclareProperty( "IsWreathCycle", IsWreathProductElement );
 
-## <#GAPDoc Label="IsNormalCycle">
+## <#GAPDoc Label="IsSparseWreathCycle">
 ## <ManSection>
-## <Attr Name="IsNormalCycle" Arg="x"/>
+## <Attr Name="IsSparseWreathCycle" Arg="x"/>
 ## <Description>
-##   tests whether <A>x</A> is a normal cycle.
+##   tests whether <A>x</A> is a sparse wreath cycle.
 ##   The argument <A>x</A> must be a generic wreath product element.
-##   (see&nbsp;<Ref Sect="Caged"/>)
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareProperty( "IsNormalCycle", IsWreathProductElement );
+DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 
-## <#GAPDoc Label="CagedCycleDecomposition">
+## <#GAPDoc Label="WreathCycleDecomposition">
 ## <ManSection>
-## <Attr Name="CagedCycleDecomposition" Arg="x"/>
+## <Attr Name="WreathCycleDecomposition" Arg="x"/>
 ## <Description>
-##   returns the caged cycle decomposition of <A>x</A>.
+##   returns the wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a generic wreath product element.
-##   (see&nbsp;<Ref Sect="Caged"/>)
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareAttribute( "CagedCycleDecomposition", IsWreathProductElement );
+DeclareAttribute( "WreathCycleDecomposition", IsWreathProductElement );
 
-## <#GAPDoc Label="NormalCycleDecomposition">
+## <#GAPDoc Label="SparseWreathCycleDecomposition">
 ## <ManSection>
-## <Attr Name="NormalCycleDecomposition" Arg="x"/>
+## <Attr Name="SparseWreathCycleDecomposition" Arg="x"/>
 ## <Description>
-##   returns the normal cycle decomposition of <A>x</A>.
+##   returns the sparse wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a generic wreath product element.
-##   (see&nbsp;<Ref Sect="Caged"/>)
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareAttribute( "NormalCycleDecomposition", IsWreathProductElement );
+DeclareAttribute( "SparseWreathCycleDecomposition", IsWreathProductElement );
 
-## <#GAPDoc Label="ConjugatorCagedToNormal">
+## <#GAPDoc Label="ConjugatorWreathCycleToSparse">
 ## <ManSection>
-## <Attr Name="ConjugatorCagedToNormal" Arg="x"/>
+## <Attr Name="ConjugatorWreathCycleToSparse" Arg="x"/>
 ## <Description>
-##   returns a list of wreath product elements <M>n_1, \ldots, n_l</M>,
-##   such that for each caged cycle <M>c_k</M> in the decompositon of <A>x</A>,
-##   the element <M>c_k^{{n_k}}</M> is the corresponding normal cycle
-##   in the normal cycle decomposition of <A>x</A>.
+##   returns a list of wreath product elements <M>c_1, \ldots, c_l</M>,
+##   such that for each wreath cycle <M>w_k</M> in the decompositon of <A>x</A>,
+##   the element <M>w_k^{{c_k}}</M> is the corresponding sparse wreath cycle
+##   in the sparse wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a generic wreath product element.
-##   (see&nbsp;<Ref Sect="Caged"/>)
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareAttribute( "ConjugatorCagedToNormal", IsWreathProductElement );
+DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 
 ## <#GAPDoc Label="Top">
 ## <ManSection>
@@ -110,10 +110,10 @@ DeclareGlobalFunction( "Top" );
 DeclareGlobalFunction( "Base" );
 
 #! @Description
-DeclareAttribute( "WPE_Determinant", IsCagedCycle );
+DeclareAttribute( "Yade", IsWreathCycle );
 
 #! @Description
-DeclareGlobalFunction( "WPE_ChooseDeterminantPoint" );
+DeclareGlobalFunction( "WPE_ChooseYadePoint" );
 
 
 #############################################################################

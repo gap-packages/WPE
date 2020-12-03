@@ -1,7 +1,7 @@
 <Chapter Label="Operations">
 <Heading>Operations</Heading>
 
-The generic wreath product elements and in particular their caged and normal decompositions
+The generic wreath product elements and in particular their (sparse) wreath cycle decompositions
 can be used to speed up many operations in wreath products. <P/>
 
 TODO:: Add tests or scripts that show that these operations are indeed faster in practice.
