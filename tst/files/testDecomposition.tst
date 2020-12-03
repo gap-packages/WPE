@@ -1,27 +1,27 @@
 gap> TestDecomp := function(iso, n)
->     local W, i, x, decomp, normal, conj;
+>     local W, i, x, wreathDecomp, sparseDecomp, conj;
 >     W := Range(iso);
 >     for i in [1..n] do
 >         x := PseudoRandom(W);
->         decomp := WreathCycleDecomposition(x);
->         normal := SparseWreathCycleDecomposition(x);
+>         wreathDecomp := WreathCycleDecomposition(x);
+>         sparseDecomp := SparseWreathCycleDecomposition(x);
 >         conj := ConjugatorWreathCycleToSparse(x);
->         if Product(decomp) <> x then
+>         if Product(wreathDecomp) <> x then
 >             return false;
 >         fi;
->         if ForAny(decomp, y -> not IsWreathCycle(y)) then
+>         if ForAny(wreathDecomp, y -> not IsWreathCycle(y)) then
 >             return false;
 >         fi;
->         if ForAny(normal, y -> not IsSparseWreathCycle(y)) then
+>         if ForAny(sparseDecomp, y -> not IsSparseWreathCycle(y)) then
 >             return false;
 >         fi;
->         if Length(decomp) <> Length(normal) or Length(decomp) <> Length(conj) then
+>         if Length(wreathDecomp) <> Length(sparseDecomp) or Length(wreathDecomp) <> Length(conj) then
 >             return false;
 >         fi;
->         if ForAny([1..Length(decomp)], i -> decomp[i]^conj[i] <> normal[i]) then
+>         if ForAny([1..Length(wreathDecomp)], i -> wreathDecomp[i]^conj[i] <> sparseDecomp[i]) then
 >             return false;
 >         fi;
->         if x^Product(conj) <> Product(normal) then
+>         if x^Product(conj) <> Product(sparseDecomp) then
 >             return false;
 >         fi;
 >     od;

@@ -1,5 +1,4 @@
 gap> # [Perm, Perm]
-gap> # Renaming Points of K
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
