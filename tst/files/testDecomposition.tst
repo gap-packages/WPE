@@ -3,16 +3,16 @@ gap> TestDecomp := function(iso, n)
 >     W := Range(iso);
 >     for i in [1..n] do
 >         x := PseudoRandom(W);
->         decomp := CagedCycleDecomposition(x);
->         normal := NormalCycleDecomposition(x);
->         conj := ConjugatorCagedToNormal(x);
+>         decomp := WreathCycleDecomposition(x);
+>         normal := SparseWreathCycleDecomposition(x);
+>         conj := ConjugatorWreathCycleToSparse(x);
 >         if Product(decomp) <> x then
 >             return false;
 >         fi;
->         if ForAny(decomp, y -> not IsCagedCycle(y)) then
+>         if ForAny(decomp, y -> not IsWreathCycle(y)) then
 >             return false;
 >         fi;
->         if ForAny(normal, y -> not IsNormalCycle(y)) then
+>         if ForAny(normal, y -> not IsSparseWreathCycle(y)) then
 >             return false;
 >         fi;
 >         if Length(decomp) <> Length(normal) or Length(decomp) <> Length(conj) then

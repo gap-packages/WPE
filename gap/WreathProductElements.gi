@@ -18,18 +18,18 @@ local i,info;
   Print(";",x![info!.degI+1],")");
 end);
 
-InstallMethod( CagedCycleDecomposition,"generic wreath elements",true,[IsCagedCycle],1, function(x) return [x]; end);
+InstallMethod( WreathCycleDecomposition,"generic wreath elements",true,[IsWreathCycle],1, function(x) return [x]; end);
 
-InstallMethod( CagedCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( WreathCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
     local
       info,             # wreath product info
-      decomposition,    # caged cycle decomposition of x
+      decomposition,    # wreath cycle decomposition of x
       suppTop,          # support of top component, list
       suppBase,         # non-trivial base component indices, list
       id,               # identity vector
       i,                # index point, loop var
-      cagedCycle,       # caged cycle, loop var
+      wreathCycle,      # wreath cycle, loop var
       topCycleList,     # cycle decomposition of top component, list
       topCycle;         # cycle of top component, loop var
 
@@ -41,74 +41,74 @@ function(x)
     Add(id, One(info.groups[2]));
     decomposition := [];
 
-    # caged cycles that are of base type
+    # wreath cycles that are of base type
     for i in Filtered(suppBase, x -> not x in suppTop) do
-        cagedCycle := ShallowCopy(id);
-        cagedCycle[i] := x![i];
-        cagedCycle := Objectify(info.family!.defaultType,cagedCycle);
+        wreathCycle := ShallowCopy(id);
+        wreathCycle[i] := x![i];
+        wreathCycle := Objectify(info.family!.defaultType,wreathCycle);
 
-        SetIsNormalCycle(cagedCycle,true);
-        Add(decomposition, cagedCycle);
+        SetIsSparseWreathCycle(wreathCycle,true);
+        Add(decomposition, wreathCycle);
     od;
 
-    # caged cycles that are of top type
+    # wreath cycles that are of top type
     if IsEmpty(suppTop) then
         return decomposition;
     fi;
     topCycleList := Cycles(x![info.degI + 1], suppTop);
     for topCycle in topCycleList do
-        cagedCycle := ShallowCopy(id);
-        cagedCycle[info.degI + 1] := CycleFromList(topCycle);
+        wreathCycle := ShallowCopy(id);
+        wreathCycle[info.degI + 1] := CycleFromList(topCycle);
         for i in topCycle do
-            cagedCycle[i] := x![i];
+            wreathCycle[i] := x![i];
         od;
-        cagedCycle := Objectify(info.family!.defaultType,cagedCycle);
+        wreathCycle := Objectify(info.family!.defaultType,wreathCycle);
 
-        SetIsCagedCycle(cagedCycle,true);
-        Add(decomposition, cagedCycle);
+        SetIsWreathCycle(wreathCycle,true);
+        Add(decomposition, wreathCycle);
     od;
 
     return decomposition;
 end);
 
-InstallMethod( NormalCycleDecomposition,"normal cycle wreath elements",true,[IsNormalCycle],2, function(x) return [x]; end);
+InstallMethod( SparseWreathCycleDecomposition,"sparse wreath cycle wreath elements",true,[IsSparseWreathCycle],2, function(x) return [x]; end);
 
-InstallMethod( NormalCycleDecomposition,"caged cycle wreath elements",true,[IsCagedCycle],1,
+InstallMethod( SparseWreathCycleDecomposition,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
     local info, det, i, normalCycle;
 
     info := FamilyObj(x)!.info;
-    det := WPE_Determinant(x);
+    det := Yade(x);
     i := Maximum(Territory(x));
     normalCycle := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
     Add(normalCycle, x![info.degI + 1]);
     normalCycle[i] := det;
 
-    SetIsNormalCycle(normalCycle, true);
+    SetIsSparseWreathCycle(normalCycle, true);
 
     return [Objectify(info.family!.defaultType,normalCycle)];
 end);
 
-InstallMethod( NormalCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( SparseWreathCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
     local info, decomposition;
 
     info := FamilyObj(x)!.info;
-    decomposition := CagedCycleDecomposition(x);
-    return Concatenation(List(decomposition, NormalCycleDecomposition));
+    decomposition := WreathCycleDecomposition(x);
+    return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
 end);
 
-InstallMethod( ConjugatorCagedToNormal,"normal cycle wreath elements",true,[IsNormalCycle],2, function(x) return [One(x)]; end);
+InstallMethod( ConjugatorWreathCycleToSparse,"sparse wreath cycle wreath elements",true,[IsSparseWreathCycle],2, function(x) return [One(x)]; end);
 
-InstallMethod( ConjugatorCagedToNormal,"caged cycle wreath elements",true,[IsCagedCycle],1,
+InstallMethod( ConjugatorWreathCycleToSparse,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
     local info, i, j, max, det, ord, k, y, conj;
 
     info := FamilyObj(x)!.info;
     ord := Order(x![info.degI + 1]);
-    i := WPE_ChooseDeterminantPoint(x);
+    i := WPE_ChooseYadePoint(x);
     max := Maximum(Territory(x));
-    det := WPE_Determinant(x);
+    det := Yade(x);
     conj := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
     Add(conj, One(info.groups[2]));
     conj := Objectify(info.family!.defaultType,conj);
@@ -126,29 +126,29 @@ function(x)
     return [conj];
 end);
 
-InstallMethod( ConjugatorCagedToNormal,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( ConjugatorWreathCycleToSparse,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
     local info, decomposition;
 
     info := FamilyObj(x)!.info;
-    decomposition := CagedCycleDecomposition(x);
-    return Concatenation(List(decomposition, ConjugatorCagedToNormal));
+    decomposition := WreathCycleDecomposition(x);
+    return Concatenation(List(decomposition, ConjugatorWreathCycleToSparse));
 end);
 
-InstallTrueMethod( IsCagedCycle,IsNormalCycle);
-InstallTrueMethod( IsWreathProductElement,IsCagedCycle);
+InstallTrueMethod( IsWreathCycle,IsSparseWreathCycle);
+InstallTrueMethod( IsWreathProductElement,IsWreathCycle);
 
-InstallMethod( IsCagedCycle,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( IsWreathCycle,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
     local info, suppTop;
     info := FamilyObj(x)!.info;
 
-    # caged cycle of base type
+    # wreath cycle of base type
     if IsOne(x![info.degI + 1]) then
         return Number([1..info.degI], i -> not IsOne(x![i])) = 1;
     fi;
 
-    # caged cycle of top type
+    # wreath cycle of top type
     suppTop := MovedPoints(x![info.degI + 1]);
     if Length(CycleStructurePerm(x![info.degI + 1])) + 1 <> Length(suppTop) then
         return false;
@@ -156,7 +156,7 @@ function(x)
     return ForAll([1..info.degI], i -> i in suppTop or IsOne(x![i]));
 end);
 
-InstallMethod( IsNormalCycle,"caged cycle wreath elements",true,[IsCagedCycle],1,
+InstallMethod( IsSparseWreathCycle,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
     local info, terr, max;
 
@@ -166,10 +166,10 @@ function(x)
     return ForAll(terr, i -> i = max or IsOne(x![i]));
 end);
 
-InstallMethod( IsNormalCycle,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( IsSparseWreathCycle,"generic wreath elements",true,[IsWreathProductElement],0,
 function(x)
-    if IsCagedCycle(x) then
-        return IsNormalCycle(x);
+    if IsWreathCycle(x) then
+        return IsSparseWreathCycle(x);
     else
         return false;
     fi;
@@ -185,17 +185,17 @@ function(x)
     return DuplicateFreeList(Concatenation(suppTop, suppBase));
 end);
 
-InstallGlobalFunction( WPE_ChooseDeterminantPoint,
+InstallGlobalFunction( WPE_ChooseYadePoint,
 function(x)
     return First(Territory(x));
 end);
 
-InstallMethod( WPE_Determinant,"caged cycle wreath elements",true,[IsCagedCycle],1,
+InstallMethod( Yade,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
-    return WPE_Determinant(x, WPE_ChooseDeterminantPoint(x));
+    return Yade(x, WPE_ChooseYadePoint(x));
 end);
 
-InstallOtherMethod( WPE_Determinant,"caged cycle wreath elements",true,[IsCagedCycle, IsInt],1,
+InstallOtherMethod( Yade,"wreath cycle wreath elements",true,[IsWreathCycle, IsInt],1,
 function(x, i)
     local info, ord;
 
@@ -209,12 +209,12 @@ function(x, i)
     return Product([0..ord-1], k -> x![i^(x![info.degI + 1]^k)]);
 end);
 
-InstallMethod( Order,"caged cycle wreath elements",true,[IsCagedCycle],1,
+InstallMethod( Order,"wreath cycle wreath elements",true,[IsWreathCycle],1,
 function(x)
     local info;
 
     info := FamilyObj(x)!.info;
-    return Order(WPE_Determinant(x)) * Order(x![info.degI + 1]);
+    return Order(Yade(x)) * Order(x![info.degI + 1]);
 end);
 
 InstallMethod( Order,"generic wreath elements",true,[IsWreathProductElement],0,
@@ -222,7 +222,7 @@ function(x)
     local info, decomposition;
 
     info := FamilyObj(x)!.info;
-    decomposition := CagedCycleDecomposition(x);
+    decomposition := WreathCycleDecomposition(x);
     if IsEmpty(decomposition) then
         return 1;
     fi;

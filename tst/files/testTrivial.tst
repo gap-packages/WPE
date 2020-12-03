@@ -13,10 +13,10 @@ gap> PreImage(iso, oneW) = oneG;
 true
 gap> Territory(oneW);
 [  ]
-gap> CagedCycleDecomposition(oneW);
+gap> WreathCycleDecomposition(oneW);
 [  ]
 gap> Order(oneW);
 1
-gap> IsCagedCycle(oneW);
+gap> IsWreathCycle(oneW);
 false
 gap> 
