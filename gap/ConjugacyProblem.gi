@@ -1,4 +1,4 @@
-WPE_RepresentativeActionOp :=
+WPE_RepresentativeAction :=
 function(x, y)
     local
         info, K, H, decompLength, nrBlocks,
@@ -11,6 +11,7 @@ function(x, y)
         yBlockTopMapping, yBlockTopPartition, yBlockTopConjugator, yBlockTopRepresentativePos, ySortByClass,
         blockMapping, blockPerm, blockConjugator,
         sourcePartitionInvariant, imagePartitionInvariant, shift, blockLength,
+        h, h2, srcs, scrs2, imgs, S, S2, pi,
         ci, cBase, cTop;
     # initilize wreath product info
     info := FamilyObj(x)!.info;
@@ -43,7 +44,7 @@ function(x, y)
     # such that R(xB(top)_j) ^ (c_j) = R(yB(top)_j).
     partitionConjugator := [];
     # This stores for each element w_i of a block $R(xB(top)_j)$ an element c_i in K,
-    # such that $R(xB(top)_j) ^ (c_i) = w_i.
+    # such that $R(xB(top)_j) ^ (c_i) = Yade(w_i).
     xBlockConjugator := ListWithIdenticalEntries(decompLength, One(K));
     yBlockConjugator := ListWithIdenticalEntries(decompLength, One(K));
     blockTopStart := 1;
@@ -64,7 +65,7 @@ function(x, y)
         xBlockTopPartition := [];
         xBlockTopConjugator := ListWithIdenticalEntries(blockTopLength, One(K));
         xBlockTopRepresentativePos := [];
-        WPE_RepresentativeActionRestrictionsFixedTop(
+        WPE_RepresentativeAction_PartitionBlockTopByYadeClass(
             K, xDecompYade, blockTopStart,
             xBlockTopMapping, xBlockTopPartition, xBlockTopRepresentativePos, xBlockTopConjugator);
         # refine blockTop into blocks by yade class,
@@ -73,7 +74,7 @@ function(x, y)
         yBlockTopPartition := [];
         yBlockTopConjugator := ListWithIdenticalEntries(blockTopLength, One(K));
         yBlockTopRepresentativePos := [];
-        WPE_RepresentativeActionRestrictionsFixedTop(
+        WPE_RepresentativeAction_PartitionBlockTopByYadeClass(
             K, yDecompYade, blockTopStart,
             yBlockTopMapping, yBlockTopPartition, yBlockTopRepresentativePos, yBlockTopConjugator);
         # Do xBlockTop and yBlockTop have same amount of blocks?
@@ -87,7 +88,7 @@ function(x, y)
             xDecompYade{[blockTopStart .. blockTopEnd]}, xSortByClass);
         xBlockTopConjugator := Permuted(xBlockTopConjugator, xSortByClass);
         # Compute mapping from xBlockTop to yBlockTop, such that each block corresponds to same yade class
-        blockMapping := WPE_RepresentativeActionBlockMapping(
+        blockMapping := WPE_RepresentativeAction_BlockMapping(
             K, nrBlocks, blockTopStart,
             xDecompYade, xBlockTopPartition,
             yDecompYade, yBlockTopPartition, yBlockTopRepresentativePos);
@@ -125,8 +126,45 @@ function(x, y)
         fi;
         shift := shift + blockLength;
     od;
-    cTop := RepresentativeAction(H, sourcePartitionInvariant, imagePartitionInvariant, OnTuplesSets);
-    if cTop = fail then return fail; fi;
+    # Unfortunately this is slow in GAP
+    #cTop := RepresentativeAction(H, sourcePartitionInvariant, imagePartitionInvariant, OnTuplesSets);
+    #if cTop = fail then return fail; fi;
+    cTop := ();
+    S := H;
+    srcs := sourcePartitionInvariant;
+    imgs := imagePartitionInvariant;
+    for i in [1 .. Length(srcs)] do
+        if IsPerm(srcs[i][1]) then
+            for pi in SymmetricGroup(Length(srcs[i])) do
+                h := ();
+                S2 := S;
+                srcs2 := srcs;
+                detectedFail := false;
+                for j in [1 .. Length(srcs[i])] do
+                    h2 := RepresentativeAction(S2, srcs2[i][j], imgs[i][j ^ pi], OnPoints);
+                    if h2 = fail then
+                        detectedFail := true;
+                        break;
+                    fi;
+                    h := h * h2;
+                    srcs2 := OnTuplesSets(srcs2, h2);
+                    S2 := Stabilizer(S2, srcs2[i][j], OnPoints);
+                od;
+                if detectedFail = true then continue; fi;
+                # no fail detected
+                cTop := cTop * h;
+                srcs := srcs2;
+                S := S2;
+                break;
+            od;
+        else
+            h := RepresentativeAction(S, srcs[i], imgs[i], OnSets);
+            if h = fail then return fail; fi;
+            cTop := cTop * h;
+            srcs := OnTuplesSets(srcs, h);
+            S := Stabilizer(S, srcs[i], OnSets);
+        fi;
+    od;
     # Now construct the base component for the conjugator c
     cBase := ListWithIdenticalEntries(info!.degI, One(K));
     shift := 0;
@@ -163,30 +201,30 @@ function(x, y)
     return Objectify(info.family!.defaultType, Concatenation(cBase, [cTop]));
 end;
 
+#
 # K                      : base group factor of wreath product K wr H
-# decompYade             : list of length l,
-#                          let decomp be a list of length l with disjoint wreath cycles $w_i$.
-#                          maps i-th wreath cycle w_i in decompFixedTop to Yade(w_i)
-# block                  : list of length l
-# blockLength            : empty list
-# blockRepresentativePos : empty list
-# blockConjugator        : list of length l
+# decompYade             : list of length l, elements of K,
+#                          we suppose that the i-th element corresponds to Yade(w_i),
+#                          where w_i is a wreath cycle
+# block                  : list of length l, integers
+# blockLength            : empty list, integers
+# blockRepresentativePos : empty list, integers
+# blockConjugator        : list of length l, elements of K
 #
 # This function sets the lists block, blockLength, blockRepresentativePos and blockConjugator as follows:
 #
-# block                  : maps i-th wreath cycle w_i in decomp to j-th block B(w_i) = B_j
+# block                  : maps i-th wreath cycle w_i to j-th block B(w_i) = B_j
 # blockLength            : maps j-th block B_j to length |B_j|
 # blockRepresentativePos : maps j-th block B_j to position of representative r = R(B_j) in decompYade
-# blockConjugator        : maps i-th wreath cycle w_i in decomp to conjugator c
-#                          from yade(r) to yade(w_i) where r ist the representative r = R(B(w_i))
+# blockConjugator        : maps i-th wreath cycle w_i to conjugator c_i
+#                          from Yade(r) to Yade(w_i) where r ist the representative r = R(B(w_i))
 #
-# This function partitions wreath cycles in decomp by yade class.
-# We say that two wreath cycles $w, v$ are in the same yade class,
-# if the yade elements are conjugate in $K$.
-# For each block $B$ we mark the first element as the unique representative $r$
-# and for each element $w$ in the block we store an element $c$ of $K$,
-# that maps the yade representative of $r$ onto $w$.
-WPE_RepresentativeActionRestrictionsFixedTop :=
+# This function partitions wreath cycles by yade class.
+# We say that two wreath cycles w, v are in the same yade class,
+# if the yade elements are conjugate in K.
+# For each block B_j we mark the first element as the unique representative r = R(B_j)
+# and for each element $w_i$ in the block we store an element c_i of K, that maps Yade(r) to Yade(w_i).
+WPE_RepresentativeAction_PartitionBlockTopByYadeClass :=
 function(K, decompYade, blockStart, blockMapping, blockPartition, blockRepresentativePos, blockConjugator)
     local i, j, wYade, rPos, rYade, c;
     for i in [1 .. Length(blockMapping)] do
@@ -216,10 +254,19 @@ function(K, decompYade, blockStart, blockMapping, blockPartition, blockRepresent
 end;
 
 #
+# K                       : base group factor of wreath product K wr H
+# nrBlocks                : integer, number of blocks
+# blockStart              : integer, starting position of blocks
+# xDecompYade             : list of length l, elements of K
+# xBlockPartition         : list of length nrBlocks, integers
+# yDecompYade             : list of length l, elements of K
+# yBlockPartition         : list of length nrBlocks, integers
+# yBlockRepresentativePos : list of length nrBlocks, integers
+#
 # This functions return either fail or [blockPerm, blockConjugator] such that
 # xB[j] and yB[j ^ blockPerm] have equal yade class
 # and R(xB[j]) ^ blockConjugator[j] = R(yB[j ^ blockPerm])
-WPE_RepresentativeActionBlockMapping :=
+WPE_RepresentativeAction_BlockMapping :=
 function(K, nrBlocks, blockStart, xDecompYade, xBlockPartition, yDecompYade, yBlockPartition, yBlockRepresentativePos )
     local blockPerm, blockConjugator, possibleImages, j, k, vPos, vBlockLength, vYade, wPos, wBlockLength, wYade, c;
     blockPerm := ListWithIdenticalEntries(nrBlocks, 0);
