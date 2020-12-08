@@ -118,11 +118,11 @@ function(x, y)
     for k in [1 .. Length(partition)] do
         blockLength := partition[k];
         if Top(xDecomp[shift + 1]) = One(H) then
-            sourcePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(xDecomp[shift + i])[1]);
-            imagePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(yDecomp[shift + i])[1]);
+            sourcePartitionInvariant[k] := Set(List([1 .. blockLength], i -> Territory(xDecomp[shift + i])[1]));
+            imagePartitionInvariant[k] := Set(List([1 .. blockLength], i -> Territory(yDecomp[shift + i])[1]));
         else
-            sourcePartitionInvariant[k] := List([1 .. blockLength], i -> Top(xDecomp[shift + i]));
-            imagePartitionInvariant[k] := List([1 .. blockLength], i -> Top(yDecomp[shift + i]));
+            sourcePartitionInvariant[k] := Set(List([1 .. blockLength], i -> Top(xDecomp[shift + i])));
+            imagePartitionInvariant[k] := Set(List([1 .. blockLength], i -> Top(yDecomp[shift + i])));
         fi;
         shift := shift + blockLength;
     od;
