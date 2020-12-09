@@ -1,22 +1,49 @@
-WPE_RepresentativeAction :=
+#
+# Returns either an element c such that x^c = y or fail if x and y are not conjugate.
+#
+InstallGlobalFunction( WPE_RepresentativeAction,
 function(x, y)
     local
-        info, K, H, decompLength, nrBlocks,
+        info, K, H, partitionData, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
+        topConditionsData, sourcePartitionInvariant, imagePartitionInvariant, cTop, cBase;
+    # initilize wreath product info
+    info := FamilyObj(x)!.info;
+    K := info.groups[1];
+    H := info.groups[2];
+    # partition wreath cycle decompositions by top length and yade class
+    partitionData := WPE_RepresentativeAction_PartitionByTopAndYadeClass(K, x, y);
+    if partitionData = fail then return fail; fi;
+    xDecomp := partitionData.xDecomp;
+    yDecomp := partitionData.yDecomp;
+    partition := partitionData.partition;
+    partitionConjugator := partitionData.partitionConjugator;
+    xBlockConjugator := partitionData.xBlockConjugator;
+    yBlockConjugator := partitionData.yBlockConjugator;
+    # construct restrictions for top cTop of conjugator
+    topConditionsData := WPE_RepresentativeAction_TopConditions(H, xDecomp, yDecomp, partition);
+    sourcePartitionInvariant := topConditionsData.sourcePartitionInvariant;
+    imagePartitionInvariant := topConditionsData.imagePartitionInvariant;
+    # compute top cTop of conjugator
+    cTop := WPE_RepresentativeAction_Top(H, partition, sourcePartitionInvariant, imagePartitionInvariant);
+    if cTop = fail then return fail; fi;
+    # construct the base component for the conjugator c
+    cBase := WPE_RepresentativeAction_Base(cTop, info!.degI, K, xDecomp, yDecomp, partition, partitionConjugator,
+                                           xBlockConjugator, yBlockConjugator);
+    return Objectify(info.family!.defaultType, Concatenation(cBase, [cTop]));
+end);
+
+InstallGlobalFunction( WPE_RepresentativeAction_PartitionByTopAndYadeClass,
+function(K, x, y)
+    local
         i, j, k, l, a, b, d, p, pMax, lp,
+        decompLength, nrBlocks,
         xDecomp, xDecompYade, xDecompTopSuppLength, xSortByTopLength,
         yDecomp, yDecompYade, yDecompTopSuppLength, ySortByTopLength,
         partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
         pos, blockTopStart, blockTopEnd, blockTopLength,
         xBlockTopMapping, xBlockTopPartition, xBlockTopConjugator, xBlockTopRepresentativePos, xSortByClass,
         yBlockTopMapping, yBlockTopPartition, yBlockTopConjugator, yBlockTopRepresentativePos, ySortByClass,
-        blockMapping, blockPerm, blockConjugator,
-        sourcePartitionInvariant, imagePartitionInvariant, shift, blockLength,
-        h, h2, srcs, scrs2, imgs, S, S2, pi,
-        ci, cBase, cTop;
-    # initilize wreath product info
-    info := FamilyObj(x)!.info;
-    K := info.groups[1];
-    H := info.groups[2];
+        blockMapping, blockPerm, blockConjugator;
     # compute wreath cycle decomposition
     xDecomp := WreathCycleDecomposition(x);
     yDecomp := WreathCycleDecomposition(y);
@@ -94,7 +121,7 @@ function(x, y)
             yDecompYade, yBlockTopPartition, yBlockTopRepresentativePos);
         if blockMapping = fail then return fail; fi;
         # Rename blocks in yBlock, such that block xB_i corresponds to yB_i
-        blockPerm := blockMapping[1]^(-1);
+        blockPerm := blockMapping.blockPerm^(-1);
         yBlockTopMapping := OnTuples(yBlockTopMapping, blockPerm);
         yBlockTopPartition := Permuted(yBlockTopPartition, blockPerm);
         # Sort yDecomp with trivial top by yade class
@@ -106,18 +133,26 @@ function(x, y)
         yBlockTopConjugator := Permuted(yBlockTopConjugator, ySortByClass);
         # Fill main data
         Append(partition, xBlockTopPartition);
-        Append(partitionConjugator, blockMapping[2]);
+        Append(partitionConjugator, blockMapping.blockConjugator);
         xBlockConjugator{[blockTopStart .. blockTopEnd]} := xBlockTopConjugator;
         yBlockConjugator{[blockTopStart .. blockTopEnd]} := yBlockTopConjugator;
         blockTopStart := blockTopEnd + 1;
     od;
-    # Try to compute a suitable top cycle for the conjugator c
+    return rec(xDecomp := xDecomp, yDecomp := yDecomp,
+               partition := partition, partitionConjugator := partitionConjugator,
+               xBlockConjugator := xBlockConjugator, yBlockConjugator := yBlockConjugator);
+end);
+
+InstallGlobalFunction( WPE_RepresentativeAction_TopConditions,
+function(H, xDecomp, yDecomp, partition)
+    local
+        sourcePartitionInvariant, imagePartitionInvariant, shift, k, blockLength;
     sourcePartitionInvariant := ListWithIdenticalEntries(Length(partition), 0);
     imagePartitionInvariant := ListWithIdenticalEntries(Length(partition), 0);
     shift := 0;
     for k in [1 .. Length(partition)] do
         blockLength := partition[k];
-        if Top(xDecomp[shift + 1]) = One(H) then
+        if Top(xDecomp[shift + 1]) = () then
             sourcePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(xDecomp[shift + i])[1]);
             imagePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(yDecomp[shift + i])[1]);
         else
@@ -126,6 +161,12 @@ function(x, y)
         fi;
         shift := shift + blockLength;
     od;
+    return rec(sourcePartitionInvariant := sourcePartitionInvariant, imagePartitionInvariant := imagePartitionInvariant);
+end);
+
+InstallGlobalFunction( WPE_RepresentativeAction_Top,
+function(H, partition, sourcePartitionInvariant, imagePartitionInvariant)
+    local cTop, S, srcs, imgs, firstBlockNonTrivialTop, k, j, h, iterPerms, perm, detectedFail;
     # Unfortunately this is slow in GAP
     #cTop := RepresentativeAction(H, sourcePartitionInvariant, imagePartitionInvariant, OnTuplesSets);
     #if cTop = fail then return fail; fi;
@@ -136,13 +177,12 @@ function(x, y)
     S[1] := H;
     srcs[1] := sourcePartitionInvariant;
     imgs := imagePartitionInvariant;
-    shift := 0;
     firstBlockNonTrivialTop := Length(partition) + 1;
     for k in [1 .. Length(partition)] do
-        if Top(xDecomp[shift + 1]) <> One(H) then
+        if IsPerm(sourcePartitionInvariant[k][1]) then
             firstBlockNonTrivialTop := k;
+            break;
         fi;
-        shift := shift + partition[k];
     od;
     # restriction: map set of points [p_1, ..., p_l] to set of points [P_1, ..., P_l].
     for k in [1 .. firstBlockNonTrivialTop - 1] do
@@ -161,12 +201,12 @@ function(x, y)
     iterPerms := List([firstBlockNonTrivialTop .. Length(partition)], k -> Iterator(SymmetricGroup(partition[k])));
     k := firstBlockNonTrivialTop;
     while k <= Length(partition) do
-        if IsDoneIterator(iterPerms[k]) then
-            iterPerms[k] := Iterator(SymmetricGroup(partition[k]));
+        if IsDoneIterator(iterPerms[k + 1 - firstBlockNonTrivialTop]) then
+            iterPerms[k + 1 - firstBlockNonTrivialTop] := Iterator(SymmetricGroup(partition[k]));
             k := k - 1;
         fi;
         if k = firstBlockNonTrivialTop - 1 then return fail; fi;
-        perm := NextIterator(iterPerms[k]);
+        perm := NextIterator(iterPerms[k + 1 - firstBlockNonTrivialTop]);
         cTop[k + 1] := StructuralCopy(cTop[k]);
         S[k + 1] := StructuralCopy(S[k]);
         srcs[k + 1] := StructuralCopy(srcs[k]);
@@ -185,9 +225,13 @@ function(x, y)
             k := k + 1;
         fi;
     od;
-    cTop := cTop[Length(partition) + 1];
-    # Now construct the base component for the conjugator c
-    cBase := ListWithIdenticalEntries(info!.degI, One(K));
+    return cTop[Length(partition) + 1];
+end);
+
+InstallGlobalFunction( WPE_RepresentativeAction_Base,
+function(cTop, degreeOfH, K, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator)
+    local cBase, shift, blockLength, a, b, i, j, ci, l, p, pMax, lp, d, k;
+    cBase := ListWithIdenticalEntries(degreeOfH, One(K));
     shift := 0;
     for k in [1 .. Length(partition)] do
         blockLength := partition[k];
@@ -196,7 +240,7 @@ function(x, y)
             j := i ^ cTop;
             b := First([1 .. blockLength], b -> j in Territory(yDecomp[shift + b]));
             ci := xBlockConjugator[shift + a] ^ (-1) * partitionConjugator[k] * yBlockConjugator[shift + b];
-            if Top(xDecomp[shift + a]) = One(H) then
+            if Top(xDecomp[shift + a]) = () then
                 cBase[i] := ci;
             else
                 l := WPE_ChooseYadePoint(yDecomp[shift + b]);
@@ -219,8 +263,8 @@ function(x, y)
         od;
         shift := shift + blockLength;
     od;
-    return Objectify(info.family!.defaultType, Concatenation(cBase, [cTop]));
-end;
+    return cBase;
+end);
 
 #
 # K                      : base group factor of wreath product K wr H
@@ -245,7 +289,7 @@ end;
 # if the yade elements are conjugate in K.
 # For each block B_j we mark the first element as the unique representative r = R(B_j)
 # and for each element $w_i$ in the block we store an element c_i of K, that maps Yade(r) to Yade(w_i).
-WPE_RepresentativeAction_PartitionBlockTopByYadeClass :=
+InstallGlobalFunction( WPE_RepresentativeAction_PartitionBlockTopByYadeClass,
 function(K, decompYade, blockStart, blockMapping, blockPartition, blockRepresentativePos, blockConjugator)
     local i, j, wYade, rPos, rYade, c;
     for i in [1 .. Length(blockMapping)] do
@@ -272,7 +316,7 @@ function(K, decompYade, blockStart, blockMapping, blockPartition, blockRepresent
             Add(blockRepresentativePos, i);
         fi;
     od;
-end;
+end);
 
 #
 # K                       : base group factor of wreath product K wr H
@@ -284,12 +328,12 @@ end;
 # yBlockPartition         : list of length nrBlocks, integers
 # yBlockRepresentativePos : list of length nrBlocks, integers
 #
-# This functions return either fail or [blockPerm, blockConjugator] such that
+# This functions return either fail or rec(blockPerm, blockConjugator) such that
 # xB[j] and yB[j ^ blockPerm] have equal yade class
 # and R(xB[j]) ^ blockConjugator[j] = R(yB[j ^ blockPerm])
-WPE_RepresentativeAction_BlockMapping :=
+InstallGlobalFunction( WPE_RepresentativeAction_BlockMapping,
 function(K, nrBlocks, blockStart, xDecompYade, xBlockPartition, yDecompYade, yBlockPartition, yBlockRepresentativePos )
-    local blockPerm, blockConjugator, possibleImages, j, k, vPos, vBlockLength, vYade, wPos, wBlockLength, wYade, c;
+    local blockPerm, blockConjugator, possibleImages, j, k, kPos, vPos, vBlockLength, vYade, wPos, wBlockLength, wYade, c;
     blockPerm := ListWithIdenticalEntries(nrBlocks, 0);
     blockConjugator := ListWithIdenticalEntries(nrBlocks, One(K));
     possibleImages := [1 .. nrBlocks];
@@ -299,7 +343,8 @@ function(K, nrBlocks, blockStart, xDecompYade, xBlockPartition, yDecompYade, yBl
         vPos := vPos + vBlockLength;
         vBlockLength := xBlockPartition[j];
         vYade := xDecompYade[blockStart + vPos - 1];
-        for k in possibleImages do
+        for kPos in [1 .. Length(possibleImages)] do
+            k := possibleImages[kPos];
             wPos := yBlockRepresentativePos[k];
             if vBlockLength <> yBlockPartition[k] then continue; fi;
             wYade := yDecompYade[blockStart + wPos - 1];
@@ -307,11 +352,11 @@ function(K, nrBlocks, blockStart, xDecompYade, xBlockPartition, yDecompYade, yBl
             if c <> fail then
                 blockPerm[j] := k;
                 blockConjugator[j] := c;
-                Remove(possibleImages, k);
+                Remove(possibleImages, kPos);
                 break;
             fi;
         od;
         if blockPerm[j] = 0 then return fail; fi;
     od;
-    return [PermList(blockPerm), blockConjugator];
-end;
+    return rec(blockPerm := PermList(blockPerm), blockConjugator := blockConjugator);
+end);

@@ -207,3 +207,15 @@ DeclareGlobalFunction( "WPE_ConvertMatToRep" );
 #! @Returns permutation
 #! @Arguments G, W, rep
 DeclareGlobalFunction( "WPE_ConvertRepToMat" );
+
+#############################################################################
+# Conjugacy Problem:
+#############################################################################
+
+DeclareGlobalFunction( "WPE_RepresentativeAction" );
+DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionByTopAndYadeClass" );
+DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionBlockTopByYadeClass" );
+DeclareGlobalFunction( "WPE_RepresentativeAction_BlockMapping" );
+DeclareGlobalFunction( "WPE_RepresentativeAction_TopConditions" );
+DeclareGlobalFunction( "WPE_RepresentativeAction_Top" );
+DeclareGlobalFunction( "WPE_RepresentativeAction_Base" );
