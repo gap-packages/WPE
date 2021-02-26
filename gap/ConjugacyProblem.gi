@@ -12,7 +12,9 @@ function(x, y)
     H := info.groups[2];
     # partition wreath cycle decompositions by top length and yade class
     partitionData := WPE_RepresentativeAction_PartitionByTopAndYadeClass(K, x, y);
-    if partitionData = fail then return fail; fi;
+    if partitionData = fail then
+        return fail;
+    fi;
     xDecomp := partitionData.xDecomp;
     yDecomp := partitionData.yDecomp;
     partition := partitionData.partition;
@@ -25,7 +27,9 @@ function(x, y)
     imagePartitionInvariant := topConditionsData.imagePartitionInvariant;
     # compute top cTop of conjugator
     cTop := WPE_RepresentativeAction_Top(H, partition, sourcePartitionInvariant, imagePartitionInvariant);
-    if cTop = fail then return fail; fi;
+    if cTop = fail then
+        return fail;
+    fi;
     # construct the base component for the conjugator c
     cBase := WPE_RepresentativeAction_Base(cTop, info!.degI, K, xDecomp, yDecomp, partition, partitionConjugator,
                                            xBlockConjugator, yBlockConjugator);
@@ -49,14 +53,18 @@ function(K, x, y)
     yDecomp := WreathCycleDecomposition(y);
     decompLength := Length(xDecomp);
     # Is length of both decompositions equal?
-    if decompLength <> Length(yDecomp) then return fail; fi;
+    if decompLength <> Length(yDecomp) then
+        return fail;
+    fi;
     # Sorting permutation for decompositions by length of top cycles
     xDecompTopSuppLength := List(xDecomp, w -> Length(MovedPoints(Top(w))));
     yDecompTopSuppLength := List(yDecomp, w -> Length(MovedPoints(Top(w))));
     xSortByTopLength := Sortex(xDecompTopSuppLength);
     ySortByTopLength := Sortex(yDecompTopSuppLength);
     # Are top decompositions equal?
-    if xDecompTopSuppLength <> yDecompTopSuppLength then return fail; fi;
+    if xDecompTopSuppLength <> yDecompTopSuppLength then
+        return fail;
+    fi;
     # Sort decompositions by length of top cycles, i.e.\ by cycle type
     xDecomp := Permuted(xDecomp, xSortByTopLength);
     yDecomp := Permuted(yDecomp, ySortByTopLength);
@@ -106,7 +114,9 @@ function(K, x, y)
             yBlockTopMapping, yBlockTopPartition, yBlockTopRepresentativePos, yBlockTopConjugator);
         # Do xBlockTop and yBlockTop have same amount of blocks?
         nrBlocks := Length(xBlockTopPartition);
-        if nrBlocks <> Length(yBlockTopPartition) then return fail; fi;
+        if nrBlocks <> Length(yBlockTopPartition) then
+            return fail;
+        fi;
         # Sort xDecomp by xBlockTop
         xSortByClass := Sortex(xBlockTopMapping);
         xDecomp{[blockTopStart .. blockTopEnd]} := Permuted(
@@ -119,7 +129,9 @@ function(K, x, y)
             K, nrBlocks, blockTopStart,
             xDecompYade, xBlockTopPartition,
             yDecompYade, yBlockTopPartition, yBlockTopRepresentativePos);
-        if blockMapping = fail then return fail; fi;
+        if blockMapping = fail then
+            return fail;
+        fi;
         # Rename blocks in yBlock, such that block xB_i corresponds to yB_i
         blockPerm := blockMapping.blockPerm^(-1);
         yBlockTopMapping := OnTuples(yBlockTopMapping, blockPerm);
@@ -190,7 +202,9 @@ function(H, partition, sourcePartitionInvariant, imagePartitionInvariant)
         S[k + 1] := StructuralCopy(S[k]);
         srcs[k + 1] := StructuralCopy(srcs[k]);
         h := RepresentativeAction(S[k + 1], Set(srcs[k + 1, k]), Set(imgs[k]), OnSets);
-        if h = fail then return fail; fi;
+        if h = fail then
+            return fail;
+        fi;
         cTop[k + 1] := cTop[k + 1] * h;
         srcs[k + 1] := OnTuplesTuples(srcs[k + 1], h);
         S[k + 1] := Stabilizer(S[k + 1], Set(srcs[k + 1, k]), OnSets);
@@ -205,7 +219,9 @@ function(H, partition, sourcePartitionInvariant, imagePartitionInvariant)
             iterPerms[k + 1 - firstBlockNonTrivialTop] := Iterator(SymmetricGroup(partition[k]));
             k := k - 1;
         fi;
-        if k = firstBlockNonTrivialTop - 1 then return fail; fi;
+        if k = firstBlockNonTrivialTop - 1 then
+            return fail;
+        fi;
         perm := NextIterator(iterPerms[k + 1 - firstBlockNonTrivialTop]);
         cTop[k + 1] := StructuralCopy(cTop[k]);
         S[k + 1] := StructuralCopy(S[k]);
@@ -346,7 +362,9 @@ function(K, nrBlocks, blockStart, xDecompYade, xBlockPartition, yDecompYade, yBl
         for kPos in [1 .. Length(possibleImages)] do
             k := possibleImages[kPos];
             wPos := yBlockRepresentativePos[k];
-            if vBlockLength <> yBlockPartition[k] then continue; fi;
+            if vBlockLength <> yBlockPartition[k] then
+                continue;
+            fi;
             wYade := yDecompYade[blockStart + wPos - 1];
             c := RepresentativeAction(K, vYade, wYade);
             if c <> fail then
@@ -356,7 +374,9 @@ function(K, nrBlocks, blockStart, xDecompYade, xBlockPartition, yDecompYade, yBl
                 break;
             fi;
         od;
-        if blockPerm[j] = 0 then return fail; fi;
+        if blockPerm[j] = 0 then
+            return fail;
+        fi;
     od;
     return rec(blockPerm := PermList(blockPerm), blockConjugator := blockConjugator);
 end);
