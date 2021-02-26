@@ -229,17 +229,23 @@ function(x)
     return Lcm(List(decomposition, Order));
 end);
 
-InstallGlobalFunction( Top,
+InstallGlobalFunction( TopComponentOfGenericWreathProductElement,
 function(x)
-    local info;
     if not IsWreathProductElement(x) then
         return Error("x is not a wreath product element");
     fi;
+    return WPE_TopComponent(x);
+end);
+
+InstallMethod( WPE_TopComponent, "generic wreath elements", true, [IsWreathProductElement], 0,
+function(x)
+    local info;
+
     info := FamilyObj(x)!.info;
     return x![info.degI + 1];
 end);
 
-InstallGlobalFunction( Base,
+InstallGlobalFunction( BaseComponentOfGenericWreathProductElement,
 function(arg)
     local info, x, i;
 
@@ -252,7 +258,7 @@ function(arg)
     fi;
     info := FamilyObj(x)!.info;
     if Length(arg) = 1 then
-        return List([1..info.degI], i -> x![i]);
+        return WPE_BaseComponent(x);
     else
         i := arg[2];
         if not IsInt(i) then
@@ -261,6 +267,24 @@ function(arg)
         if i < 1 or i > info.degI then
         return Error("Index out of bounds");
         fi;
-        return x![i];
+        return WPE_BaseComponent(x, i);
     fi;
+end);
+
+
+InstallMethod( WPE_BaseComponent, "generic wreath elements", true, [IsWreathProductElement], 0,
+function(x)
+    local info;
+
+    info := FamilyObj(x)!.info;
+    return List([1..info.degI], i -> x![i]);
+end);
+
+
+InstallOtherMethod( WPE_BaseComponent, "generic wreath elements and integer", true, [IsWreathProductElement, IsInt], 0,
+function(x, i)
+    local info;
+
+    info := FamilyObj(x)!.info;
+    return x![i];
 end);

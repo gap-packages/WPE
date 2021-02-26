@@ -57,8 +57,8 @@ function(K, x, y)
         return fail;
     fi;
     # Sorting permutation for decompositions by length of top cycles
-    xDecompTopSuppLength := List(xDecomp, w -> Length(MovedPoints(Top(w))));
-    yDecompTopSuppLength := List(yDecomp, w -> Length(MovedPoints(Top(w))));
+    xDecompTopSuppLength := List(xDecomp, w -> Length(MovedPoints(WPE_TopComponent(w))));
+    yDecompTopSuppLength := List(yDecomp, w -> Length(MovedPoints(WPE_TopComponent(w))));
     xSortByTopLength := Sortex(xDecompTopSuppLength);
     ySortByTopLength := Sortex(yDecompTopSuppLength);
     # Are top decompositions equal?
@@ -164,12 +164,12 @@ function(H, xDecomp, yDecomp, partition)
     shift := 0;
     for k in [1 .. Length(partition)] do
         blockLength := partition[k];
-        if Top(xDecomp[shift + 1]) = () then
+        if WPE_TopComponent(xDecomp[shift + 1]) = () then
             sourcePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(xDecomp[shift + i])[1]);
             imagePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(yDecomp[shift + i])[1]);
         else
-            sourcePartitionInvariant[k] := List([1 .. blockLength], i -> Top(xDecomp[shift + i]));
-            imagePartitionInvariant[k] := List([1 .. blockLength], i -> Top(yDecomp[shift + i]));
+            sourcePartitionInvariant[k] := List([1 .. blockLength], i -> WPE_TopComponent(xDecomp[shift + i]));
+            imagePartitionInvariant[k] := List([1 .. blockLength], i -> WPE_TopComponent(yDecomp[shift + i]));
         fi;
         shift := shift + blockLength;
     od;
@@ -256,24 +256,24 @@ function(cTop, degreeOfH, K, xDecomp, yDecomp, partition, partitionConjugator, x
             j := i ^ cTop;
             b := First([1 .. blockLength], b -> j in Territory(yDecomp[shift + b]));
             ci := xBlockConjugator[shift + a] ^ (-1) * partitionConjugator[k] * yBlockConjugator[shift + b];
-            if Top(xDecomp[shift + a]) = () then
+            if WPE_TopComponent(xDecomp[shift + a]) = () then
                 cBase[i] := ci;
             else
                 l := WPE_ChooseYadePoint(yDecomp[shift + b]);
-                pMax := Order(Top(yDecomp[shift + b])) - 1;
+                pMax := Order(WPE_TopComponent(yDecomp[shift + b])) - 1;
                 lp := l;
                 for p in [0 .. pMax] do
                     if lp = j then
                         break;
                     fi;
-                    ci := ci * Base(yDecomp[shift + b], lp);
-                    lp := lp ^ Top(yDecomp[shift + b]);
+                    ci := ci * WPE_BaseComponent(yDecomp[shift + b], lp);
+                    lp := lp ^ WPE_TopComponent(yDecomp[shift + b]);
                 od;
-                for d in [1 .. NrMovedPoints(Top(xDecomp[shift + a]))] do
+                for d in [1 .. NrMovedPoints(WPE_TopComponent(xDecomp[shift + a]))] do
                     cBase[i] := ShallowCopy(ci);
-                    ci := Base(xDecomp[shift + a], i) ^ (-1) * ci * Base(yDecomp[shift + b], j);
-                    i := i ^ Top(xDecomp[shift + a]);
-                    j := j ^ Top(yDecomp[shift + b]);
+                    ci := WPE_BaseComponent(xDecomp[shift + a], i) ^ (-1) * ci * WPE_BaseComponent(yDecomp[shift + b], j);
+                    i := i ^ WPE_TopComponent(xDecomp[shift + a]);
+                    j := j ^ WPE_TopComponent(yDecomp[shift + b]);
                 od;
             fi;
         od;
