@@ -93,6 +93,7 @@ In this section we present an example session.
 <P/>
 <Example><![CDATA[
 gap> LoadPackage("WreathProductElements");;
+
 # Construct an imprimitive wreath product
 # that is embedded into a symmetric group.
 # This is the GAP intern wreath product command.
@@ -100,11 +101,13 @@ gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);
 <permutation group of size 14108774400000000 with 4 generators>
+
 # Construct an isomorphism to the generic wreath product
 # that is provided in this package.
 gap> iso := IsomorphismToGenericWreathProduct(G);;
 gap> W := Image(iso);
 <group of size 14108774400000000 with 4 generators>
+
 # Let us compare how GAP displays elements in G and W respectively.
 # Elements in G are represented as permutations.
 # In this representation it is completely unclear
@@ -113,32 +116,38 @@ gap> g := (1,23,33,27,9,13,2,25,34,28,8,14,3,24,35,30,10,12,5,21,32,29,6,11,
 > 4,22,31,26,7,15)(18,19,20);;
 gap> g in G;
 true
+
 # Elements in W are represented as generic wreath product elements
 # that makes it easy to read off the base and top component of the element.
 gap> x := g^iso;
-WreathProductElement((1,3,4,2,5),(2,5)(3,4),(1,4,3,2,5),(3,4,5),(1,2)(4,5),
-                     (1,2,4),(2,4,3);(1,5,7,6,2,3))
+WreathProductElement((1,3,4,2,5),(2,5)(3,4),(1,4,3,2,5),(3,4,5),(1,2)
+(4,5),(1,2,4),(2,4,3);(1,5,7,6,2,3))
+
 # We can display each component easily with the provided commands.
 gap> BaseComponentOfGenericWreathProductElement(x, 2);
 (2,5)(3,4)
 gap> TopComponentOfGenericWreathProductElement(x);
 (1,5,7,6,2,3)
+
 # Let us decompose the element into disjoint wreath cycles.
 gap> wreathDecomp := WreathCycleDecomposition(x);
-[ WreathProductElement((),(),(),(3,4,5),(),(),();()),
-  WreathProductElement((1,3,4,2,5),(2,5)(3,4),(1,4,3,2,5),(),(1,2)(4,5),
-                       (1,2,4),(2,4,3);(1,5,7,6,2,3)) ]
+[ WreathProductElement((),(),(),(3,4,5),(),(),();()), 
+  WreathProductElement((1,3,4,2,5),(2,5)(3,4),(1,4,3,2,5),(),(1,2)
+    (4,5),(1,2,4),(2,4,3);(1,5,7,6,2,3)) ]
+
 # Now we want to bring these cycles in sparse form.
 # Each sparse cycle is a very restricted element,
 # since at most one entry in the base component is non-trivial.
 gap> sparseDecomp := SparseWreathCycleDecomposition(x);
-[ WreathProductElement((),(),(),(3,4,5),(),(),();()),
+[ WreathProductElement((),(),(),(3,4,5),(),(),();()), 
   WreathProductElement((),(),(),(),(),(),(1,2,3,5,4);(1,5,7,6,2,3)) ]
+
 # We can also compute the conjugating elements to switch between
 # the wreath cycle and sparse wreath cycle decomposition.
 gap> conj := ConjugatorWreathCycleToSparse(x);
-[ WreathProductElement((),(),(),(),(),(),();()),
-  WreathProductElement((),(1,4,2),(1,4,3,2,5),(),(1,5,2,4,3),(),(1,4,2,5,3);()) ]
+[ WreathProductElement((),(),(),(),(),(),();()), 
+  WreathProductElement((),(1,4,2),(1,4,3,2,5),(),(1,5,2,4,3),(),
+    (1,4,2,5,3);()) ]
 gap> wreathDecomp[1]^conj[1] = sparseDecomp[1];
 true
 gap> wreathDecomp[2]^conj[2] = sparseDecomp[2];
