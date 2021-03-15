@@ -95,6 +95,18 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 DeclareGlobalFunction( "TopComponentOfGenericWreathProductElement" );
 DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 
+## <#GAPDoc Label="TopGroupOfGenericWreathProduct">
+## <ManSection>
+## <Func Name="TopGroupOfGenericWreathProduct" Arg="W"/>
+## <Description>
+##   returns the top group of the generic wreath product <A>W</A>.
+##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "TopGroupOfGenericWreathProduct" );
+DeclareOperation( "WPE_TopGroup", [HasWreathProductInfo] );
+
 ## <#GAPDoc Label="BaseComponentOfGenericWreathProductElement">
 ## <ManSection>
 ## <Func Name="BaseComponentOfGenericWreathProductElement" Arg="x, [i]"/>
@@ -110,6 +122,21 @@ DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 ## <#/GAPDoc>
 DeclareGlobalFunction( "BaseComponentOfGenericWreathProductElement" );
 DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
+
+## <#GAPDoc Label="BaseGroupOfGenericWreathProduct">
+## <ManSection>
+## <Func Name="BaseGroupOfGenericWreathProduct" Arg="W, [i]"/>
+## <Description>
+##   returns the base group of the generic wreath product <A>W</A>.
+##   If the optional argument <A>i</A> is provided,
+##   the function returns the <A>i</A>-th factor of the base group of <A>W</A>.
+##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "BaseGroupOfGenericWreathProduct" );
+DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
+
 
 #! @Description
 DeclareAttribute( "Yade", IsWreathCycle );

@@ -245,6 +245,22 @@ function(x)
     return x![info.degI + 1];
 end);
 
+InstallGlobalFunction( TopGroupOfGenericWreathProduct,
+function(W)
+    if not HasWreathProductInfo(W) then
+        return Error("W is not a wreath product");
+    fi;
+    return WPE_TopGroup(W);
+end);
+
+InstallMethod( WPE_TopGroup, "generic wreath product", true, [HasWreathProductInfo], 0,
+function(W)
+    local info;
+
+    info := WreathProductInfo(W);
+    return Image(Embedding(W, info!.degI + 1));
+end);
+
 InstallGlobalFunction( BaseComponentOfGenericWreathProductElement,
 function(arg)
     local info, x, i;
@@ -271,7 +287,6 @@ function(arg)
     fi;
 end);
 
-
 InstallMethod( WPE_BaseComponent, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local info;
@@ -280,11 +295,49 @@ function(x)
     return List([1..info.degI], i -> x![i]);
 end);
 
-
 InstallOtherMethod( WPE_BaseComponent, "generic wreath elements and integer", true, [IsWreathProductElement, IsInt], 0,
 function(x, i)
     local info;
 
     info := FamilyObj(x)!.info;
     return x![i];
+end);
+
+InstallGlobalFunction( BaseGroupOfGenericWreathProduct,
+function(arg)
+    local info, W, i;
+
+    if Length(arg) > 2 then
+        return Error("wrong number of arguments");
+    fi;
+    W := arg[1];
+    if not HasWreathProductInfo(W) then
+        return Error("W is not a wreath product");
+    fi;
+    info := WreathProductInfo(W);
+    if Length(arg) = 1 then
+        return WPE_BaseGroup(W);
+    else
+        i := arg[2];
+        if not IsInt(i) then
+            return Error("i must be an integer");
+        fi;
+        if i < 1 or i > info.degI then
+        return Error("Index out of bounds");
+        fi;
+        return WPE_BaseGroup(W,i);
+    fi;
+end);
+
+InstallMethod( WPE_BaseGroup, "generic wreath product", true, [HasWreathProductInfo], 0,
+function(W)
+    local info;
+
+    info := WreathProductInfo(W);
+    return Group(Concatenation(List([1..info.degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x^Embedding(W,i)))));
+end);
+
+InstallOtherMethod( WPE_BaseGroup, "generic wreath product and integer", true, [HasWreathProductInfo, IsInt], 0,
+function(W, i)
+    return Image(Embedding(W, i));
 end);
