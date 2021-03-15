@@ -161,6 +161,9 @@ true
 <Section Label="Basic Functions">
 <Heading>Basic Functions</Heading>
 
+<#Include Label="TopGroupOfGenericWreathProduct">
+<#Include Label="BaseGroupOfGenericWreathProduct">
+
 <#Include Label="TopComponentOfGenericWreathProductElement">
 <#Include Label="BaseComponentOfGenericWreathProductElement">
 
