@@ -82,6 +82,18 @@ DeclareAttribute( "SparseWreathCycleDecomposition", IsWreathProductElement );
 ## <#/GAPDoc>
 DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 
+## <#GAPDoc Label="ComponentsOfGenericWreathProduct">
+## <ManSection>
+## <Func Name="ComponentsOfGenericWreathProduct" Arg="W"/>
+## <Description>
+##   returns the groups [K, H] of <A>W = K wr H</A>.
+##   The argument <A>W</A> must be a generic wreath product.
+##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "ComponentsOfGenericWreathProduct" );
+
 ## <#GAPDoc Label="TopComponentOfGenericWreathProductElement">
 ## <ManSection>
 ## <Func Name="TopComponentOfGenericWreathProductElement" Arg="x"/>
