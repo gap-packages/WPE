@@ -2,7 +2,7 @@
 <Heading>Operations</Heading>
 
 The generic wreath product elements and in particular their (sparse) wreath cycle decompositions
-can be used to speed up many operations in wreath products. <P/>
+can be used to speed up certain operations in wreath products. <P/>
 
 TODO:: Add tests or scripts that show that these operations are indeed faster in practice.
 (Unloaded vs. Loaded package) and (Perm vs. Generic)
@@ -11,10 +11,14 @@ TODO:: Add tests or scripts that show that these operations are indeed faster in
 <Heading>Operations List</Heading>
 
 Here we include a list of operations that take advantage
-of the generic wreath product elements representation. <P/>
+of the generic wreath product elements representation.<P/>
+
+In the following <M>G = K \wr H</M> denotes a wreath product and <M>x,y \in G</M> are wreath product elements.<P/>
 
 <List>
-<Item> <C>Order</C> </Item>
+<Item> <C>Order(x)</C> </Item>
+<Item> TODO: <C>RepresentativeAction(G, x, y)</C> </Item>
+<Item> TODO: <C>IsConjugate(G, x, y)</C> </Item>
 </List>
 
 </Section>
