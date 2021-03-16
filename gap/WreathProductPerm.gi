@@ -136,10 +136,10 @@ function(G, W, x)
         g;          # perm wreath product element
 
     info := WreathProductInfo(G);
-    top := Image(Embedding(G, info.degI + 1), x![info.degI + 1]);
+    top := Image(Embedding(G, info.degI + 1), WPE_TopComponent(x));
     base := [];
     for i in [1..info.degI] do
-        Add(base, Image(Embedding(G, i), x![i]));
+        Add(base, Image(Embedding(G, i), WPE_BaseComponent(x, i)));
     od;
     g := Product(Concatenation(base, [top]));
     return g;

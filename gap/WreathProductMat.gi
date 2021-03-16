@@ -47,10 +47,10 @@ function(G, W, x)
     local info, base, top, i, prod;
 
     info := WreathProductInfo(G);
-    top := Image(Embedding(G, info.degI + 1), x![info.degI + 1]);
+    top := Image(Embedding(G, info.degI + 1), WPE_TopComponent(x));
     base := [];
     for i in [1..info.degI] do
-        Add(base, Image(Embedding(G, i), x![i]));
+        Add(base, Image(Embedding(G, i), WPE_BaseComponent(x, i)));
     od;
     prod := Product(Concatenation(base, [top]));
     return prod;
