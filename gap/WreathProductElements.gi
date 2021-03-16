@@ -228,6 +228,14 @@ function(x)
     return Lcm(List(decomposition, Order));
 end);
 
+InstallGlobalFunction( ComponentsOfGenericWreathProduct,
+function(W)
+    if not HasWreathProductInfo(W) then
+        return Error("W is not a wreath product");
+    fi;
+    return Immutable(WreathProductInfo(W).groups);
+end);
+
 InstallGlobalFunction( TopComponentOfGenericWreathProductElement,
 function(x)
     if not IsWreathProductElement(x) then
