@@ -144,23 +144,3 @@ function(G, W, x)
     g := Product(Concatenation(base, [top]));
     return g;
 end);
-
-InstallGlobalFunction( WPE_ConvertPointToTupel,
-function(G, point)
-    local info, i;
-    info := WreathProductInfo(G);
-    for i in [1..info.degI] do
-        if point in info.components[i] then
-            return [point^info.perms[i], i];
-        fi;
-    od;
-    Error("point not in action set of G");
-end);
-
-InstallGlobalFunction( WPE_ConvertTupelToPoint,
-function(G, tupel)
-    local info, i;
-    info := WreathProductInfo(G);
-    i := tupel[2];
-    return tupel[1]^(info.perms[i]^(-1));
-end);

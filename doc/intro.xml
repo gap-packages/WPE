@@ -27,12 +27,12 @@ of the function space <M>K^m</M> with <M>H</M>,
 where <M>\pi \in H</M> acts on <M>f \in K^m</M>
 by setting <M>f^{\pi} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\pi^{{-1}}]f</M>. <P/>
 
-Formally we can write elements of <M>G</M> as a tupel <M>g = (f, \pi) \in G</M>,
+Formally we can write elements of <M>G</M> as a tuple <M>g = (f, \pi) \in G</M>,
 where <M>f \in K^m </M> is a function <M>f : \{1, \ldots, m\} \rightarrow K </M>
 and <M>\pi \in H \leq Sym(m)</M> is a permutation on <M>m</M> points.
 We call <M>f</M> the <E>base component</E> and <M>\pi</M> the <E>top component</E> of <M>g</M>. <P/>
 
-We can naturally identify a map <M>f \in K^m</M> with a tupel <M>(g_1, \ldots, g_m)</M>,
+We can naturally identify a map <M>f \in K^m</M> with a tuple <M>(g_1, \ldots, g_m)</M>,
 where each <M>g_i \in K</M> is the image of <M>i \in \{1, \ldots, m\}</M> under <M>f</M>.
 This yields a second useful notation for elements in <M>G</M> by writing
 <M>g = (g_1, \ldots, g_m; \pi)</M>.
