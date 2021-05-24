@@ -10,6 +10,9 @@ ReadPackage( "WreathProductElements", "gap/WreathProductElements.gi");
 ## Conjugacy Problem in Wreath Product
 ReadPackage( "WreathProductElements", "gap/ConjugacyProblem.gi");
 
+## Conjugacy Classes
+ReadPackage( "WreathProductElements", "gap/ConjugacyClasses.gi");
+
 ## Perm
 ReadPackage( "WreathProductElements", "gap/WreathProductPerm.gi");
 

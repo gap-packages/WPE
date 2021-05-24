@@ -259,3 +259,10 @@ DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionBlockTopByYadeClass" )
 DeclareGlobalFunction( "WPE_RepresentativeAction_BlockMapping" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_Top" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_Base" );
+
+#############################################################################
+# Conjugacy Classes:
+#############################################################################
+
+DeclareGlobalFunction( "WPE_ConjugacyClasses" );
+DeclareGlobalFunction( "WPE_ConjugacyClassesWithFixedTopClass" );
