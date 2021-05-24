@@ -266,3 +266,19 @@ DeclareGlobalFunction( "WPE_RepresentativeAction_Base" );
 
 DeclareGlobalFunction( "WPE_ConjugacyClasses" );
 DeclareGlobalFunction( "WPE_ConjugacyClassesWithFixedTopClass" );
+
+#############################################################################
+# Territory Decomposition:
+#############################################################################
+
+DeclareGlobalFunction( "WPE_PartitionDataOfWreathCycleDecompositionByLoad" );
+DeclareGlobalFunction( "WPE_PartitionDataOfBlockTopByYadeClass" );
+
+#############################################################################
+# Centraliser:
+#############################################################################
+
+DeclareGlobalFunction( "WPE_PsiFunc" );
+DeclareGlobalFunction( "WPE_StabDecomp" );
+DeclareGlobalFunction( "WPE_Centraliser_Image" );
+DeclareGlobalFunction( "WPE_Centraliser" );

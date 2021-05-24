@@ -13,6 +13,12 @@ ReadPackage( "WreathProductElements", "gap/ConjugacyProblem.gi");
 ## Conjugacy Classes
 ReadPackage( "WreathProductElements", "gap/ConjugacyClasses.gi");
 
+## Centraliser
+ReadPackage( "WreathProductElements", "gap/Centraliser.gi");
+
+## Territory Decomposition
+ReadPackage( "WreathProductElements", "gap/TerritoryDecomposition.gi");
+
 ## Perm
 ReadPackage( "WreathProductElements", "gap/WreathProductPerm.gi");
 
