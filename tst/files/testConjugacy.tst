@@ -6,7 +6,7 @@ gap> TestConjugacy := function(iso, n)
 >         g := PseudoRandom(G);
 >         h := g ^ PseudoRandom(G);
 >         x := g ^ iso;
->         y := h ^ iso;;
+>         y := h ^ iso;
 >         c := WPE_RepresentativeAction(x, y);
 >         if c = fail or x ^ c <> y or g ^ (PreImage(iso, c)) <> h then
 >             return false;
@@ -16,6 +16,12 @@ gap> TestConjugacy := function(iso, n)
 > end;;
 gap> K := AlternatingGroup(15);;
 gap> H := SymmetricGroup(25);;
+gap> G := WreathProduct(K, H);;
+gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> TestConjugacy(iso, 20);
+true
+gap> K := AlternatingGroup(15);;
+gap> H := DirectProduct([SymmetricGroup(10),SymmetricGroup(10),SymmetricGroup(5)]);;
 gap> G := WreathProduct(K, H);;
 gap> iso := IsomorphismToGenericWreathProduct(G);;
 gap> TestConjugacy(iso, 20);
