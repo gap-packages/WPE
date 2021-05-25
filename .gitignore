@@ -28,3 +28,6 @@
 
 /tmp/
 /gh-pages/
+
+/dev/*/out_*
+/dev/*/__pycache__/
