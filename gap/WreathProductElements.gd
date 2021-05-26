@@ -257,6 +257,5 @@ DeclareGlobalFunction( "WPE_RepresentativeAction" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionByTopAndYadeClass" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionBlockTopByYadeClass" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_BlockMapping" );
-DeclareGlobalFunction( "WPE_RepresentativeAction_TopConditions" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_Top" );
 DeclareGlobalFunction( "WPE_RepresentativeAction_Base" );

@@ -21,12 +21,8 @@ function(x, y)
     partitionConjugator := partitionData.partitionConjugator;
     xBlockConjugator := partitionData.xBlockConjugator;
     yBlockConjugator := partitionData.yBlockConjugator;
-    # construct restrictions for top cTop of conjugator
-    topConditionsData := WPE_RepresentativeAction_TopConditions(H, xDecomp, yDecomp, partition);
-    sourcePartitionInvariant := topConditionsData.sourcePartitionInvariant;
-    imagePartitionInvariant := topConditionsData.imagePartitionInvariant;
     # compute top cTop of conjugator
-    cTop := WPE_RepresentativeAction_Top(H, partition, sourcePartitionInvariant, imagePartitionInvariant);
+    cTop := WPE_RepresentativeAction_Top(H, x, y, xDecomp, yDecomp, partition);
     if cTop = fail then
         return fail;
     fi;
@@ -155,113 +151,49 @@ function(K, x, y)
                xBlockConjugator := xBlockConjugator, yBlockConjugator := yBlockConjugator);
 end);
 
-InstallGlobalFunction( WPE_RepresentativeAction_TopConditions,
-function(H, xDecomp, yDecomp, partition)
-    local
-        sourcePartitionInvariant, imagePartitionInvariant, shift, k, blockLength;
-    sourcePartitionInvariant := ListWithIdenticalEntries(Length(partition), 0);
-    imagePartitionInvariant := ListWithIdenticalEntries(Length(partition), 0);
-    shift := 0;
-    for k in [1 .. Length(partition)] do
-        blockLength := partition[k];
-        if WPE_TopComponent(xDecomp[shift + 1]) = () then
-            sourcePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(xDecomp[shift + i])[1]);
-            imagePartitionInvariant[k] := List([1 .. blockLength], i -> Territory(yDecomp[shift + i])[1]);
-        else
-            sourcePartitionInvariant[k] := List([1 .. blockLength], i -> WPE_TopComponent(xDecomp[shift + i]));
-            imagePartitionInvariant[k] := List([1 .. blockLength], i -> WPE_TopComponent(yDecomp[shift + i]));
-        fi;
-        shift := shift + blockLength;
-    od;
-    return rec(sourcePartitionInvariant := sourcePartitionInvariant, imagePartitionInvariant := imagePartitionInvariant);
-end);
-
 InstallGlobalFunction( WPE_RepresentativeAction_Top,
-function(H, partition, sourcePartitionInvariant, imagePartitionInvariant)
-    local cTop, S, srcs, imgs, firstBlockNonTrivialTop, k, j, h, iterPerms, perm, detectedFail, source, image, sourceP, imageP;
+function(H, x, y, xDecomp, yDecomp, partition)
+    local shift, blockLength, k, j, source, image, t, c, xTop, yTop;
 
     if IsNaturalSymmetricGroup(H) then
         source := EmptyPlist(NrMovedPoints(H));
         image := EmptyPlist(NrMovedPoints(H));
+        shift := 0;
         for k in [1 .. Length(partition)] do
-            for j in [1 .. partition[k]] do
-                sourceP := sourcePartitionInvariant[k, j];
-                imageP := imagePartitionInvariant[k, j];
-                if IsPosInt(sourceP) then
-                    Add(source, sourceP);
-                    Add(image, imageP);
+            blockLength := partition[k];
+            for j in [1 .. blockLength] do
+                xTop := WPE_TopComponent(xDecomp[shift + j]);
+                if IsOne(xTop) then
+                    Add(source, Territory(xDecomp[shift + j])[1]);
+                    Add(image, Territory(yDecomp[shift + j])[1]);
                 else
-                    Append(source, Cycles(sourceP, MovedPoints(sourceP))[1]);
-                    Append(image, Cycles(imageP, MovedPoints(imageP))[1]);
+                    yTop := WPE_TopComponent(yDecomp[shift + j]);
+                    Append(source, Cycles(xTop, MovedPoints(xTop))[1]);
+                    Append(image, Cycles(yTop, MovedPoints(yTop))[1]);
                 fi;
             od;
+            shift := shift + blockLength;
         od;
         return MappingPermListList(source, image);
     else
-        # Unfortunately this is slow in GAP
-        #cTop := RepresentativeAction(H, sourcePartitionInvariant, imagePartitionInvariant, OnTuplesSets);
-        #if cTop = fail then return fail; fi;
-        cTop := ListWithIdenticalEntries(Length(partition) + 1, ());
-        S := ListWithIdenticalEntries(Length(partition) + 1, Group(()));
-        srcs := ListWithIdenticalEntries(Length(partition) + 1, []);
-        cTop[1] := ();
-        S[1] := H;
-        srcs[1] := sourcePartitionInvariant;
-        imgs := imagePartitionInvariant;
-        firstBlockNonTrivialTop := Length(partition) + 1;
+        t := RepresentativeAction(H, WPE_TopComponent(x), WPE_TopComponent(y));
+        if t = fail then
+            return fail;
+        fi;
+        source := EmptyPlist(Length(partition));
+        image := EmptyPlist(Length(partition));
+        shift := 0;
         for k in [1 .. Length(partition)] do
-            if IsPerm(sourcePartitionInvariant[k][1]) then
-                firstBlockNonTrivialTop := k;
-                break;
-            fi;
+            blockLength := partition[k];
+            source[k] := Union(List([1 .. blockLength], j -> Set(Territory(xDecomp[shift + j]))));
+            image[k] := Union(List([1 .. blockLength], j -> Set(Territory(yDecomp[shift + j]))));
+            shift := shift + blockLength;
         od;
-        # restriction: map set of points [p_1, ..., p_l] to set of points [P_1, ..., P_l].
-        for k in [1 .. firstBlockNonTrivialTop - 1] do
-            cTop[k + 1] := StructuralCopy(cTop[k]);
-            S[k + 1] := StructuralCopy(S[k]);
-            srcs[k + 1] := StructuralCopy(srcs[k]);
-            h := RepresentativeAction(S[k + 1], Set(srcs[k + 1, k]), Set(imgs[k]), OnSets);
-            if h = fail then
-                return fail;
-            fi;
-            cTop[k + 1] := cTop[k + 1] * h;
-            srcs[k + 1] := OnTuplesTuples(srcs[k + 1], h);
-            S[k + 1] := Stabilizer(S[k + 1], Set(srcs[k + 1, k]), OnSets);
-        od;
-        # restriction: conjugate set of perms [pi_1, ..., pi_l] to set of perms [Pi_1, ..., Pi_l].
-        # We perform a simplified backtrack search:
-        # Basically for each restriction we try a permutation perm and try to conjugate pi_j to Pi_(j ^ perm).
-        iterPerms := List([firstBlockNonTrivialTop .. Length(partition)], k -> Iterator(SymmetricGroup(partition[k])));
-        k := firstBlockNonTrivialTop;
-        while k <= Length(partition) do
-            if k = firstBlockNonTrivialTop - 1 then
-                return fail;
-            fi;
-            if IsDoneIterator(iterPerms[k + 1 - firstBlockNonTrivialTop]) then
-                iterPerms[k + 1 - firstBlockNonTrivialTop] := Iterator(SymmetricGroup(partition[k]));
-                k := k - 1;
-                continue;
-            fi;
-            perm := NextIterator(iterPerms[k + 1 - firstBlockNonTrivialTop]);
-            cTop[k + 1] := StructuralCopy(cTop[k]);
-            S[k + 1] := StructuralCopy(S[k]);
-            srcs[k + 1] := StructuralCopy(srcs[k]);
-            detectedFail := false;
-            for j in [1 .. partition[k]] do
-                h := RepresentativeAction(S[k + 1], srcs[k + 1, k][j], imgs[k][j ^ perm], OnPoints);
-                if h = fail then
-                    detectedFail := true;
-                    break;
-                fi;
-                cTop[k + 1] := cTop[k + 1] * h;
-                srcs[k + 1] := OnTuplesTuples(srcs[k + 1], h);
-                S[k + 1] := Stabilizer(S[k + 1], srcs[k + 1, k][j], OnPoints);
-            od;
-            if detectedFail = false then
-                k := k + 1;
-            fi;
-        od;
-        return cTop[Length(partition) + 1];
+        c := RepresentativeAction(Centraliser(H, WPE_TopComponent(x)), source, OnTuplesSets(image, t ^ -1), OnTuplesSets);
+        if c = fail then
+            return fail;
+        fi;
+        return c * t;
     fi;
 end);
 
