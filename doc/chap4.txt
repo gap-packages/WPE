@@ -1,0 +1,57 @@
+  
+  [1X4 [33X[0;0YWreathProductElements automatic generated documentation[133X[101X
+  
+  
+  [1X4.1 [33X[0;0YWreathProductElements automatic generated documentation of attributes[133X[101X
+  
+  [1X4.1-1 Yade[101X
+  
+  [33X[1;0Y[29X[2XYade[102X( [3Xarg[103X ) [32X attribute[133X
+  
+  
+  [1X4.2   [33X[0;0YWreathProductElements  automatic  generated  documentation  of  global[101X
+  [1Xfunctions[133X[101X
+  
+  [1X4.2-1 WPE_ChooseYadePoint[101X
+  
+  [33X[1;0Y[29X[2XWPE_ChooseYadePoint[102X( [3Xarg[103X ) [32X function[133X
+  
+  [1X4.2-2 WPE_ConvertPointToTupel[101X
+  
+  [33X[1;0Y[29X[2XWPE_ConvertPointToTupel[102X( [3XG[103X, [3XW[103X, [3Xrep[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypermutation[133X
+  
+  [33X[0;0YG  = K wr H, where K acts on n points and H acts on m points, is embedded in
+  S_{n + m} in its imprimitive action. Convert a point from the induced action
+  in  the  symmetric  group  into  a  tupel (i,j) on which the abstract wreath
+  product acts.[133X
+  
+  [1X4.2-3 WPE_ConvertTupelToPoint[101X
+  
+  [33X[1;0Y[29X[2XWPE_ConvertTupelToPoint[102X( [3XG[103X, [3XW[103X, [3Xrep[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypermutation[133X
+  
+  [1X4.2-4 WPE_GenericMatWreathProduct[101X
+  
+  [33X[1;0Y[29X[2XWPE_GenericMatWreathProduct[102X( [3XG[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ygeneric wreath product[133X
+  
+  [33X[0;0YCreates a generic wreath product from a matrix group[133X
+  
+  [1X4.2-5 WPE_ConvertMatToRep[101X
+  
+  [33X[1;0Y[29X[2XWPE_ConvertMatToRep[102X( [3XG[103X, [3XW[103X, [3Xg[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ygeneric wreath product element[133X
+  
+  [33X[0;0YConvert  perm  g  from matrix wreath product G = K wr H into expanded rep of
+  abstract  wreath product. Expanded rep is a tupel (g_1, ..., g_m, pi), where
+  g_i in K, pi in H.[133X
+  
+  [1X4.2-6 WPE_ConvertRepToMat[101X
+  
+  [33X[1;0Y[29X[2XWPE_ConvertRepToMat[102X( [3XG[103X, [3XW[103X, [3Xrep[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10Ypermutation[133X
+  
+  [33X[0;0YConvert  rep  from  abstract  wreath  product  into  matrix of matrix wreath
+  product G = K wr H.[133X
+  

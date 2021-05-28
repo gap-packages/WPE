@@ -1,0 +1,50 @@
+  
+  [1X2 [33X[0;0YIsomorphism to Generic Wreath Product[133X[101X
+  
+  
+  [1X2.1 [33X[0;0YOverview[133X[101X
+  
+  [33X[0;0YIn [5XGAP[105X the command [10XWreathProduct(K, H)[110X returns a group with a representation
+  that depends on the representation that [22XK[122X is given in. This package provides
+  a  method to compute an isomorphism from such wreath products to the generic
+  wreath product provided in this package.[133X
+  
+  [1X2.1-1 IsomorphismToGenericWreathProduct[101X
+  
+  [33X[1;0Y[29X[2XIsomorphismToGenericWreathProduct[102X( [3XG[103X ) [32X operation[133X
+  
+  [33X[0;0Yreturns  an  isomorphism  from  a  specialized wreath product [3XG[103X to a generic
+  wreath product.[133X
+  
+  
+  [1X2.2 [33X[0;0YPermutation representation[133X[101X
+  
+  [33X[0;0YIf  [22XK[122X is given as a permutation group the command [10XWreathProduct(K, H)[110X in [5XGAP[105X
+  returns  the  imprimitive wreath product that is embedded into the symmetric
+  group.[133X
+  
+  [33X[0;0YHere  we  list  the internal commands that are used to translate between the
+  permutation representation and the generic representation.[133X
+  
+  [1X2.2-1 WPE_GenericPermWreathProduct[101X
+  
+  [33X[1;0Y[29X[2XWPE_GenericPermWreathProduct[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0Yreturns a generic wreath product from a perm wreath product.[133X
+  
+  [1X2.2-2 WPE_ConvertPermToRep[101X
+  
+  [33X[1;0Y[29X[2XWPE_ConvertPermToRep[102X( [3XG[103X, [3XW[103X, [3Xg[103X ) [32X function[133X
+  
+  [33X[0;0Yreturns the generic representation of an element [3Xg[103X in [3XG[103X, where [3XG[103X is a wreath
+  product  in  permutation  representation and [3XW[103X is the same wreath product in
+  generic representation.[133X
+  
+  [1X2.2-3 WPE_ConvertRepToPerm[101X
+  
+  [33X[1;0Y[29X[2XWPE_ConvertRepToPerm[102X( [3XG[103X, [3XW[103X, [3Xx[103X ) [32X function[133X
+  
+  [33X[0;0Yreturns  the  permutation  representation of an element [3Xx[103X in [3XW[103X, where [3XG[103X is a
+  wreath  product  in  permutation  representation  and  [3XW[103X  is the same wreath
+  product in generic representation.[133X
+  

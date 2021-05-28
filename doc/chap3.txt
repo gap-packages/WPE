@@ -1,0 +1,25 @@
+  
+  [1X3 [33X[0;0YOperations[133X[101X
+  
+  [33X[0;0YThe  generic wreath product elements and in particular their (sparse) wreath
+  cycle  decompositions  can  be used to speed up certain operations in wreath
+  products.[133X
+  
+  [33X[0;0YTODO::  Add  tests  or  scripts  that  show that these operations are indeed
+  faster in practice. (Unloaded vs. Loaded package) and (Perm vs. Generic)[133X
+  
+  
+  [1X3.1 [33X[0;0YOperations List[133X[101X
+  
+  [33X[0;0YHere  we  include  a  list  of operations that take advantage of the generic
+  wreath product elements representation.[133X
+  
+  [33X[0;0YIn  the  following [22XG = K ≀ H[122X denotes a wreath product and [22Xx,y ∈ G[122X are wreath
+  product elements.[133X
+  
+  [30X    [33X[0;6Y[10XOrder(x)[110X[133X
+  
+  [30X    [33X[0;6YTODO: [10XRepresentativeAction(G, x, y)[110X[133X
+  
+  [30X    [33X[0;6YTODO: [10XIsConjugate(G, x, y)[110X[133X
+  

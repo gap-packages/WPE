@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<title>GAP (WreathProductElements) - Chapter 1: Introduction</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap1.html">[MathJax off]</a></p>
+<p><a id="X7DFB63A97E67C0A1" name="X7DFB63A97E67C0A1"></a></p>
+<div class="ChapSects"><a href="chap1_mj.html#X7DFB63A97E67C0A1">1 <span class="Heading">Introduction</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X8389AD927B74BA4A">1.1 <span class="Heading">Overview</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X7DD31B407B9402A3">1.2 <span class="Heading">Notation</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X867C059E7E460EFA">1.3 <span class="Heading">Wreath Cycle Decomposition</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X85861B017AEEC50B">1.4 <span class="Heading">Example</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X85B9E746807414FF">1.5 <span class="Heading">Basic Functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X7A1B8AC97DCCB9FA">1.5-1 TopGroupOfGenericWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X87DA39B984E490F1">1.5-2 BaseGroupOfGenericWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X80B6540586CD12F2">1.5-3 TopComponentOfGenericWreathProductElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X7D7567367AAF7DAA">1.5-4 BaseComponentOfGenericWreathProductElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X7C57D9497D8BBC23">1.5-5 Territory</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X7F7DF936839FE1C7">1.5-6 IsWreathCycle</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X85C1618F78451F65">1.5-7 IsSparseWreathCycle</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X82BDC56A7B4298CE">1.5-8 WreathCycleDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X8774A5FB80432D63">1.5-9 SparseWreathCycleDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1_mj.html#X811E86D882A03219">1.5-10 ConjugatorWreathCycleToSparse</a></span>
+</div></div>
+</div>
+
+<h3>1 <span class="Heading">Introduction</span></h3>
+
+<p><a id="X8389AD927B74BA4A" name="X8389AD927B74BA4A"></a></p>
+
+<h4>1.1 <span class="Heading">Overview</span></h4>
+
+<p>This package is about wreath product elements in their general representation. This representation is more intuitive to the User when working with wreath products and additionally may have computational benefits over other representations.</p>
+
+<p>[TODO:: Add references]</p>
+
+<p><a id="X7DD31B407B9402A3" name="X7DD31B407B9402A3"></a></p>
+
+<h4>1.2 <span class="Heading">Notation</span></h4>
+
+<p>Let <span class="SimpleMath">\(G = K \wr H\)</span> be a wreath product, where <span class="SimpleMath">\(H\)</span> is a permutation group of degree <span class="SimpleMath">\(m\)</span>. The wreath product is defined as the semidirect product of the function space <span class="SimpleMath">\(K^m\)</span> with <span class="SimpleMath">\(H\)</span>, where <span class="SimpleMath">\(\pi \in H\)</span> acts on <span class="SimpleMath">\(f \in K^m\)</span> by setting <span class="SimpleMath">\(f^{\pi} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\pi^{{-1}}]f\)</span>.</p>
+
+<p>Formally we can write elements of <span class="SimpleMath">\(G\)</span> as a tupel <span class="SimpleMath">\(g = (f, \pi) \in G\)</span>, where <span class="SimpleMath">\(f \in K^m \)</span> is a function <span class="SimpleMath">\(f : \{1, \ldots, m\} \rightarrow K \)</span> and <span class="SimpleMath">\(\pi \in H \leq Sym(m)\)</span> is a permutation on <span class="SimpleMath">\(m\)</span> points. We call <span class="SimpleMath">\(f\)</span> the <em>base component</em> and <span class="SimpleMath">\(\pi\)</span> the <em>top component</em> of <span class="SimpleMath">\(g\)</span>.</p>
+
+<p>We can naturally identify a map <span class="SimpleMath">\(f \in K^m\)</span> with a tupel <span class="SimpleMath">\((g_1, \ldots, g_m)\)</span>, where each <span class="SimpleMath">\(g_i \in K\)</span> is the image of <span class="SimpleMath">\(i \in \{1, \ldots, m\}\)</span> under <span class="SimpleMath">\(f\)</span>. This yields a second useful notation for elements in <span class="SimpleMath">\(G\)</span> by writing <span class="SimpleMath">\(g = (g_1, \ldots, g_m; \pi)\)</span>. Note that we use a semicolon to seperate the base component from the top component. Further we call the element <span class="SimpleMath">\(g_i\)</span> the <em><span class="SimpleMath">\(i\)</span>-th base component</em> of <span class="SimpleMath">\(g\)</span>.</p>
+
+<p><a id="X867C059E7E460EFA" name="X867C059E7E460EFA"></a></p>
+
+<h4>1.3 <span class="Heading">Wreath Cycle Decomposition</span></h4>
+
+<p>In a permutation group we have the well-known concept of a cycle decomposition. For wreath products we have a similar concept called <em>wreath cycle decomposition</em> that allows us to solve certain computational tasks more efficiently.</p>
+
+<p>First we introduce the concept of the territory. We define the <em>territory</em> of an element <span class="SimpleMath">\(g = (g_1, \ldots, g_m; \pi) \in G\)</span> by <span class="SimpleMath">\(terr(g) := supp(\pi) \cup \{i : g_i \neq 1\}\)</span>.</p>
+
+<p>An element <span class="SimpleMath">\(g = (g_1, \ldots, g_m; \pi) \in G\)</span> is called a <em>wreath cycle</em> if either <span class="SimpleMath">\(\pi\)</span> is a cycle and <span class="SimpleMath">\(g_i = 1\)</span> for all <span class="SimpleMath">\(i \in fix(\pi)\)</span> or <span class="SimpleMath">\(|terr(g)| = 1\)</span>.</p>
+
+<p>The idea is to write an arbitrary element of the wreath product <span class="SimpleMath">\(G = K \wr H\)</span> as a product of disjoint wreath cycles as follows:</p>
+
+<p>Decompose <span class="SimpleMath">\(\pi\)</span> into cycles, say <span class="SimpleMath">\(\pi = \pi_1 ... \pi_l\)</span>. For a set <span class="SimpleMath">\(I \leq \{1, \ldots, m\}\)</span> we define <span class="SimpleMath">\(f_I\)</span> as an element of <span class="SimpleMath">\(K^m\)</span> by setting</p>
+
+
+<ul>
+<li><p><span class="SimpleMath">\([i]f_I := g_i\)</span>, if <span class="SimpleMath">\(i \in I\)</span></p>
+
+</li>
+<li><p><span class="SimpleMath">\([i]f_I := 1_K\)</span>, else</p>
+
+</li>
+</ul>
+<p>For each cycle <span class="SimpleMath">\(\pi_r\)</span> we define <span class="SimpleMath">\(top_r := (f_{{supp(\pi_r)}}, \pi_r)\)</span>. For each point <span class="SimpleMath">\(i\)</span> such that <span class="SimpleMath">\(i \not \in supp(\pi)\)</span> and <span class="SimpleMath">\(g_i \neq 1_K\)</span> we define <span class="SimpleMath">\(base_i := (f_i, 1_H)\)</span>. Then <span class="SimpleMath">\(g\)</span> can be written as a product of the <span class="SimpleMath">\(top_r\)</span> and <span class="SimpleMath">\(base_i\)</span> elements and each such element is a wreath cycle with pairwise disjoint territory. Thus in particular these elements commute pairwise.</p>
+
+<p>Further we say that a wreath cycle <span class="SimpleMath">\(g = (g_1, \ldots, g_m; \pi) \in G\)</span> is a <em>sparse wreath cycle</em>, if <span class="SimpleMath">\(g_i \neq 1\)</span> for all <span class="SimpleMath">\(i \neq max(terr(g))\)</span>.</p>
+
+<p>Suppose for an arbitrary element <span class="SimpleMath">\(g = (g_1, \ldots, g_m; \pi) \in G\)</span> we have a wreath cycle decomposition into cycles <span class="SimpleMath">\(w_1, \ldots, w_l \in G\)</span>. There exist <span class="SimpleMath">\(c_1, \ldots, c_l \in G\)</span> such that <span class="SimpleMath">\(w_k^{{c_k}}\)</span> is a sparse wreath cycle for all <span class="SimpleMath">\(k\)</span>. Moreover the product of the sparse wreath cycles is the same as <span class="SimpleMath">\(g^{{c_1 \cdots c_l}}\)</span> and the elements <span class="SimpleMath">\(c_k\)</span> commute pairwise. We call the product of these sparse wreath cycles a <em>sparse wreath cycle decomposition</em> of <span class="SimpleMath">\(g\)</span>. Note that the product of these sparse wreath cycles only yields a conjugated element of <span class="SimpleMath">\(g\)</span>. Still this form is usefull for answering questions about conjugacy classes etc. more efficiently.</p>
+
+<p><a id="X85861B017AEEC50B" name="X85861B017AEEC50B"></a></p>
+
+<h4>1.4 <span class="Heading">Example</span></h4>
+
+<p>In this section we present an example session.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("WreathProductElements");;</span>
+
+# Construct an imprimitive wreath product
+# that is embedded into a symmetric group.
+# This is the GAP intern wreath product command.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := AlternatingGroup(5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := SymmetricGroup(7);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := WreathProduct(K, H);</span>
+&lt;permutation group of size 14108774400000000 with 4 generators&gt;
+
+# Construct an isomorphism to the generic wreath product
+# that is provided in this package.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismToGenericWreathProduct(G);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">W := Image(iso);</span>
+&lt;group of size 14108774400000000 with 4 generators&gt;
+
+# Let us compare how GAP displays elements in G and W respectively.
+# Elements in G are represented as permutations.
+# In this representation it is completely unclear
+# how the base and top components of this element look like.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := (1,23,33,27,9,13,2,25,34,28,8,14,3,24,35,30,10,12,5,21,32,29,6,11,</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">4,22,31,26,7,15)(18,19,20);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g in G;</span>
+true
+
+# Elements in W are represented as generic wreath product elements
+# that makes it easy to read off the base and top component of the element.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := g^iso;</span>
+WreathProductElement((1,3,4,2,5),(2,5)(3,4),(1,4,3,2,5),(3,4,5),(1,2)
+(4,5),(1,2,4),(2,4,3);(1,5,7,6,2,3))
+
+# We can display each component easily with the provided commands.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BaseComponentOfGenericWreathProductElement(x, 2);</span>
+(2,5)(3,4)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TopComponentOfGenericWreathProductElement(x);</span>
+(1,5,7,6,2,3)
+
+# Let us decompose the element into disjoint wreath cycles.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">wreathDecomp := WreathCycleDecomposition(x);</span>
+[ WreathProductElement((),(),(),(3,4,5),(),(),();()), 
+  WreathProductElement((1,3,4,2,5),(2,5)(3,4),(1,4,3,2,5),(),(1,2)
+    (4,5),(1,2,4),(2,4,3);(1,5,7,6,2,3)) ]
+
+# Now we want to bring these cycles in sparse form.
+# Each sparse cycle is a very restricted element,
+# since at most one entry in the base component is non-trivial.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sparseDecomp := SparseWreathCycleDecomposition(x);</span>
+[ WreathProductElement((),(),(),(3,4,5),(),(),();()), 
+  WreathProductElement((),(),(),(),(),(),(1,2,3,5,4);(1,5,7,6,2,3)) ]
+
+# We can also compute the conjugating elements to switch between
+# the wreath cycle and sparse wreath cycle decomposition.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">conj := ConjugatorWreathCycleToSparse(x);</span>
+[ WreathProductElement((),(),(),(),(),(),();()), 
+  WreathProductElement((),(1,4,2),(1,4,3,2,5),(),(1,5,2,4,3),(),
+    (1,4,2,5,3);()) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">wreathDecomp[1]^conj[1] = sparseDecomp[1];</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">wreathDecomp[2]^conj[2] = sparseDecomp[2];</span>
+true
+</pre></div>
+
+<p><a id="X85B9E746807414FF" name="X85B9E746807414FF"></a></p>
+
+<h4>1.5 <span class="Heading">Basic Functions</span></h4>
+
+<p><a id="X7A1B8AC97DCCB9FA" name="X7A1B8AC97DCCB9FA"></a></p>
+
+<h5>1.5-1 TopGroupOfGenericWreathProduct</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopGroupOfGenericWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the top group of the generic wreath product <var class="Arg">W</var>. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+
+<p><a id="X87DA39B984E490F1" name="X87DA39B984E490F1"></a></p>
+
+<h5>1.5-2 BaseGroupOfGenericWreathProduct</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseGroupOfGenericWreathProduct</code>( <var class="Arg">W</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the base group of the generic wreath product <var class="Arg">W</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th factor of the base group of <var class="Arg">W</var>. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+
+<p><a id="X80B6540586CD12F2" name="X80B6540586CD12F2"></a></p>
+
+<h5>1.5-3 TopComponentOfGenericWreathProductElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopComponentOfGenericWreathProductElement</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the top component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+
+<p><a id="X7D7567367AAF7DAA" name="X7D7567367AAF7DAA"></a></p>
+
+<h5>1.5-4 BaseComponentOfGenericWreathProductElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseComponentOfGenericWreathProductElement</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the base component of <var class="Arg">x</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th base component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a generic wreath product element and the optional argument <var class="Arg">i</var> must be an integer. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+
+<p><a id="X7C57D9497D8BBC23" name="X7C57D9497D8BBC23"></a></p>
+
+<h5>1.5-5 Territory</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Territory</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the territory of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X7F7DF936839FE1C7" name="X7F7DF936839FE1C7"></a></p>
+
+<h5>1.5-6 IsWreathCycle</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>tests whether <var class="Arg">x</var> is a wreath cycle. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X85C1618F78451F65" name="X85C1618F78451F65"></a></p>
+
+<h5>1.5-7 IsSparseWreathCycle</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSparseWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>tests whether <var class="Arg">x</var> is a sparse wreath cycle. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X82BDC56A7B4298CE" name="X82BDC56A7B4298CE"></a></p>
+
+<h5>1.5-8 WreathCycleDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X8774A5FB80432D63" name="X8774A5FB80432D63"></a></p>
+
+<h5>1.5-9 SparseWreathCycleDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SparseWreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the sparse wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X811E86D882A03219" name="X811E86D882A03219"></a></p>
+
+<h5>1.5-10 ConjugatorWreathCycleToSparse</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConjugatorWreathCycleToSparse</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a list of wreath product elements <span class="SimpleMath">\(c_1, \ldots, c_l\)</span>, such that for each wreath cycle <span class="SimpleMath">\(w_k\)</span> in the decompositon of <var class="Arg">x</var>, the element <span class="SimpleMath">\(w_k^{{c_k}}\)</span> is the corresponding sparse wreath cycle in the sparse wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a generic wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>
