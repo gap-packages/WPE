@@ -16,7 +16,7 @@ end);
 
 InstallGlobalFunction( WPE_ConjugacyClassesWithFixedTopClass,
 function(W, H, RK, RH, hElm)
-    local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s, parts, part, blockStart, blockEnd, preTerritoryDecomposition, delta, deltaPoint, d, Ch, translations, gensD, D, shift, gensP, P, c, sigmaImage, sigma, points, point, arr, reps, iter, block, blockLength, repPoints, p, IsPointAvailable, rep, top, base, iterYades, yades, terr, gamma;
+    local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s, parts, part, blockStart, blockEnd, preTerritoryDecomposition, delta, deltaPoint, d, Ch, translations, gensD, D, shift, gensP, P, c, sigmaImage, sigma, points, point, arr, reps, iter, block, blockLength, repPoints, p, IsPointAvailable, rep, top, base, iterYades, yades, terr, gamma, combi;
     r := Length(RK);
     m := NrMovedPoints(H);
     # h is the decomposition of hElm sorted by cycle type.
@@ -158,12 +158,13 @@ function(W, H, RK, RH, hElm)
     rep := [];
     top := hElm ^ Embedding(W, m + 1);
     for d in delta do
-        iterYades := List(d, di -> IteratorOfCombinations(RK, Size(di)));
+        combi := List(d, di -> Combinations(RK, Size(di)));
+        iterYades := List(combi, Iterator);
         base := EmptyPlist(Length(d));
         i := 1;
         while i > 0 do
             if IsDoneIterator(iterYades[i]) then
-                iterYades[i] := IteratorOfCombinations(RK, Size(d[i]));
+                iterYades[i] := Iterator(combi[i]);
                 Unbind(base[i]);
                 i := i - 1;
                 continue;
@@ -181,6 +182,7 @@ function(W, H, RK, RH, hElm)
                     else
                         gamma := SmallestMovedPoint(terr);
                     fi;
+                    # Do not use multiplication
                     base[i] := base[i] * yades[j] ^ Embedding(W, gamma);
                 od;
             od;
