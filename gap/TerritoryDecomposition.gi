@@ -1,7 +1,7 @@
 # Partition a decomposition of w by load, i.e. by top cycle type and yade class.
 InstallGlobalFunction( WPE_PartitionDataOfWreathCycleDecompositionByLoad,
-function(W, w)
-    local info, K, wDecomp, l, wDecompTopType, wDecompYade, partition, wBlockConjugator, blockTopStart, blockTopEnd, pos, blockTopLength, wBlockTopPartitionData, wBlockTopPartition, wBlockTopMapping, wBlockTopConjugator, wSortByLoad;
+function(W, w, conjToSparse)
+    local info, K, wDecomp, l, wDecompTopType, wSortByTopType, wDecompYade, partition, wBlockConjugator, blockTopStart, blockTopEnd, pos, blockTopLength, wBlockTopPartitionData, wBlockTopPartition, wBlockTopMapping, wBlockTopConjugator, wSortByLoad;
     # Initilize Wreath Product Info
     # Let m be the degree of the Top Group
     info := WreathProductInfo(W);
@@ -13,7 +13,9 @@ function(W, w)
     # Sort decomposition by top cycle type `o`.
     # `O(l log l)`
     wDecompTopType := List(wDecomp, z -> Order(WPE_TopComponent(z)));
-    SortParallel(wDecompTopType, wDecomp);
+    wSortByTopType := Sortex(wDecompTopType);
+    wDecomp := Permuted(wDecomp, wSortByTopType);
+    conjToSparse := Permuted(conjToSparse, wSortByTopType);
     # Compute Yade for each wreath cycle `w_i`.
     # `O(m)`
     wDecompYade := List(wDecomp, Yade);
@@ -53,12 +55,15 @@ function(W, w)
         wDecompYade{[blockTopStart .. blockTopEnd]} := Permuted(
             wDecompYade{[blockTopStart .. blockTopEnd]}, wSortByLoad);
         wBlockTopConjugator := Permuted(wBlockTopConjugator, wSortByLoad);
+        conjToSparse{[blockTopStart .. blockTopEnd]} := Permuted(
+            conjToSparse{[blockTopStart .. blockTopEnd]}, wSortByLoad);
         # Fill main data
         Append(partition, wBlockTopPartition);
         wBlockConjugator{[blockTopStart .. blockTopEnd]} := wBlockTopConjugator;
         blockTopStart := blockTopEnd + 1;
     od;
     return rec( partition           := partition,
+                conjToSparse        := conjToSparse,
                 wDecomp             := wDecomp,
                 wDecompYade         := wDecompYade,
                 wBlockConjugator    := wBlockConjugator );
