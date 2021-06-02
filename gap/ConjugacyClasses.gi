@@ -4,10 +4,6 @@ function(W)
     info := WreathProductInfo(W);
     K := info.groups[1];
     H := info.groups[2];
-    # TODO
-    if not IsTransitive(H) then
-        Error("TODO: intransitive top group!");
-    fi;
     RK := List(ConjugacyClasses(K),Representative);
     RH := List(ConjugacyClasses(H),Representative);
     RW := List(RH, h -> WPE_ConjugacyClassesWithFixedTopClass(W, H, RK, RH, h));
@@ -94,7 +90,7 @@ function(W, H, RK, RH, hElm)
         fi;
         D := Group(gensD);
         P := Group(gensP);
-        reps := List(RightCosets(D, P), Representative);
+        reps := List(RightCosets(D, P), coset -> Representative(coset) ^ -1);
         # omega[i] is the set of all unordered partitions of | h[i] | into at most r Yade classes.
         omega := List([1 .. l], i -> Union(List([1 .. r], s -> Partitions(Length(h[i]), s))));
         iter := IteratorOfCartesianProduct(omega);
