@@ -96,10 +96,11 @@ end);
 
 InstallGlobalFunction( WPE_Centraliser,
 function(W, v)
-    local info, K, H, m, conjToSparse, conjToSparseInv, w, wPartitionData, partition, l, h,
-     gamma, wTerr, GammaMinusTerr, f, x, gammaPoints, gammaPoint, z, shift, blockLength,
-      i, j, CK, terrDecomp, ki, T, CKgens, Kgens, Tgens, nrGens, 
-      Cgens, cTrivial, c0Trivial, gen, c, c0, t;
+    local info, K, H, m, conjToSparseUnsorted, conjToSparse, conjToSparseProd, conjToSparseInv, conjToSparseInvProd,
+    w, wPartitionData, partition, l, h,
+    gamma, wTerr, GammaMinusTerr, f, x, gammaPoints, gammaPoint, z, shift, blockLength,
+    i, j, k, CK, terrDecomp, ki, T, CKgens, Kgens, Tgens, nrGens,
+    Cgens, cTrivial, c0Trivial, gen, c, c0, t, isVisited, s, conj, a, type;
     # Catch the case v = 1
     if IsOne(v) then
         return W;
@@ -109,10 +110,12 @@ function(W, v)
     K := info.groups[1];
     H := info.groups[2];
     m := NrMovedPoints(H);
-    conjToSparse := Product(ConjugatorWreathCycleToSparse(v));
-    conjToSparseInv := conjToSparse ^ -1;
-    w := v ^ conjToSparse;
-    wPartitionData := WPE_PartitionDataOfWreathCycleDecompositionByLoad(W, w);
+    conjToSparse := ConjugatorWreathCycleToSparse(v);
+    conjToSparseProd := Product(conjToSparse);
+    conjToSparseInvProd := conjToSparseProd ^ -1;
+    w := v ^ conjToSparseProd;
+    # Compute partition
+    wPartitionData := WPE_PartitionDataOfWreathCycleDecompositionByLoad(W, w, conjToSparse);
     partition := wPartitionData.partition;
     l := Length(partition);
     h := EmptyPlist(l);
@@ -122,12 +125,15 @@ function(W, v)
     f := EmptyPlist(l);
     x := EmptyPlist(l);
     shift := 0;
+    conjToSparse := EmptyPlist(l);
     for blockLength in partition do
         Add(h, List(wPartitionData.wDecomp{[1 + shift .. blockLength + shift]},
                 WPE_TopComponent));
         Add(f, wPartitionData.wDecompYade{[1 + shift .. blockLength + shift]});
         Add(x, wPartitionData.wBlockConjugator{[1 + shift .. blockLength + shift]});
+        Add(conjToSparse, wPartitionData.conjToSparse{[1 + shift .. blockLength + shift]});
         gammaPoints := EmptyPlist(blockLength);
+        conj := EmptyPlist(blockLength);
         # We could have a trivial Yade
         for j in [1 .. blockLength] do
             z := wPartitionData.wDecomp[j + shift];
@@ -140,6 +146,7 @@ function(W, v)
         Add(gamma, gammaPoints);
         shift := shift + blockLength;
     od;
+    conjToSparseInv := List(conjToSparse, block -> List(block, c -> c ^ -1));
     # Compute Generators for Components
     CK := List([1 .. l], i -> Centraliser(K, f[i,1]));
     terrDecomp := EmptyPlist(l);
@@ -163,7 +170,9 @@ function(W, v)
     # Init trivial elements
     cTrivial := List([1 .. l], i -> ListWithIdenticalEntries(Length(h[i]), One(K)));
     c0Trivial := ListWithIdenticalEntries(Length(GammaMinusTerr), One(K));
-    # Images for c Component
+    type := FamilyObj(One(W))!.info.family!.defaultType;
+    # TODO: make smaller generating set for cartesian product in the base group
+    # Images for c Component, base elements inside of terr
     c0 := c0Trivial;
     t := One(H);
     for i in [1 .. l] do
@@ -171,25 +180,36 @@ function(W, v)
             c := StructuralCopy(cTrivial);
             for gen in CKgens[i] do
                 c[i, j] := gen;
-                Add(Cgens, WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m));
+                a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m);
+                # Conjugate a with with conjToSparseInv[i, j]
+                for k in terrDecomp[i,j] do
+                    a[k] := conjToSparse[i,j]![k] * a[k] * conjToSparseInv[i,j]![k];
+                od;
+                a := Objectify(type, a);
+                Add(Cgens, a);
             od;
         od;
     od;
-    # Images for c0 Component
+    # Images for c0 Component, base elements outside of terr
     c := cTrivial;
     t := One(H);
     for i in [1 .. Length(GammaMinusTerr)] do
         c0 := StructuralCopy(c0Trivial);
         for gen in Kgens do
             c0[i] := gen;
-            Add(Cgens, WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m));
+            a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m);
+            a := Objectify(type, a);
+            Add(Cgens, a);
         od;
     od;
-    # Images for t Component
+    # Images for t Component, top elements
     c0 := c0Trivial;
     c := cTrivial;
     for t in Tgens do
-        Add(Cgens, WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m));
+        a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m);
+        a := Objectify(type, a);
+        a := a ^ conjToSparseInvProd;
+        Add(Cgens, a);
     od;
-    return Group(List(Cgens, gen -> Objectify(FamilyObj(One(W))!.info.family!.defaultType, gen) ^ conjToSparseInv));
+    return Group(Cgens);
 end);
