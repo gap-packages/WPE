@@ -35,32 +35,39 @@ InstallGlobalFunction( WPE_StabDecomp,
 function(t, h, gamma, GammaMinusTerr, terrDecomp, m)
     local l, i, ki, sigmaList, sigmaImage, j, point, psiFuncs, piList, pi, tBase, eList, ord, e;
     l := Length(gamma);
-    sigmaList := EmptyPlist(l);
-    for i in [1 .. l] do
-        ki := Length(gamma[i]);
-        sigmaImage := EmptyPlist(ki);
-        for j in [1 .. ki] do
-            point := gamma[i, j] ^ t;
-            sigmaImage[j] := First([1 .. ki], k -> point in terrDecomp[i, k]);
+    if IsOne(t) then
+        return rec(
+            e := List([1 .. l], i -> List([1 .. Length(gamma[i])], j -> 0)),
+            sigma := List([1 .. l], i -> ()),
+            pi0 := ());
+    else
+        sigmaList := EmptyPlist(l);
+        for i in [1 .. l] do
+            ki := Length(gamma[i]);
+            sigmaImage := EmptyPlist(ki);
+            for j in [1 .. ki] do
+                point := gamma[i, j] ^ t;
+                sigmaImage[j] := First([1 .. ki], k -> point in terrDecomp[i, k]);
+            od;
+            sigmaList[i] := PermList(sigmaImage);
         od;
-        sigmaList[i] := PermList(sigmaImage);
-    od;
-    psiFuncs := List([1 .. l], i -> WPE_PsiFunc(h[i], gamma[i], m));
-    piList := List([1 .. l], i -> sigmaList[i]^psiFuncs[i]);
-    pi := Product(piList);
-    tBase := t * pi ^ -1;
-    eList := EmptyPlist(l);
-    for i in [1 .. l] do
-        ki := Length(gamma[i]);
-        ord := Order(h[i, 1]);
-        e := List([1 .. ki], j -> First([0 .. ord - 1], k -> gamma[i, j] ^ (h[i, j] ^ k) = gamma[i, j] ^ tBase));
-        eList[i] := e;
-    od;
-    return rec(e := eList, sigma := sigmaList, pi0 := RestrictedPermNC(t, GammaMinusTerr));
+        psiFuncs := List([1 .. l], i -> WPE_PsiFunc(h[i], gamma[i], m));
+        piList := List([1 .. l], i -> sigmaList[i] ^ psiFuncs[i]);
+        pi := Product(piList);
+        tBase := t * pi ^ -1;
+        eList := EmptyPlist(l);
+        for i in [1 .. l] do
+            ki := Length(gamma[i]);
+            ord := Order(h[i, 1]);
+            e := List([1 .. ki], j -> First([0 .. ord - 1], k -> gamma[i, j] ^ (h[i, j] ^ k) = gamma[i, j] ^ tBase));
+            eList[i] := e;
+        od;
+        return rec(e := eList, sigma := sigmaList, pi0 := RestrictedPermNC(t, GammaMinusTerr));
+    fi;
 end);
 
 InstallGlobalFunction( WPE_Centraliser_Image,
-function(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m)
+function(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m)
     local tDecomp, i, j, ord, ki, k, e, sigma, pi0, l, a, s0, s1, gamma0;
     tDecomp := WPE_StabDecomp(t, h, gamma, GammaMinusTerr, terrDecomp, m);
     e := tDecomp.e;
@@ -74,7 +81,7 @@ function(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m)
         ord := Order(h[i, 1]);
         ki := Length(gamma[i]);
         for j in [1 .. ki] do
-            s0 := x[i, j] ^ (-1) * c[i, j] * x[i, j ^ sigma[i]];
+            s0 := xInv[i, j] * c[i, j] * x[i, j ^ sigma[i]];
             s1 := s0;
             if e[i,j] > 0 then
                 s1 := s0 * f[i, j ^ sigma[i]];
@@ -100,7 +107,7 @@ function(W, v)
     w, wPartitionData, partition, l, h,
     gamma, wTerr, GammaMinusTerr, f, x, gammaPoints, gammaPoint, z, shift, blockLength,
     i, j, k, CK, terrDecomp, ki, T, CKgens, Kgens, Tgens, nrGens,
-    Cgens, cTrivial, c0Trivial, gen, c, c0, t, isVisited, s, conj, a, type;
+    Cgens, cTrivial, c0Trivial, gen, c, c0, t, isVisited, s, conj, a, type, xInv;
     # Catch the case v = 1
     if IsOne(v) then
         return W;
@@ -147,6 +154,7 @@ function(W, v)
         shift := shift + blockLength;
     od;
     conjToSparseInv := List(conjToSparse, block -> List(block, c -> c ^ -1));
+    xInv := List(x, block -> List(block, c -> c ^ -1));
     # Compute Generators for Components
     CK := List([1 .. l], i -> Centraliser(K, f[i,1]));
     terrDecomp := EmptyPlist(l);
@@ -180,7 +188,7 @@ function(W, v)
             c := StructuralCopy(cTrivial);
             for gen in CKgens[i] do
                 c[i, j] := gen;
-                a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m);
+                a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
                 # Conjugate a with with conjToSparseInv[i, j]
                 for k in terrDecomp[i,j] do
                     a[k] := conjToSparse[i,j]![k] * a[k] * conjToSparseInv[i,j]![k];
@@ -197,7 +205,7 @@ function(W, v)
         c0 := StructuralCopy(c0Trivial);
         for gen in Kgens do
             c0[i] := gen;
-            a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m);
+            a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
             a := Objectify(type, a);
             Add(Cgens, a);
         od;
@@ -206,7 +214,7 @@ function(W, v)
     c0 := c0Trivial;
     c := cTrivial;
     for t in Tgens do
-        a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, m);
+        a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
         a := Objectify(type, a);
         a := a ^ conjToSparseInvProd;
         Add(Cgens, a);
