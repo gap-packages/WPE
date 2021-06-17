@@ -10,7 +10,7 @@ SetPackageInfo( rec(
 
 PackageName := "WreathProductElements",
 Subtitle := "Provides efficient methods for working with generic wreath products.",
-Version := "0.1",
+Version := "0.2",
 Date := "29/04/2020", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
@@ -64,7 +64,7 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">= 4.11",
+  GAP := ">= 4.12",
   NeededOtherPackages := [ ],
   SuggestedOtherPackages := [ ],
   ExternalConditions := [ ],
