@@ -4,6 +4,96 @@
 # Implementations
 #
 
+InstallMethod(IsomorphismToGenericWreathProduct,"wreath products",true,[HasWreathProductInfo],1,
+function(G)
+    local info, W, typ, iso;
+    info := WreathProductInfo(G);
+    if not IsPermGroup(info.groups[2]) then
+        ErrorNoReturn("Top group of <G> must be a permutation group");
+    fi;
+    W := WPE_GenericWreathProduct(info.groups[1], info.groups[2], IdentityMapping(info.groups[2]));
+    typ := FamilyObj(One(W))!.info.family!.defaultType;
+    iso := GroupHomomorphismByFunction(G, W,
+           g-> Objectify(typ, ListWreathProductElement(G, g)),
+           x -> WreathProductElementList(G, ListWreathProductElement(W, x)));
+    return iso;
+end);
+
+# Code from GAP lib
+InstallGlobalFunction(WPE_GenericWreathProduct,
+function(G, H, alpha)
+    local I, n, fam, typ, gens, hgens, id, i, e, info, W, p, dom;
+    I:=Image(alpha,H);
+
+    # avoid sparse first points.
+    dom:=MovedPoints(I);
+    if Length(dom)=0 then
+        dom:=[1];
+        n:=1;
+    elif Maximum(dom)>Length(dom) then
+        alpha:=alpha*ActionHomomorphism(I,dom);
+        I:=Image(alpha,H);
+        n:=LargestMovedPoint(I);
+    else
+        n:=LargestMovedPoint(I);
+    fi;
+
+    fam:=NewFamily("WreathProductElemFamily",IsWreathProductElement);
+    typ:=NewType(fam,IsWreathProductElementDefaultRep);
+    fam!.defaultType:=typ;
+    info:=rec(groups:=[G,H],
+            family:=fam,
+                I:=I,
+            degI:=n,
+            alpha:=alpha,
+            embeddings:=[]);
+    fam!.info:=info;
+    if CanEasilyCompareElements(One(G)) then
+        SetCanEasilyCompareElements(fam,true);
+    fi;
+    if CanEasilySortElements(One(G)) then
+        SetCanEasilySortElements(fam,true);
+    fi;
+
+    gens:=[];
+    id:=ListWithIdenticalEntries(n,One(G));
+    Add(id,One(I));
+    info.identvec:=ShallowCopy(id);
+
+    for p in List(Orbits(I,[1..n]),i->i[1]) do
+        for i in GeneratorsOfGroup(G) do
+        e:=ShallowCopy(id);
+        e[p]:=i;
+        Add(gens,Objectify(typ,e));
+        od;
+    od;
+
+    info.basegens:=ShallowCopy(gens);
+    hgens:=[];
+    for i in GeneratorsOfGroup(H) do
+        e:=ShallowCopy(id);
+        e[n+1]:=Image(alpha,i);
+        Add(hgens,Objectify(typ,e));
+    od;
+    Append(gens,hgens);
+    info.hgens:=hgens;
+    SetOne(fam,Objectify(typ,id));
+    W:=Group(gens,One(fam));
+    SetWreathProductInfo(W,info);
+    SetIsWholeFamily(W,true);
+    if HasSize(G) then
+        if IsFinite(G) then
+        SetSize(W,Size(G)^n*Size(I));
+        else
+        SetSize(W,infinity);
+        fi;
+    fi;
+    if HasIsFinite(G) then
+        SetIsFinite(W,IsFinite(G));
+    fi;
+    return W;
+end);
+
 InstallMethod(PrintObj,"wreath elements",true,[IsWreathProductElement],1,
 function(x)
 local i,info;
