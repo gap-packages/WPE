@@ -13,6 +13,73 @@ end);
 InstallGlobalFunction( WPE_ConjugacyClassesWithFixedTopClass,
 function(W, H, RK, RH, hElm)
     local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s, parts, part, blockStart, blockEnd, preTerritoryDecomposition, delta, deltaPoint, d, Ch, translations, gensD, D, shift, gensP, P, c, sigmaImage, sigma, points, point, arr, reps, iter, block, blockLength, repPoints, p, IsPointAvailable, rep, top, base, iterYades, yades, terr, gamma, combi;
+    #
+    # Idea for Reduction of orbit space:
+    # We need to compute orbit representatives for the action of $C_{H}(h)$ on
+    # the set of all territory decompositions of elements of $W$ with top component $h$.
+    # In the following we omit repeating the assumptions on the considered territory decompositions.
+    #
+    # Notation:
+    # Fix an ordering on the conjugacy class representatives of $K$ by $k_1, ..., k_r$.
+    # Let h_i = [h_{i,1}, h_{i,2}, ...] be the list of all cycle supports of $h$ on $Gamma$ of length $i$.
+    # For example let $Gamma = {1, ..., 11}$ and $h = (2,3)(4,6)(10,11)$. Then
+    # $h_1 = [{1}, {5}, {7}, {8}, {9}]$,
+    # $h_2 = [{2,3}, {4,6}, {10,11}]$.
+    # Define the projection $Psi : C_{Sym(Gamma)}(h) -> Sym(h_1) x Sym(h_2) x Sym(h_3) x ...$
+    # by the action of the centraliser on the cycle supports of $h$.
+    # We abuse notation and identify $Sym(h_1)$ with $Sym(|h_1|)$ given the ordering of cycle supports of $h$.
+    #
+    # Reduction Step 1: Forget yade class distribution.
+    # Given a territory decomposition $P$, this must induce uniquely
+    # an ordered multipartition $M$ of $h_1 u h_2 u h_3 u ...$
+    # by specifying that it must respect the ordering
+    # of the distribution of yade classes onto each block.
+    # In the following we omit repeating the assumptions on the considered
+    # ordered multipartitions and distributions of yade classes.
+    # For example consider the territory decomposition
+    #     [ [   k_1,          k_3,         k_4   ], [         k_1,           k_4    ] ]
+    # P = [ [ { {5} }, { {1}, {7}, {9} } { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ].
+    # The induced ordered multipartition of $P$ is given by
+    # M = [ [ { {5} }, { {1}, {7}, {9} } { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ].
+    # If two territory decompositions are in the same orbit under the action of $C_{H}(h)$,
+    # then the induced multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$.
+    # We have a 1-to-1-mapping from tuples consisting of
+    # an ordered multipartition and a yade distribution, onto territory decompositions.
+    # If two ordered multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$,
+    # then, given a fixed yade distribution,
+    # the corresponding territory decompositions are in the same orbit under the action of $C_{H}(h)$.
+    #
+    # Summary for Step 1:
+    # Orbits of territory decompositions under the action of $C_{H}(h)$
+    # can be enumerated by computing orbits of ordered multipartitions under the action of $[C_{H}(h)]Psi$.
+    #
+    # Reduction Step 2: Forget ordering of multipartition.
+    # We call a multipartition of $|h_1| + |h_2| + |h_3| + ...$ a pattern of $h$ with respect to $Gamma$.
+    # Given a pattern $p$, we define (weak) $p$-multipartitions as the set of all
+    # ordered multipartitions of $h_1 u h_2 u h_3 u ...$ that induce this pattern
+    # by mapping each block onto its size (after a suitable stable re-ordering of blocks).
+    # We have a 1-to-1-mapping from tuples consisting of
+    # a $p$-multipartition and a combination of $p$, onto weak $p$-multipartitions.
+    # If two weak $p$-multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$,
+    # then the induced $p$-multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$.
+    # If two $p$-multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$,
+    # then given any combination of $p$, the induced weak $p$-multipartitions
+    # are in the same orbit under the action of $[C_{H}(h)]Psi$.
+    #
+    # Summary for Step 2:
+    # Orbits of ordered multipartitions under the action of $C_{H}(h)$
+    # can be enumerated by computing orbits of weak $p$-multipartitions under the action of under the action of $C_{H}(h)$
+    # for all patterns $p$ of $h$ with respect to $Gamma$.
+    # Orbits of weak $p$-multipartitions under the action of $[C_{H}(h)]Psi$
+    # can be enumerated by computing orbits of $p$-multipartitions under the action of $[C_{H}(h)]Psi$.
+    #
+    # Remarks:
+    # In our computations we often concatenate all partitions in a multipartition,
+    # since GAP can work with partitions (OnTuplesSets)
+    # faster than with multipartitions (OnTuplesTuplesSets).
+    # The considered centraliser automatically respects the multipartition structure.
+    # Thus we sometimes omit the prefix "multi" in further comments.
+    #
     r := Length(RK);
     m := NrMovedPoints(H);
     # h is the decomposition of hElm sorted by cycle type.
@@ -30,6 +97,40 @@ function(W, H, RK, RH, hElm)
         h[l + 1] := fixPoints;
         l := l + 1;
     fi;
+    #
+    # Idea for exploiting Reduction Step 2:
+    # Given a pattern $p$ of $h \in H$ with respect to $Gamma$,
+    # we want to compute orbit representatives for the action of $[C_{H}(h)]Psi$ on $p$-multipartitions.
+    # We define the standard $p$-multipartition by mapping the sequence $1 ... |h_1| + |h_2| + ...$
+    # onto an ordered multipartition with block sizes induced by $p$.
+    # For example consider the pattern $p = [3, 1, 1, 2, 1]$.
+    # The standard partition would be given by
+    # $[ [ {  1,   2,   3  }, {  4  }, {  5  } ], [ {   6,     7   }, {    8    } ] ]$, which we identify with
+    # $[ [ { {1}, {5}, {7} }, { {8} }, { {9} } ], [ { {2,3}, {4,6} }, { {10,11} } ] ]$.
+    # Let $omega$ be the standard partition of the pattern $p$.
+    # Then $[C_{Sym(Gamma)}(h)]Psi$ acts transitively on $p$-multipartitions.
+    # Let $R$ be a collection of inverse representatives
+    # of the right cosets of $[C_{Sym(Gamma)}(h)]Psi / [C_{H}(h)]Psi$,
+    # i.e. we have $[C_{Sym(Gamma)}(h)]Psi = U_{r \in R} [C_{H}(h)]Psi r ^ {-1}$.
+    # Let $gamma$ be an arbitrary partition.
+    # Then there exists $c \in [C_{Sym(Gamma)}(h)]Psi$, s.t. $gamma ^ c = omega$.
+    # Further there exists $r \in R$ and $c_h \in [C_{H}(h)]Psi$, s.t. $c = c_h ^ {-1} r ^ {-1}$.
+    #
+    #              c
+    #    omega◄──────────gamma
+    #      │               ▲
+    #      │               │
+    #     r│               │c_h
+    #      │               │
+    #      └───► delta─────┘
+    #
+    # Hence $Delta = {gamma ^ r : r \in R}$ is a superset of orbit representatives
+    # for the action of $[C_{H}(h)]Psi$ on $p$-multipartitions.
+    #
+    # Summary:
+    # A superset of orbit representatives for the action of $[C_{H}(h)]Psi$ on $p$-multipartitions
+    # can be enumerated by computing right coset representatives of $[C_{Sym(Gamma)}(h)]Psi / [C_{H}(h)]Psi$.
+    #
     if IsNaturalSymmetricGroup(H) then
         # omega[i] is the set of all ordered partitions of | h[i] | into at most r Yade classes.
         omega := EmptyPlist(l);
@@ -83,7 +184,7 @@ function(W, H, RK, RH, hElm)
             od;
             Add(gensP, sigma);
         od;
-        # Right coset representatives
+        # Right coset representatives, we have to take inverses
         gensD := Concatenation(gensD);
         if IsEmpty(gensD) then
             gensD := [()];
@@ -149,8 +250,11 @@ function(W, H, RK, RH, hElm)
             od;
         od;
     fi;
+    #
+    # Idea for exploiting Reduction Step 1:
     # Transform these partitions into all possible territory decompositions,
-    # i.e. choose explicit Yade classes for each partition.
+    # i.e. choose an explicit distribution of yade classes for each partition.
+    #
     rep := [];
     top := hElm ^ Embedding(W, m + 1);
     for d in delta do
@@ -178,7 +282,7 @@ function(W, H, RK, RH, hElm)
                     else
                         gamma := SmallestMovedPoint(terr);
                     fi;
-                    # Do not use multiplication
+                    # TODO: Do not use multiplication
                     base[i] := base[i] * yades[j] ^ Embedding(W, gamma);
                 od;
             od;
