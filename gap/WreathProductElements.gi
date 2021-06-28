@@ -12,9 +12,8 @@ function(G)
         ErrorNoReturn("Top group of <G> must be a permutation group");
     fi;
     W := WPE_GenericWreathProduct(info.groups[1], info.groups[2], IdentityMapping(info.groups[2]));
-    typ := FamilyObj(One(W))!.info.family!.defaultType;
     iso := GroupHomomorphismByFunction(G, W,
-           g-> Objectify(typ, ListWreathProductElement(G, g)),
+           g-> WreathProductElementList(W, ListWreathProductElement(G, g)),
            x -> WreathProductElementList(G, ListWreathProductElement(W, x)));
     return iso;
 end);
