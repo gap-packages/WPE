@@ -4,8 +4,8 @@ function(W)
     info := WreathProductInfo(W);
     K := info.groups[1];
     H := info.groups[2];
-    RK := List(ConjugacyClasses(K),Representative);
-    RH := List(ConjugacyClasses(H),Representative);
+    RK := List(ConjugacyClasses(K), Representative);
+    RH := List(ConjugacyClasses(H), Representative);
     RW := List(RH, h -> WPE_ConjugacyClassesWithFixedTopClass(W, H, RK, RH, h));
     return Concatenation(RW);
 end);
@@ -13,6 +13,9 @@ end);
 InstallGlobalFunction( WPE_ConjugacyClassesWithFixedTopClass,
 function(W, H, RK, RH, hElm)
     local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s, parts, part, blockStart, blockEnd, preTerritoryDecomposition, delta, deltaPoint, d, Ch, translations, gensD, D, shift, gensP, P, c, sigmaImage, sigma, points, point, arr, reps, iter, block, blockLength, repPoints, p, IsPointAvailable, rep, top, base, iterYades, yades, terr, gamma, combi;
+    ############
+    # Approach #
+    ############
     #
     # Idea for Reduction of orbit space:
     # We need to compute orbit representatives for the action of $C_{H}(h)$ on
@@ -36,15 +39,17 @@ function(W, H, RK, RH, hElm)
     # of the distribution of yade classes onto each block.
     # In the following we omit repeating the assumptions on the considered
     # ordered multipartitions and distributions of yade classes.
-    # For example consider the territory decomposition
-    #     [ [   k_1,          k_3,         k_4   ], [         k_1,           k_4    ] ]
-    # P = [ [ { {5} }, { {1}, {7}, {9} } { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ].
-    # The induced ordered multipartition of $P$ is given by
-    # M = [ [ { {5} }, { {1}, {7}, {9} } { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ].
-    # If two territory decompositions are in the same orbit under the action of $C_{H}(h)$,
-    # then the induced multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$.
     # We have a 1-to-1-mapping from tuples consisting of
     # an ordered multipartition and a yade distribution, onto territory decompositions.
+    # For example consider the territory decomposition
+    #     [ [   k_1,          k_3,          k_4   ], [         k_1,           k_4    ] ]
+    # T = [ [ { {5} }, { {1}, {7}, {9} }, { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ].
+    # The induced ordered multipartition of $T$ is given by
+    # M = [ [ { {5} }, { {1}, {7}, {9} } { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ]
+    # and the yade distribution is given by
+    # Y = [ [   k_1,          k_3,          k_4   ], [         k_1,           k_4    ] ].
+    # If two territory decompositions are in the same orbit under the action of $C_{H}(h)$,
+    # then the induced multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$.
     # If two ordered multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$,
     # then, given a fixed yade distribution,
     # the corresponding territory decompositions are in the same orbit under the action of $C_{H}(h)$.
@@ -60,6 +65,12 @@ function(W, H, RK, RH, hElm)
     # by mapping each block onto its size (after a suitable stable re-ordering of blocks).
     # We have a 1-to-1-mapping from tuples consisting of
     # a $p$-multipartition and a combination of $p$, onto weak $p$-multipartitions.
+    # For example consider the pattern $p = [[3, 1, 1], [2, 1]]$.
+    # Then we have a weak $p$-multipartition given by
+    # M = [ [ { {5} }, { {1}, {7}, {9} }, { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ]
+    # and the corresponding $p$-multipartition is
+    # P = [ [ { {1}, {7}, {9} }, { {5} }, { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ]
+    # with combination $C = [[1, 3, 1], [2, 1]]$.
     # If two weak $p$-multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$,
     # then the induced $p$-multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$.
     # If two $p$-multipartitions are in the same orbit under the action of $[C_{H}(h)]Psi$,
@@ -68,7 +79,7 @@ function(W, H, RK, RH, hElm)
     #
     # Summary for Step 2:
     # Orbits of ordered multipartitions under the action of $C_{H}(h)$
-    # can be enumerated by computing orbits of weak $p$-multipartitions under the action of under the action of $C_{H}(h)$
+    # can be enumerated by computing orbits of weak $p$-multipartitions under the action of $C_{H}(h)$
     # for all patterns $p$ of $h$ with respect to $Gamma$.
     # Orbits of weak $p$-multipartitions under the action of $[C_{H}(h)]Psi$
     # can be enumerated by computing orbits of $p$-multipartitions under the action of $[C_{H}(h)]Psi$.
@@ -80,6 +91,9 @@ function(W, H, RK, RH, hElm)
     # The considered centraliser automatically respects the multipartition structure.
     # Thus we sometimes omit the prefix "multi" in further comments.
     #
+    ##################
+    # Initialization #
+    ##################
     r := Length(RK);
     m := NrMovedPoints(H);
     # h is the decomposition of hElm sorted by cycle type.
@@ -97,13 +111,16 @@ function(W, H, RK, RH, hElm)
         h[l + 1] := fixPoints;
         l := l + 1;
     fi;
+    ############
+    # Approach #
+    ############
     #
     # Idea for exploiting Reduction Step 2:
     # Given a pattern $p$ of $h \in H$ with respect to $Gamma$,
     # we want to compute orbit representatives for the action of $[C_{H}(h)]Psi$ on $p$-multipartitions.
     # We define the standard $p$-multipartition by mapping the sequence $1 ... |h_1| + |h_2| + ...$
     # onto an ordered multipartition with block sizes induced by $p$.
-    # For example consider the pattern $p = [3, 1, 1, 2, 1]$.
+    # For example consider the pattern $p = [[3, 1, 1], [2, 1]]$.
     # The standard partition would be given by
     # $[ [ {  1,   2,   3  }, {  4  }, {  5  } ], [ {   6,     7   }, {    8    } ] ]$, which we identify with
     # $[ [ { {1}, {5}, {7} }, { {8} }, { {9} } ], [ { {2,3}, {4,6} }, { {10,11} } ] ]$.
