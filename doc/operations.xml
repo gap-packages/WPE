@@ -5,7 +5,7 @@ The generic wreath product elements and in particular their (sparse) wreath cycl
 can be used to speed up certain operations in wreath products. <P/>
 
 TODO:: Add tests or scripts that show that these operations are indeed faster in practice.
-(Unloaded vs. Loaded package) and (Perm vs. Generic)
+(Unloaded vs. Loaded package) and (Matrix, Perm vs. Generic)
 
 <Section Label="Operations List">
 <Heading>Operations List</Heading>
@@ -17,8 +17,11 @@ In the following <M>G = K \wr H</M> denotes a wreath product and <M>x,y \in G</M
 
 <List>
 <Item> <C>Order(x)</C> </Item>
+<Item> TODO: <C>x in G</C> </Item>
 <Item> TODO: <C>RepresentativeAction(G, x, y)</C> </Item>
 <Item> TODO: <C>IsConjugate(G, x, y)</C> </Item>
+<Item> TODO: <C>Centraliser(G, x)</C> </Item>
+<Item> <C>ConjugacyClasses(G)</C> </Item>
 </List>
 
 </Section>
