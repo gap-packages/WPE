@@ -10,7 +10,6 @@ fi;
 AutoDoc( rec( scaffold := rec(
         includes := [
             "intro.xml",
-            "iso.xml",
             "operations.xml"
             ],
         ), autodoc := true ) );
