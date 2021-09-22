@@ -7,6 +7,8 @@
 # Wreath Product Elements:
 #############################################################################
 
+WPE_PRINT_HORIZONTALLY := true;
+
 ## <#GAPDoc Label="Territory">
 ## <ManSection>
 ## <Attr Name="Territory" Arg="x"/>

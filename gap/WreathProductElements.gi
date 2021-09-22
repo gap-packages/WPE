@@ -95,16 +95,34 @@ end);
 
 InstallMethod(PrintObj,"wreath elements",true,[IsWreathProductElement],1,
 function(x)
-local i,info;
-  info:=FamilyObj(x)!.info;
-  Print("WreathProductElement(");
-  for i in [1..info!.degI] do
-    Print(WPE_BaseComponent(x, i));
-    if i < info!.degI then
-        Print(",");
+local i,L,tenToL,info;
+    info:=FamilyObj(x)!.info;
+    # Print horizontally
+    if WPE_PRINT_HORIZONTALLY then
+        Print("( ");
+        for i in [1..info!.degI] do
+            Print(WPE_BaseComponent(x, i));
+            if i < info!.degI then
+                Print(", ");
+            fi;
+        od;
+            Print("; ",WPE_TopComponent(x)," )");
+    # Print vertically
+    else
+        # Length of Largest Number
+        L := 1;
+        tenToL := 10;
+        while tenToL <= info!.degI do
+            L := L + 1;
+            tenToL := tenToL * 10;
+        od;
+        L := Maximum(3, L);
+        # Current Length of Number
+        for i in [1..info!.degI] do
+            Print(String(i, L), ": ", WPE_BaseComponent(x, i), "\n");
+        od;
+        Print(String("top", L), ": ", WPE_TopComponent(x));
     fi;
-  od;
-  Print(";",WPE_TopComponent(x),")");
 end);
 
 InstallMethod( WreathCycleDecomposition,"generic wreath elements",true,[IsWreathCycle],1, function(x) return [x]; end);
