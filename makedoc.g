@@ -12,4 +12,6 @@ AutoDoc( rec( scaffold := rec(
             "intro.xml",
             "operations.xml"
             ],
-        ), autodoc := true ) );
+        ),
+        extract_examples := true,
+        autodoc := true ) );
