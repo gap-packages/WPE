@@ -7,7 +7,7 @@ gap> TestConjugacy := function(iso, n)
 >         h := g ^ PseudoRandom(G);
 >         x := g ^ iso;
 >         y := h ^ iso;
->         c := WPE_RepresentativeAction(x, y);
+>         c := WPE_RepresentativeAction(W, x, y);
 >         if c = fail or x ^ c <> y or g ^ (PreImage(iso, c)) <> h then
 >             return false;
 >         fi;

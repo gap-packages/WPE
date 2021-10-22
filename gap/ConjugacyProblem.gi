@@ -2,12 +2,12 @@
 # Returns either an element c such that x^c = y or fail if x and y are not conjugate.
 #
 InstallGlobalFunction( WPE_RepresentativeAction,
-function(x, y)
+function(W, x, y)
     local
         info, K, H, partitionData, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
         topConditionsData, sourcePartitionInvariant, imagePartitionInvariant, cTop, cBase;
     # initilize wreath product info
-    info := FamilyObj(x)!.info;
+    info := WreathProductInfo(W);
     K := info.groups[1];
     H := info.groups[2];
     # partition wreath cycle decompositions by top length and yade class
@@ -29,7 +29,7 @@ function(x, y)
     # construct the base component for the conjugator c
     cBase := WPE_RepresentativeAction_Base(cTop, info!.degI, K, xDecomp, yDecomp, partition, partitionConjugator,
                                            xBlockConjugator, yBlockConjugator);
-    return Objectify(info.family!.defaultType, Concatenation(cBase, [cTop]));
+    return WreathProductElementList(W, Concatenation(cBase, [cTop]));
 end);
 
 InstallGlobalFunction( WPE_RepresentativeAction_PartitionByTopAndYadeClass,
