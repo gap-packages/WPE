@@ -145,7 +145,7 @@ function(x)
     info := FamilyObj(x)!.info;
     degI := WPE_TopDegree(x);
     suppTop := MovedPoints(WPE_TopComponent(x));
-    suppBase := Filtered([1 .. degI], i -> not IsOne(WPE_BaseComponent(x, 1)));
+    suppBase := Filtered([1 .. degI], i -> not IsOne(WPE_BaseComponent(x, i)));
     id := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
     Add(id, One(WPE_TopComponent(x)));
     decomposition := [];
