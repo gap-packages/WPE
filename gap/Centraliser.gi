@@ -103,7 +103,7 @@ end);
 
 InstallGlobalFunction( WPE_Centraliser,
 function(W, v)
-    local info, K, H, m, conjToSparseUnsorted, conjToSparse, conjToSparseProd, conjToSparseInv, conjToSparseInvProd,
+    local info, K, H, m, conjToSparseUnsorted, conjToSparse, conjToSparseElm, conjToSparseProd, conjToSparseInv, conjToSparseInvProd,
     w, wPartitionData, partition, l, h,
     gamma, wTerr, GammaMinusTerr, f, x, gammaPoints, gammaPoint, z, shift, blockLength,
     i, j, k, CK, terrDecomp, ki, T, CKgens, Kgens, Tgens, nrGens,
@@ -117,10 +117,20 @@ function(W, v)
     K := info.groups[1];
     H := info.groups[2];
     m := NrMovedPoints(H);
+    # Sparse Decomposition
+    # TODO: Remove Ugly Hack
+    # Ugly Hack: deal with list rep
     conjToSparse := ConjugatorWreathCycleToSparse(v);
-    conjToSparseProd := Product(conjToSparse);
-    conjToSparseInvProd := conjToSparseProd ^ -1;
-    w := v ^ conjToSparseProd;
+    if IsList(v) then
+        conjToSparseElm := List(conjToSparse, z -> WreathProductElementList(W, z));
+        conjToSparseProd := Product(conjToSparseElm);
+        conjToSparseInvProd := conjToSparseProd ^ -1;
+        w := ListWreathProductElement(W, WreathProductElementList(W, v) ^ conjToSparseProd);
+    else
+        conjToSparseProd := Product(conjToSparse);
+        conjToSparseInvProd := conjToSparseProd ^ -1;
+        w := v ^ conjToSparseProd;
+    fi;
     # Compute partition
     wPartitionData := WPE_PartitionDataOfWreathCycleDecompositionByLoad(W, w, conjToSparse);
     partition := wPartitionData.partition;
@@ -153,7 +163,13 @@ function(W, v)
         Add(gamma, gammaPoints);
         shift := shift + blockLength;
     od;
-    conjToSparseInv := List(conjToSparse, block -> List(block, c -> c ^ -1));
+    # TODO: Remove Ugly Hack
+    # Ugly Hack: deal with list rep
+    if IsList(v) then
+        conjToSparseInv := List(conjToSparse, block -> List(block, c -> ListWreathProductElement(W, WreathProductElementList(W, c) ^ -1)));
+    else
+        conjToSparseInv := List(conjToSparse, block -> List(block, c -> c ^ -1));
+    fi;
     xInv := List(x, block -> List(block, c -> c ^ -1));
     # Compute Generators for Components
     CK := List([1 .. l], i -> Centraliser(K, f[i,1]));
@@ -178,7 +194,6 @@ function(W, v)
     # Init trivial elements
     cTrivial := List([1 .. l], i -> ListWithIdenticalEntries(Length(h[i]), One(K)));
     c0Trivial := ListWithIdenticalEntries(Length(GammaMinusTerr), One(K));
-    type := FamilyObj(One(W))!.info.family!.defaultType;
     # TODO: make smaller generating set for cartesian product in the base group
     # Images for c Component, base elements inside of terr
     c0 := c0Trivial;
@@ -193,7 +208,7 @@ function(W, v)
                 for k in terrDecomp[i,j] do
                     a[k] := WPE_BaseComponent(conjToSparse[i,j], k) * a[k] * WPE_BaseComponent(conjToSparseInv[i,j], k);
                 od;
-                a := Objectify(type, a);
+                a := WreathProductElementList(W, a);
                 Add(Cgens, a);
             od;
         od;
@@ -206,7 +221,7 @@ function(W, v)
         for gen in Kgens do
             c0[i] := gen;
             a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
-            a := Objectify(type, a);
+            a := WreathProductElementList(W, a);
             Add(Cgens, a);
         od;
     od;
@@ -215,7 +230,7 @@ function(W, v)
     c := cTrivial;
     for t in Tgens do
         a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
-        a := Objectify(type, a);
+        a := WreathProductElementList(W, a);
         a := a ^ conjToSparseInvProd;
         Add(Cgens, a);
     od;
