@@ -95,14 +95,14 @@ end);
 
 InstallMethod( PrintObj, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
-local i,L,tenToL,info;
-    info:=FamilyObj(x)!.info;
+local i,L,tenToL,degI;
+    degI := WPE_TopDegree(x);
     # Print horizontally
     if WPE_PRINT_HORIZONTALLY then
         Print("( ");
-        for i in [1..info!.degI] do
+        for i in [1..degI] do
             Print(WPE_BaseComponent(x, i));
-            if i < info!.degI then
+            if i < degI then
                 Print(", ");
             fi;
         od;
@@ -112,13 +112,13 @@ local i,L,tenToL,info;
         # Length of Largest Number
         L := 1;
         tenToL := 10;
-        while tenToL <= info!.degI do
+        while tenToL <= degI do
             L := L + 1;
             tenToL := tenToL * 10;
         od;
         L := Maximum(3, L);
         # Current Length of Number
-        for i in [1..info!.degI] do
+        for i in [1..degI] do
             Print(String(i, L), ": ", WPE_BaseComponent(x, i), "\n");
         od;
         Print(String("top", L), ": ", WPE_TopComponent(x));
@@ -131,6 +131,7 @@ InstallMethod( WreathCycleDecomposition, "generic wreath elements", true, [IsWre
 function(x)
     local
       info,             # wreath product info
+      degI,             # degree of top group
       decomposition,    # wreath cycle decomposition of x
       suppTop,          # support of top component, list
       suppBase,         # non-trivial base component indices, list
@@ -142,10 +143,11 @@ function(x)
 
     # initialization
     info := FamilyObj(x)!.info;
+    degI := WPE_TopDegree(x);
     suppTop := MovedPoints(WPE_TopComponent(x));
-    suppBase := Filtered([1..info.degI], i -> not IsOne(WPE_BaseComponent(x, i)));
-    id := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
-    Add(id, One(info.groups[2]));
+    suppBase := Filtered([1 .. degI], i -> not IsOne(WPE_BaseComponent(x, 1)));
+    id := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+    Add(id, One(WPE_TopComponent(x)));
     decomposition := [];
 
     # wreath cycles that are of base type
@@ -165,7 +167,7 @@ function(x)
     topCycleList := Cycles(WPE_TopComponent(x), suppTop);
     for topCycle in topCycleList do
         wreathCycle := ShallowCopy(id);
-        wreathCycle[info.degI + 1] := CycleFromList(topCycle);
+        wreathCycle[degI + 1] := CycleFromList(topCycle);
         for i in topCycle do
             wreathCycle[i] := WPE_BaseComponent(x, i);
         od;
@@ -178,16 +180,64 @@ function(x)
     return decomposition;
 end);
 
+InstallOtherMethod( WreathCycleDecomposition, "list rep of wreath elements", true, [IsList], 0,
+function(x)
+    local
+      degI,             # degree of top group
+      decomposition,    # wreath cycle decomposition of x
+      suppTop,          # support of top component, list
+      suppBase,         # non-trivial base component indices, list
+      id,               # identity vector
+      i,                # index point, loop var
+      wreathCycle,      # wreath cycle, loop var
+      topCycleList,     # cycle decomposition of top component, list
+      topCycle;         # cycle of top component, loop var
+
+    # initialization
+    degI := Length(x) - 1;
+    suppTop := MovedPoints(WPE_TopComponent(x));
+    suppBase := Filtered([1 .. degI], i -> not IsOne(WPE_BaseComponent(x, i)));
+    id := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+    Add(id, One(WPE_BaseComponent(x, degI + 1)));
+    decomposition := [];
+
+    # wreath cycles that are of base type
+    for i in Filtered(suppBase, x -> not x in suppTop) do
+        wreathCycle := ShallowCopy(id);
+        wreathCycle[i] := WPE_BaseComponent(x, i);
+
+        Add(decomposition, wreathCycle);
+    od;
+
+    # wreath cycles that are of top type
+    if IsEmpty(suppTop) then
+        return decomposition;
+    fi;
+    topCycleList := Cycles(WPE_TopComponent(x), suppTop);
+    for topCycle in topCycleList do
+        wreathCycle := ShallowCopy(id);
+        wreathCycle[degI + 1] := CycleFromList(topCycle);
+        for i in topCycle do
+            wreathCycle[i] := WPE_BaseComponent(x, i);
+        od;
+
+        Add(decomposition, wreathCycle);
+    od;
+
+    return decomposition;
+end);
+
 InstallMethod( SparseWreathCycleDecomposition, "sparse wreath cycle wreath elements", true, [IsSparseWreathCycle], 2, function(x) return [x]; end);
 
 InstallMethod( SparseWreathCycleDecomposition, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
-    local info, yade, i, sparseWreathCycle;
+    local info, degI, yade, i, sparseWreathCycle;
 
     info := FamilyObj(x)!.info;
+    degI := WPE_TopDegree(x);
     yade := Yade(x);
     i := Minimum(Territory(x));
-    sparseWreathCycle := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
+    sparseWreathCycle := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
     Add(sparseWreathCycle, WPE_TopComponent(x));
     sparseWreathCycle[i] := yade;
 
@@ -209,16 +259,17 @@ InstallMethod( ConjugatorWreathCycleToSparse, "sparse wreath cycle wreath elemen
 
 InstallMethod( ConjugatorWreathCycleToSparse, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
-    local info, i, j, min, yade, ord, k, y, conj;
+    local info, degI, i, j, min, yade, ord, k, y, conj;
 
     info := FamilyObj(x)!.info;
+    degI := WPE_TopDegree(x);
     ord := Order(WPE_TopComponent(x));
     i := WPE_ChooseYadePoint(x);
     min := Minimum(Territory(x));
     yade := Yade(x);
-    conj := ListWithIdenticalEntries(info.degI, One(info.groups[1]));
-    Add(conj, One(info.groups[2]));
-    y := One(info.groups[1]);
+    conj := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+    Add(conj, One(WPE_TopComponent(x)));
+    y := One(WPE_BaseComponent(x, 1));
     j := i;
     for k in [1..ord] do
         y := WPE_BaseComponent(x, j) ^ -1 * y;
@@ -246,12 +297,12 @@ InstallTrueMethod( IsWreathProductElement, IsWreathCycle );
 
 InstallMethod( IsWreathCycle, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
-    local info, suppTop;
-    info := FamilyObj(x)!.info;
+    local degI, suppTop;
+    degI := WPE_TopDegree(x);
 
     # wreath cycle of base type
     if IsOne(WPE_TopComponent(x)) then
-        return Number([1 .. info.degI], i -> not IsOne(WPE_BaseComponent(x, i))) = 1;
+        return Number([1 .. degI], i -> not IsOne(WPE_BaseComponent(x, i))) = 1;
     fi;
 
     # wreath cycle of top type
@@ -259,7 +310,7 @@ function(x)
     if Length(CycleStructurePerm(WPE_TopComponent(x))) + 1 <> Length(suppTop) then
         return false;
     fi;
-    return ForAll([1..info.degI], i -> i in suppTop or IsOne(WPE_BaseComponent(x, i)));
+    return ForAll([1 .. degI], i -> i in suppTop or IsOne(WPE_BaseComponent(x, i)));
 end);
 
 InstallMethod( IsSparseWreathCycle, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
@@ -283,11 +334,11 @@ end);
 
 InstallMethod( Territory, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
-    local info, suppTop, suppBase;
+    local degI, suppTop, suppBase;
 
-    info := FamilyObj(x)!.info;
+    degI := WPE_TopDegree(x);
     suppTop := MovedPoints(WPE_TopComponent(x));
-    suppBase := Filtered([1..info.degI], i -> not IsOne(WPE_BaseComponent(x, i)));
+    suppBase := Filtered([1..degI], i -> not IsOne(WPE_BaseComponent(x, i)));
     return DuplicateFreeList(Concatenation(suppTop, suppBase));
 end);
 
@@ -378,6 +429,19 @@ function(W)
 
     info := WreathProductInfo(W);
     return Image(Embedding(W, info!.degI + 1));
+end);
+
+InstallMethod( WPE_TopDegree, "generic wreath elements", true, [IsWreathProductElement], 0,
+function(x)
+    local info;
+
+    info := FamilyObj(x)!.info;
+    return info.degI;
+end);
+
+InstallOtherMethod( WPE_TopDegree, "list rep of wreath elements", true, [IsList], 0,
+function(x)
+    return Length(x) - 1;
 end);
 
 InstallGlobalFunction( BaseComponentOfGenericWreathProductElement,

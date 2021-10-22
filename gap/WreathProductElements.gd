@@ -121,6 +121,8 @@ DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 DeclareGlobalFunction( "TopGroupOfGenericWreathProduct" );
 DeclareOperation( "WPE_TopGroup", [HasWreathProductInfo] );
 
+DeclareOperation( "WPE_TopDegree", [IsWreathProductElement] );
+
 ## <#GAPDoc Label="BaseComponentOfGenericWreathProductElement">
 ## <ManSection>
 ## <Func Name="BaseComponentOfGenericWreathProductElement" Arg="x, [i]"/>
