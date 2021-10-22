@@ -22,16 +22,25 @@ end);
 #M  RepresentativeAction( <G> [,<Omega>], <d>, <e> [,<gens>,<acts>] [,<act>] ) . . . . . . . . . . . .  for wreath product
 ##
 InstallOtherMethod( RepresentativeActionOp, "for wreath product", true,
-               [HasWreathProductInfo, IsObject, IsObject], OVERRIDENICE + 42,
-function(G, w, v)
+               [HasWreathProductInfo, IsObject, IsObject, IsFunction], OVERRIDENICE + 42,
+function(G, g, h, act)
 local x, y;
-    x := ListWreathProductElement(G, w);
+    if act <> OnPoints then
+        TryNextMethod();
+    fi;
+    x := ListWreathProductElement(G, g);
     if x = fail then
         TryNextMethod();
     fi;
-    y := ListWreathProductElement(G, v);
+    y := ListWreathProductElement(G, h);
     if y = fail then
         TryNextMethod();
     fi;
     return WPE_RepresentativeAction(G, x, y);
+end);
+
+InstallOtherMethod( RepresentativeActionOp, "for wreath product", true,
+               [HasWreathProductInfo, IsObject, IsObject], OVERRIDENICE + 42,
+function(G, g, h)
+    return RepresentativeActionOp(G, g, h, OnPoints);
 end);

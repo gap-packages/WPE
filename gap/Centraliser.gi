@@ -109,7 +109,7 @@ function(W, v)
     i, j, k, CK, terrDecomp, ki, T, CKgens, Kgens, Tgens, nrGens,
     Cgens, cTrivial, c0Trivial, gen, c, c0, t, isVisited, s, conj, a, type, xInv;
     # Catch the case v = 1
-    if IsOne(v) then
+    if ForAll([1 .. WPE_TopDegree(v)], i -> IsOne(WPE_BaseComponent(v, i))) and IsOne(WPE_TopComponent(v)) then
         return W;
     fi;
     # Init Data
