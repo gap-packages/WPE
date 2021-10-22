@@ -246,22 +246,6 @@ function(x)
     return [Objectify(info.family!.defaultType,sparseWreathCycle)];
 end);
 
-InstallOtherMethod( SparseWreathCycleDecomposition, "list rep of wreath cycle", true, [IsList], 1,
-function(x)
-    local degI, yade, i, sparseWreathCycle;
-
-    degI := WPE_TopDegree(x);
-    yade := Yade(x);
-    i := Minimum(Territory(x));
-    sparseWreathCycle := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
-    Add(sparseWreathCycle, WPE_TopComponent(x));
-    sparseWreathCycle[i] := yade;
-
-    SetIsSparseWreathCycle(sparseWreathCycle, true);
-
-    return [sparseWreathCycle];
-end);
-
 InstallMethod( SparseWreathCycleDecomposition, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local decomposition;
@@ -270,12 +254,26 @@ function(x)
     return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
 end);
 
-InstallOtherMethod( SparseWreathCycleDecomposition, "list rep of wreath elements", true, [IsList], 0,
-function(x)
-    local decomposition;
+InstallOtherMethod( SparseWreathCycleDecomposition, "list rep of wreath elements", true, [IsList], 1,
+function(w)
+    local decomposition, sparseDecomposition, degI, yade, i, l, sparseWreathCycle, x;
 
-    decomposition := WreathCycleDecomposition(x);
-    return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
+    decomposition := WreathCycleDecomposition(w);
+    sparseDecomposition := EmptyPlist(Length(decomposition));
+
+    for l in [1 .. Length(decomposition)] do
+        x := decomposition[l];
+        degI := WPE_TopDegree(x);
+        yade := Yade(x);
+        i := Minimum(Territory(x));
+        sparseWreathCycle := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+        Add(sparseWreathCycle, WPE_TopComponent(x));
+        sparseWreathCycle[i] := yade;
+
+        sparseDecomposition[l] := sparseWreathCycle;
+    od;
+
+    return sparseDecomposition;
 end);
 
 InstallMethod( ConjugatorWreathCycleToSparse, "sparse wreath cycle wreath elements", true, [IsSparseWreathCycle], 2, function(x) return [One(x)]; end);
@@ -306,31 +304,6 @@ function(x)
     return [Objectify(info.family!.defaultType,conj)];
 end);
 
-InstallOtherMethod( ConjugatorWreathCycleToSparse, "list rep of wreath cycle", true, [IsList], 1,
-function(x)
-    local degI, i, j, min, yade, ord, k, y, conj;
-
-    degI := WPE_TopDegree(x);
-    ord := Order(WPE_TopComponent(x));
-    i := WPE_ChooseYadePoint(x);
-    min := Minimum(Territory(x));
-    yade := Yade(x);
-    conj := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
-    Add(conj, One(WPE_TopComponent(x)));
-    y := One(WPE_BaseComponent(x, 1));
-    j := i;
-    for k in [1..ord] do
-        y := WPE_BaseComponent(x, j) ^ -1 * y;
-        if j = min then
-            y := y * yade;
-        fi;
-        j := i^(WPE_TopComponent(x) ^ k);
-        conj[j] := y;
-    od;
-
-    return [conj];
-end);
-
 InstallMethod( ConjugatorWreathCycleToSparse, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local decomposition;
@@ -339,12 +312,35 @@ function(x)
     return Concatenation(List(decomposition, ConjugatorWreathCycleToSparse));
 end);
 
-InstallOtherMethod( ConjugatorWreathCycleToSparse, "list rep of wreath elements", true, [IsList], 0,
-function(x)
-    local decomposition;
+InstallOtherMethod( ConjugatorWreathCycleToSparse, "list rep of wreath elements", true, [IsList], 1,
+function(w)
+    local decomposition, conjDecomposition, degI, i, j, l, min, yade, ord, k, y, conj, x;
 
-    decomposition := WreathCycleDecomposition(x);
-    return Concatenation(List(decomposition, ConjugatorWreathCycleToSparse));
+    decomposition := WreathCycleDecomposition(w);
+    conjDecomposition := EmptyPlist(Length(decomposition));
+
+    for l in [1 .. Length(decomposition)] do
+        x := decomposition[l];
+        degI := WPE_TopDegree(x);
+        ord := Order(WPE_TopComponent(x));
+        i := WPE_ChooseYadePoint(x);
+        min := Minimum(Territory(x));
+        yade := Yade(x);
+        conj := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+        Add(conj, One(WPE_TopComponent(x)));
+        y := One(WPE_BaseComponent(x, 1));
+        j := i;
+        for k in [1..ord] do
+            y := WPE_BaseComponent(x, j) ^ -1 * y;
+            if j = min then
+                y := y * yade;
+            fi;
+            j := i^(WPE_TopComponent(x) ^ k);
+            conj[j] := y;
+        od;
+        conjDecomposition[l] := conj;
+    od;
+    return conjDecomposition;
 end);
 
 InstallTrueMethod( IsWreathCycle, IsSparseWreathCycle );

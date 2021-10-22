@@ -44,3 +44,18 @@ InstallOtherMethod( RepresentativeActionOp, "for wreath product", true,
 function(G, g, h)
     return RepresentativeActionOp(G, g, h, OnPoints);
 end);
+
+#############################################################################
+##
+#M  Centralizer( <G>, <e> ) . . . . . . . . . . . . . . for wreath products
+##
+InstallMethod( CentralizerOp, "perm group,elm", IsCollsElms,
+            [ HasWreathProductInfo, IsObject ], OVERRIDENICE + 42,
+function( G, g )
+    local x;
+    x := ListWreathProductElement(G, g);
+    if x = fail then
+        TryNextMethod();
+    fi;
+    return WPE_Centraliser(G, x);
+end );
