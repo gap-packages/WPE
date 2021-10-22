@@ -4,7 +4,7 @@
 # Implementations
 #
 
-InstallMethod(IsomorphismToGenericWreathProduct,"wreath products",true,[HasWreathProductInfo],1,
+InstallMethod( IsomorphismToGenericWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
 function(G)
     local info, W, typ, iso;
     info := WreathProductInfo(G);
@@ -19,7 +19,7 @@ function(G)
 end);
 
 # Code from GAP lib
-InstallGlobalFunction(WPE_GenericWreathProduct,
+InstallGlobalFunction( WPE_GenericWreathProduct,
 function(G, H, alpha)
     local I, n, fam, typ, gens, hgens, id, i, e, info, W, p, dom;
     I:=Image(alpha,H);
@@ -93,7 +93,7 @@ function(G, H, alpha)
     return W;
 end);
 
-InstallMethod(PrintObj,"wreath elements",true,[IsWreathProductElement],1,
+InstallMethod( PrintObj, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
 local i,L,tenToL,info;
     info:=FamilyObj(x)!.info;
@@ -125,9 +125,9 @@ local i,L,tenToL,info;
     fi;
 end);
 
-InstallMethod( WreathCycleDecomposition,"generic wreath elements",true,[IsWreathCycle],1, function(x) return [x]; end);
+InstallMethod( WreathCycleDecomposition, "generic wreath elements", true, [IsWreathCycle], 1, function(x) return [x]; end);
 
-InstallMethod( WreathCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( WreathCycleDecomposition, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local
       info,             # wreath product info
@@ -178,9 +178,9 @@ function(x)
     return decomposition;
 end);
 
-InstallMethod( SparseWreathCycleDecomposition,"sparse wreath cycle wreath elements",true,[IsSparseWreathCycle],2, function(x) return [x]; end);
+InstallMethod( SparseWreathCycleDecomposition, "sparse wreath cycle wreath elements", true, [IsSparseWreathCycle], 2, function(x) return [x]; end);
 
-InstallMethod( SparseWreathCycleDecomposition,"wreath cycle wreath elements",true,[IsWreathCycle],1,
+InstallMethod( SparseWreathCycleDecomposition, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
     local info, yade, i, sparseWreathCycle;
 
@@ -196,7 +196,7 @@ function(x)
     return [Objectify(info.family!.defaultType,sparseWreathCycle)];
 end);
 
-InstallMethod( SparseWreathCycleDecomposition,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( SparseWreathCycleDecomposition, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local info, decomposition;
 
@@ -205,9 +205,9 @@ function(x)
     return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
 end);
 
-InstallMethod( ConjugatorWreathCycleToSparse,"sparse wreath cycle wreath elements",true,[IsSparseWreathCycle],2, function(x) return [One(x)]; end);
+InstallMethod( ConjugatorWreathCycleToSparse, "sparse wreath cycle wreath elements", true, [IsSparseWreathCycle], 2, function(x) return [One(x)]; end);
 
-InstallMethod( ConjugatorWreathCycleToSparse,"wreath cycle wreath elements",true,[IsWreathCycle],1,
+InstallMethod( ConjugatorWreathCycleToSparse, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
     local info, i, j, min, yade, ord, k, y, conj;
 
@@ -221,18 +221,18 @@ function(x)
     y := One(info.groups[1]);
     j := i;
     for k in [1..ord] do
-        y := WPE_BaseComponent(x, j)^-1 * y;
+        y := WPE_BaseComponent(x, j) ^ -1 * y;
         if j = min then
             y := y * yade;
         fi;
-        j := i^(WPE_TopComponent(x)^k);
+        j := i^(WPE_TopComponent(x) ^ k);
         conj[j] := y;
     od;
 
     return [Objectify(info.family!.defaultType,conj)];
 end);
 
-InstallMethod( ConjugatorWreathCycleToSparse,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( ConjugatorWreathCycleToSparse, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local info, decomposition;
 
@@ -241,17 +241,17 @@ function(x)
     return Concatenation(List(decomposition, ConjugatorWreathCycleToSparse));
 end);
 
-InstallTrueMethod( IsWreathCycle,IsSparseWreathCycle);
-InstallTrueMethod( IsWreathProductElement,IsWreathCycle);
+InstallTrueMethod( IsWreathCycle, IsSparseWreathCycle );
+InstallTrueMethod( IsWreathProductElement, IsWreathCycle );
 
-InstallMethod( IsWreathCycle,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( IsWreathCycle, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local info, suppTop;
     info := FamilyObj(x)!.info;
 
     # wreath cycle of base type
     if IsOne(WPE_TopComponent(x)) then
-        return Number([1..info.degI], i -> not IsOne(WPE_BaseComponent(x, i))) = 1;
+        return Number([1 .. info.degI], i -> not IsOne(WPE_BaseComponent(x, i))) = 1;
     fi;
 
     # wreath cycle of top type
@@ -262,7 +262,7 @@ function(x)
     return ForAll([1..info.degI], i -> i in suppTop or IsOne(WPE_BaseComponent(x, i)));
 end);
 
-InstallMethod( IsSparseWreathCycle,"wreath cycle wreath elements",true,[IsWreathCycle],1,
+InstallMethod( IsSparseWreathCycle, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
     local info, terr, min;
 
@@ -272,7 +272,7 @@ function(x)
     return ForAll(terr, i -> i = min or IsOne(WPE_BaseComponent(x, i)));
 end);
 
-InstallMethod( IsSparseWreathCycle,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( IsSparseWreathCycle, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     if IsWreathCycle(x) then
         return IsSparseWreathCycle(x);
@@ -281,7 +281,7 @@ function(x)
     fi;
 end);
 
-InstallMethod( Territory,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( Territory, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local info, suppTop, suppBase;
 
@@ -296,12 +296,12 @@ function(x)
     return Minimum(Territory(x));
 end);
 
-InstallMethod( Yade,"wreath cycle wreath elements",true,[IsWreathCycle],1,
+InstallMethod( Yade, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
     return Yade(x, WPE_ChooseYadePoint(x));
 end);
 
-InstallOtherMethod( Yade,"wreath cycle wreath elements",true,[IsWreathCycle, IsInt],1,
+InstallOtherMethod( Yade, "wreath cycle wreath elements", true, [IsWreathCycle, IsInt], 1,
 function(x, i)
     local info, ord;
 
@@ -312,10 +312,10 @@ function(x, i)
     info := FamilyObj(x)!.info;
     ord := Order(WPE_TopComponent(x));
 
-    return Product([0..ord-1], k -> WPE_BaseComponent(x, i^(WPE_TopComponent(x)^k)));
+    return Product([0..ord-1], k -> WPE_BaseComponent(x, i ^ (WPE_TopComponent(x) ^ k)));
 end);
 
-InstallMethod( Order,"wreath cycle wreath elements",true,[IsWreathCycle],1,
+InstallMethod( Order, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
     local info;
 
@@ -323,7 +323,7 @@ function(x)
     return Order(Yade(x)) * Order(WPE_TopComponent(x));
 end);
 
-InstallMethod( Order,"generic wreath elements",true,[IsWreathProductElement],0,
+InstallMethod( Order, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local info, decomposition;
 
@@ -411,7 +411,7 @@ function(x)
     local info;
 
     info := FamilyObj(x)!.info;
-    return List([1..info.degI], i -> x![i]);
+    return List([1 .. info.degI], i -> x![i]);
 end);
 
 InstallOtherMethod( WPE_BaseComponent, "list rep of wreath elements", true, [IsList], 0,
@@ -419,7 +419,7 @@ function(x)
     local degI;
 
     degI := Length(x) - 1;
-    return List([1..degI], i -> x[i]);
+    return List([1 .. degI], i -> x[i]);
 end);
 
 InstallOtherMethod( WPE_BaseComponent, "generic wreath elements and integer", true, [IsWreathProductElement, IsInt], 0,
@@ -452,9 +452,9 @@ function(arg)
             return Error("i must be an integer");
         fi;
         if i < 1 or i > info.degI then
-        return Error("Index out of bounds");
+            return Error("Index out of bounds");
         fi;
-        return WPE_BaseGroup(W,i);
+        return WPE_BaseGroup(W, i);
     fi;
 end);
 
@@ -463,7 +463,7 @@ function(W)
     local info;
 
     info := WreathProductInfo(W);
-    return Group(Concatenation(List([1..info.degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x^Embedding(W,i)))));
+    return Group(Concatenation(List([1 .. info.degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x ^ Embedding(W, i)))));
 end);
 
 InstallOtherMethod( WPE_BaseGroup, "generic wreath product and integer", true, [HasWreathProductInfo, IsInt], 0,
