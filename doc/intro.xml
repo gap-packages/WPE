@@ -140,13 +140,13 @@ gap> wreathDecomp := WreathCycleDecomposition(x);
 # since at most one entry in the base component is non-trivial.
 gap> sparseDecomp := SparseWreathCycleDecomposition(x);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
-  ( (), (), (), (), (), (), (1,2,3,5,4); (1,5,7,6,2,3) ) ]
+  ( (1,2,3,5,4), (), (), (), (), (), (); (1,5,7,6,2,3) ) ]
 
 # We can also compute the conjugating elements to switch between
 # the wreath cycle and sparse wreath cycle decomposition.
 gap> conj := ConjugatorWreathCycleToSparse(x);
 [ ( (), (), (), (), (), (), (); () ), ( (), (1,4,2), (1,4,3,2,5), (), 
-    (1,5,2,4,3), (), (1,4,2,5,3); () ) ]
+    (1,4,5,3,2), (), (2,4,3); () ) ]
 gap> wreathDecomp[1]^conj[1] = sparseDecomp[1];
 true
 gap> wreathDecomp[2]^conj[2] = sparseDecomp[2];

@@ -191,7 +191,7 @@ function(W, v)
                 a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
                 # Conjugate a with with conjToSparseInv[i, j]
                 for k in terrDecomp[i,j] do
-                    a[k] := conjToSparse[i,j]![k] * a[k] * conjToSparseInv[i,j]![k];
+                    a[k] := WPE_BaseComponent(conjToSparse[i,j], k) * a[k] * WPE_BaseComponent(conjToSparseInv[i,j], k);
                 od;
                 a := Objectify(type, a);
                 Add(Cgens, a);
