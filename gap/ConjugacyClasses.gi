@@ -30,7 +30,7 @@ function(W, H, RK, RH, hElm)
     # $h_2 = [{2,3}, {4,6}, {10,11}]$.
     # Define the projection $Psi : C_{Sym(Gamma)}(h) -> Sym(h_1) x Sym(h_2) x Sym(h_3) x ...$
     # by the action of the centraliser on the cycle supports of $h$.
-    # We abuse notation and identify $Sym(h_1)$ with $Sym(|h_1|)$ given the ordering of cycle supports of $h$.
+    # We abuse notation and identify $Sym(h_i)$ with $Sym(|h_i|)$.
     #
     # Reduction Step 1: Forget yade class distribution.
     # Given a territory decomposition $P$, this must induce uniquely
@@ -45,7 +45,7 @@ function(W, H, RK, RH, hElm)
     #     [ [   k_1,          k_3,          k_4   ], [         k_1,           k_4    ] ]
     # T = [ [ { {5} }, { {1}, {7}, {9} }, { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ].
     # The induced ordered multipartition of $T$ is given by
-    # M = [ [ { {5} }, { {1}, {7}, {9} } { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ]
+    # M = [ [ { {5} }, { {1}, {7}, {9} }, { {8} } ], [ { {2,3}, {10,11} }, { {4,6} } ] ]
     # and the yade distribution is given by
     # Y = [ [   k_1,          k_3,          k_4   ], [         k_1,           k_4    ] ].
     # If two territory decompositions are in the same orbit under the action of $C_{H}(h)$,
