@@ -16,3 +16,22 @@ local iso;
         return WPE_ConjugacyClasses(G);
     fi;
 end);
+
+#############################################################################
+##
+#M  RepresentativeAction( <G> [,<Omega>], <d>, <e> [,<gens>,<acts>] [,<act>] ) . . . . . . . . . . . .  for wreath product
+##
+InstallOtherMethod( RepresentativeActionOp, "for wreath product", true,
+               [HasWreathProductInfo, IsObject, IsObject], OVERRIDENICE + 42,
+function(G, w, v)
+local x, y;
+    x := ListWreathProductElement(G, w);
+    if x = fail then
+        TryNextMethod();
+    fi;
+    y := ListWreathProductElement(G, v);
+    if y = fail then
+        TryNextMethod();
+    fi;
+    return WPE_RepresentativeAction(G, x, y);
+end);

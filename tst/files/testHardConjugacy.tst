@@ -9,7 +9,7 @@ gap> TestConjugacy := function(P, iso, n)
 >         until h in G;
 >         x := g ^ iso;
 >         y := h ^ iso;
->         c := WPE_RepresentativeAction(x, y);
+>         c := WPE_RepresentativeAction(W, x, y);
 >         if IsConjugate(G, g, h) = false then
 >             if c <> fail then
 >                 return false;
