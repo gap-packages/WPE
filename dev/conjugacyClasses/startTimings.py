@@ -15,6 +15,10 @@ class bcolors:
 GAP = '/bin/gap.sh'
 if sys.argv[1:]:
     GAP = sys.argv[1]
+    if len(sys.argv) > 2:
+        withoutPackage = sys.argv[2]
+    else:
+        withoutPackage = False
 
 #########################
 # Clear Directories
@@ -49,22 +53,23 @@ for i in range(0, len(groups)):
 #########################
 # Timing Without Package
 #########################
-timeWithoutPackage = []
-for i in range(0, len(groups)):
-    ID = str(i + 1)
-    print ('Start Timing without Package for Group '+ID)
-    # Start new GAP session
-    proc = Popen([GAP, '-q', '-o', MEMORY], stdin=PIPE, stdout=PIPE, stderr=STDOUT, encoding='utf8')
-    # Declare Global Variables
-    proc.stdin.write('ID := "'+ID+'";;')
-    proc.stdin.write('groups := '+groups[i]+';;')
-    # Compute Conjugacy Classes
-    proc.stdin.write('ReadPackage("WreathProductElements","dev/conjugacyClasses/genTimingWithoutPackage.g");;')
-    # Wait until GAP session finishes or we exceed maximal duration of this session
-    try:
-        outs, errs = proc.communicate(timeout=TIMEOUT)
-    except TimeoutExpired:
-        proc.kill()
-        print (bcolors.FAIL + 'TimeoutExpired: killed process, skip this group' + bcolors.ENDC)
-        with open('out_timingsWithoutPackage.csv', mode='a') as writer:
-            writer.write('NA,>=%d\n' % TIMEOUT)
+if withoutPackage:
+    timeWithoutPackage = []
+    for i in range(0, len(groups)):
+        ID = str(i + 1)
+        print ('Start Timing without Package for Group '+ID)
+        # Start new GAP session
+        proc = Popen([GAP, '-q', '-o', MEMORY], stdin=PIPE, stdout=PIPE, stderr=STDOUT, encoding='utf8')
+        # Declare Global Variables
+        proc.stdin.write('ID := "'+ID+'";;')
+        proc.stdin.write('groups := '+groups[i]+';;')
+        # Compute Conjugacy Classes
+        proc.stdin.write('ReadPackage("WreathProductElements","dev/conjugacyClasses/genTimingWithoutPackage.g");;')
+        # Wait until GAP session finishes or we exceed maximal duration of this session
+        try:
+            outs, errs = proc.communicate(timeout=TIMEOUT)
+        except TimeoutExpired:
+            proc.kill()
+            print (bcolors.FAIL + 'TimeoutExpired: killed process, skip this group' + bcolors.ENDC)
+            with open('out_timingsWithoutPackage.csv', mode='a') as writer:
+                writer.write('NA,>=%d\n' % TIMEOUT)

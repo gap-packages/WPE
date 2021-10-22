@@ -16,4 +16,4 @@ groups = [
 TIMEOUT = 40 * 60
 
 # maximal memory for a GAP session
-MEMORY = '16G'
+MEMORY = '8G'
