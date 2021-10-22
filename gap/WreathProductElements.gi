@@ -246,11 +246,34 @@ function(x)
     return [Objectify(info.family!.defaultType,sparseWreathCycle)];
 end);
 
+InstallOtherMethod( SparseWreathCycleDecomposition, "list rep of wreath cycle", true, [IsList], 1,
+function(x)
+    local degI, yade, i, sparseWreathCycle;
+
+    degI := WPE_TopDegree(x);
+    yade := Yade(x);
+    i := Minimum(Territory(x));
+    sparseWreathCycle := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+    Add(sparseWreathCycle, WPE_TopComponent(x));
+    sparseWreathCycle[i] := yade;
+
+    SetIsSparseWreathCycle(sparseWreathCycle, true);
+
+    return [sparseWreathCycle];
+end);
+
 InstallMethod( SparseWreathCycleDecomposition, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
-    local info, decomposition;
+    local decomposition;
 
-    info := FamilyObj(x)!.info;
+    decomposition := WreathCycleDecomposition(x);
+    return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
+end);
+
+InstallOtherMethod( SparseWreathCycleDecomposition, "list rep of wreath elements", true, [IsList], 0,
+function(x)
+    local decomposition;
+
     decomposition := WreathCycleDecomposition(x);
     return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
 end);
@@ -283,11 +306,43 @@ function(x)
     return [Objectify(info.family!.defaultType,conj)];
 end);
 
+InstallOtherMethod( ConjugatorWreathCycleToSparse, "list rep of wreath cycle", true, [IsList], 1,
+function(x)
+    local degI, i, j, min, yade, ord, k, y, conj;
+
+    degI := WPE_TopDegree(x);
+    ord := Order(WPE_TopComponent(x));
+    i := WPE_ChooseYadePoint(x);
+    min := Minimum(Territory(x));
+    yade := Yade(x);
+    conj := ListWithIdenticalEntries(degI, One(WPE_BaseComponent(x, 1)));
+    Add(conj, One(WPE_TopComponent(x)));
+    y := One(WPE_BaseComponent(x, 1));
+    j := i;
+    for k in [1..ord] do
+        y := WPE_BaseComponent(x, j) ^ -1 * y;
+        if j = min then
+            y := y * yade;
+        fi;
+        j := i^(WPE_TopComponent(x) ^ k);
+        conj[j] := y;
+    od;
+
+    return [conj];
+end);
+
 InstallMethod( ConjugatorWreathCycleToSparse, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
-    local info, decomposition;
+    local decomposition;
 
-    info := FamilyObj(x)!.info;
+    decomposition := WreathCycleDecomposition(x);
+    return Concatenation(List(decomposition, ConjugatorWreathCycleToSparse));
+end);
+
+InstallOtherMethod( ConjugatorWreathCycleToSparse, "list rep of wreath elements", true, [IsList], 0,
+function(x)
+    local decomposition;
+
     decomposition := WreathCycleDecomposition(x);
     return Concatenation(List(decomposition, ConjugatorWreathCycleToSparse));
 end);
@@ -342,6 +397,16 @@ function(x)
     return DuplicateFreeList(Concatenation(suppTop, suppBase));
 end);
 
+InstallOtherMethod( Territory, "list rep of wreath elements", true, [IsList], 0,
+function(x)
+    local degI, suppTop, suppBase;
+
+    degI := WPE_TopDegree(x);
+    suppTop := MovedPoints(WPE_TopComponent(x));
+    suppBase := Filtered([1..degI], i -> not IsOne(WPE_BaseComponent(x, i)));
+    return DuplicateFreeList(Concatenation(suppTop, suppBase));
+end);
+
 InstallGlobalFunction( WPE_ChooseYadePoint,
 function(x)
     return Minimum(Territory(x));
@@ -352,18 +417,35 @@ function(x)
     return Yade(x, WPE_ChooseYadePoint(x));
 end);
 
+InstallOtherMethod( Yade, "list rep of wreath cycle", true, [IsList], 1,
+function(x)
+    return Yade(x, WPE_ChooseYadePoint(x));
+end);
+
 InstallOtherMethod( Yade, "wreath cycle wreath elements", true, [IsWreathCycle, IsInt], 1,
 function(x, i)
-    local info, ord;
+    local ord;
 
     if not i in Territory(x) then
         Error("i not in territory of x");
     fi;
 
-    info := FamilyObj(x)!.info;
     ord := Order(WPE_TopComponent(x));
 
-    return Product([0..ord-1], k -> WPE_BaseComponent(x, i ^ (WPE_TopComponent(x) ^ k)));
+    return Product([0 .. ord-1], k -> WPE_BaseComponent(x, i ^ (WPE_TopComponent(x) ^ k)));
+end);
+
+InstallOtherMethod( Yade, "list rep of wreath cycle wreath elements", true, [IsList, IsInt], 1,
+function(x, i)
+    local ord;
+
+    if not i in Territory(x) then
+        Error("i not in territory of x");
+    fi;
+
+    ord := Order(WPE_TopComponent(x));
+
+    return Product([0 .. ord-1], k -> WPE_BaseComponent(x, i ^ (WPE_TopComponent(x) ^ k)));
 end);
 
 InstallMethod( Order, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
