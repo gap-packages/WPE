@@ -176,6 +176,7 @@ DeclareGlobalFunction( "WPE_ChooseYadePoint" );
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
 DeclareGlobalFunction( "WPE_GenericWreathProduct" );
+DeclareGlobalFunction( "WPE_IN" );
 
 #############################################################################
 # Conjugacy Problem:
