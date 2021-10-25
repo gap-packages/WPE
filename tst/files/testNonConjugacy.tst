@@ -1,35 +1,21 @@
-gap> TestConjugacy := function(iso, n)
->     local G,W,i,g,h,x,y,c;
->     G := Source(iso);
->     W := Range(iso);
+gap> TestConjugacy := function(K, H, n)
+>     local G,i,g,h,c;
+>     G := WreathProduct(K, H);
 >     for i in [1..n] do
 >         g := PseudoRandom(G);
 >         h := PseudoRandom(G);
->         x := g ^ iso;
->         y := h ^ iso;
->         c := WPE_RepresentativeAction(W, x, y);
->         if IsConjugate(G, g, h) = false then
->             if c <> fail then
->                 return false;
->             fi;
->         else
->             if c = fail or x ^ c <> y or g ^ (PreImage(iso, c)) <> h then
->                 return false;
->             fi;
+>         c := RepresentativeAction(G, g, h);
+>         if c <> fail and g ^ c <> h then
+>             return false;
 >         fi;
 >     od;
 >     return true;
 > end;;
 gap> K := AlternatingGroup(15);;
 gap> H := SymmetricGroup(25);;
-gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
-gap> TestConjugacy(iso, 20);
+gap> TestConjugacy(K, H, 20);
 true
 gap> K := AlternatingGroup(15);;
 gap> H := DirectProduct([SymmetricGroup(10),SymmetricGroup(10),SymmetricGroup(5)]);;
-gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
-gap> TestConjugacy(iso, 20);
+gap> TestConjugacy(K, H, 20);
 true
-gap> 
