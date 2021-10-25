@@ -17,7 +17,7 @@ In the following <M>G = K \wr H</M> denotes a wreath product and <M>x,y \in G</M
 
 <List>
 <Item> <C>Order(x)</C> </Item>
-<Item> TODO: <C>x in G</C> </Item>
+<Item> <C>x in G</C> </Item>
 <Item> <C>RepresentativeAction(G, x, y)</C> </Item>
 <Item> <C>IsConjugate(G, x, y)</C> </Item>
 <Item> <C>Centraliser(G, x)</C> </Item>

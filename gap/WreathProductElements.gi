@@ -4,6 +4,22 @@
 # Implementations
 #
 
+InstallMethod( \in, "perm, and perm wreath product", true, [IsObject, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
+InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
+
+InstallGlobalFunction(WPE_IN,
+function(g, G)
+    local l, info, K, H;
+    l := ListWreathProductElement(G, g);
+    if l = fail then
+        return false;
+    fi;
+    info := WreathProductInfo(G);
+    K := info.groups[1];
+    H := info.groups[2];
+    return ForAll([1 .. Length(l) - 1], i -> l[i] in K) and l[Length(l)] in H;
+end);
+
 InstallMethod( IsomorphismToGenericWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
 function(G)
     local info, W, typ, iso;
