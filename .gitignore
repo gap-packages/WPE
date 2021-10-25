@@ -32,5 +32,8 @@
 /tmp/
 /gh-pages/
 
-/dev/*/out_*
-/dev/*/__pycache__/
+/dev/**/out/
+/dev/**/out_*
+/dev/**/__pycache__/
+
+**.DS_Store
