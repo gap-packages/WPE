@@ -1,7 +1,7 @@
-name: WreathProductElements
-version: "0.1"
+name: WPE
+version: "0.2"
 license: "GPL-2.0-or-later"
-date: 2020-04-29
+date: 2021-11-05
 description: |
     Provides efficient methods for working with generic wreath products.
 
@@ -13,15 +13,15 @@ maintainers:
     - name: Friedrich Rober
       url: mailto:friedrich.rober@rwth-aachen.de
 
-GAP: ">= 4.11"
+GAP: ">= 4.12"
 
-www: https://FriedrichRober.github.io/WreathProductElements/
+www: https://FriedrichRober.github.io/WPE/
 readme: README.md
-packageinfo: https://FriedrichRober.github.io/WreathProductElements/PackageInfo.g
+packageinfo: https://FriedrichRober.github.io/WPE/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/FriedrichRober/WreathProductElements/releases/download/v0.1/WreathProductElements-0.1.tar.gz
+      url: https://github.com/FriedrichRober/WPE/releases/download/v0.2/WPE-0.2.tar.gz
 
 abstract: |
 
@@ -30,26 +30,26 @@ doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Rob20</span>]   <b class='BibAuthor'>Rober, F.</b>,
-     <i class='BibTitle'>WreathProductElements, Provides efficient methods for working with generic wreath products.,
-             Version 0.1</i>
-     (<span class='BibYear'>2020</span>)<br />
+    [<span class='BibKey'>Rob21</span>]   <b class='BibAuthor'>Rober, F.</b>,
+     <i class='BibTitle'>WPE, Provides efficient methods for working with generic wreath products.,
+             Version 0.2</i>
+     (<span class='BibYear'>2021</span>)<br />
     (<span class='BibNote'>GAP package</span>),
-    <span class='BibHowpublished'><a href="https://FriedrichRober.github.io/WreathProductElements/">https://FriedrichRober.github.io/WreathProductElements/</a></span>.
+    <span class='BibHowpublished'><a href="https://FriedrichRober.github.io/WPE/">https://FriedrichRober.github.io/WPE/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ WreathProductElements0.1,
+    @misc{ WPE0.2,
       author =           {Rober, F.},
-      title =            {{WreathProductElements},   Provides  efficient  methods  for  working  with
-                          generic wreath products., {V}ersion 0.1},
-      month =            {Apr},
-      year =             {2020},
+      title =            {{WPE},  Provides efficient methods for working with generic wreath products.,
+                          {V}ersion 0.2},
+      month =            {Nov},
+      year =             {2021},
       note =             {GAP package},
-      howpublished =     {\href             {https://FriedrichRober.github.io/WreathProductElements/}
+      howpublished =     {\href                                 {https://FriedrichRober.github.io/WPE/}
                           {\texttt{https://FriedrichRober.github.io/}\discretionary
-                          {}{}{}\texttt{WreathProductElements/}}},
-      printedkey =       {Rob20}
+                          {}{}{}\texttt{WPE/}}},
+      printedkey =       {Rob21}
     }
 

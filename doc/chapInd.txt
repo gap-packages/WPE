@@ -2,27 +2,19 @@
   
   [1XIndex[101X
   
-  [2XBaseComponentOfGenericWreathProductElement[102X 1.5-4 
-  [2XBaseGroupOfGenericWreathProduct[102X 1.5-2 
-  [2XConjugatorWreathCycleToSparse[102X 1.5-10 
-  [2XIsomorphismToGenericWreathProduct[102X 2.1-1 
-  [2XIsSparseWreathCycle[102X 1.5-7 
-  [2XIsWreathCycle[102X 1.5-6 
-  [2XSparseWreathCycleDecomposition[102X 1.5-9 
-  [2XTerritory[102X 1.5-5 
-  [2XTopComponentOfGenericWreathProductElement[102X 1.5-3 
-  [2XTopGroupOfGenericWreathProduct[102X 1.5-1 
-  [2XWPE_ChooseYadePoint[102X 4.2-1 
-  [2XWPE_ConvertMatToRep[102X 4.2-5 
-  [2XWPE_ConvertPermToRep[102X 2.2-2 
-  [2XWPE_ConvertPointToTupel[102X 4.2-2 
-  [2XWPE_ConvertRepToMat[102X 4.2-6 
-  [2XWPE_ConvertRepToPerm[102X 2.2-3 
-  [2XWPE_ConvertTupelToPoint[102X 4.2-3 
-  [2XWPE_GenericMatWreathProduct[102X 4.2-4 
-  [2XWPE_GenericPermWreathProduct[102X 2.2-1 
-  [2XWreathCycleDecomposition[102X 1.5-8 
-  [2XYade[102X, for IsWreathCycle 4.1-1 
+  [2XBaseComponentOfGenericWreathProductElement[102X 1.5-5 
+  [2XBaseGroupOfGenericWreathProduct[102X 1.5-3 
+  [2XComponentsOfGenericWreathProduct[102X 1.5-1 
+  [2XConjugatorWreathCycleToSparse[102X 1.5-11 
+  [2XIsSparseWreathCycle[102X 1.5-8 
+  [2XIsWreathCycle[102X 1.5-7 
+  [2XSparseWreathCycleDecomposition[102X 1.5-10 
+  [2XTerritory[102X 1.5-6 
+  [2XTopComponentOfGenericWreathProductElement[102X 1.5-4 
+  [2XTopGroupOfGenericWreathProduct[102X 1.5-2 
+  [2XWPE_ChooseYadePoint[102X 3.2-1 
+  [2XWreathCycleDecomposition[102X 1.5-9 
+  [2XYade[102X, for IsWreathCycle 3.1-1 
   
   
   -------------------------------------------------------

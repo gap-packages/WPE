@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>GAP (WreathProductElements) - Chapter 2: Isomorphism to Generic Wreath Product</title>
+<title>GAP (WPE) - Chapter 2: Operations</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -15,76 +15,58 @@
 <body class="chap2"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap2_mj.html">[MathJax on]</a></p>
-<p><a id="X7892177F83F81D78" name="X7892177F83F81D78"></a></p>
-<div class="ChapSects"><a href="chap2.html#X7892177F83F81D78">2 <span class="Heading">Isomorphism to Generic Wreath Product</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8389AD927B74BA4A">2.1 <span class="Heading">Overview</span></a>
+<p><a id="X7DE8E16C7C2D387B" name="X7DE8E16C7C2D387B"></a></p>
+<div class="ChapSects"><a href="chap2.html#X7DE8E16C7C2D387B">2 <span class="Heading">Operations</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8730A88E7DEB09F2">2.1 <span class="Heading">Operations List</span></a>
 </span>
-<div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C2180917969AC97">2.1-1 IsomorphismToGenericWreathProduct</a></span>
-</div></div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7ECD8C627E1C4D34">2.2 <span class="Heading">Permutation representation</span></a>
-</span>
-<div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A400E03798DDB6A">2.2-1 WPE_GenericPermWreathProduct</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X796EE01584059CF7">2.2-2 WPE_ConvertPermToRep</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X86BF8D747D255E95">2.2-3 WPE_ConvertRepToPerm</a></span>
-</div></div>
+</div>
 </div>
 
-<h3>2 <span class="Heading">Isomorphism to Generic Wreath Product</span></h3>
+<h3>2 <span class="Heading">Operations</span></h3>
 
-<p><a id="X8389AD927B74BA4A" name="X8389AD927B74BA4A"></a></p>
+<p>The generic wreath product elements and in particular their (sparse) wreath cycle decompositions can be used to speed up certain operations in wreath products.</p>
 
-<h4>2.1 <span class="Heading">Overview</span></h4>
+<p>TODO:: Add tests or scripts that show that these operations are indeed faster in practice. (Unloaded vs. Loaded package) and (Matrix, Perm vs. Generic)</p>
 
-<p>In <strong class="pkg">GAP</strong> the command <code class="code">WreathProduct(K, H)</code> returns a group with a representation that depends on the representation that <span class="SimpleMath">K</span> is given in. This package provides a method to compute an isomorphism from such wreath products to the generic wreath product provided in this package.</p>
+<p><a id="X8730A88E7DEB09F2" name="X8730A88E7DEB09F2"></a></p>
 
-<p><a id="X7C2180917969AC97" name="X7C2180917969AC97"></a></p>
+<h4>2.1 <span class="Heading">Operations List</span></h4>
 
-<h5>2.1-1 IsomorphismToGenericWreathProduct</h5>
+<p>Here we include a list of operations that take advantage of the generic wreath product elements representation.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsomorphismToGenericWreathProduct</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>returns an isomorphism from a specialized wreath product <var class="Arg">G</var> to a generic wreath product.</p>
+<p>In the following <span class="SimpleMath">G = K ≀ H</span> denotes a wreath product and <span class="SimpleMath">x,y ∈ G</span> are wreath product elements.</p>
 
-<p><a id="X7ECD8C627E1C4D34" name="X7ECD8C627E1C4D34"></a></p>
 
-<h4>2.2 <span class="Heading">Permutation representation</span></h4>
+<ul>
+<li><p><code class="code">Order(x)</code></p>
 
-<p>If <span class="SimpleMath">K</span> is given as a permutation group the command <code class="code">WreathProduct(K, H)</code> in <strong class="pkg">GAP</strong> returns the imprimitive wreath product that is embedded into the symmetric group.</p>
+</li>
+<li><p><code class="code">x in G</code></p>
 
-<p>Here we list the internal commands that are used to translate between the permutation representation and the generic representation.</p>
+</li>
+<li><p><code class="code">RepresentativeAction(G, x, y)</code></p>
 
-<p><a id="X7A400E03798DDB6A" name="X7A400E03798DDB6A"></a></p>
+</li>
+<li><p><code class="code">IsConjugate(G, x, y)</code></p>
 
-<h5>2.2-1 WPE_GenericPermWreathProduct</h5>
+</li>
+<li><p><code class="code">Centraliser(G, x)</code></p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WPE_GenericPermWreathProduct</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns a generic wreath product from a perm wreath product.</p>
+</li>
+<li><p><code class="code">ConjugacyClasses(G)</code></p>
 
-<p><a id="X796EE01584059CF7" name="X796EE01584059CF7"></a></p>
-
-<h5>2.2-2 WPE_ConvertPermToRep</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WPE_ConvertPermToRep</code>( <var class="Arg">G</var>, <var class="Arg">W</var>, <var class="Arg">g</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the generic representation of an element <var class="Arg">g</var> in <var class="Arg">G</var>, where <var class="Arg">G</var> is a wreath product in permutation representation and <var class="Arg">W</var> is the same wreath product in generic representation.</p>
-
-<p><a id="X86BF8D747D255E95" name="X86BF8D747D255E95"></a></p>
-
-<h5>2.2-3 WPE_ConvertRepToPerm</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WPE_ConvertRepToPerm</code>( <var class="Arg">G</var>, <var class="Arg">W</var>, <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the permutation representation of an element <var class="Arg">x</var> in <var class="Arg">W</var>, where <var class="Arg">G</var> is a wreath product in permutation representation and <var class="Arg">W</var> is the same wreath product in generic representation.</p>
-
+</li>
+</ul>
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
 <p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>

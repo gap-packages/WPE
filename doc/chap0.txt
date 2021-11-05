@@ -1,15 +1,15 @@
   
   
-                            [1X WreathProductElements [101X
+                                     [1X WPE [101X
   
   
      [1X Provides efficient methods for working with generic wreath products. [101X
   
   
-                                      0.1
+                                      0.2
   
   
-                                 29 April 2020
+                                5 November 2021
   
   
                                 Friedrich Rober
@@ -22,7 +22,7 @@
   -------------------------------------------------------
   
   
-  [1XContents (WreathProductElements)[101X
+  [1XContents (WPE)[101X
   
   1 [33X[0;0YIntroduction[133X
     1.1 [33X[0;0YOverview[133X
@@ -30,36 +30,24 @@
     1.3 [33X[0;0YWreath Cycle Decomposition[133X
     1.4 [33X[0;0YExample[133X
     1.5 [33X[0;0YBasic Functions[133X
-      1.5-1 TopGroupOfGenericWreathProduct
-      1.5-2 BaseGroupOfGenericWreathProduct
-      1.5-3 TopComponentOfGenericWreathProductElement
-      1.5-4 BaseComponentOfGenericWreathProductElement
-      1.5-5 Territory
-      1.5-6 IsWreathCycle
-      1.5-7 IsSparseWreathCycle
-      1.5-8 WreathCycleDecomposition
-      1.5-9 SparseWreathCycleDecomposition
-      1.5-10 ConjugatorWreathCycleToSparse
-  2 [33X[0;0YIsomorphism to Generic Wreath Product[133X
-    2.1 [33X[0;0YOverview[133X
-      2.1-1 IsomorphismToGenericWreathProduct
-    2.2 [33X[0;0YPermutation representation[133X
-      2.2-1 WPE_GenericPermWreathProduct
-      2.2-2 WPE_ConvertPermToRep
-      2.2-3 WPE_ConvertRepToPerm
-  3 [33X[0;0YOperations[133X
-    3.1 [33X[0;0YOperations List[133X
-  4 [33X[0;0YWreathProductElements automatic generated documentation[133X
-    4.1 [33X[0;0YWreathProductElements automatic generated documentation of attributes[133X
-      4.1-1 Yade
-    4.2 [33X[0;0YWreathProductElements automatic generated documentation of global
-    functions[133X
-      4.2-1 WPE_ChooseYadePoint
-      4.2-2 WPE_ConvertPointToTupel
-      4.2-3 WPE_ConvertTupelToPoint
-      4.2-4 WPE_GenericMatWreathProduct
-      4.2-5 WPE_ConvertMatToRep
-      4.2-6 WPE_ConvertRepToMat
+      1.5-1 ComponentsOfGenericWreathProduct
+      1.5-2 TopGroupOfGenericWreathProduct
+      1.5-3 BaseGroupOfGenericWreathProduct
+      1.5-4 TopComponentOfGenericWreathProductElement
+      1.5-5 BaseComponentOfGenericWreathProductElement
+      1.5-6 Territory
+      1.5-7 IsWreathCycle
+      1.5-8 IsSparseWreathCycle
+      1.5-9 WreathCycleDecomposition
+      1.5-10 SparseWreathCycleDecomposition
+      1.5-11 ConjugatorWreathCycleToSparse
+  2 [33X[0;0YOperations[133X
+    2.1 [33X[0;0YOperations List[133X
+  3 [33X[0;0YWPE automatic generated documentation[133X
+    3.1 [33X[0;0YWPE automatic generated documentation of attributes[133X
+      3.1-1 Yade
+    3.2 [33X[0;0YWPE automatic generated documentation of global functions[133X
+      3.2-1 WPE_ChooseYadePoint
   
   
   [32X
