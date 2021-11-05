@@ -37,7 +37,7 @@ PackageWWWHome  := "https://FriedrichRober.github.io/WPE/",
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL      := Concatenation( ~.SourceRepository.URL,
-                                 "/releases/download/v", ~.Version,
+                                 "/archive/refs/tags/v", ~.Version,
                                  "/", ~.PackageName, "-", ~.Version ),
 
 ArchiveFormats := ".tar.gz",
