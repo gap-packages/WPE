@@ -4,4 +4,4 @@
 # Reading the declaration part of the package.
 #
 
-ReadPackage( "WreathProductElements", "gap/WreathProductElements.gd");
+ReadPackage( "WPE", "gap/WreathProductElements.gd");

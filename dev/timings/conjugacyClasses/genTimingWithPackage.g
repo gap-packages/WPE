@@ -1,6 +1,6 @@
 # Global variables are defined outside of this file
 # rec(K, H)     groups                  : groups K and H
-LoadPackage("WreathProductElements");;
+LoadPackage("WPE");;
 G := WreathProduct(groups.K, groups.H);;
 # If G is a matrix group, the construction of representatives is slow.
 if IsMatrixGroup(G) then

@@ -8,10 +8,10 @@
 #
 SetPackageInfo( rec(
 
-PackageName := "WreathProductElements",
+PackageName := "WPE",
 Subtitle := "Provides efficient methods for working with generic wreath products.",
 Version := "0.2",
-Date := "29/04/2020", # dd/mm/yyyy format
+Date := "05/11/2021", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -30,10 +30,10 @@ Persons := [
 
 SourceRepository := rec(
     Type := "git",
-    URL := "https://github.com/FriedrichRober/WreathProductElements",
+    URL := "https://github.com/FriedrichRober/WPE",
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := "https://FriedrichRober.github.io/WreathProductElements/",
+PackageWWWHome  := "https://FriedrichRober.github.io/WPE/",
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL      := Concatenation( ~.SourceRepository.URL,
@@ -55,12 +55,12 @@ Status := "dev",
 AbstractHTML   :=  "",
 
 PackageDoc := rec(
-  BookName  := "WreathProductElements",
+  BookName  := "WPE",
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "Provides efficient methods for working with generic wreath products.",
+  LongTitle := "Provides efficient methods for working with wreath products.",
 ),
 
 Dependencies := rec(

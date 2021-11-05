@@ -92,7 +92,7 @@ Still this form is usefull for answering questions about conjugacy classes etc. 
 In this section we present an example session.
 <P/>
 <Example><![CDATA[
-gap> LoadPackage("WreathProductElements");;
+gap> LoadPackage("WPE");;
 
 # Construct an imprimitive wreath product
 # that is embedded into a symmetric group.

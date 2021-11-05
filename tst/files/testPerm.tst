@@ -1,4 +1,4 @@
-gap> ReadPackage("WreathProductElements","tst/testIso.g");;
+gap> ReadPackage("WPE","tst/testIso.g");;
 gap> 
 gap> # [Perm, Perm]
 gap> K := AlternatingGroup(5);;
