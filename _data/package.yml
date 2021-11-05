@@ -21,7 +21,7 @@ packageinfo: https://FriedrichRober.github.io/WPE/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/FriedrichRober/WPE/releases/download/v0.2/WPE-0.2.tar.gz
+      url: https://github.com/FriedrichRober/WPE/archive/refs/tags/v0.2/WPE-0.2.tar.gz
 
 abstract: |
 
