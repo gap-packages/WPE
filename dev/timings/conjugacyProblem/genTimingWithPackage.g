@@ -2,7 +2,7 @@
 # str           ID                      : identifier of this example
 # rec(K, H)     groups                  : groups K and H
 # elm           g, h                    : random elements
-LoadPackage("WreathProductElements");;
+LoadPackage("WPE");;
 G := WreathProduct(groups.K, groups.H);;
 iso := IsomorphismToGenericWreathProduct(G);;
 fileOut := Concatenation("./out_timingsWithPackage/", ID, ".csv");;

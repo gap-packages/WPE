@@ -36,7 +36,7 @@ for i in range(0, len(groups)):
     proc.stdin.write('nrRandomElements := '+str(nrRandomElements)+';')
     proc.stdin.write('groups := '+groups[i]+';')
     # Generatate Random Elements
-    proc.stdin.write('ReadPackage("WreathProductElements","dev/centraliser/genRandomElements.g");')
+    proc.stdin.write('ReadPackage("WPE","dev/centraliser/genRandomElements.g");')
     # Wait until GAP session finishes or we exceed maximal duration of this session
     try:
         outs, errs = proc.communicate(timeout=TIMEOUT)

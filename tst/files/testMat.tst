@@ -1,4 +1,4 @@
-gap> ReadPackage("WreathProductElements","tst/testIso.g");;
+gap> ReadPackage("WPE","tst/testIso.g");;
 gap> # [Mat, Perm]
 gap> K := GL(3,5);;
 gap> H := SymmetricGroup(4);;

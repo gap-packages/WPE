@@ -40,7 +40,7 @@ for i in range(0, len(groups)):
     proc.stdin.write('ID := "'+ID+'";;')
     proc.stdin.write('groups := '+groups[i]+';;')
     # Compute Conjugacy Classes
-    proc.stdin.write('ReadPackage("WreathProductElements","dev/conjugacyClasses/genTimingWithPackage.g");;')
+    proc.stdin.write('ReadPackage("WPE","dev/conjugacyClasses/genTimingWithPackage.g");;')
     # Wait until GAP session finishes or we exceed maximal duration of this session
     try:
         outs, errs = proc.communicate(timeout=TIMEOUT)
@@ -64,7 +64,7 @@ if withoutPackage:
         proc.stdin.write('ID := "'+ID+'";;')
         proc.stdin.write('groups := '+groups[i]+';;')
         # Compute Conjugacy Classes
-        proc.stdin.write('ReadPackage("WreathProductElements","dev/conjugacyClasses/genTimingWithoutPackage.g");;')
+        proc.stdin.write('ReadPackage("WPE","dev/conjugacyClasses/genTimingWithoutPackage.g");;')
         # Wait until GAP session finishes or we exceed maximal duration of this session
         try:
             outs, errs = proc.communicate(timeout=TIMEOUT)

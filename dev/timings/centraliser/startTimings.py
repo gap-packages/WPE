@@ -59,7 +59,7 @@ for i in range(0, len(groups)):
             proc.stdin.write(randomElements['g'])
             proc.stdin.write(';;\n')
             # Solve Conjugacy Problem
-            proc.stdin.write('ReadPackage("WreathProductElements","dev/centraliser/genTimingWithPackage.g");;\n')
+            proc.stdin.write('ReadPackage("WPE","dev/centraliser/genTimingWithPackage.g");;\n')
             # Wait until GAP session finishes or we exceed maximal duration of this session
             try:
                 proc.communicate(timeout=TIMEOUT)
@@ -104,7 +104,7 @@ if withoutPackage:
                 proc.stdin.write(randomElements['g'])
                 proc.stdin.write(';;')
                 # Generatate Random Elements
-                proc.stdin.write('ReadPackage("WreathProductElements","dev/centraliser/genTimingWithoutPackage.g");;')
+                proc.stdin.write('ReadPackage("WPE","dev/centraliser/genTimingWithoutPackage.g");;')
                 # Wait until GAP session finishes or we exceed maximal duration of this session
                 try:
                     proc.communicate(timeout=TIMEOUT)

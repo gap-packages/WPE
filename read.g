@@ -5,25 +5,25 @@
 #
 
 ## Generic
-ReadPackage( "WreathProductElements", "gap/WreathProductElements.gi");
+ReadPackage( "WPE", "gap/WreathProductElements.gi");
 
 ## Implement WreathProduct Operations
-ReadPackage( "WreathProductElements", "gap/Operations.gi");
+ReadPackage( "WPE", "gap/Operations.gi");
 
 ## Conjugacy Problem in Wreath Product
-ReadPackage( "WreathProductElements", "gap/ConjugacyProblem.gi");
+ReadPackage( "WPE", "gap/ConjugacyProblem.gi");
 
 ## Conjugacy Classes
-ReadPackage( "WreathProductElements", "gap/ConjugacyClasses.gi");
+ReadPackage( "WPE", "gap/ConjugacyClasses.gi");
 
 ## Centraliser
-ReadPackage( "WreathProductElements", "gap/Centraliser.gi");
+ReadPackage( "WPE", "gap/Centraliser.gi");
 
 ## Territory Decomposition
-ReadPackage( "WreathProductElements", "gap/TerritoryDecomposition.gi");
+ReadPackage( "WPE", "gap/TerritoryDecomposition.gi");
 
 ## Perm
-ReadPackage( "WreathProductElements", "gap/WreathProductPerm.gi");
+ReadPackage( "WPE", "gap/WreathProductPerm.gi");
 
 ## Matrix
-ReadPackage( "WreathProductElements", "gap/WreathProductMat.gi");
+ReadPackage( "WPE", "gap/WreathProductMat.gi");
