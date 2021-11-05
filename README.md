@@ -23,7 +23,7 @@ which creates a subdirectory called `WPE`.
 ## Documentation
 
 You can read the documentation online at
->   <https://FriedrichRober.github.io/doc/chap0.html>
+>   <https://FriedrichRober.github.io/WPE/doc/chap0.html>
 
 If you want to access it from within GAP by entering `?WPE` on the GAP prompt,
 you first have to build the manual by using `gap makedoc.g` from within the `WPE` root directory.
