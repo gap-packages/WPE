@@ -10,13 +10,13 @@
 **1.** To get the newest version of this GAP 4 package download the archive file `WPE-x.x.tar.gz` from
 >   <https://FriedrichRober.github.io/WPE/>
 
-**2.** Locate a `pkg`-directory where GAP searches for packages, see
+**2.** Locate a `pkg/` directory where GAP searches for packages, see
 >   [9.2 GAP Root Directories](https://www.gap-system.org/Manuals/doc/ref/chap9.html#X7A4973627A5DB27D)
 
 in the GAP manual for more information.
 
-**3.** Unpack the archive file in such a `pkg`-directory
-which creates a subdirectory called `WPE`.
+**3.** Unpack the archive file in such a `pkg/` directory
+which creates a subdirectory called `WPE/`.
 
 **4.** Now you can use the package within GAP by entering `LoadPackage("WPE");` on the GAP prompt.
 
@@ -26,7 +26,7 @@ You can read the documentation online at
 >   <https://FriedrichRober.github.io/WPE/doc/chap0.html>
 
 If you want to access it from within GAP by entering `?WPE` on the GAP prompt,
-you first have to build the manual by using `gap makedoc.g` from within the `WPE` root directory.
+you first have to build the manual by using `gap makedoc.g` from within the `WPE/` root directory.
 
 ## Bug reports
 
