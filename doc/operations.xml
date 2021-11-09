@@ -1,28 +1,68 @@
 <Chapter Label="Operations">
 <Heading>Operations</Heading>
 
-The generic wreath product elements and in particular their (sparse) wreath cycle decompositions
+The generic representation of wreath product elements and in particular their (sparse) wreath cycle decompositions
 can be used to speed up certain operations in wreath products. <P/>
-
-TODO:: Add tests or scripts that show that these operations are indeed faster in practice.
-(Unloaded vs. Loaded package) and (Matrix, Perm vs. Generic)
 
 <Section Label="Operations List">
 <Heading>Operations List</Heading>
 
 Here we include a list of operations that take advantage
-of the generic wreath product elements representation.<P/>
+of the generic representation of wreath product elements.<P/>
 
-In the following <M>G = K \wr H</M> denotes a wreath product and <M>x,y \in G</M> are wreath product elements.<P/>
+We include python scripts in the <C>dev/</C> directory that benchmark
+the &WPE; and native &GAP; implementations of these operations separately.
+The comparison of the runtimes admits of the conclusion that the &WPE; implementations are
+a magnitude faster than the native &GAP; implementations.<P/>
+
+<Subsection Label="Wreath Product Representations">
+<Heading>Wreath Product Representations</Heading>
+
+In the following let <M>G = K \wr H</M> be a wreath product, where <M>H \leq \Sym(\Gamma)</M>.<P/>
+
+In &GAP; the wreath product <M>G</M> can be given in one of the following representations :
+
+<List>
+<Item> Generic Representation</Item>
+<Item> Permutation Representation in Imprimitive Action </Item>
+<Item> Permutation Representation in Product Action </Item>
+<Item> Matrix Representation </Item>
+</List>
+
+</Subsection>
+
+<Subsection Label="Operations for all Representations">
+<Heading>Operations for all Representations</Heading>
+
+Further let <M>x, y \in P = K \wr \Sym(\Gamma)</M>
+be elements of the parent wreath product <M>P</M>
+which is given in the same representation as <M>G</M>.<P/>
+
+Additionaly let <M>z \in S</M> be an element of a group <M>S</M> given in the same family as <M>G</M>.<P/>
+
+The following operations use implementations that exploit (sparse) wreath cycle decompositions :
+
+<List>
+<Item> <C>RepresentativeAction(G, x, y)</C> </Item>
+<Item> <C>Centraliser(G, x)</C> </Item>
+<Item> <C>ConjugacyClasses(G)</C> </Item>
+<Item> <C>z in G</C> </Item>
+</List>
+
+</Subsection>
+
+<Subsection Label="Operations for Generic Representation">
+<Heading>Operations for Generic Representation</Heading>
+
+Here we assume that <M>G</M> is given in Generic Representation.<P/>
+
+The following operations use implementations that exploit (sparse) wreath cycle decompositions :
 
 <List>
 <Item> <C>Order(x)</C> </Item>
-<Item> <C>x in G</C> </Item>
-<Item> <C>RepresentativeAction(G, x, y)</C> </Item>
-<Item> <C>IsConjugate(G, x, y)</C> </Item>
-<Item> <C>Centraliser(G, x)</C> </Item>
-<Item> <C>ConjugacyClasses(G)</C> </Item>
 </List>
+
+</Subsection>
 
 </Section>
 
