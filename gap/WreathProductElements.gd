@@ -39,7 +39,7 @@ DeclareProperty( "IsWreathCycle", IsWreathProductElement );
 ## <Description>
 ##   tests whether <A>x</A> is a sparse wreath cycle.
 ##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -63,7 +63,7 @@ DeclareAttribute( "WreathCycleDecomposition", IsWreathProductElement );
 ## <Description>
 ##   returns the sparse wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -78,11 +78,28 @@ DeclareAttribute( "SparseWreathCycleDecomposition", IsWreathProductElement );
 ##   the element <M>w_k^{{c_k}}</M> is the corresponding sparse wreath cycle
 ##   in the sparse wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
+
+## <#GAPDoc Label="Yade">
+## <ManSection>
+## <Attr Name="Yade" Arg="x, [i]"/>
+## <Description>
+##   returns the yade of the wreath cycle <A>x</A>
+##   evaluated at the smallest territory point.
+##   If the optional argument <A>i</A> is provided,
+##   the function returns the yade evaluated at the point <A>i</A>.
+##   The argument <A>x</A> must be a wreath cycle
+##   and the optional argument <A>i</A> must be an integer.
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareAttribute( "Yade", IsWreathCycle );
+DeclareGlobalFunction( "WPE_ChooseYadePoint" );
 
 ## <#GAPDoc Label="ComponentsOfWreathProduct">
 ## <ManSection>
@@ -152,14 +169,6 @@ DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 ## <#/GAPDoc>
 DeclareGlobalFunction( "BaseGroupOfWreathProduct" );
 DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
-
-
-#! @Description
-DeclareAttribute( "Yade", IsWreathCycle );
-
-#! @Description
-DeclareGlobalFunction( "WPE_ChooseYadePoint" );
-
 
 #############################################################################
 # Isomorphism:
