@@ -6,20 +6,20 @@ gap> W := Image(iso);;
 gap> g := (1,12,9,3,13,10,5,15,8)(2,14,7)(4,11,6);;
 gap> x := g^iso;
 ( (1,2,4), (1,4,3), (2,4)(3,5); (1,3,2) )
-gap> BaseComponentOfGenericWreathProductElement(x);
+gap> BaseComponentOfWreathProductElement(x);
 [ (1,2,4), (1,4,3), (2,4)(3,5) ]
-gap> BaseComponentOfGenericWreathProductElement(x, 2);
+gap> BaseComponentOfWreathProductElement(x, 2);
 (1,4,3)
-gap> TopComponentOfGenericWreathProductElement(x);
+gap> TopComponentOfWreathProductElement(x);
 (1,3,2)
-gap> [K, H] = ComponentsOfGenericWreathProduct(W);
+gap> [K, H] = ComponentsOfWreathProduct(W);
 true
-gap> GeneratorsOfGroup(BaseGroupOfGenericWreathProduct(W));
+gap> GeneratorsOfGroup(BaseGroupOfWreathProduct(W));
 [ ( (1,2,3,4,5), (), (); () ), ( (3,4,5), (), (); () ), 
   ( (), (1,2,3,4,5), (); () ), ( (), (3,4,5), (); () ), 
   ( (), (), (1,2,3,4,5); () ), ( (), (), (3,4,5); () ) ]
-gap> GeneratorsOfGroup(BaseGroupOfGenericWreathProduct(W, 2));
+gap> GeneratorsOfGroup(BaseGroupOfWreathProduct(W, 2));
 [ ( (), (1,2,3,4,5), (); () ), ( (), (3,4,5), (); () ) ]
-gap> GeneratorsOfGroup(TopGroupOfGenericWreathProduct(W));
+gap> GeneratorsOfGroup(TopGroupOfWreathProduct(W));
 [ ( (), (), (); (1,2,3) ), ( (), (), (); (1,2) ) ]
 gap> 

@@ -124,9 +124,9 @@ gap> x := g^iso;
 (2,4,3); (1,5,7,6,2,3) )
 
 # We can display each component easily with the provided commands.
-gap> BaseComponentOfGenericWreathProductElement(x, 2);
+gap> BaseComponentOfWreathProductElement(x, 2);
 (2,5)(3,4)
-gap> TopComponentOfGenericWreathProductElement(x);
+gap> TopComponentOfWreathProductElement(x);
 (1,5,7,6,2,3)
 
 # Let us decompose the element into disjoint wreath cycles.
@@ -160,12 +160,12 @@ true
 <Section Label="Basic Functions">
 <Heading>Basic Functions</Heading>
 
-<#Include Label="ComponentsOfGenericWreathProduct">
-<#Include Label="TopGroupOfGenericWreathProduct">
-<#Include Label="BaseGroupOfGenericWreathProduct">
+<#Include Label="ComponentsOfWreathProduct">
+<#Include Label="TopGroupOfWreathProduct">
+<#Include Label="BaseGroupOfWreathProduct">
 
-<#Include Label="TopComponentOfGenericWreathProductElement">
-<#Include Label="BaseComponentOfGenericWreathProductElement">
+<#Include Label="TopComponentOfWreathProductElement">
+<#Include Label="BaseComponentOfWreathProductElement">
 
 <#Include Label="Territory">
 <#Include Label="IsWreathCycle">
