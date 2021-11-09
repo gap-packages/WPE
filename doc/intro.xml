@@ -73,6 +73,8 @@ Then <M>g</M> can be written as a product of the <M>top_r</M> and <M>base_i</M> 
 and all those element are wreath cycles with pairwise disjoint territory.
 Thus in particular these elements commute pairwise. <P/>
 
+</Section>
+
 <Section Label="Sparse Wreath Cycle">
 <Heading>Sparse Wreath Cycle Decomposition</Heading>
 
@@ -188,6 +190,7 @@ true
 <#Include Label="WreathCycleDecomposition">
 <#Include Label="SparseWreathCycleDecomposition">
 <#Include Label="ConjugatorWreathCycleToSparse">
+<#Include Label="Yade">
 
 
 </Section>
