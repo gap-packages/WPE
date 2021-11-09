@@ -27,12 +27,12 @@ of the function space <M>K^m</M> with <M>H</M>,
 where <M>\pi \in H</M> acts on <M>f \in K^m</M>
 by setting <M>f^{\pi} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\pi^{{-1}}]f</M>. <P/>
 
-Formally we can write elements of <M>G</M> as a tupel <M>g = (f, \pi) \in G</M>,
+Formally we can write elements of <M>G</M> as a tuple <M>g = (f, \pi) \in G</M>,
 where <M>f \in K^m </M> is a function <M>f : \{1, \ldots, m\} \rightarrow K </M>
 and <M>\pi \in H \leq Sym(m)</M> is a permutation on <M>m</M> points.
 We call <M>f</M> the <E>base component</E> and <M>\pi</M> the <E>top component</E> of <M>g</M>. <P/>
 
-We can naturally identify a map <M>f \in K^m</M> with a tupel <M>(g_1, \ldots, g_m)</M>,
+We can naturally identify a map <M>f \in K^m</M> with a tuple <M>(g_1, \ldots, g_m)</M>,
 where each <M>g_i \in K</M> is the image of <M>i \in \{1, \ldots, m\}</M> under <M>f</M>.
 This yields a second useful notation for elements in <M>G</M> by writing
 <M>g = (g_1, \ldots, g_m; \pi)</M>.
@@ -46,7 +46,7 @@ Further we call the element <M>g_i</M> the <E><M>i</M>-th base component</E> of 
 
 In a permutation group we have the well-known concept of a cycle decomposition.
 For wreath products we have a similar concept called <E>wreath cycle decomposition</E>
-that allows us to solve certain computational tasks more efficiently. <P/>
+that allows us to solve certain computational tasks more efficiently.
 
 First we introduce the concept of the territory.
 We define the <E>territory</E> of an element <M>g = (g_1, \ldots, g_m; \pi) \in G</M>
@@ -68,22 +68,34 @@ as an element of <M>K^m</M> by setting
 </List>
 For each cycle <M>\pi_r</M> we define <M>top_r := (f_{{supp(\pi_r)}}, \pi_r)</M>.
 For each point <M>i</M> such that <M>i \not \in supp(\pi)</M> and <M>g_i \neq 1_K</M>
-we define <M>base_i := (f_i, 1_H)</M>.
+we define <M>base_i := (f_{\{i\}}, 1_H)</M>.
 Then <M>g</M> can be written as a product of the <M>top_r</M> and <M>base_i</M> elements
-and each such element is a wreath cycle with pairwise disjoint territory.
+and all those element are wreath cycles with pairwise disjoint territory.
 Thus in particular these elements commute pairwise. <P/>
 
-Further we say that a wreath cycle <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is a <E>sparse wreath cycle</E>,
-if <M>g_i \neq 1</M> for all <M>i \neq max(terr(g))</M>. <P/>
+<Section Label="Sparse Wreath Cycle">
+<Heading>Sparse Wreath Cycle Decomposition</Heading>
+
+The main motivation for introducing the concept of <E>sparse wreath cycles decompositions</E>
+is the efficient computation of centralisers of wreath product elements.
+Simply put, we compute the centraliser of an arbitrary element <M>g \in G</M> in <M>G</M>
+by conjugating it to a restricted representative <M>h = g ^ c \in G</M>
+and computing the centraliser of <M>h</M> in <M>G</M>.<P/>
+
+We say that a wreath cycle <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is a <E>sparse wreath cycle</E>,
+if there exists an <M>i_0</M> such that <M>g_i \neq 1</M> for all <M>i \neq i_0</M>.<P/>
+
+We call a product of sparse wreath cycles a <E>sparse wreath cycle decomposition</E>.
+Every element <M>g \in G</M> can be conjugated by a base group element <M>c \in G</M>
+to an element <M>h = g ^ c \in G</M> that can be written in sparse wreath cycle decomposition as follows: <P/>
 
 Suppose for an arbitrary element <M>g = (g_1, \ldots, g_m; \pi) \in G</M> we have
 a wreath cycle decomposition into cycles <M>w_1, \ldots, w_l \in G</M>.
-There exist <M>c_1, \ldots, c_l \in G</M> such that <M>w_k^{{c_k}}</M> is a sparse wreath cycle for all <M>k</M>.
-Moreover the product of the sparse wreath cycles is the same as <M>g^{{c_1 \cdots c_l}}</M>
-and the elements <M>c_k</M> commute pairwise.
-We call the product of these sparse wreath cycles a <E>sparse wreath cycle decomposition</E> of <M>g</M>.
-Note that the product of these sparse wreath cycles only yields a conjugated element of <M>g</M>.
-Still this form is usefull for answering questions about conjugacy classes etc. more efficiently.
+There exist pairwise disjoint base group elements <M>c_1, \ldots, c_l \in G</M>
+such that <M>w_k^{c_k}</M> is a sparse wreath cycle for all <M>k</M>.
+In particular the product of the sparse wreath cycles is the same as <M>g^{c_1 \cdots c_l}</M>
+and the elements <M>c_k</M> commute pairwise.<P/>
+
 </Section>
 
 <Section Label="Intro Example">
@@ -96,7 +108,7 @@ gap> LoadPackage("WPE");;
 
 # Construct an imprimitive wreath product
 # that is embedded into a symmetric group.
-# This is the GAP intern wreath product command.
+# This is the native GAP wreath product command.
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);
@@ -135,15 +147,18 @@ gap> wreathDecomp := WreathCycleDecomposition(x);
   ( (1,3,4,2,5), (2,5)(3,4), (1,4,3,2,5), (), (1,2)(4,5), (1,2,4), (2,4,3); 
     (1,5,7,6,2,3) ) ]
 
-# Now we want to bring these cycles in sparse form.
-# Each sparse cycle is a very restricted element,
+# Now we want to bring these cycles into sparse form.
+# Each sparse wreath cycle is a very restricted element,
 # since at most one entry in the base component is non-trivial.
+# The product of these elements is a conjugate to x.
 gap> sparseDecomp := SparseWreathCycleDecomposition(x);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
   ( (1,2,3,5,4), (), (), (), (), (), (); (1,5,7,6,2,3) ) ]
 
 # We can also compute the conjugating elements to switch between
-# the wreath cycle and sparse wreath cycle decomposition.
+# the wreath cycles and sparse wreath cycles.
+# The product of these elements conjugates the wreath cycles
+# simultaneously to the sparse wreath cycles.
 gap> conj := ConjugatorWreathCycleToSparse(x);
 [ ( (), (), (), (), (), (), (); () ), ( (), (1,4,2), (1,4,3,2,5), (), 
     (1,4,5,3,2), (), (2,4,3); () ) ]
