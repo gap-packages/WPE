@@ -12,7 +12,12 @@ end);
 
 InstallGlobalFunction( WPE_ConjugacyClassesWithFixedTopClass,
 function(W, H, RK, RH, hElm)
-    local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s, parts, part, blockStart, blockEnd, preTerritoryDecomposition, delta, deltaPoint, d, Ch, translations, gensD, D, shift, gensP, P, c, sigmaImage, sigma, points, point, arr, reps, iter, block, blockLength, repPoints, p, IsPointAvailable, rep, top, base, iterYades, yades, terr, gamma, combi;
+    local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s,
+          parts, part, blockStart, blockEnd, preTerritoryDecomposition,
+          delta, deltaPoint, d, Ch, translations, gensD, D, shift,
+          gensP, P, c, sigmaImage, sigma, points, point, arr, reps,
+          iter, block, blockLength, repPoints, p, IsPointAvailable,
+          rep, top, base, iterYades, yades, terr, gamma, combi;
     ############
     # Approach #
     ############
@@ -141,7 +146,7 @@ function(W, H, RK, RH, hElm)
     #      │               │
     #      └───► delta─────┘
     #
-    # Hence $Delta = {gamma ^ r : r \in R}$ is a superset of orbit representatives
+    # Hence $Delta = {omega ^ r : r \in R}$ is a superset of orbit representatives
     # for the action of $[C_{H}(h)]Psi$ on $p$-multipartitions.
     #
     # Summary:
@@ -236,7 +241,8 @@ function(W, H, RK, RH, hElm)
                     if repPoints[j] = false then
                         continue;
                     fi;
-                    if RepresentativeAction(P, Concatenation(points[i]), Concatenation(points[j]), OnTuplesSets) <> fail then
+                    if RepresentativeAction(P, Concatenation(points[i]), Concatenation(points[j]),
+                                            OnTuplesSets) <> fail then
                         repPoints[j] := false;
                     fi;
                 od;
@@ -257,7 +263,8 @@ function(W, H, RK, RH, hElm)
                     for i in [1 .. l] do
                         deltaPoint[i] := EmptyPlist(Length(point[i]));
                         for blockLength in arr[i] do
-                            j := First([1 .. Length(point[i])], j -> IsPointAvailable[i, j] and Length(point[i, j]) = blockLength);
+                            j := First([1 .. Length(point[i])],
+                                       j -> IsPointAvailable[i, j] and Length(point[i, j]) = blockLength);
                             IsPointAvailable[i, j] := false;
                             Add(deltaPoint[i], h[i]{OnTuples(point[i, j], translations[i] ^ -1)});
                         od;
