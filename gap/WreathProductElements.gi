@@ -480,7 +480,7 @@ function(x)
     return Lcm(List(decomposition, Order));
 end);
 
-InstallGlobalFunction( ComponentsOfGenericWreathProduct,
+InstallGlobalFunction( ComponentsOfWreathProduct,
 function(W)
     if not HasWreathProductInfo(W) then
         return Error("W is not a wreath product");
@@ -488,7 +488,7 @@ function(W)
     return Immutable(WreathProductInfo(W).groups);
 end);
 
-InstallGlobalFunction( TopComponentOfGenericWreathProductElement,
+InstallGlobalFunction( TopComponentOfWreathProductElement,
 function(x)
     if not IsWreathProductElement(x) then
         return Error("x is not a wreath product element");
@@ -509,7 +509,7 @@ function(x)
     return x[Length(x)];
 end);
 
-InstallGlobalFunction( TopGroupOfGenericWreathProduct,
+InstallGlobalFunction( TopGroupOfWreathProduct,
 function(W)
     if not HasWreathProductInfo(W) then
         return Error("W is not a wreath product");
@@ -538,7 +538,7 @@ function(x)
     return Length(x) - 1;
 end);
 
-InstallGlobalFunction( BaseComponentOfGenericWreathProductElement,
+InstallGlobalFunction( BaseComponentOfWreathProductElement,
 function(arg)
     local info, x, i;
 
@@ -590,7 +590,7 @@ function(x, i)
     return x[i];
 end);
 
-InstallGlobalFunction( BaseGroupOfGenericWreathProduct,
+InstallGlobalFunction( BaseGroupOfWreathProduct,
 function(arg)
     local info, W, i;
 

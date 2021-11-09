@@ -84,9 +84,9 @@ DeclareAttribute( "SparseWreathCycleDecomposition", IsWreathProductElement );
 ## <#/GAPDoc>
 DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 
-## <#GAPDoc Label="ComponentsOfGenericWreathProduct">
+## <#GAPDoc Label="ComponentsOfWreathProduct">
 ## <ManSection>
-## <Func Name="ComponentsOfGenericWreathProduct" Arg="W"/>
+## <Func Name="ComponentsOfWreathProduct" Arg="W"/>
 ## <Description>
 ##   returns the groups [K, H] of <A>W = K wr H</A>.
 ##   The argument <A>W</A> must be a generic wreath product.
@@ -94,11 +94,11 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareGlobalFunction( "ComponentsOfGenericWreathProduct" );
+DeclareGlobalFunction( "ComponentsOfWreathProduct" );
 
-## <#GAPDoc Label="TopComponentOfGenericWreathProductElement">
+## <#GAPDoc Label="TopComponentOfWreathProductElement">
 ## <ManSection>
-## <Func Name="TopComponentOfGenericWreathProductElement" Arg="x"/>
+## <Func Name="TopComponentOfWreathProductElement" Arg="x"/>
 ## <Description>
 ##   returns the top component of <A>x</A>.
 ##   The argument <A>x</A> must be a generic wreath product element.
@@ -106,26 +106,26 @@ DeclareGlobalFunction( "ComponentsOfGenericWreathProduct" );
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareGlobalFunction( "TopComponentOfGenericWreathProductElement" );
+DeclareGlobalFunction( "TopComponentOfWreathProductElement" );
 DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 
-## <#GAPDoc Label="TopGroupOfGenericWreathProduct">
+## <#GAPDoc Label="TopGroupOfWreathProduct">
 ## <ManSection>
-## <Func Name="TopGroupOfGenericWreathProduct" Arg="W"/>
+## <Func Name="TopGroupOfWreathProduct" Arg="W"/>
 ## <Description>
 ##   returns the top group of the generic wreath product <A>W</A>.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareGlobalFunction( "TopGroupOfGenericWreathProduct" );
+DeclareGlobalFunction( "TopGroupOfWreathProduct" );
 DeclareOperation( "WPE_TopGroup", [HasWreathProductInfo] );
 
 DeclareOperation( "WPE_TopDegree", [IsWreathProductElement] );
 
-## <#GAPDoc Label="BaseComponentOfGenericWreathProductElement">
+## <#GAPDoc Label="BaseComponentOfWreathProductElement">
 ## <ManSection>
-## <Func Name="BaseComponentOfGenericWreathProductElement" Arg="x, [i]"/>
+## <Func Name="BaseComponentOfWreathProductElement" Arg="x, [i]"/>
 ## <Description>
 ##   returns the base component of <A>x</A>.
 ##   If the optional argument <A>i</A> is provided,
@@ -136,12 +136,12 @@ DeclareOperation( "WPE_TopDegree", [IsWreathProductElement] );
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareGlobalFunction( "BaseComponentOfGenericWreathProductElement" );
+DeclareGlobalFunction( "BaseComponentOfWreathProductElement" );
 DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 
-## <#GAPDoc Label="BaseGroupOfGenericWreathProduct">
+## <#GAPDoc Label="BaseGroupOfWreathProduct">
 ## <ManSection>
-## <Func Name="BaseGroupOfGenericWreathProduct" Arg="W, [i]"/>
+## <Func Name="BaseGroupOfWreathProduct" Arg="W, [i]"/>
 ## <Description>
 ##   returns the base group of the generic wreath product <A>W</A>.
 ##   If the optional argument <A>i</A> is provided,
@@ -150,7 +150,7 @@ DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareGlobalFunction( "BaseGroupOfGenericWreathProduct" );
+DeclareGlobalFunction( "BaseGroupOfWreathProduct" );
 DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 
 
