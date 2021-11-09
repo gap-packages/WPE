@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with generic wreath products.
+# WreathProductElements: Provides efficient methods for working with wreath products.
 #
 
 
@@ -14,7 +14,7 @@ WPE_PRINT_HORIZONTALLY := true;
 ## <Attr Name="Territory" Arg="x"/>
 ## <Description>
 ##   returns the territory of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
@@ -26,7 +26,7 @@ DeclareAttribute( "Territory", IsWreathProductElement );
 ## <Attr Name="IsWreathCycle" Arg="x"/>
 ## <Description>
 ##   tests whether <A>x</A> is a wreath cycle.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
@@ -38,7 +38,7 @@ DeclareProperty( "IsWreathCycle", IsWreathProductElement );
 ## <Attr Name="IsSparseWreathCycle" Arg="x"/>
 ## <Description>
 ##   tests whether <A>x</A> is a sparse wreath cycle.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
@@ -50,7 +50,7 @@ DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 ## <Attr Name="WreathCycleDecomposition" Arg="x"/>
 ## <Description>
 ##   returns the wreath cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
@@ -62,7 +62,7 @@ DeclareAttribute( "WreathCycleDecomposition", IsWreathProductElement );
 ## <Attr Name="SparseWreathCycleDecomposition" Arg="x"/>
 ## <Description>
 ##   returns the sparse wreath cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
@@ -77,7 +77,7 @@ DeclareAttribute( "SparseWreathCycleDecomposition", IsWreathProductElement );
 ##   such that for each wreath cycle <M>w_k</M> in the decompositon of <A>x</A>,
 ##   the element <M>w_k^{{c_k}}</M> is the corresponding sparse wreath cycle
 ##   in the sparse wreath cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
@@ -89,7 +89,7 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ## <Func Name="ComponentsOfWreathProduct" Arg="W"/>
 ## <Description>
 ##   returns the groups [K, H] of <A>W = K wr H</A>.
-##   The argument <A>W</A> must be a generic wreath product.
+##   The argument <A>W</A> must be a wreath product.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)
 ## </Description>
 ## </ManSection>
@@ -101,7 +101,7 @@ DeclareGlobalFunction( "ComponentsOfWreathProduct" );
 ## <Func Name="TopComponentOfWreathProductElement" Arg="x"/>
 ## <Description>
 ##   returns the top component of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element.
+##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)
 ## </Description>
 ## </ManSection>
@@ -113,7 +113,7 @@ DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="TopGroupOfWreathProduct" Arg="W"/>
 ## <Description>
-##   returns the top group of the generic wreath product <A>W</A>.
+##   returns the top group of the wreath product <A>W</A>.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)
 ## </Description>
 ## </ManSection>
@@ -130,7 +130,7 @@ DeclareOperation( "WPE_TopDegree", [IsWreathProductElement] );
 ##   returns the base component of <A>x</A>.
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the <A>i</A>-th base component of <A>x</A>.
-##   The argument <A>x</A> must be a generic wreath product element
+##   The argument <A>x</A> must be a wreath product element
 ##   and the optional argument <A>i</A> must be an integer.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)
 ## </Description>
@@ -143,7 +143,7 @@ DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="BaseGroupOfWreathProduct" Arg="W, [i]"/>
 ## <Description>
-##   returns the base group of the generic wreath product <A>W</A>.
+##   returns the base group of the wreath product <A>W</A>.
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the <A>i</A>-th factor of the base group of <A>W</A>.
 ##   (see&nbsp;<Ref Sect="Intro Notation"/>)

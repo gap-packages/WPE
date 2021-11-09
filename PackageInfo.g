@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with generic wreath products.
+# WreathProductElements: Provides efficient methods for working with wreath products.
 #
 # This file contains package meta data. For additional information on
 # the meaning and correct usage of these fields, please consult the
@@ -9,7 +9,7 @@
 SetPackageInfo( rec(
 
 PackageName := "WPE",
-Subtitle := "Provides efficient methods for working with generic wreath products.",
+Subtitle := "Provides efficient methods for working with wreath products.",
 Version := "0.3dev",
 Date := "05/11/2021", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",

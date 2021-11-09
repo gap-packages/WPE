@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with generic wreath products.
+# WreathProductElements: Provides efficient methods for working with wreath products.
 #
 # Implementations
 #
@@ -517,7 +517,7 @@ function(W)
     return WPE_TopGroup(W);
 end);
 
-InstallMethod( WPE_TopGroup, "generic wreath product", true, [HasWreathProductInfo], 0,
+InstallMethod( WPE_TopGroup, "wreath product", true, [HasWreathProductInfo], 0,
 function(W)
     local info;
 
@@ -616,7 +616,7 @@ function(arg)
     fi;
 end);
 
-InstallMethod( WPE_BaseGroup, "generic wreath product", true, [HasWreathProductInfo], 0,
+InstallMethod( WPE_BaseGroup, "wreath product", true, [HasWreathProductInfo], 0,
 function(W)
     local info;
 
@@ -624,7 +624,7 @@ function(W)
     return Group(Concatenation(List([1 .. info.degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x ^ Embedding(W, i)))));
 end);
 
-InstallOtherMethod( WPE_BaseGroup, "generic wreath product and integer", true, [HasWreathProductInfo, IsInt], 0,
+InstallOtherMethod( WPE_BaseGroup, "wreath product and integer", true, [HasWreathProductInfo, IsInt], 0,
 function(W, i)
     return Image(Embedding(W, i));
 end);

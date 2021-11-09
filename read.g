@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with generic wreath products.
+# WreathProductElements: Provides efficient methods for working with wreath products.
 #
 # Reading the implementation part of the package.
 #
