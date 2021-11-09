@@ -18,7 +18,7 @@ a magnitude faster than the native &GAP; implementations.<P/>
 <Subsection Label="Wreath Product Representations">
 <Heading>Wreath Product Representations</Heading>
 
-In the following let <M>G = K \wr H</M> be a wreath product, where <M>H \leq \Sym(m)</M>.<P/>
+In the following let <M>G = K \wr H</M> be a wreath product, where <M>H \leq Sym(m)</M>.<P/>
 
 In &GAP; the wreath product <M>G</M> can be given in one of the following representations :
 
@@ -34,7 +34,7 @@ In &GAP; the wreath product <M>G</M> can be given in one of the following repres
 <Subsection Label="Operations for all Representations">
 <Heading>Operations for all Representations</Heading>
 
-Further let <M>x, y \in P = K \wr \Sym(m)</M>
+Further let <M>x, y \in P = K \wr Sym(m)</M>
 be elements of the parent wreath product <M>P</M>
 which is given in the same representation as <M>G</M>.<P/>
 
