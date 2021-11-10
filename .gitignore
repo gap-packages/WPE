@@ -19,7 +19,7 @@
 /doc/*.toc
 /doc/manual.pdf
 /doc/_*.xml
-/doc/WreathProductElements.xml
+/doc/WPE.xml
 /doc/title.xml
 # Ignore all from doc generated test files in /tst/
 # Manually created test files are located in /tst/files/
