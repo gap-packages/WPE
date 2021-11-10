@@ -10,7 +10,8 @@ fi;
 AutoDoc( rec( scaffold := rec(
         includes := [
             "intro.xml",
-            "operations.xml"
+            "functions.xml",
+            "operations.xml",
             ],
         ),
         extract_examples := true,

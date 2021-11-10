@@ -25,7 +25,7 @@ where <M>H</M> is a permutation group of degree <M>m</M>.
 The wreath product is defined as the semidirect product
 of the function space <M>K^m</M> with <M>H</M>,
 where <M>\pi \in H</M> acts on <M>f \in K^m</M>
-by setting <M>f^{\pi} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\pi^{{-1}}]f</M>. <P/>
+by setting <M>f^{{\pi}} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\pi^{{-1}}]f</M>. <P/>
 
 Formally we can write elements of <M>G</M> as a tuple <M>g = (f, \pi) \in G</M>,
 where <M>f \in K^m </M> is a function <M>f : \{1, \ldots, m\} \rightarrow K </M>
@@ -81,7 +81,7 @@ Thus in particular these elements commute pairwise. <P/>
 The main motivation for introducing the concept of <E>sparse wreath cycles decompositions</E>
 is the efficient computation of centralisers of wreath product elements.
 Simply put, we compute the centraliser of an arbitrary element <M>g \in G</M> in <M>G</M>
-by conjugating it to a restricted representative <M>h = g ^ c \in G</M>
+by conjugating it to a restricted representative <M>h = g^c \in G</M>
 and computing the centraliser of <M>h</M> in <M>G</M>.<P/>
 
 We say that a wreath cycle <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is a <E>sparse wreath cycle</E>,
@@ -89,13 +89,13 @@ if there exists an <M>i_0</M> such that <M>g_i \neq 1</M> for all <M>i \neq i_0<
 
 We call a product of sparse wreath cycles a <E>sparse wreath cycle decomposition</E>.
 Every element <M>g \in G</M> can be conjugated by a base group element <M>c \in G</M>
-to an element <M>h = g ^ c \in G</M> that can be written in sparse wreath cycle decomposition as follows: <P/>
+to an element <M>h = g^c \in G</M> that can be written in sparse wreath cycle decomposition as follows: <P/>
 
 Suppose for an arbitrary element <M>g = (g_1, \ldots, g_m; \pi) \in G</M> we have
 a wreath cycle decomposition into cycles <M>w_1, \ldots, w_l \in G</M>.
 There exist pairwise disjoint base group elements <M>c_1, \ldots, c_l \in G</M>
-such that <M>w_k^{c_k}</M> is a sparse wreath cycle for all <M>k</M>.
-In particular the product of the sparse wreath cycles is the same as <M>g^{c_1 \cdots c_l}</M>
+such that <M>w_k^{{c_k}}</M> is a sparse wreath cycle for all <M>k</M>.
+In particular the product of the sparse wreath cycles is the same as <M>g^{{c_1 \cdots c_l}}</M>
 and the elements <M>c_k</M> commute pairwise.<P/>
 
 </Section>
@@ -170,28 +170,6 @@ gap> wreathDecomp[2]^conj[2] = sparseDecomp[2];
 true
 ]]></Example>
 <P/>
-
-</Section>
-
-
-<Section Label="Basic Functions">
-<Heading>Basic Functions</Heading>
-
-<#Include Label="ComponentsOfWreathProduct">
-<#Include Label="TopGroupOfWreathProduct">
-<#Include Label="BaseGroupOfWreathProduct">
-
-<#Include Label="TopComponentOfWreathProductElement">
-<#Include Label="BaseComponentOfWreathProductElement">
-
-<#Include Label="Territory">
-<#Include Label="IsWreathCycle">
-<#Include Label="IsSparseWreathCycle">
-<#Include Label="WreathCycleDecomposition">
-<#Include Label="SparseWreathCycleDecomposition">
-<#Include Label="ConjugatorWreathCycleToSparse">
-<#Include Label="Yade">
-
 
 </Section>
 
