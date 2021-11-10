@@ -1,0 +1,31 @@
+<Chapter Label="Functions">
+<Heading>Functions</Heading>
+
+Here we include a list of all functions that are provided to the User.
+
+<Section Label="Function List">
+<Heading>Function List</Heading>
+
+The following functions are designed to improve the User experience
+when working or experimenting with wreath products and their elements.
+Most functions are about presenting elements in an intuitive way
+and giving access to useful information.
+
+<#Include Label="ComponentsOfWreathProduct">
+<#Include Label="TopGroupOfWreathProduct">
+<#Include Label="BaseGroupOfWreathProduct">
+
+<#Include Label="TopComponentOfWreathProductElement">
+<#Include Label="BaseComponentOfWreathProductElement">
+
+<#Include Label="Territory">
+<#Include Label="IsWreathCycle">
+<#Include Label="IsSparseWreathCycle">
+<#Include Label="WreathCycleDecomposition">
+<#Include Label="SparseWreathCycleDecomposition">
+<#Include Label="ConjugatorWreathCycleToSparse">
+<#Include Label="Yade">
+
+</Section>
+
+</Chapter>
