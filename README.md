@@ -20,6 +20,12 @@ which creates a subdirectory called `WPE/`.
 
 **4.** Now you can use the package within GAP by entering `LoadPackage("WPE");` on the GAP prompt.
 
+## Requirements
+
+Versions `0.2` and above require `GAP version >= 4.12`
+
+Version `0.1` requires `GAP version >= 4.11`
+
 ## Documentation
 
 You can read the documentation online at
