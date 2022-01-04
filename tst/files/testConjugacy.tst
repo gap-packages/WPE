@@ -11,6 +11,26 @@ gap> TestConjugacy := function(K, H, n)
 >     od;
 >     return true;
 > end;;
+gap> K := SymmetricGroup(1);;
+gap> H := SymmetricGroup(1);;
+gap> TestConjugacy(K, H, 20);
+true
+gap> K := SymmetricGroup(1);;
+gap> H := SymmetricGroup(8);;
+gap> TestConjugacy(K, H, 20);
+true
+gap> K := AlternatingGroup(1);;
+gap> H := SymmetricGroup(8);;
+gap> TestConjugacy(K, H, 20);
+true
+gap> K := SymmetricGroup(8);;
+gap> H := SymmetricGroup(1);;
+gap> TestConjugacy(K, H, 20);
+true
+gap> K := AlternatingGroup(8);;
+gap> H := SymmetricGroup(1);;
+gap> TestConjugacy(K, H, 20);
+true
 gap> K := AlternatingGroup(15);;
 gap> H := SymmetricGroup(25);;
 gap> TestConjugacy(K, H, 20);
