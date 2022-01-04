@@ -56,8 +56,8 @@ An element <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is called a <E>wreath cycle<
 either <M>\pi</M> is a cycle and <M>g_i = 1</M> for all <M>i \in fix(\pi)</M>
 or <M>|terr(g)| = 1</M>. <P/>
 
-The idea is to write an arbitrary element of the wreath product <M>G = K \wr H</M>
-as a product of disjoint wreath cycles as follows: <P/>
+In the following we outline a proof how to compute a decomposition of an arbitrary element of the wreath product <M>G = K \wr H</M>
+into a product of disjoint wreath cycles: <P/>
 
 Decompose <M>\pi</M> into cycles, say <M>\pi = \pi_1 ... \pi_l</M>.
 For a set <M>I \leq \{1, \ldots, m\}</M> we define <M>f_I</M>
@@ -85,13 +85,13 @@ by conjugating it to a restricted representative <M>h = g^c \in G</M>
 and computing the centraliser of <M>h</M> in <M>G</M>.<P/>
 
 We say that a wreath cycle <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is a <E>sparse wreath cycle</E>,
-if there exists an <M>i_0</M> such that <M>g_i \neq 1</M> for all <M>i \neq i_0</M>.<P/>
+if there exists an <M>i_0</M> such that <M>g_i = 1</M> for all <M>i \neq i_0</M>.<P/>
 
 We call a product of sparse wreath cycles a <E>sparse wreath cycle decomposition</E>.
 Every element <M>g \in G</M> can be conjugated by a base group element <M>c \in G</M>
 to an element <M>h = g^c \in G</M> that can be written in sparse wreath cycle decomposition as follows: <P/>
 
-Suppose for an arbitrary element <M>g = (g_1, \ldots, g_m; \pi) \in G</M> we have
+Suppose for an arbitrary element <M>g \in G</M> we have
 a wreath cycle decomposition into cycles <M>w_1, \ldots, w_l \in G</M>.
 There exist pairwise disjoint base group elements <M>c_1, \ldots, c_l \in G</M>
 such that <M>w_k^{{c_k}}</M> is a sparse wreath cycle for all <M>k</M>.
