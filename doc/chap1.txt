@@ -16,14 +16,14 @@
   
   [33X[0;0YLet  [22XG = K ≀ H[122X be a wreath product, where [22XH[122X is a permutation group of degree
   [22Xm[122X.  The  wreath product is defined as the semidirect product of the function
-  space [22XK^m[122X with [22XH[122X, where [22Xπ ∈ H[122X acts on [22Xf ∈ K^m[122X by setting [22Xf^π : {1, ..., m} →
-  K, i ↦ [(i)π^{-1}]f[122X.[133X
+  space [22XK^m[122X with [22XH[122X, where [22Xπ ∈ H[122X acts on [22Xf ∈ K^m[122X by setting [22Xf^{π} : {1, ..., m}
+  → K, i ↦ [(i)π^{-1}]f[122X.[133X
   
-  [33X[0;0YFormally we can write elements of [22XG[122X as a tupel [22Xg = (f, π) ∈ G[122X, where [22Xf ∈ K^m[122X
+  [33X[0;0YFormally we can write elements of [22XG[122X as a tuple [22Xg = (f, π) ∈ G[122X, where [22Xf ∈ K^m[122X
   is  a  function [22Xf : {1, ..., m} → K[122X and [22Xπ ∈ H ≤ Sym(m)[122X is a permutation on [22Xm[122X
   points. We call [22Xf[122X the [13Xbase component[113X and [22Xπ[122X the [13Xtop component[113X of [22Xg[122X.[133X
   
-  [33X[0;0YWe  can naturally identify a map [22Xf ∈ K^m[122X with a tupel [22X(g_1, ..., g_m)[122X, where
+  [33X[0;0YWe  can naturally identify a map [22Xf ∈ K^m[122X with a tuple [22X(g_1, ..., g_m)[122X, where
   each  [22Xg_i  ∈ K[122X is the image of [22Xi ∈ {1, ..., m}[122X under [22Xf[122X. This yields a second
   useful  notation  for  elements in [22XG[122X by writing [22Xg = (g_1, ..., g_m; π)[122X. Note
   that  we  use  a  semicolon  to  seperate  the  base  component from the top
@@ -35,10 +35,9 @@
   [33X[0;0YIn   a  permutation  group  we  have  the  well-known  concept  of  a  cycle
   decomposition.  For  wreath products we have a similar concept called [13Xwreath
   cycle decomposition[113X that allows us to solve certain computational tasks more
-  efficiently.[133X
-  
-  [33X[0;0YFirst  we introduce the concept of the territory. We define the [13Xterritory[113X of
-  an element [22Xg = (g_1, ..., g_m; π) ∈ G[122X by [22Xterr(g) := supp(π) ∪ {i : g_i ≠ 1}[122X.[133X
+  efficiently.  First we introduce the concept of the territory. We define the
+  [13Xterritory[113X  of  an element [22Xg = (g_1, ..., g_m; π) ∈ G[122X by [22Xterr(g) := supp(π) ∪
+  {i : g_i ≠ 1}[122X.[133X
   
   [33X[0;0YAn  element  [22Xg = (g_1, ..., g_m; π) ∈ G[122X is called a [13Xwreath cycle[113X if either [22Xπ[122X
   is a cycle and [22Xg_i = 1[122X for all [22Xi ∈ fix(π)[122X or [22X|terr(g)| = 1[122X.[133X
@@ -54,26 +53,37 @@
   [30X    [33X[0;6Y[22X[i]f_I := 1_K[122X, else[133X
   
   [33X[0;0YFor each cycle [22Xπ_r[122X we define [22Xtop_r := (f_{supp(π_r)}, π_r)[122X. For each point [22Xi[122X
-  such that [22Xi not ∈ supp(π)[122X and [22Xg_i ≠ 1_K[122X we define [22Xbase_i := (f_i, 1_H)[122X. Then
-  [22Xg[122X can be written as a product of the [22Xtop_r[122X and [22Xbase_i[122X elements and each such
-  element  is  a  wreath  cycle  with  pairwise  disjoint  territory.  Thus in
+  such  that  [22Xi  not ∈ supp(π)[122X and [22Xg_i ≠ 1_K[122X we define [22Xbase_i := (f_{i}, 1_H)[122X.
+  Then  [22Xg[122X can be written as a product of the [22Xtop_r[122X and [22Xbase_i[122X elements and all
+  those  element  are  wreath cycles with pairwise disjoint territory. Thus in
   particular these elements commute pairwise.[133X
   
-  [33X[0;0YFurther  we  say  that a wreath cycle [22Xg = (g_1, ..., g_m; π) ∈ G[122X is a [13Xsparse
-  wreath cycle[113X, if [22Xg_i ≠ 1[122X for all [22Xi ≠ max(terr(g))[122X.[133X
+  
+  [1X1.4 [33X[0;0YSparse Wreath Cycle Decomposition[133X[101X
+  
+  [33X[0;0YThe  main  motivation  for  introducing  the concept of [13Xsparse wreath cycles
+  decompositions[113X  is  the  efficient  computation  of  centralisers  of wreath
+  product  elements.  Simply  put,  we compute the centraliser of an arbitrary
+  element  [22Xg ∈ G[122X in [22XG[122X by conjugating it to a restricted representative [22Xh = g^c
+  ∈ G[122X and computing the centraliser of [22Xh[122X in [22XG[122X.[133X
+  
+  [33X[0;0YWe  say  that  a  wreath cycle [22Xg = (g_1, ..., g_m; π) ∈ G[122X is a [13Xsparse wreath
+  cycle[113X, if there exists an [22Xi_0[122X such that [22Xg_i ≠ 1[122X for all [22Xi ≠ i_0[122X.[133X
+  
+  [33X[0;0YWe   call   a  product  of  sparse  wreath  cycles  a  [13Xsparse  wreath  cycle
+  decomposition[113X. Every element [22Xg ∈ G[122X can be conjugated by a base group element
+  [22Xc  ∈  G[122X to an element [22Xh = g^c ∈ G[122X that can be written in sparse wreath cycle
+  decomposition as follows:[133X
   
   [33X[0;0YSuppose for an arbitrary element [22Xg = (g_1, ..., g_m; π) ∈ G[122X we have a wreath
-  cycle decomposition into cycles [22Xw_1, ..., w_l ∈ G[122X. There exist [22Xc_1, ..., c_l
-  ∈  G[122X  such  that  [22Xw_k^{c_k}[122X is a sparse wreath cycle for all [22Xk[122X. Moreover the
-  product  of  the  sparse  wreath cycles is the same as [22Xg^{c_1 ⋯ c_l}[122X and the
-  elements  [22Xc_k[122X  commute  pairwise. We call the product of these sparse wreath
-  cycles  a  [13Xsparse  wreath cycle decomposition[113X of [22Xg[122X. Note that the product of
-  these sparse wreath cycles only yields a conjugated element of [22Xg[122X. Still this
-  form  is  usefull  for answering questions about conjugacy classes etc. more
-  efficiently.[133X
+  cycle  decomposition  into  cycles  [22Xw_1,  ..., w_l ∈ G[122X. There exist pairwise
+  disjoint  base  group  elements  [22Xc_1,  ..., c_l ∈ G[122X such that [22Xw_k^{c_k}[122X is a
+  sparse  wreath  cycle  for  all  [22Xk[122X.  In particular the product of the sparse
+  wreath  cycles  is  the  same  as [22Xg^{c_1 ⋯ c_l}[122X and the elements [22Xc_k[122X commute
+  pairwise.[133X
   
   
-  [1X1.4 [33X[0;0YExample[133X[101X
+  [1X1.5 [33X[0;0YExample[133X[101X
   
   [33X[0;0YIn this section we present an example session.[133X
   
@@ -82,7 +92,7 @@
     [4X[28X[128X[104X
     [4X[28X# Construct an imprimitive wreath product[128X[104X
     [4X[28X# that is embedded into a symmetric group.[128X[104X
-    [4X[28X# This is the GAP intern wreath product command.[128X[104X
+    [4X[28X# This is the native GAP wreath product command.[128X[104X
     [4X[25Xgap>[125X [27XK := AlternatingGroup(5);;[127X[104X
     [4X[25Xgap>[125X [27XH := SymmetricGroup(7);;[127X[104X
     [4X[25Xgap>[125X [27XG := WreathProduct(K, H);[127X[104X
@@ -110,9 +120,9 @@
     [4X[28X(2,4,3); (1,5,7,6,2,3) )[128X[104X
     [4X[28X[128X[104X
     [4X[28X# We can display each component easily with the provided commands.[128X[104X
-    [4X[25Xgap>[125X [27XBaseComponentOfGenericWreathProductElement(x, 2);[127X[104X
+    [4X[25Xgap>[125X [27XBaseComponentOfWreathProductElement(x, 2);[127X[104X
     [4X[28X(2,5)(3,4)[128X[104X
-    [4X[25Xgap>[125X [27XTopComponentOfGenericWreathProductElement(x);[127X[104X
+    [4X[25Xgap>[125X [27XTopComponentOfWreathProductElement(x);[127X[104X
     [4X[28X(1,5,7,6,2,3)[128X[104X
     [4X[28X[128X[104X
     [4X[28X# Let us decompose the element into disjoint wreath cycles.[128X[104X
@@ -121,15 +131,18 @@
     [4X[28X  ( (1,3,4,2,5), (2,5)(3,4), (1,4,3,2,5), (), (1,2)(4,5), (1,2,4), (2,4,3); [128X[104X
     [4X[28X    (1,5,7,6,2,3) ) ][128X[104X
     [4X[28X[128X[104X
-    [4X[28X# Now we want to bring these cycles in sparse form.[128X[104X
-    [4X[28X# Each sparse cycle is a very restricted element,[128X[104X
+    [4X[28X# Now we want to bring these cycles into sparse form.[128X[104X
+    [4X[28X# Each sparse wreath cycle is a very restricted element,[128X[104X
     [4X[28X# since at most one entry in the base component is non-trivial.[128X[104X
+    [4X[28X# The product of these elements is a conjugate to x.[128X[104X
     [4X[25Xgap>[125X [27XsparseDecomp := SparseWreathCycleDecomposition(x);[127X[104X
     [4X[28X[ ( (), (), (), (3,4,5), (), (), (); () ), [128X[104X
     [4X[28X  ( (1,2,3,5,4), (), (), (), (), (), (); (1,5,7,6,2,3) ) ][128X[104X
     [4X[28X[128X[104X
     [4X[28X# We can also compute the conjugating elements to switch between[128X[104X
-    [4X[28X# the wreath cycle and sparse wreath cycle decomposition.[128X[104X
+    [4X[28X# the wreath cycles and sparse wreath cycles.[128X[104X
+    [4X[28X# The product of these elements conjugates the wreath cycles[128X[104X
+    [4X[28X# simultaneously to the sparse wreath cycles.[128X[104X
     [4X[25Xgap>[125X [27Xconj := ConjugatorWreathCycleToSparse(x);[127X[104X
     [4X[28X[ ( (), (), (), (), (), (), (); () ), ( (), (1,4,2), (1,4,3,2,5), (), [128X[104X
     [4X[28X    (1,4,5,3,2), (), (2,4,3); () ) ][128X[104X
@@ -138,88 +151,4 @@
     [4X[25Xgap>[125X [27XwreathDecomp[2]^conj[2] = sparseDecomp[2];[127X[104X
     [4X[28Xtrue[128X[104X
   [4X[32X[104X
-  
-  
-  [1X1.5 [33X[0;0YBasic Functions[133X[101X
-  
-  [1X1.5-1 ComponentsOfGenericWreathProduct[101X
-  
-  [33X[1;0Y[29X[2XComponentsOfGenericWreathProduct[102X( [3XW[103X ) [32X function[133X
-  
-  [33X[0;0Yreturns  the  groups  [K, H] of [3XW = K wr H[103X. The argument [3XW[103X must be a generic
-  wreath product. (see [14X1.2[114X)[133X
-  
-  [1X1.5-2 TopGroupOfGenericWreathProduct[101X
-  
-  [33X[1;0Y[29X[2XTopGroupOfGenericWreathProduct[102X( [3XW[103X ) [32X function[133X
-  
-  [33X[0;0Yreturns the top group of the generic wreath product [3XW[103X. (see [14X1.2[114X)[133X
-  
-  [1X1.5-3 BaseGroupOfGenericWreathProduct[101X
-  
-  [33X[1;0Y[29X[2XBaseGroupOfGenericWreathProduct[102X( [3XW[103X[, [3Xi[103X] ) [32X function[133X
-  
-  [33X[0;0Yreturns  the  base  group  of  the generic wreath product [3XW[103X. If the optional
-  argument  [3Xi[103X  is  provided,  the function returns the [3Xi[103X-th factor of the base
-  group of [3XW[103X. (see [14X1.2[114X)[133X
-  
-  [1X1.5-4 TopComponentOfGenericWreathProductElement[101X
-  
-  [33X[1;0Y[29X[2XTopComponentOfGenericWreathProductElement[102X( [3Xx[103X ) [32X function[133X
-  
-  [33X[0;0Yreturns  the  top  component  of  [3Xx[103X. The argument [3Xx[103X must be a generic wreath
-  product element. (see [14X1.2[114X)[133X
-  
-  [1X1.5-5 BaseComponentOfGenericWreathProductElement[101X
-  
-  [33X[1;0Y[29X[2XBaseComponentOfGenericWreathProductElement[102X( [3Xx[103X[, [3Xi[103X] ) [32X function[133X
-  
-  [33X[0;0Yreturns the base component of [3Xx[103X. If the optional argument [3Xi[103X is provided, the
-  function  returns  the  [3Xi[103X-th  base  component of [3Xx[103X. The argument [3Xx[103X must be a
-  generic  wreath  product  element  and  the  optional  argument [3Xi[103X must be an
-  integer. (see [14X1.2[114X)[133X
-  
-  [1X1.5-6 Territory[101X
-  
-  [33X[1;0Y[29X[2XTerritory[102X( [3Xx[103X ) [32X attribute[133X
-  
-  [33X[0;0Yreturns  the territory of [3Xx[103X. The argument [3Xx[103X must be a generic wreath product
-  element. (see [14X1.3[114X)[133X
-  
-  [1X1.5-7 IsWreathCycle[101X
-  
-  [33X[1;0Y[29X[2XIsWreathCycle[102X( [3Xx[103X ) [32X attribute[133X
-  
-  [33X[0;0Ytests  whether  [3Xx[103X is a wreath cycle. The argument [3Xx[103X must be a generic wreath
-  product element. (see [14X1.3[114X)[133X
-  
-  [1X1.5-8 IsSparseWreathCycle[101X
-  
-  [33X[1;0Y[29X[2XIsSparseWreathCycle[102X( [3Xx[103X ) [32X attribute[133X
-  
-  [33X[0;0Ytests  whether  [3Xx[103X is a sparse wreath cycle. The argument [3Xx[103X must be a generic
-  wreath product element. (see [14X1.3[114X)[133X
-  
-  [1X1.5-9 WreathCycleDecomposition[101X
-  
-  [33X[1;0Y[29X[2XWreathCycleDecomposition[102X( [3Xx[103X ) [32X attribute[133X
-  
-  [33X[0;0Yreturns  the  wreath  cycle  decomposition  of  [3Xx[103X.  The argument [3Xx[103X must be a
-  generic wreath product element. (see [14X1.3[114X)[133X
-  
-  [1X1.5-10 SparseWreathCycleDecomposition[101X
-  
-  [33X[1;0Y[29X[2XSparseWreathCycleDecomposition[102X( [3Xx[103X ) [32X attribute[133X
-  
-  [33X[0;0Yreturns the sparse wreath cycle decomposition of [3Xx[103X. The argument [3Xx[103X must be a
-  generic wreath product element. (see [14X1.3[114X)[133X
-  
-  [1X1.5-11 ConjugatorWreathCycleToSparse[101X
-  
-  [33X[1;0Y[29X[2XConjugatorWreathCycleToSparse[102X( [3Xx[103X ) [32X attribute[133X
-  
-  [33X[0;0Yreturns  a list of wreath product elements [22Xc_1, ..., c_l[122X, such that for each
-  wreath  cycle  [22Xw_k[122X  in  the  decompositon of [3Xx[103X, the element [22Xw_k^{c_k}[122X is the
-  corresponding  sparse  wreath cycle in the sparse wreath cycle decomposition
-  of [3Xx[103X. The argument [3Xx[103X must be a generic wreath product element. (see [14X1.3[114X)[133X
   

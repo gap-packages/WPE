@@ -8,7 +8,7 @@
 <script type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<title>GAP (WPE) - Chapter 2: Operations</title>
+<title>GAP (WPE) - Chapter 2: Functions</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -23,48 +23,120 @@
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3_mj.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap2.html">[MathJax off]</a></p>
-<p><a id="X7DE8E16C7C2D387B" name="X7DE8E16C7C2D387B"></a></p>
-<div class="ChapSects"><a href="chap2_mj.html#X7DE8E16C7C2D387B">2 <span class="Heading">Operations</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X8730A88E7DEB09F2">2.1 <span class="Heading">Operations List</span></a>
+<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
+<div class="ChapSects"><a href="chap2_mj.html#X86FA580F8055B274">2 <span class="Heading">Functions</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2_mj.html#X82B72BB07C506D3B">2.1 <span class="Heading">Function List</span></a>
 </span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7A13B6B47BA67183">2.1-1 ComponentsOfWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X84D9A60E8614F35E">2.1-2 TopGroupOfWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7E1A2F01848423EA">2.1-3 BaseGroupOfWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F1EB294829E86E5">2.1-4 TopComponentOfWreathProductElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X86B4BB78813D437E">2.1-5 BaseComponentOfWreathProductElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7C57D9497D8BBC23">2.1-6 Territory</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7F7DF936839FE1C7">2.1-7 IsWreathCycle</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X85C1618F78451F65">2.1-8 IsSparseWreathCycle</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X82BDC56A7B4298CE">2.1-9 WreathCycleDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X8774A5FB80432D63">2.1-10 SparseWreathCycleDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X811E86D882A03219">2.1-11 ConjugatorWreathCycleToSparse</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2_mj.html#X7ED422DB79830AF7">2.1-12 Yade</a></span>
+</div></div>
 </div>
-</div>
 
-<h3>2 <span class="Heading">Operations</span></h3>
+<h3>2 <span class="Heading">Functions</span></h3>
 
-<p>The generic wreath product elements and in particular their (sparse) wreath cycle decompositions can be used to speed up certain operations in wreath products.</p>
+<p>Here we include a list of all functions that are provided to the User.</p>
 
-<p>TODO:: Add tests or scripts that show that these operations are indeed faster in practice. (Unloaded vs. Loaded package) and (Matrix, Perm vs. Generic)</p>
+<p><a id="X82B72BB07C506D3B" name="X82B72BB07C506D3B"></a></p>
 
-<p><a id="X8730A88E7DEB09F2" name="X8730A88E7DEB09F2"></a></p>
+<h4>2.1 <span class="Heading">Function List</span></h4>
 
-<h4>2.1 <span class="Heading">Operations List</span></h4>
+<p>The following functions are designed to improve the User experience when working or experimenting with wreath products and their elements. Most functions are about presenting elements in an intuitive way and giving access to useful information.</p>
 
-<p>Here we include a list of operations that take advantage of the generic wreath product elements representation.</p>
+<p><a id="X7A13B6B47BA67183" name="X7A13B6B47BA67183"></a></p>
 
-<p>In the following <span class="SimpleMath">\(G = K \wr H\)</span> denotes a wreath product and <span class="SimpleMath">\(x,y \in G\)</span> are wreath product elements.</p>
+<h5>2.1-1 ComponentsOfWreathProduct</h5>
 
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ComponentsOfWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the groups [K, H] of <var class="Arg">W = K wr H</var>. The argument <var class="Arg">W</var> must be a wreath product. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
 
-<ul>
-<li><p><code class="code">Order(x)</code></p>
+<p><a id="X84D9A60E8614F35E" name="X84D9A60E8614F35E"></a></p>
 
-</li>
-<li><p><code class="code">x in G</code></p>
+<h5>2.1-2 TopGroupOfWreathProduct</h5>
 
-</li>
-<li><p><code class="code">RepresentativeAction(G, x, y)</code></p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopGroupOfWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the top group of the wreath product <var class="Arg">W</var>. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
 
-</li>
-<li><p><code class="code">IsConjugate(G, x, y)</code></p>
+<p><a id="X7E1A2F01848423EA" name="X7E1A2F01848423EA"></a></p>
 
-</li>
-<li><p><code class="code">Centraliser(G, x)</code></p>
+<h5>2.1-3 BaseGroupOfWreathProduct</h5>
 
-</li>
-<li><p><code class="code">ConjugacyClasses(G)</code></p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseGroupOfWreathProduct</code>( <var class="Arg">W</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the base group of the wreath product <var class="Arg">W</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th factor of the base group of <var class="Arg">W</var>. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
 
-</li>
-</ul>
+<p><a id="X7F1EB294829E86E5" name="X7F1EB294829E86E5"></a></p>
+
+<h5>2.1-4 TopComponentOfWreathProductElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopComponentOfWreathProductElement</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the top component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+
+<p><a id="X86B4BB78813D437E" name="X86B4BB78813D437E"></a></p>
+
+<h5>2.1-5 BaseComponentOfWreathProductElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseComponentOfWreathProductElement</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the base component of <var class="Arg">x</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th base component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element and the optional argument <var class="Arg">i</var> must be an integer. (see <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+
+<p><a id="X7C57D9497D8BBC23" name="X7C57D9497D8BBC23"></a></p>
+
+<h5>2.1-6 Territory</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Territory</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the territory of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X7F7DF936839FE1C7" name="X7F7DF936839FE1C7"></a></p>
+
+<h5>2.1-7 IsWreathCycle</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>tests whether <var class="Arg">x</var> is a wreath cycle. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X85C1618F78451F65" name="X85C1618F78451F65"></a></p>
+
+<h5>2.1-8 IsSparseWreathCycle</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSparseWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>tests whether <var class="Arg">x</var> is a sparse wreath cycle. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X855D897C7E0D01C7"><span class="RefLink">1.4</span></a>)</p>
+
+<p><a id="X82BDC56A7B4298CE" name="X82BDC56A7B4298CE"></a></p>
+
+<h5>2.1-9 WreathCycleDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<p><a id="X8774A5FB80432D63" name="X8774A5FB80432D63"></a></p>
+
+<h5>2.1-10 SparseWreathCycleDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SparseWreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the sparse wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X855D897C7E0D01C7"><span class="RefLink">1.4</span></a>)</p>
+
+<p><a id="X811E86D882A03219" name="X811E86D882A03219"></a></p>
+
+<h5>2.1-11 ConjugatorWreathCycleToSparse</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConjugatorWreathCycleToSparse</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a list of wreath product elements <span class="SimpleMath">\(c_1, \ldots, c_l\)</span>, such that for each wreath cycle <span class="SimpleMath">\(w_k\)</span> in the decompositon of <var class="Arg">x</var>, the element <span class="SimpleMath">\(w_k^{{c_k}}\)</span> is the corresponding sparse wreath cycle in the sparse wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1_mj.html#X855D897C7E0D01C7"><span class="RefLink">1.4</span></a>)</p>
+
+<p><a id="X7ED422DB79830AF7" name="X7ED422DB79830AF7"></a></p>
+
+<h5>2.1-12 Yade</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Yade</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the yade of the wreath cycle <var class="Arg">x</var> evaluated at the smallest territory point. If the optional argument <var class="Arg">i</var> is provided, the function returns the yade evaluated at the point <var class="Arg">i</var>. The argument <var class="Arg">x</var> must be a wreath cycle and the optional argument <var class="Arg">i</var> must be an integer. (see <a href="chap1_mj.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3_mj.html">[Next Chapter]</a>&nbsp;  </div>
 
