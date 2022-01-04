@@ -117,6 +117,7 @@ function(W, v)
     K := info.groups[1];
     H := info.groups[2];
     m := NrMovedPoints(H);
+    m := Maximum(1, m);
     # Sparse Decomposition
     # TODO: Remove Ugly Hack
     # Ugly Hack: deal with list rep

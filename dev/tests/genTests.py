@@ -16,7 +16,15 @@ if sys.argv[1:]:
 MEMORY = '3G'
 
 for ROOT in ['centraliser', 'conjugacyClasses'] :
-    Popen([GAP, '-q', '-o', MEMORY, 'generate.g'], cwd = ROOT, stdin=PIPE, stdout=PIPE, stderr=STDOUT,encoding='utf8')
+    print('Working in %s' % ROOT)
+
     OUT = ROOT+'/out'
+    if os.path.exists(OUT):
+        shutil.rmtree(OUT)
+
+    os.mkdir(OUT)
+
+    pop = Popen([GAP, '-q', '-o', MEMORY, 'generate.g'], cwd = ROOT, stdin=PIPE, stdout=PIPE, stderr=STDOUT,encoding='utf8')
+    pop.communicate()
     for FILE in [f for f in os.listdir(OUT) if os.path.isfile(os.path.join(OUT, f))] :
         shutil.copyfile(OUT+'/'+FILE, '../../tst/files/'+FILE)

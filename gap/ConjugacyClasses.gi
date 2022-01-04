@@ -101,6 +101,7 @@ function(W, H, RK, RH, hElm)
     ##################
     r := Length(RK);
     m := NrMovedPoints(H);
+    m := Maximum(1, m);
     # h is the decomposition of hElm sorted by cycle type.
     if hElm = () then
         h := [];
