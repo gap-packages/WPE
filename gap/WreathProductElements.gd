@@ -57,9 +57,9 @@ DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 ## <#/GAPDoc>
 DeclareAttribute( "WreathCycleDecomposition", IsWreathProductElement );
 
-## <#GAPDoc Label="SparseWreathCycleDecomposition">
+## <#GAPDoc Label="SparseWreathCycleConjugate">
 ## <ManSection>
-## <Attr Name="SparseWreathCycleDecomposition" Arg="x"/>
+## <Attr Name="SparseWreathCycleConjugate" Arg="x"/>
 ## <Description>
 ##   returns the sparse wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element.
@@ -67,7 +67,7 @@ DeclareAttribute( "WreathCycleDecomposition", IsWreathProductElement );
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareAttribute( "SparseWreathCycleDecomposition", IsWreathProductElement );
+DeclareAttribute( "SparseWreathCycleConjugate", IsWreathProductElement );
 
 ## <#GAPDoc Label="ConjugatorWreathCycleToSparse">
 ## <ManSection>

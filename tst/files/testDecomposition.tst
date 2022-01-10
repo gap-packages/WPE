@@ -4,7 +4,7 @@ gap> TestDecomp := function(iso, n)
 >     for i in [1..n] do
 >         x := PseudoRandom(W);
 >         wreathDecomp := WreathCycleDecomposition(x);
->         sparseDecomp := SparseWreathCycleDecomposition(x);
+>         sparseDecomp := SparseWreathCycleConjugate(x);
 >         conj := ConjugatorWreathCycleToSparse(x);
 >         if Product(wreathDecomp) <> x then
 >             return false;
