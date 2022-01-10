@@ -127,28 +127,30 @@ gap> W := Image(iso);
 # Elements in G are represented as permutations.
 # In this representation it is completely unclear
 # how the base and top components of this element look like.
-gap> g := (1,23,33,27,9,13,2,25,34,28,8,14,3,24,35,30,10,12,5,21,32,29,6,11,
-> 4,22,31,26,7,15)(18,19,20);;
+gap> g := (1,13,3,14,4,12,2,15,5,11)(6,31,21,7,35,25,9,33,23,8,34,24,10,32,22)(18,19,20);;
 gap> g in G;
 true
 
 # Elements in W are represented as generic wreath product elements
 # that makes it easy to read off the base and top component of the element.
 gap> x := g^iso;
-( (1,3,4,2,5), (2,5)(3,4), (1,4,3,2,5), (3,4,5), (1,2)(4,5), (1,2,4), 
-(2,4,3); (1,5,7,6,2,3) )
+( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
+
+# We compute the territory of x.
+gap> Territory(x);
+[ 1, 2, 3, 4, 5, 7 ]
 
 # We can display each component easily with the provided commands.
 gap> BaseComponentOfWreathProductElement(x, 2);
 (2,5)(3,4)
 gap> TopComponentOfWreathProductElement(x);
-(1,5,7,6,2,3)
+(1,3)(2,7,5)
 
 # Let us decompose the element into disjoint wreath cycles.
 gap> wreathDecomp := WreathCycleDecomposition(x);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
-  ( (1,3,4,2,5), (2,5)(3,4), (1,4,3,2,5), (), (1,2)(4,5), (1,2,4), (2,4,3); 
-    (1,5,7,6,2,3) ) ]
+  ( (1,3,4,2,5), (), (), (), (), (), (); (1,3) ), 
+  ( (), (2,5)(3,4), (), (), (1,2)(4,5), (), (); (2,7,5) ) ]
 
 # Now we want to bring these cycles into sparse form.
 # Each sparse wreath cycle is a very restricted element,
@@ -156,18 +158,21 @@ gap> wreathDecomp := WreathCycleDecomposition(x);
 # The product of these elements is a conjugate to x.
 gap> sparseDecomp := SparseWreathCycleDecomposition(x);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
-  ( (1,2,3,5,4), (), (), (), (), (), (); (1,5,7,6,2,3) ) ]
+  ( (1,3,4,2,5), (), (), (), (), (), (); (1,3) ), 
+  ( (), (1,2,4,3,5), (), (), (), (), (); (2,7,5) ) ]
 
 # We can also compute the conjugating elements to switch between
 # the wreath cycles and sparse wreath cycles.
 # The product of these elements conjugates the wreath cycles
 # simultaneously to the sparse wreath cycles.
 gap> conj := ConjugatorWreathCycleToSparse(x);
-[ ( (), (), (), (), (), (), (); () ), ( (), (1,4,2), (1,4,3,2,5), (), 
-    (1,4,5,3,2), (), (2,4,3); () ) ]
+[ ( (), (), (), (), (), (), (); () ), ( (), (), (), (), (), (), (); () ), 
+  ( (), (), (), (), (1,2)(4,5), (), (1,2)(4,5); () ) ]
 gap> wreathDecomp[1]^conj[1] = sparseDecomp[1];
 true
 gap> wreathDecomp[2]^conj[2] = sparseDecomp[2];
+true
+gap> wreathDecomp[3]^conj[3] = sparseDecomp[3];
 true
 ]]></Example>
 <P/>
