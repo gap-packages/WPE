@@ -61,7 +61,7 @@ In the following we outline a proof how to compute a decomposition of an arbitra
 into a product of disjoint wreath cycles: <P/>
 
 Decompose <M>\pi</M> into cycles, say <M>\pi = \pi_1 ... \pi_l</M>.
-For a set <M>I \leq \{1, \ldots, m\}</M> we define <M>f_I</M>
+For a set <M>I \subseteq \{1, \ldots, m\}</M> we define <M>f_I</M>
 as an element of <M>K^m</M> by setting
 <List>
     <Item> <M>[i]f_I := g_i</M>, if <M>i \in I</M> </Item>
