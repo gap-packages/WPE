@@ -56,7 +56,7 @@ by <M>\textrm{terr}(g) := \textrm{supp}(\pi) \cup \{i : g_i \neq 1\}</M>,
 where <M>\textrm{supp}(\pi)</M> denoted the set of moved points of <M>\pi</M>. <P/>
 
 An element <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is called a <E>wreath cycle</E> if
-either <M>\pi</M> is a cycle and <M>g_i = 1</M> for all <M>i \in fix(\pi)</M>
+either <M>\pi</M> is a cycle and <M>g_i = 1</M> for all <M>i \in \textrm{fix}(\pi)</M>
 or <M>|\textrm{terr}(g)| = 1</M>. <P/>
 
 In the following we outline a proof how to compute a decomposition of an arbitrary element of the wreath product <M>G = K \wr H</M>
@@ -69,10 +69,10 @@ as an element of <M>K^m</M> by setting
     <Item> <M>[i]f_I := g_i</M>, if <M>i \in I</M> </Item>
     <Item> <M>[i]f_I := 1_K</M>, else </Item>
 </List>
-For each cycle <M>\pi_r</M> we define <M>top_r := (f_{{\textrm{supp}(\pi_r)}}, \pi_r)</M>.
+For each cycle <M>\pi_r</M> we define <M>\textrm{top}_r := (f_{{\textrm{supp}(\pi_r)}}, \pi_r)</M>.
 For each point <M>i</M> such that <M>i \not \in \textrm{supp}(\pi)</M> and <M>g_i \neq 1_K</M>
-we define <M>base_i := (f_{\{i\}}, 1_H)</M>.
-Then <M>g</M> can be written as a product of the <M>top_r</M> and <M>base_i</M> elements
+we define <M>\textrm{base}_r := (f_{\{i\}}, 1_H)</M>.
+Then <M>g</M> can be written as a product of the <M>\textrm{top}_r</M> and <M>\textrm{base}_r</M> elements
 and all those element are wreath cycles with pairwise disjoint territory.
 Thus in particular these elements commute pairwise. <P/>
 
