@@ -21,6 +21,11 @@
 /doc/_*.xml
 /doc/WPE.xml
 /doc/title.xml
+# Some new files that popped up after changing the scaffolig in makedoc.g
+/doc/WPE.fdb_latexmk
+/doc/WPE.fls
+/doc/WPE.pdf
+/doc/WPE.synctex.gz
 # Ignore all from doc generated test files in /tst/
 # Manually created test files are located in /tst/files/
 /tst/*.tst
