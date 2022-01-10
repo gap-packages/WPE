@@ -243,9 +243,9 @@ function(x)
     return decomposition;
 end);
 
-InstallMethod( SparseWreathCycleDecomposition, "sparse wreath cycle wreath elements", true, [IsSparseWreathCycle], 2, function(x) return [x]; end);
+InstallMethod( SparseWreathCycleConjugate, "sparse wreath cycle wreath elements", true, [IsSparseWreathCycle], 2, function(x) return [x]; end);
 
-InstallMethod( SparseWreathCycleDecomposition, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
+InstallMethod( SparseWreathCycleConjugate, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
 function(x)
     local info, degI, yade, i, sparseWreathCycle;
 
@@ -262,15 +262,15 @@ function(x)
     return [Objectify(info.family!.defaultType,sparseWreathCycle)];
 end);
 
-InstallMethod( SparseWreathCycleDecomposition, "generic wreath elements", true, [IsWreathProductElement], 0,
+InstallMethod( SparseWreathCycleConjugate, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
     local decomposition;
 
     decomposition := WreathCycleDecomposition(x);
-    return Concatenation(List(decomposition, SparseWreathCycleDecomposition));
+    return Concatenation(List(decomposition, SparseWreathCycleConjugate));
 end);
 
-InstallOtherMethod( SparseWreathCycleDecomposition, "list rep of wreath elements", true, [IsList], 1,
+InstallOtherMethod( SparseWreathCycleConjugate, "list rep of wreath elements", true, [IsList], 1,
 function(w)
     local decomposition, sparseDecomposition, degI, yade, i, l, sparseWreathCycle, x;
 

@@ -22,7 +22,7 @@ and giving access to useful information.
 <#Include Label="IsWreathCycle">
 <#Include Label="IsSparseWreathCycle">
 <#Include Label="WreathCycleDecomposition">
-<#Include Label="SparseWreathCycleDecomposition">
+<#Include Label="SparseWreathCycleConjugate">
 <#Include Label="ConjugatorWreathCycleToSparse">
 <#Include Label="Yade">
 
