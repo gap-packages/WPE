@@ -406,7 +406,7 @@ function(x)
     degI := WPE_TopDegree(x);
     suppTop := MovedPoints(WPE_TopComponent(x));
     suppBase := Filtered([1..degI], i -> not IsOne(WPE_BaseComponent(x, i)));
-    return DuplicateFreeList(Concatenation(suppTop, suppBase));
+    return Set(Concatenation(suppTop, suppBase));
 end);
 
 InstallOtherMethod( Territory, "list rep of wreath elements", true, [IsList], 0,
@@ -416,7 +416,7 @@ function(x)
     degI := WPE_TopDegree(x);
     suppTop := MovedPoints(WPE_TopComponent(x));
     suppBase := Filtered([1..degI], i -> not IsOne(WPE_BaseComponent(x, i)));
-    return DuplicateFreeList(Concatenation(suppTop, suppBase));
+    return Set(Concatenation(suppTop, suppBase));
 end);
 
 InstallGlobalFunction( WPE_ChooseYadePoint,
