@@ -8,6 +8,7 @@ if fail = LoadPackage("AutoDoc", "2018.02.14") then
 fi;
 
 AutoDoc( rec( scaffold := rec(
+        bib := "wpe",
         includes := [
             "intro.xml",
             "functions.xml",
