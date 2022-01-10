@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with wreath products.
+# WPE: Provides efficient methods for working with wreath product elements.
 #
 # This file is a script which compiles the package manual.
 #

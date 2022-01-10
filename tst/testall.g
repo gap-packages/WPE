@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with wreath products.
+# WPE: Provides efficient methods for working with wreath product elements.
 #
 # This file runs package tests. It is also referenced in the package
 # metadata in PackageInfo.g.

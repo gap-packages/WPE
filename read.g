@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with wreath products.
+# WPE: Provides efficient methods for working with wreath product elements.
 #
 # Reading the implementation part of the package.
 #
