@@ -20,6 +20,10 @@ function(g, G)
     return ForAll([1 .. Length(l) - 1], i -> l[i] in K) and l[Length(l)] in H;
 end);
 
+# Dirty Hack
+BindGlobal( "WPE_GenericWreathProduct", ApplicableMethod(WreathProduct, [DihedralGroup(8), SymmetricGroup(3), IdentityMapping(SymmetricGroup(3))]
+));
+
 InstallMethod( IsomorphismToGenericWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
 function(G)
     local info, W, typ, iso;
@@ -32,81 +36,6 @@ function(G)
            g-> WreathProductElementList(W, ListWreathProductElement(G, g)),
            x -> WreathProductElementList(G, ListWreathProductElement(W, x)));
     return iso;
-end);
-
-# Code from GAP lib
-InstallGlobalFunction( WPE_GenericWreathProduct,
-function(G, H, alpha)
-    local I, n, fam, typ, gens, hgens, id, i, e, info, W, p, dom;
-    I:=Image(alpha,H);
-
-    # avoid sparse first points.
-    dom:=MovedPoints(I);
-    if Length(dom)=0 then
-        dom:=[1];
-        n:=1;
-    elif Maximum(dom)>Length(dom) then
-        alpha:=alpha*ActionHomomorphism(I,dom);
-        I:=Image(alpha,H);
-        n:=LargestMovedPoint(I);
-    else
-        n:=LargestMovedPoint(I);
-    fi;
-
-    fam:=NewFamily("WreathProductElemFamily",IsWreathProductElement);
-    typ:=NewType(fam,IsWreathProductElementDefaultRep);
-    fam!.defaultType:=typ;
-    info:=rec(groups:=[G,H],
-            family:=fam,
-                I:=I,
-            degI:=n,
-            alpha:=alpha,
-            embeddings:=[]);
-    fam!.info:=info;
-    if CanEasilyCompareElements(One(G)) then
-        SetCanEasilyCompareElements(fam,true);
-    fi;
-    if CanEasilySortElements(One(G)) then
-        SetCanEasilySortElements(fam,true);
-    fi;
-
-    gens:=[];
-    id:=ListWithIdenticalEntries(n,One(G));
-    Add(id,One(I));
-    info.identvec:=ShallowCopy(id);
-
-    for p in List(Orbits(I,[1..n]),i->i[1]) do
-        for i in GeneratorsOfGroup(G) do
-        e:=ShallowCopy(id);
-        e[p]:=i;
-        Add(gens,Objectify(typ,e));
-        od;
-    od;
-
-    info.basegens:=ShallowCopy(gens);
-    hgens:=[];
-    for i in GeneratorsOfGroup(H) do
-        e:=ShallowCopy(id);
-        e[n+1]:=Image(alpha,i);
-        Add(hgens,Objectify(typ,e));
-    od;
-    Append(gens,hgens);
-    info.hgens:=hgens;
-    SetOne(fam,Objectify(typ,id));
-    W:=Group(gens,One(fam));
-    SetWreathProductInfo(W,info);
-    SetIsWholeFamily(W,true);
-    if HasSize(G) then
-        if IsFinite(G) then
-        SetSize(W,Size(G)^n*Size(I));
-        else
-        SetSize(W,infinity);
-        fi;
-    fi;
-    if HasIsFinite(G) then
-        SetIsFinite(W,IsFinite(G));
-    fi;
-    return W;
 end);
 
 InstallMethod( PrintObj, "wreath elements", true, [IsWreathProductElement], 1,

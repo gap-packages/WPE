@@ -184,7 +184,6 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
-DeclareGlobalFunction( "WPE_GenericWreathProduct" );
 DeclareGlobalFunction( "WPE_IN" );
 
 #############################################################################
