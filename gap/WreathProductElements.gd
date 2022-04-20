@@ -7,8 +7,6 @@
 # Wreath Product Elements:
 #############################################################################
 
-WPE_PRINT_HORIZONTALLY := true;
-
 ## <#GAPDoc Label="Territory">
 ## <ManSection>
 ## <Attr Name="Territory" Arg="x"/>
@@ -99,7 +97,6 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareAttribute( "Yade", IsWreathCycle );
-DeclareGlobalFunction( "WPE_ChooseYadePoint" );
 
 ## <#GAPDoc Label="ComponentsOfWreathProduct">
 ## <ManSection>
@@ -184,7 +181,6 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
-DeclareGlobalFunction( "WPE_IN" );
 
 #############################################################################
 # Conjugacy Problem:
