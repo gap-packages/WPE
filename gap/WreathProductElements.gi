@@ -60,20 +60,175 @@ end);
 # Printing of elements
 #############################################################################
 
+#############################################################################
+# Printing of elements
+#############################################################################
+
+BindGlobal( "WPE_DisplayOptions", rec(
+    horizontal := true,
+    labels := true,
+));
+
+InstallMethod( ViewObj, "wreath elements", true, [IsWreathProductElement], 1,
+function(x)
+    local degI;
+    degI := WPE_TopDegree(x);
+    Print("< wreath product element with ", degI, " base components >");
+end);
+
 InstallMethod( PrintObj, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
 local i,L,tenToL,degI;
     degI := WPE_TopDegree(x);
+    Print("( ");
+    for i in [1..degI] do
+        Print(String(WPE_BaseComponent(x, i)));
+        if i < degI then
+            Print(", ");
+        fi;
+    od;
+    Print("; ",String(WPE_TopComponent(x))," )");
+end);
+
+InstallMethod( Display, "wreath elements", true, [IsWreathProductElement], 1,
+function(x)
+    local i, L, tenToL, degI, strElms, widthScreen, bufferLabels, bufferLines, widthLines, bufferElm, blanks, prefix, suffix, j, k, d, line, label;
+
+    degI := WPE_TopDegree(x);
+    widthScreen := SizeScreen()[1] - 2;
+
+    # string representations of each component
+    strElms := EmptyPlist(degI + 1);
+    for i in [1..degI] do
+        strElms[i] := String(WPE_BaseComponent(x, i));
+    od;
+    strElms[degI + 1] := String(WPE_TopComponent(x));
+
     # Print horizontally
-    if WPE_PRINT_HORIZONTALLY then
-        Print("( ");
-        for i in [1..degI] do
-            Print(WPE_BaseComponent(x, i));
+    if WPE_DisplayOptions.horizontal then
+        bufferLines := ["( "];
+        widthLines := 2;
+        blanks := Concatenation(List([1..widthLines], k -> " "));
+        if WPE_DisplayOptions.labels then
+            bufferLabels := blanks;
+        fi;
+        # Print Components
+        for i in [1..degI + 1] do
+            # Add prefix
+            if widthLines = Length(blanks) then
+                prefix := "";
+            else
+                prefix := " ";
+            fi;
+            # Add element to buffer
+            bufferElm := strElms[i];
+            # Add suffix
             if i < degI then
-                Print(", ");
+                suffix := ",";
+            elif i = degI then
+                suffix := ";";
+            fi;
+            # Element does not fit into the line, hence print and clear buffer
+            if Length(prefix) + Length(bufferElm) + Length(suffix) + widthLines > widthScreen then
+                if WPE_DisplayOptions.labels then
+                    if Length(bufferLabels) > Length(blanks) then
+                        Print(bufferLabels, "\n");
+                    fi;
+                fi;
+                if widthLines > Length(blanks) then
+                    for line in bufferLines do
+                        Print(line, "\n");
+                    od;
+                fi;
+                if WPE_DisplayOptions.labels then
+                    if Length(bufferLabels) > Length(blanks) then
+                        Print("\n");
+                    fi;
+                fi;
+                # The element is long, thus we need inline breaks.
+                # Print element directly and start clean buffer for next element.
+                if Length(bufferElm) + Length(suffix) > widthScreen then
+                    if WPE_DisplayOptions.labels then
+                        if i <= degI then
+                            label := String(i);
+                        else
+                            label := "top";
+                        fi;
+                        Print(Concatenation(List([1 .. Int((widthScreen - Length(label) - Length(blanks)) / 2) + Length(blanks)], k -> " ")), label, "\n");
+                    fi;
+                    j := 1;
+                    d := widthScreen - Length(blanks) - 3;
+                    bufferElm := Concatenation(bufferElm, suffix);
+                    while j <= Length(bufferElm) do
+                        k := Minimum(Length(bufferElm), j + d);
+                        if j > 1 then
+                            Print("\\\n");
+                        fi;
+                        # special case, if element does not fit into first line
+                        if j = 1 and bufferLines[1] = "( " then
+                            Print("( ", bufferElm{[j..k]});
+                        else
+                            Print(blanks, bufferElm{[j..k]});
+                        fi;
+                        j := k + 1;
+                    od;
+                    Print("\n\n");
+                    bufferLines := [blanks];
+                    widthLines := Length(blanks);
+                    bufferLabels := blanks;
+                # The element is short, hence add it to the clean buffer
+                else
+                    bufferLines := [Concatenation(blanks, bufferElm, suffix)];
+                    widthLines := Length(blanks) + Length(bufferElm) + Length(suffix);
+                    if WPE_DisplayOptions.labels then
+                        if i <= degI then
+                            label := String(i);
+                        else
+                            label := "top";
+                        fi;
+                        d := Int((Length(bufferElm) - Length(label)) / 2);
+                        bufferLabels := Concatenation(
+                            blanks,
+                            Concatenation(List([1 .. d], k -> " ")),
+                            label,
+                            Concatenation(List([1 .. Length(bufferElm) + Length(suffix) - Length(label) - d], k -> " "))
+                        );
+                    fi;
+                fi;
+            # The element fits into the line, thus we add it to buffer
+            else
+                bufferLines[1] := Concatenation(bufferLines[1], prefix, bufferElm, suffix);
+                widthLines := widthLines + Length(prefix) + Length(bufferElm) + Length(suffix);
+                if WPE_DisplayOptions.labels then
+                    if i <= degI then
+                        label := String(i);
+                    else
+                        label := "top";
+                    fi;
+                    d := Int((Length(bufferElm) - Length(label)) / 2);
+                    bufferLabels := Concatenation(
+                        bufferLabels,
+                        prefix,
+                        Concatenation(List([1 .. d], k -> " ")),
+                        label,
+                        Concatenation(List([1 .. Length(bufferElm) + Length(suffix) - Length(label) - d], k -> " "))
+                    );
+                fi;
             fi;
         od;
-            Print("; ",WPE_TopComponent(x)," )");
+        # Print suffix
+        bufferElm := " )";
+        if Length(bufferElm) + widthLines < widthScreen then
+            bufferLines[1] := Concatenation(bufferLines[1], bufferElm);
+        else
+            Append(bufferLines, bufferElm);
+        fi;
+        if WPE_DisplayOptions.labels then
+            Print(bufferLabels, "\n");
+        fi;
+        for line in bufferLines do
+            Print(line, "\n");
+        od;
     # Print vertically
     else
         # Length of Largest Number
@@ -84,11 +239,36 @@ local i,L,tenToL,degI;
             tenToL := tenToL * 10;
         od;
         L := Maximum(3, L);
-        # Current Length of Number
-        for i in [1..degI] do
-            Print(String(i, L), ": ", WPE_BaseComponent(x, i), "\n");
+        if WPE_DisplayOptions.labels then
+            blanks := Concatenation(List([1 .. L + 2], k -> " "));
+        else
+            blanks := Concatenation(List([1 .. 2], k -> " "));
+        fi;
+        # Print Components
+        for i in [1..degI + 1] do
+            if WPE_DisplayOptions.labels then
+                if i <= degI then
+                    label := i;
+                else
+                    label := "top";
+                fi;
+                Print(String(label, L), ": ");
+            fi;
+            # The element might be too long, thus we need inline breaks.
+            bufferElm := strElms[i];
+            j := 1;
+            d := widthScreen - Length(blanks) - 3;
+            while j <= Length(bufferElm) do
+                k := Minimum(Length(bufferElm), j + d);
+                if j = 1 then
+                    Print(bufferElm{[j..k]});
+                else
+                    Print("\\\n", blanks, bufferElm{[j..k]});
+                fi;
+                j := k + 1;
+            od;
+            Print("\n");
         od;
-        Print(String("top", L), ": ", WPE_TopComponent(x));
     fi;
 end);
 

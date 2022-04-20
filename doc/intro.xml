@@ -134,8 +134,15 @@ gap> g in G;
 true
 
 # Elements in W are represented as generic wreath product elements
-# that makes it easy to read off the base and top component of the element.
+# that makes it easy to read off the base and top component of the element
+# if you either print or display the element.
+# Otherwise, by default the element is printed in compressed form.
 gap> x := g^iso;
+< wreath product element with 7 base components >
+gap> Print(x);
+( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
+gap> Display(x);
+       1            2       3     4          5       6   7      top     
 ( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
 
 # We compute the territory of x.
@@ -149,7 +156,8 @@ gap> TopComponentOfWreathProductElement(x);
 (1,3)(2,7,5)
 
 # Let us decompose the element into disjoint wreath cycles.
-gap> wreathDecomp := WreathCycleDecomposition(x);
+gap> wreathDecomp := WreathCycleDecomposition(x);;
+gap> Print(wreathDecomp);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
   ( (1,3,4,2,5), (), (), (), (), (), (); (1,3) ), 
   ( (), (2,5)(3,4), (), (), (1,2)(4,5), (), (); (2,7,5) ) ]
@@ -158,7 +166,8 @@ gap> wreathDecomp := WreathCycleDecomposition(x);
 # Each sparse wreath cycle is a very restricted element,
 # since at most one entry in the base component is non-trivial.
 # The product of these elements is a conjugate to x.
-gap> sparseDecomp := SparseWreathCycleConjugate(x);
+gap> sparseDecomp := SparseWreathCycleConjugate(x);;
+gap> Print(sparseDecomp);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
   ( (1,3,4,2,5), (), (), (), (), (), (); (1,3) ), 
   ( (), (1,2,4,3,5), (), (), (), (), (); (2,7,5) ) ]
@@ -167,7 +176,8 @@ gap> sparseDecomp := SparseWreathCycleConjugate(x);
 # the wreath cycles and sparse wreath cycles.
 # The product of these elements conjugates the wreath cycles
 # simultaneously to the sparse wreath cycles.
-gap> conj := ConjugatorWreathCycleToSparse(x);
+gap> conj := ConjugatorWreathCycleToSparse(x);;
+gap> Print(conj);
 [ ( (), (), (), (), (), (), (); () ), ( (), (), (), (), (), (), (); () ), 
   ( (), (), (), (), (1,2)(4,5), (), (1,2)(4,5); () ) ]
 gap> wreathDecomp[1]^conj[1] = sparseDecomp[1];
