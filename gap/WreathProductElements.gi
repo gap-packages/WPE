@@ -64,10 +64,34 @@ end);
 # Printing of elements
 #############################################################################
 
-BindGlobal( "WPE_DisplayOptions", rec(
+BindGlobal( "WPE_DisplayOptionsDefault", rec(
     horizontal := true,
     labels := true,
 ));
+
+BindGlobal( "WPE_DisplayOptions", ShallowCopy(WPE_DisplayOptionsDefault));
+
+BindGlobal( "DisplayOptionsForWreathProductElements",
+function()
+    Display(WPE_DisplayOptions);
+end);
+
+BindGlobal( "SetDisplayOptionsForWreathProductElements",
+function(options)
+    local displayOptions, r;
+    displayOptions := WPE_DisplayOptions;
+    for r in RecNames(options) do
+        if not IsBound(options.(r)) then
+            ErrorNoReturn("Invalid option to Display: ", r);
+        fi;
+        displayOptions.(r) := options.(r);
+    od;
+end);
+
+BindGlobal( "ResetDisplayOptionsForWreathProductElements",
+function()
+    SetDisplayOptionsForWreathProductElements(WPE_DisplayOptionsDefault);
+end);
 
 InstallMethod( ViewObj, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
@@ -78,7 +102,7 @@ end);
 
 InstallMethod( PrintObj, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
-local i,L,tenToL,degI;
+    local i,L,tenToL,degI;
     degI := WPE_TopDegree(x);
     Print("( ");
     for i in [1..degI] do
@@ -92,7 +116,22 @@ end);
 
 InstallMethod( Display, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
-    local i, L, tenToL, degI, strElms, widthScreen, bufferLabels, bufferLines, widthLines, bufferElm, blanks, prefix, suffix, j, k, d, line, label;
+    Display(x, rec());
+end);
+
+InstallOtherMethod( Display, "wreath elements, and a record", [IsWreathProductElement, IsRecord],
+function(x, options)
+    local displayOptions, r, degI, widthScreen, strElms, bufferLabels, bufferLines, widthLines,
+          bufferElm, blanks, prefix, suffix, i, j, k, d, L, tenToL, line, label;
+
+    # setting display options
+    displayOptions := ShallowCopy(WPE_DisplayOptions);
+    for r in RecNames(options) do
+        if not IsBound(options.(r)) then
+            ErrorNoReturn("Invalid option to Display: ", r);
+        fi;
+        displayOptions.(r) := options.(r);
+    od;
 
     degI := WPE_TopDegree(x);
     widthScreen := SizeScreen()[1] - 2;
@@ -105,11 +144,11 @@ function(x)
     strElms[degI + 1] := String(WPE_TopComponent(x));
 
     # Print horizontally
-    if WPE_DisplayOptions.horizontal then
+    if displayOptions.horizontal then
         bufferLines := ["( "];
         widthLines := 2;
         blanks := Concatenation(List([1..widthLines], k -> " "));
-        if WPE_DisplayOptions.labels then
+        if displayOptions.labels then
             bufferLabels := blanks;
         fi;
         # Print Components
@@ -130,7 +169,7 @@ function(x)
             fi;
             # Element does not fit into the line, hence print and clear buffer
             if Length(prefix) + Length(bufferElm) + Length(suffix) + widthLines > widthScreen then
-                if WPE_DisplayOptions.labels then
+                if displayOptions.labels then
                     if Length(bufferLabels) > Length(blanks) then
                         Print(bufferLabels, "\n");
                     fi;
@@ -140,7 +179,7 @@ function(x)
                         Print(line, "\n");
                     od;
                 fi;
-                if WPE_DisplayOptions.labels then
+                if displayOptions.labels then
                     if Length(bufferLabels) > Length(blanks) then
                         Print("\n");
                     fi;
@@ -148,7 +187,7 @@ function(x)
                 # The element is long, thus we need inline breaks.
                 # Print element directly and start clean buffer for next element.
                 if Length(bufferElm) + Length(suffix) > widthScreen then
-                    if WPE_DisplayOptions.labels then
+                    if displayOptions.labels then
                         if i <= degI then
                             label := String(i);
                         else
@@ -180,7 +219,7 @@ function(x)
                 else
                     bufferLines := [Concatenation(blanks, bufferElm, suffix)];
                     widthLines := Length(blanks) + Length(bufferElm) + Length(suffix);
-                    if WPE_DisplayOptions.labels then
+                    if displayOptions.labels then
                         if i <= degI then
                             label := String(i);
                         else
@@ -199,7 +238,7 @@ function(x)
             else
                 bufferLines[1] := Concatenation(bufferLines[1], prefix, bufferElm, suffix);
                 widthLines := widthLines + Length(prefix) + Length(bufferElm) + Length(suffix);
-                if WPE_DisplayOptions.labels then
+                if displayOptions.labels then
                     if i <= degI then
                         label := String(i);
                     else
@@ -223,7 +262,7 @@ function(x)
         else
             Append(bufferLines, bufferElm);
         fi;
-        if WPE_DisplayOptions.labels then
+        if displayOptions.labels then
             Print(bufferLabels, "\n");
         fi;
         for line in bufferLines do
@@ -239,14 +278,14 @@ function(x)
             tenToL := tenToL * 10;
         od;
         L := Maximum(3, L);
-        if WPE_DisplayOptions.labels then
+        if displayOptions.labels then
             blanks := Concatenation(List([1 .. L + 2], k -> " "));
         else
             blanks := Concatenation(List([1 .. 2], k -> " "));
         fi;
         # Print Components
         for i in [1..degI + 1] do
-            if WPE_DisplayOptions.labels then
+            if displayOptions.labels then
                 if i <= degI then
                     label := i;
                 else
