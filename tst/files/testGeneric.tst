@@ -5,7 +5,7 @@ gap> iso := IsomorphismToGenericWreathProduct(G);;
 gap> W := Image(iso);;
 gap> g := (1,12,9,3,13,10,5,15,8)(2,14,7)(4,11,6);;
 gap> x := g^iso;;
-gap> Print(x);
+gap> Print(x, "\n");
 ( (1,2,4), (1,4,3), (2,4)(3,5); (1,3,2) )
 gap> BaseComponentOfWreathProductElement(x);
 [ (1,2,4), (1,4,3), (2,4)(3,5) ]
@@ -15,11 +15,11 @@ gap> TopComponentOfWreathProductElement(x);
 (1,3,2)
 gap> [K, H] = ComponentsOfWreathProduct(W);
 true
-gap> Print(GeneratorsOfGroup(BaseGroupOfWreathProduct(W)));
+gap> Print(GeneratorsOfGroup(BaseGroupOfWreathProduct(W)), "\n");
 [ ( (1,2,3,4,5), (), (); () ), ( (3,4,5), (), (); () ), 
   ( (), (1,2,3,4,5), (); () ), ( (), (3,4,5), (); () ), 
   ( (), (), (1,2,3,4,5); () ), ( (), (), (3,4,5); () ) ]
-gap> Print(GeneratorsOfGroup(BaseGroupOfWreathProduct(W, 2)));
+gap> Print(GeneratorsOfGroup(BaseGroupOfWreathProduct(W, 2)), "\n");
 [ ( (), (1,2,3,4,5), (); () ), ( (), (3,4,5), (); () ) ]
-gap> Print(GeneratorsOfGroup(TopGroupOfWreathProduct(W)));
+gap> Print(GeneratorsOfGroup(TopGroupOfWreathProduct(W)), "\n");
 [ ( (), (), (); (1,2,3) ), ( (), (), (); (1,2) ) ]
