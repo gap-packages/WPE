@@ -215,7 +215,7 @@ function(x, options)
                     od;
 
                     # extra space between labels and element
-                    if displayOptions.labels then
+                    if displayOptions.labels and i <= degI then
                         Print("\n");
                     fi;
 
