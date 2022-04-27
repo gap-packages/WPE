@@ -29,6 +29,7 @@
 # Ignore all from doc generated test files in /tst/
 # Manually created test files are located in /tst/files/
 /tst/*.tst
+/tst/files/doc/
 
 /bin/
 /gen/

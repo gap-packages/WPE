@@ -15,9 +15,5 @@ AutoDoc( rec( scaffold := rec(
             "operations.xml",
             ],
         ),
-        # disable extraction of examples for now,
-        # since Print methods are not handled corrently
-        # by the gap test suite.
-        #
-        # extract_examples := true,
+        extract_examples := true,
         autodoc := true ) );
