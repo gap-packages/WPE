@@ -6,7 +6,7 @@
 #
 LoadPackage( "WPE" );
 
-TestDirectory(DirectoriesPackageLibrary( "WPE", "tst"),
-  rec(exitGAP := true, exclude := ["broken/"]));
+TestDirectory(DirectoriesPackageLibrary( "WPE", "tst/files"),
+  rec(exitGAP := true));
 
 FORCE_QUIT_GAP(1); # if we ever get here, there was an error

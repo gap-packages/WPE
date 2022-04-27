@@ -162,6 +162,7 @@ function(x, options)
             # Add element to buffer
             bufferElm := strElms[i];
             # Add suffix
+            suffix := "";
             if i < degI then
                 suffix := ",";
             elif i = degI then
