@@ -17,6 +17,7 @@
 # Membership test for elements
 #############################################################################
 
+
 BindGlobal( "WPE_IN",
 function(g, G)
     local l, info, K, H;
@@ -33,9 +34,11 @@ end);
 InstallMethod( \in, "perm, and perm wreath product", true,[IsObject, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
 InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
 
+
 #############################################################################
 # Isomorphism to generic wreath product
 #############################################################################
+
 
 # Dirty Hack
 BindGlobal( "WPE_GenericWreathProduct", ApplicableMethod(WreathProduct,
@@ -56,19 +59,18 @@ function(G)
     return iso;
 end);
 
-#############################################################################
-# Printing of elements
-#############################################################################
 
 #############################################################################
 # Printing of elements
 #############################################################################
 
-BindGlobal( "WPE_DisplayOptionsDefault", rec(
+# Default options, immutable entries
+BindGlobal( "WPE_DisplayOptionsDefault", Immutable(rec(
     horizontal := true,
     labels := true,
-));
+)));
 
+# Current options, mutable entries
 BindGlobal( "WPE_DisplayOptions", ShallowCopy(WPE_DisplayOptionsDefault));
 
 BindGlobal( "DisplayOptionsForWreathProductElements",
@@ -76,16 +78,20 @@ function()
     Display(WPE_DisplayOptions);
 end);
 
-BindGlobal( "SetDisplayOptionsForWreathProductElements",
-function(options)
-    local displayOptions, r;
-    displayOptions := WPE_DisplayOptions;
-    for r in RecNames(options) do
-        if not IsBound(options.(r)) then
+BindGlobal( "WPE_SetDisplayOptions",
+function(optionsBase, optionsUpdate)
+    local r;
+    for r in RecNames(optionsUpdate) do
+        if not IsBound(optionsBase.(r)) then
             ErrorNoReturn("Invalid option to Display: ", r);
         fi;
-        displayOptions.(r) := options.(r);
+        optionsBase.(r) := optionsUpdate.(r);
     od;
+end);
+
+BindGlobal( "SetDisplayOptionsForWreathProductElements",
+function(options)
+    WPE_SetDisplayOptions(WPE_DisplayOptions, options);
 end);
 
 BindGlobal( "ResetDisplayOptionsForWreathProductElements",
@@ -126,12 +132,7 @@ function(x, options)
 
     # setting display options
     displayOptions := ShallowCopy(WPE_DisplayOptions);
-    for r in RecNames(options) do
-        if not IsBound(options.(r)) then
-            ErrorNoReturn("Invalid option to Display: ", r);
-        fi;
-        displayOptions.(r) := options.(r);
-    od;
+    WPE_SetDisplayOptions(displayOptions, options);
 
     degI := WPE_TopDegree(x);
     widthScreen := SizeScreen()[1] - 2;
@@ -318,9 +319,11 @@ function(x, options)
     fi;
 end);
 
+
 #############################################################################
 # (Sparse) Wreath Cycles
 #############################################################################
+
 
 InstallTrueMethod( IsWreathCycle, IsSparseWreathCycle );
 InstallTrueMethod( IsWreathProductElement, IsWreathCycle );
@@ -382,9 +385,11 @@ function(x)
     return WPE_IsSparseWreathCycle(x);
 end);
 
+
 #############################################################################
 # Wreath Product Element Attributes
 #############################################################################
+
 
 BindGlobal( "WPE_Territory",
 function(x)
