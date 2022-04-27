@@ -212,7 +212,13 @@ function(x, options)
                         fi;
                         j := k + 1;
                     od;
-                    Print("\n\n");
+
+                    # extra space between labels and element
+                    if displayOptions.labels then
+                        Print("\n");
+                    fi;
+
+                    Print("\n");
                     bufferLines := [blanks];
                     widthLines := Length(blanks);
                     bufferLabels := blanks;
