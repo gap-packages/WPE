@@ -676,30 +676,6 @@ function(w)
 end);
 
 #############################################################################
-# Order
-#############################################################################
-
-InstallMethod( Order, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
-function(x)
-    local info;
-
-    info := FamilyObj(x)!.info;
-    return Order(Yade(x)) * Order(WPE_TopComponent(x));
-end);
-
-InstallMethod( Order, "generic wreath elements", true, [IsWreathProductElement], 0,
-function(x)
-    local info, decomposition;
-
-    info := FamilyObj(x)!.info;
-    decomposition := WreathCycleDecomposition(x);
-    if IsEmpty(decomposition) then
-        return 1;
-    fi;
-    return Lcm(List(decomposition, Order));
-end);
-
-#############################################################################
 # Components
 #############################################################################
 

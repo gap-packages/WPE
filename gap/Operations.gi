@@ -1,6 +1,31 @@
 #############################################################################
 ##
-#M  ConjugacyClasses( <G> ) . . . . . . . . . . . . . . . . .  for wreath product
+#M  Order( <e> ) . . . . . . . . . . . . . . . . . for wreath product element
+##
+
+InstallMethod( Order, "wreath cycle wreath elements", true, [IsWreathCycle], 1,
+function(x)
+    local info;
+
+    info := FamilyObj(x)!.info;
+    return Order(Yade(x)) * Order(WPE_TopComponent(x));
+end);
+
+InstallMethod( Order, "generic wreath elements", true, [IsWreathProductElement], 0,
+function(x)
+    local info, decomposition;
+
+    info := FamilyObj(x)!.info;
+    decomposition := WreathCycleDecomposition(x);
+    if IsEmpty(decomposition) then
+        return 1;
+    fi;
+    return Lcm(List(decomposition, Order));
+end);
+
+#############################################################################
+##
+#M  ConjugacyClasses( <G> ) . . . . . . . . . . . . . . .  for wreath product
 ##
 InstallMethod( ConjugacyClasses, "for wreath product", true,
                [HasWreathProductInfo], OVERRIDENICE + 42,
@@ -47,7 +72,7 @@ end);
 
 #############################################################################
 ##
-#M  Centralizer( <G>, <e> ) . . . . . . . . . . . . . . for wreath products
+#M  Centralizer( <G>, <e> ) . . . . . . . . . . . . . . . for wreath products
 ##
 InstallMethod( CentralizerOp, "perm group,elm", IsCollsElms,
             [ HasWreathProductInfo, IsObject ], OVERRIDENICE + 42,
