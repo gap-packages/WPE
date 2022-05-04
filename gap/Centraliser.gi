@@ -113,7 +113,6 @@ function(W, v)
         return W;
     fi;
     # Init Data
-    info := WreathProductInfo(W);
     grps := ComponentsOfWreathProduct(W);
     K := grps[1];
     H := grps[2];
