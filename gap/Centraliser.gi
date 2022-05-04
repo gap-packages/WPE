@@ -8,7 +8,7 @@
 # The action is induced by permuting the cycles on the left side
 # and conjugating the cycles on the right side.
 #
-InstallGlobalFunction( WPE_PsiFunc,
+BindGlobal( "WPE_PsiFunc",
 function(h, gamma, m)
     local ord, k, involutionImage, longCycleImage;
     if Length(h) = 1 then
@@ -31,7 +31,7 @@ end);
 # This function returns a decomposition of t as a rec(e, sigma, pi0), such that
 # t = (prod_{i=1}^l ( prod_{j = 1}^{k_i} h[i, j] ^ e[i, j] ) * [sigma[i]]Psi_i ) * pi0
 #
-InstallGlobalFunction( WPE_StabDecomp,
+BindGlobal( "WPE_StabDecomp",
 function(t, h, gamma, GammaMinusTerr, terrDecomp, m)
     local l, i, ki, sigmaList, sigmaImage, j, point, psiFuncs, piList, pi, tBase, eList, ord, e;
     l := Length(gamma);
@@ -66,7 +66,7 @@ function(t, h, gamma, GammaMinusTerr, terrDecomp, m)
     fi;
 end);
 
-InstallGlobalFunction( WPE_Centraliser_Image,
+BindGlobal( "WPE_Centraliser_Image",
 function(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m)
     local tDecomp, i, j, ord, ki, k, e, sigma, pi0, l, a, s0, s1, gamma0;
     tDecomp := WPE_StabDecomp(t, h, gamma, GammaMinusTerr, terrDecomp, m);
@@ -101,7 +101,7 @@ function(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m)
     return a;
 end);
 
-InstallGlobalFunction( WPE_Centraliser,
+BindGlobal( "WPE_Centraliser",
 function(W, v)
     local info, K, H, m, conjToSparseUnsorted, conjToSparse, conjToSparseElm, conjToSparseProd, conjToSparseInv, conjToSparseInvProd,
     w, wPartitionData, partition, l, h,

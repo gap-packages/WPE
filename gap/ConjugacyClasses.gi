@@ -1,16 +1,4 @@
-InstallGlobalFunction( WPE_ConjugacyClasses,
-function(W)
-    local info, K, H, RK, RH, RW;
-    info := WreathProductInfo(W);
-    K := info.groups[1];
-    H := info.groups[2];
-    RK := List(ConjugacyClasses(K), Representative);
-    RH := List(ConjugacyClasses(H), Representative);
-    RW := List(RH, h -> WPE_ConjugacyClassesWithFixedTopClass(W, H, RK, RH, h));
-    return Concatenation(RW);
-end);
-
-InstallGlobalFunction( WPE_ConjugacyClassesWithFixedTopClass,
+BindGlobal( "WPE_ConjugacyClassesWithFixedTopClass",
 function(W, H, RK, RH, hElm)
     local r, m, h, cycles, cycleLength, l, fixPoints, omega, i, j, k, s,
           parts, part, blockStart, blockEnd, preTerritoryDecomposition,
@@ -319,4 +307,16 @@ function(W, H, RK, RH, hElm)
         od;
     od;
     return rep;
+end);
+
+BindGlobal( "WPE_ConjugacyClasses",
+function(W)
+    local info, K, H, RK, RH, RW;
+    info := WreathProductInfo(W);
+    K := info.groups[1];
+    H := info.groups[2];
+    RK := List(ConjugacyClasses(K), Representative);
+    RH := List(ConjugacyClasses(H), Representative);
+    RW := List(RH, h -> WPE_ConjugacyClassesWithFixedTopClass(W, H, RK, RH, h));
+    return Concatenation(RW);
 end);

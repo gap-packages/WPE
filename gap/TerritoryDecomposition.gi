@@ -1,5 +1,47 @@
+# `O(blockTopLength * nrOfBlocks)` many K-conjugacy problems.
+BindGlobal( "WPE_PartitionDataOfBlockTopByYadeClass",
+function(K, wDecompYade, blockTopStart, blockTopLength)
+    local blockMapping, blockConjugator, blockPartition, blockRepresentativePos, i, j, zYade, rPos, rYade, c, x;
+    # Maps each wreath cycle onto a block
+    blockMapping := EmptyPlist(blockTopLength);
+    # Stores the conjugating element from the representative onto the wreath cycle
+    blockConjugator := EmptyPlist(blockTopLength);
+    # Stores the size of each block
+    blockPartition := EmptyPlist(blockTopLength); # list can be smaller
+    # Stores for each block the position of the representative wreath cycle
+    # relative to the block.
+    blockRepresentativePos := EmptyPlist(blockTopLength); # list can be smaller
+    for i in [1 .. blockTopLength] do
+        zYade := wDecompYade[blockTopStart + i - 1];
+        # Compare yade with existing block representatives
+        for j in [1 .. Length(blockRepresentativePos)] do
+            rPos := blockRepresentativePos[j];
+            rYade := wDecompYade[blockTopStart + rPos - 1];
+            x := RepresentativeAction(K, rYade, zYade);
+            if x <> fail then
+                blockMapping[i] := j;
+                blockConjugator[i] := x;
+                blockPartition[j] := blockPartition[j] + 1;
+                break;
+            fi;
+        od;
+        # We found a new block
+        if not IsBound(blockMapping[i]) then
+            j := Length(blockPartition) + 1;
+            x := One(K);
+            blockMapping[i] := j;
+            blockConjugator[i] := x;
+            Add(blockPartition, 1);
+            Add(blockRepresentativePos, i);
+        fi;
+    od;
+    return rec( blockPartition  := blockPartition,
+                blockMapping    := blockMapping,
+                blockConjugator := blockConjugator );
+end);
+
 # Partition a decomposition of w by load, i.e. by top cycle type and yade class.
-InstallGlobalFunction( WPE_PartitionDataOfWreathCycleDecompositionByLoad,
+BindGlobal( "WPE_PartitionDataOfWreathCycleDecompositionByLoad",
 function(W, w, conjToSparse)
     local info, K, wDecomp, l, wDecompTopType, wSortByTopType, wDecompYade, partition, wBlockConjugator, blockTopStart, blockTopEnd, pos, blockTopLength, wBlockTopPartitionData, wBlockTopPartition, wBlockTopMapping, wBlockTopConjugator, wSortByLoad;
     # Initilize Wreath Product Info
@@ -67,46 +109,4 @@ function(W, w, conjToSparse)
                 wDecomp             := wDecomp,
                 wDecompYade         := wDecompYade,
                 wBlockConjugator    := wBlockConjugator );
-end);
-
-# `O(blockTopLength * nrOfBlocks)` many K-conjugacy problems.
-InstallGlobalFunction( WPE_PartitionDataOfBlockTopByYadeClass,
-function(K, wDecompYade, blockTopStart, blockTopLength)
-    local blockMapping, blockConjugator, blockPartition, blockRepresentativePos, i, j, zYade, rPos, rYade, c, x;
-    # Maps each wreath cycle onto a block
-    blockMapping := EmptyPlist(blockTopLength);
-    # Stores the conjugating element from the representative onto the wreath cycle
-    blockConjugator := EmptyPlist(blockTopLength);
-    # Stores the size of each block
-    blockPartition := EmptyPlist(blockTopLength); # list can be smaller
-    # Stores for each block the position of the representative wreath cycle
-    # relative to the block.
-    blockRepresentativePos := EmptyPlist(blockTopLength); # list can be smaller
-    for i in [1 .. blockTopLength] do
-        zYade := wDecompYade[blockTopStart + i - 1];
-        # Compare yade with existing block representatives
-        for j in [1 .. Length(blockRepresentativePos)] do
-            rPos := blockRepresentativePos[j];
-            rYade := wDecompYade[blockTopStart + rPos - 1];
-            x := RepresentativeAction(K, rYade, zYade);
-            if x <> fail then
-                blockMapping[i] := j;
-                blockConjugator[i] := x;
-                blockPartition[j] := blockPartition[j] + 1;
-                break;
-            fi;
-        od;
-        # We found a new block
-        if not IsBound(blockMapping[i]) then
-            j := Length(blockPartition) + 1;
-            x := One(K);
-            blockMapping[i] := j;
-            blockConjugator[i] := x;
-            Add(blockPartition, 1);
-            Add(blockRepresentativePos, i);
-        fi;
-    od;
-    return rec( blockPartition  := blockPartition,
-                blockMapping    := blockMapping,
-                blockConjugator := blockConjugator );
 end);

@@ -64,6 +64,7 @@ end);
 # Printing of elements
 #############################################################################
 
+
 # Default options, immutable entries
 BindGlobal( "WPE_DisplayOptionsDefault", Immutable(rec(
     horizontal := true,
