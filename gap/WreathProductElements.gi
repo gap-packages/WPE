@@ -20,14 +20,14 @@
 
 BindGlobal( "WPE_IN",
 function(g, G)
-    local l, info, K, H;
+    local l, grps, K, H;
     l := ListWreathProductElement(G, g);
     if l = fail then
         return false;
     fi;
-    info := WreathProductInfo(G);
-    K := info.groups[1];
-    H := info.groups[2];
+    grps := ComponentsOfWreathProduct(G);
+    K := grps[1];
+    H := grps[2];
     return ForAll([1 .. Length(l) - 1], i -> l[i] in K) and l[Length(l)] in H;
 end);
 
@@ -47,12 +47,12 @@ BindGlobal( "WPE_GenericWreathProduct", ApplicableMethod(WreathProduct,
 
 InstallMethod( IsomorphismToGenericWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
 function(G)
-    local info, W, typ, iso;
-    info := WreathProductInfo(G);
-    if not IsPermGroup(info.groups[2]) then
+    local grps, W, typ, iso;
+    grps := ComponentsOfWreathProduct(G);
+    if not IsPermGroup(grps[2]) then
         ErrorNoReturn("Top group of <G> must be a permutation group");
     fi;
-    W := WPE_GenericWreathProduct(info.groups[1], info.groups[2], IdentityMapping(info.groups[2]));
+    W := WPE_GenericWreathProduct(grps[1], grps[2], IdentityMapping(grps[2]));
     iso := GroupHomomorphismByFunction(G, W,
            g-> WreathProductElementList(W, ListWreathProductElement(G, g)),
            x -> WreathProductElementList(G, ListWreathProductElement(W, x)));
@@ -832,12 +832,13 @@ end);
 
 InstallMethod( WPE_BaseGroup, "wreath product", true, [HasWreathProductInfo], 0,
 function(W)
-    local info, degI;
+    local info, degI, grps;
 
     info := WreathProductInfo(W);
     degI := WPE_TopDegree(W);
+    grps := ComponentsOfWreathProduct(W);
     if not IsBound(info.base) then
-        info.base := Group(Concatenation(List([1 .. degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x ^ Embedding(W, i)))));
+        info.base := Group(Concatenation(List([1 .. degI], i -> List(GeneratorsOfGroup(grps[1]), x -> x ^ Embedding(W, i)))));
     fi;
     return info.base;
 end);

@@ -311,10 +311,10 @@ end);
 
 BindGlobal( "WPE_ConjugacyClasses",
 function(W)
-    local info, K, H, RK, RH, RW;
-    info := WreathProductInfo(W);
-    K := info.groups[1];
-    H := info.groups[2];
+    local grps, K, H, RK, RH, RW;
+    grps := ComponentsOfWreathProduct(W);
+    K := grps[1];
+    H := grps[2];
     RK := List(ConjugacyClasses(K), Representative);
     RH := List(ConjugacyClasses(H), Representative);
     RW := List(RH, h -> WPE_ConjugacyClassesWithFixedTopClass(W, H, RK, RH, h));
