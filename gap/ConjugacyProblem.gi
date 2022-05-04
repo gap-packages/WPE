@@ -306,13 +306,13 @@ end);
 BindGlobal( "WPE_RepresentativeAction",
 function(W, x, y)
     local
-        info, degI, K, H, partitionData, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
+        degI, grps, K, H, partitionData, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
         topConditionsData, sourcePartitionInvariant, imagePartitionInvariant, cTop, cBase;
     # initilize wreath product info
-    info := WreathProductInfo(W);
     degI := WPE_TopDegree(W);
-    K := info.groups[1];
-    H := info.groups[2];
+    grps := ComponentsOfWreathProduct(W);
+    K := grps[1];
+    H := grps[2];
     # partition wreath cycle decompositions by top length and yade class
     partitionData := WPE_RepresentativeAction_PartitionByTopAndYadeClass(K, x, y);
     if partitionData = fail then

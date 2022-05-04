@@ -43,11 +43,11 @@ end);
 # Partition a decomposition of w by load, i.e. by top cycle type and yade class.
 BindGlobal( "WPE_PartitionDataOfWreathCycleDecompositionByLoad",
 function(W, w, conjToSparse)
-    local info, K, wDecomp, l, wDecompTopType, wSortByTopType, wDecompYade, partition, wBlockConjugator, blockTopStart, blockTopEnd, pos, blockTopLength, wBlockTopPartitionData, wBlockTopPartition, wBlockTopMapping, wBlockTopConjugator, wSortByLoad;
+    local grps, K, wDecomp, l, wDecompTopType, wSortByTopType, wDecompYade, partition, wBlockConjugator, blockTopStart, blockTopEnd, pos, blockTopLength, wBlockTopPartitionData, wBlockTopPartition, wBlockTopMapping, wBlockTopConjugator, wSortByLoad;
     # Initilize Wreath Product Info
     # Let m be the degree of the Top Group
-    info := WreathProductInfo(W);
-    K := info.groups[1];
+    grps := ComponentsOfWreathProduct(W);
+    K := grps[1];
     # Compute wreath cycles `C(w) = {w_1 ... w_l}`.
     # `O(m)`
     wDecomp := ShallowCopy(WreathCycleDecomposition(w));

@@ -103,7 +103,7 @@ end);
 
 BindGlobal( "WPE_Centraliser",
 function(W, v)
-    local info, K, H, m, conjToSparseUnsorted, conjToSparse, conjToSparseElm, conjToSparseProd, conjToSparseInv, conjToSparseInvProd,
+    local grps, K, H, m, conjToSparseUnsorted, conjToSparse, conjToSparseElm, conjToSparseProd, conjToSparseInv, conjToSparseInvProd,
     w, wPartitionData, partition, l, h,
     gamma, wTerr, GammaMinusTerr, f, x, gammaPoints, gammaPoint, z, shift, blockLength,
     i, j, k, CK, terrDecomp, ki, T, CKgens, Kgens, Tgens, nrGens,
@@ -114,8 +114,9 @@ function(W, v)
     fi;
     # Init Data
     info := WreathProductInfo(W);
-    K := info.groups[1];
-    H := info.groups[2];
+    grps := ComponentsOfWreathProduct(W);
+    K := grps[1];
+    H := grps[2];
     m := NrMovedPoints(H);
     m := Maximum(1, m);
     # Sparse Decomposition
