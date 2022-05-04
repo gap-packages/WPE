@@ -69,6 +69,7 @@ end);
 BindGlobal( "WPE_DisplayOptionsDefault", Immutable(rec(
     horizontal := true,
     labels := true,
+    boldLabels := false,
 )));
 
 # Current options, mutable entries
@@ -174,7 +175,13 @@ function(x, options)
             if Length(prefix) + Length(bufferElm) + Length(suffix) + widthLines > widthScreen then
                 if displayOptions.labels then
                     if Length(bufferLabels) > Length(blanks) then
+                        if displayOptions.boldLabels then
+                            Print("\033[1m");
+                        fi;
                         Print(bufferLabels, "\n");
+                        if displayOptions.boldLabels then
+                            Print("\033[0m");
+                        fi;
                     fi;
                 fi;
                 if widthLines > Length(blanks) then
@@ -272,7 +279,13 @@ function(x, options)
             Append(bufferLines, bufferElm);
         fi;
         if displayOptions.labels then
+            if displayOptions.boldLabels then
+                Print("\033[1m");
+            fi;
             Print(bufferLabels, "\n");
+            if displayOptions.boldLabels then
+                Print("\033[0m");
+            fi;
         fi;
         for line in bufferLines do
             Print(line, "\n");
@@ -300,7 +313,13 @@ function(x, options)
                 else
                     label := "top";
                 fi;
+                if displayOptions.boldLabels then
+                    Print("\033[1m");
+                fi;
                 Print(String(label, L), ": ");
+                if displayOptions.boldLabels then
+                    Print("\033[0m");
+                fi;
             fi;
             # The element might be too long, thus we need inline breaks.
             bufferElm := strElms[i];
