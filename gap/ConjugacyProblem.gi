@@ -306,10 +306,11 @@ end);
 BindGlobal( "WPE_RepresentativeAction",
 function(W, x, y)
     local
-        info, K, H, partitionData, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
+        info, degI, K, H, partitionData, xDecomp, yDecomp, partition, partitionConjugator, xBlockConjugator, yBlockConjugator,
         topConditionsData, sourcePartitionInvariant, imagePartitionInvariant, cTop, cBase;
     # initilize wreath product info
     info := WreathProductInfo(W);
+    degI := WPE_TopDegree(W);
     K := info.groups[1];
     H := info.groups[2];
     # partition wreath cycle decompositions by top length and yade class
@@ -329,7 +330,7 @@ function(W, x, y)
         return fail;
     fi;
     # construct the base component for the conjugator c
-    cBase := WPE_RepresentativeAction_Base(cTop, info!.degI, K, xDecomp, yDecomp, partition, partitionConjugator,
+    cBase := WPE_RepresentativeAction_Base(cTop, degI, K, xDecomp, yDecomp, partition, partitionConjugator,
                                            xBlockConjugator, yBlockConjugator);
     return WreathProductElementList(W, Concatenation(cBase, [cTop]));
 end);

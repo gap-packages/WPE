@@ -696,17 +696,19 @@ function(x)
     return WPE_TopComponent(x);
 end);
 
+BindGlobal( "WPE_TopComponent_Elm",
+function(x)
+    return x![WPE_TopDegree(x) + 1];
+end);
+
 InstallMethod( WPE_TopComponent, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
-    local info;
-
-    info := FamilyObj(x)!.info;
-    return x![info.degI + 1];
+    return WPE_TopComponent_Elm(x);
 end);
 
 InstallOtherMethod( WPE_TopComponent, "list rep of wreath elements", true, [IsList], 0,
 function(x)
-    return x[Length(x)];
+    return WPE_TopComponent_Elm(x);
 end);
 
 InstallGlobalFunction( TopGroupOfWreathProduct,
@@ -719,10 +721,7 @@ end);
 
 InstallMethod( WPE_TopGroup, "wreath product", true, [HasWreathProductInfo], 0,
 function(W)
-    local info;
-
-    info := WreathProductInfo(W);
-    return Image(Embedding(W, info!.degI + 1));
+    return Image(Embedding(W, WPE_TopDegree(W) + 1));
 end);
 
 InstallMethod( WPE_TopDegree, "generic wreath elements", true, [IsWreathProductElement], 0,
@@ -738,9 +737,17 @@ function(x)
     return Length(x) - 1;
 end);
 
+InstallOtherMethod( WPE_TopDegree, "wreath product", true, [HasWreathProductInfo], 0,
+function(W)
+    local info;
+
+    info := WreathProductInfo(W);
+    return info.degI;
+end);
+
 InstallGlobalFunction( BaseComponentOfWreathProductElement,
 function(arg)
-    local info, x, i;
+    local degI, x, i;
 
     if Length(arg) > 2 then
         return Error("wrong number of arguments");
@@ -749,7 +756,7 @@ function(arg)
     if not IsWreathProductElement(x) then
         return Error("x is not a wreath product element");
     fi;
-    info := FamilyObj(x)!.info;
+    degI := WPE_TopDegree(x);
     if Length(arg) = 1 then
         return WPE_BaseComponent(x);
     else
@@ -757,42 +764,49 @@ function(arg)
         if not IsInt(i) then
             return Error("i must be an integer");
         fi;
-        if i < 1 or i > info.degI then
+        if i < 1 or i > degI then
         return Error("Index out of bounds");
         fi;
         return WPE_BaseComponent(x, i);
     fi;
 end);
 
+BindGlobal( "WPE_BaseComponent_Elm",
+function(x)
+    local degI;
+
+    degI := WPE_TopDegree(x);
+    return List([1 .. degI], i -> WPE_BaseComponent(x, i));
+end);
+
 InstallMethod( WPE_BaseComponent, "generic wreath elements", true, [IsWreathProductElement], 0,
 function(x)
-    local info;
-
-    info := FamilyObj(x)!.info;
-    return List([1 .. info.degI], i -> x![i]);
+    return WPE_BaseComponent_Elm(x);
 end);
 
 InstallOtherMethod( WPE_BaseComponent, "list rep of wreath elements", true, [IsList], 0,
 function(x)
-    local degI;
-
-    degI := Length(x) - 1;
-    return List([1 .. degI], i -> x[i]);
+    return WPE_BaseComponent_Elm(x);
 end);
 
-InstallOtherMethod( WPE_BaseComponent, "generic wreath elements and integer", true, [IsWreathProductElement, IsInt], 0,
+BindGlobal( "WPE_BaseComponent_ElmAndInt",
 function(x, i)
     return x![i];
 end);
 
+InstallOtherMethod( WPE_BaseComponent, "generic wreath elements and integer", true, [IsWreathProductElement, IsInt], 0,
+function(x, i)
+    return WPE_BaseComponent_ElmAndInt(x, i);
+end);
+
 InstallOtherMethod( WPE_BaseComponent, "list rep of wreath elements", true, [IsList, IsInt], 0,
 function(x, i)
-    return x[i];
+    return WPE_BaseComponent_ElmAndInt(x, i);
 end);
 
 InstallGlobalFunction( BaseGroupOfWreathProduct,
 function(arg)
-    local info, W, i;
+    local degI, W, i;
 
     if Length(arg) > 2 then
         return Error("wrong number of arguments");
@@ -801,7 +815,7 @@ function(arg)
     if not HasWreathProductInfo(W) then
         return Error("W is not a wreath product");
     fi;
-    info := WreathProductInfo(W);
+    degI := WPE_TopDegree(W);
     if Length(arg) = 1 then
         return WPE_BaseGroup(W);
     else
@@ -809,7 +823,7 @@ function(arg)
         if not IsInt(i) then
             return Error("i must be an integer");
         fi;
-        if i < 1 or i > info.degI then
+        if i < 1 or i > degI then
             return Error("Index out of bounds");
         fi;
         return WPE_BaseGroup(W, i);
@@ -818,11 +832,12 @@ end);
 
 InstallMethod( WPE_BaseGroup, "wreath product", true, [HasWreathProductInfo], 0,
 function(W)
-    local info;
+    local info, degI;
 
     info := WreathProductInfo(W);
+    degI := WPE_TopDegree(W);
     if not IsBound(info.base) then
-        info.base := Group(Concatenation(List([1 .. info.degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x ^ Embedding(W, i)))));
+        info.base := Group(Concatenation(List([1 .. degI], i -> List(GeneratorsOfGroup(info.groups[1]), x -> x ^ Embedding(W, i)))));
     fi;
     return info.base;
 end);
