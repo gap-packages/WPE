@@ -1,11 +1,22 @@
-#
-# WPE: Provides efficient methods for working with wreath product elements.
-#
+#############################################################################
+##  WreathProductElements.gd
+#############################################################################
+##
+##  This file is part of the WPE package.
+##
+##  This file's authors include Friedrich Rober.
+##
+##  Please refer to the COPYRIGHT file for details.
+##
+##  SPDX-License-Identifier: GPL-2.0-or-later
+##
+#############################################################################
 
 
 #############################################################################
 # Wreath Product Elements:
 #############################################################################
+
 
 ## <#GAPDoc Label="Territory">
 ## <ManSection>
@@ -55,31 +66,8 @@ DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 ## <#/GAPDoc>
 DeclareAttribute( "WreathCycleDecomposition", IsWreathProductElement );
 
-## <#GAPDoc Label="SparseWreathCycleConjugate">
-## <ManSection>
-## <Attr Name="SparseWreathCycleConjugate" Arg="x"/>
-## <Description>
-##   returns the sparse wreath cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
-## </Description>
-## </ManSection>
-## <#/GAPDoc>
+# TODO: Replace these attributes
 DeclareAttribute( "SparseWreathCycleConjugate", IsWreathProductElement );
-
-## <#GAPDoc Label="ConjugatorWreathCycleToSparse">
-## <ManSection>
-## <Attr Name="ConjugatorWreathCycleToSparse" Arg="x"/>
-## <Description>
-##   returns a list of wreath product elements <M>c_1, \ldots, c_l</M>,
-##   such that for each wreath cycle <M>w_k</M> in the decompositon of <A>x</A>,
-##   the element <M>w_k^{{c_k}}</M> is the corresponding sparse wreath cycle
-##   in the sparse wreath cycle decomposition of <A>x</A>.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
-## </Description>
-## </ManSection>
-## <#/GAPDoc>
 DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 
 ## <#GAPDoc Label="Yade">
@@ -91,12 +79,17 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the yade evaluated at the point <A>i</A>.
 ##   The argument <A>x</A> must be a wreath cycle
-##   and the optional argument <A>i</A> must be an integer.
+##   and the optional argument <A>i</A> must be an integer
+##   from the territory of <A>x</A>.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareAttribute( "Yade", IsWreathCycle );
+
+#############################################################################
+# Components:
+#############################################################################
 
 ## <#GAPDoc Label="ComponentsOfWreathProduct">
 ## <ManSection>
@@ -167,9 +160,11 @@ DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 DeclareGlobalFunction( "BaseGroupOfWreathProduct" );
 DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 
+
 #############################################################################
 # Isomorphism:
 #############################################################################
+
 
 ## <#GAPDoc Label="IsomorphismToGenericWreathProduct">
 ## <ManSection>
@@ -181,37 +176,3 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
-
-#############################################################################
-# Conjugacy Problem:
-#############################################################################
-
-DeclareGlobalFunction( "WPE_RepresentativeAction" );
-DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionByTopAndYadeClass" );
-DeclareGlobalFunction( "WPE_RepresentativeAction_PartitionBlockTopByYadeClass" );
-DeclareGlobalFunction( "WPE_RepresentativeAction_BlockMapping" );
-DeclareGlobalFunction( "WPE_RepresentativeAction_Top" );
-DeclareGlobalFunction( "WPE_RepresentativeAction_Base" );
-
-#############################################################################
-# Conjugacy Classes:
-#############################################################################
-
-DeclareGlobalFunction( "WPE_ConjugacyClasses" );
-DeclareGlobalFunction( "WPE_ConjugacyClassesWithFixedTopClass" );
-
-#############################################################################
-# Territory Decomposition:
-#############################################################################
-
-DeclareGlobalFunction( "WPE_PartitionDataOfWreathCycleDecompositionByLoad" );
-DeclareGlobalFunction( "WPE_PartitionDataOfBlockTopByYadeClass" );
-
-#############################################################################
-# Centraliser:
-#############################################################################
-
-DeclareGlobalFunction( "WPE_PsiFunc" );
-DeclareGlobalFunction( "WPE_StabDecomp" );
-DeclareGlobalFunction( "WPE_Centraliser_Image" );
-DeclareGlobalFunction( "WPE_Centraliser" );
