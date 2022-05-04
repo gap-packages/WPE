@@ -14,6 +14,7 @@ gap> Display(x);
 gap> SetDisplayOptionsForWreathProductElements(rec(horizontal := false));;
 gap> DisplayOptionsForWreathProductElements();
 rec(
+  boldLabels := false,
   horizontal := false,
   labels := true )
 gap> Display(x);
