@@ -21,9 +21,9 @@ esac
 # - Move files into test_dir
 test_dir="tst/files/doc"
 mkdir -p $test_dir
-files=$(ls -1 tst/wpe*.tst)
+files=($(ls -1 tst/wpe*.tst))
 echo "Found ${#files[@]} test file(s)"
-for file in $files; do
+for file in ${files[@]}; do
     echo "Processing $file"
     if [ "${machine}" == "Mac" ]; then
         sed -i "" 's|Print(\(.*\));|Print(\1, \"\\n\");|g' $file
