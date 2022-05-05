@@ -11,6 +11,7 @@ AutoDoc( rec( scaffold := rec(
         bib := "wpe",
         includes := [
             "intro.xml",
+            "tutorial.xml",
             "functions.xml",
             "operations.xml",
             ],
