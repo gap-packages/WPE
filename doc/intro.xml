@@ -1,15 +1,13 @@
-<!--
-This chapter gives a short introduction and explains the notation
-behind the Package.
--->
-
 <Chapter Label="Introduction">
 <Heading>Introduction</Heading>
+
+This chapter gives a short introduction and explains the notation
+of the package &WPE;.
 
 <Section Label="Intro Overview">
 <Heading>Overview</Heading>
 
-The package <Package>WPE</Package> is about wreath product elements in their generic representation.
+The package &WPE; is about wreath product elements in their generic representation.
 This representation is more intuitive to the User when working with wreath products
 and additionally may have computational benefits over other representations. <P/>
 
@@ -18,7 +16,7 @@ The implementations are based on <Cite Key="wpeConjugacy"/> and references there
 For a complete list of operations that exploit the generic representation, see Chapter <Ref Chap="Operations"/>. <P/>
 
 For example, the computation of all <M>886,640</M> conjugacy classses of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
-takes about 12 seconds with <Package>WPE</Package> vs. about TODO minutes with native <Package>GAP</Package>.
+takes about 12 seconds with &WPE; vs. about TODO minutes with native &GAP;.
 </Section>
 
 <Section Label="Intro Notation">
@@ -30,7 +28,7 @@ The wreath product is defined as the semidirect product
 of the function space <M>K^m</M> with <M>H</M>,
 where <M>\pi \in H</M> acts on <M>f \in K^m</M>
 by setting <M>f^{{\pi}} : \{1, \ldots, m\} \rightarrow K, i \mapsto [(i)\pi^{{-1}}]f</M>.
-We denote the parent wreath product by <M>S = K \wr \textrm{Sym}(m) \geq G</M>. <P/>
+We denote the parent wreath product by <M>P = K \wr \textrm{Sym}(m) \geq G</M>. <P/>
 
 Formally we can write an element of <M>G</M> as a tuple <M>g = (f, \pi) \in G</M>,
 where <M>f \in K^m </M> is a function <M>f : \{1, \ldots, m\} \rightarrow K </M>
@@ -42,8 +40,10 @@ where each <M>g_i \in K</M> is the image of <M>i \in \{1, \ldots, m\}</M> under 
 This yields a second useful notation for elements in <M>G</M> by writing
 <M>g = (g_1, \ldots, g_m; \pi)</M>.
 Note that we use a semicolon to seperate the base component from the top component.
-Further we call the element <M>g_i</M> the <E><M>i</M>-th base component</E> of <M>g</M>.
+Further we call the element <M>g_i</M> the <E><M>i</M>-th base component</E> of <M>g</M>. <P/>
 
+Analogous, the subgroup <M>B = K^m \times \langle 1_H \rangle \leq G</M> is called the <E>base group</E> of <M>G</M>
+and the subgroup <M>T = \langle 1_K \rangle^m \times H \leq G</M> is called the <E>top group</E> of <M>G</M>.
 </Section>
 
 <Section Label="Wreath Cycle">
@@ -56,7 +56,7 @@ that allows us to solve certain computational tasks more efficiently. <P/>
 Detailed information on <E>wreath cycle decompositions</E> can be found in Chapter 2 in <Cite Key="wpeConjugacy"/>.
 Chapters 3-5 in <Cite Key="wpeConjugacy"/> describe how these can be exploited
 for finding conjugating elements, conjugacy classes, and centralisers,
-and Chapter 6 in <Cite Key="wpeConjugacy"/> contains a table of timings of sample computations done with <Package>WPE</Package> vs. native <Package>GAP</Package>. <P/>
+and Chapter 6 in <Cite Key="wpeConjugacy"/> contains a table of timings of sample computations done with &WPE; vs. native &GAP;. <P/>
 
 We use the notation from <Ref Sect="Intro Notation"/> in order to introduce the following concepts. <P/>
 
@@ -64,7 +64,7 @@ We use the notation from <Ref Sect="Intro Notation"/> in order to introduce the 
 by <M>\textrm{terr}(g) := \textrm{supp}(\pi) \cup \{i : g_i \neq 1\}</M>,
 where <M>\textrm{supp}(\pi)</M> denotes the set of moved points of <M>\pi</M>. <P/>
 
-<M>\bf\text{Definition:}</M> Say that two elements <M>g, h \in G</M> are disjoint if their territories are disjoint. <P/>
+<M>\bf\text{Definition:}</M> Two elements <M>g, h \in G</M> are said to be <E>disjoint</E> if their territories are disjoint. <P/>
 
 <M>\bf\text{Lemma:}</M> Disjoint elements in <M>G</M> commute. <P/>
 
@@ -83,7 +83,7 @@ is a wreath cycle as described in the first case and the element
 is a wreath cycle as described in the second case. Moreover, these elements are disjoint and thus commute.<P/>
 
 <M>\bf\text{Theorem:}</M> Every element of <M>G</M> can be written as a finite product
-of disjoint wreath cycles in <M>S</M>.
+of disjoint wreath cycles in <M>P</M>.
 This decomposition is unique up to ordering of the factors.
 We call such a decomposition a <E>wreath cycle decomposition</E>. <P/>
 
@@ -96,8 +96,8 @@ We use the notation from <Ref Sect="Intro Notation"/> in order to introduce the 
 
 The main motivation for introducing the concept of <E>sparse wreath cycles</E>
 is the efficient computation of centralisers of wreath product elements.
-Simply put, we compute the centraliser of an arbitrary element <M>g \in S</M> in <M>G</M>
-by conjugating it to a restricted representative <M>h = g^c \in S</M>
+Simply put, we compute the centraliser of an arbitrary element <M>g \in P</M> in <M>G</M>
+by conjugating it to a restricted representative <M>h = g^c \in P</M>
 and computing the centraliser of <M>h</M> in <M>G</M>.
 The wreath cycle decomposition of the representative <M>h</M>
 consists only of sparse wreath cycles.<P/>
@@ -114,10 +114,10 @@ if there exists an <M>i_0</M> such that <M>g_i = 1</M> for all <M>i \neq i_0</M>
 </Display>
 is a sparse wreath cycle, as well as the element
 <Display Mode="M">
-{\bf(} \;\; (),\, (),\, (1,3),\, (),\, ();\, () \;\; {\bf)}.
+{\bf(} \;\; (),\, (),\, (1,3),\, (),\, ();\, () \;\; {\bf)} \;.
 </Display><P/>
 
-<M>\bf\text{Theorem:}</M> Every element <M>g \in S</M> can be conjugated by some <M>c \in G</M> to an element <M>h = g^c \in S</M>
+<M>\bf\text{Theorem:}</M> Every element <M>g \in P</M> can be conjugated by some <M>c \in K^m \times \langle 1_H \rangle \leq P</M> to an element <M>h = g^c \in P</M>
 such that the wreath cycle decomposition of <M>h</M>
 consists only of sparse wreath cycles.
 
@@ -141,7 +141,7 @@ gap> G := WreathProduct(K, H);
 <permutation group of size 14108774400000000 with 4 generators>
 
 # Construct an isomorphism to the generic wreath product
-# that is provided in this Package.
+# that is provided in WPE.
 gap> iso := IsomorphismToGenericWreathProduct(G);;
 gap> W := Image(iso);
 <group of size 14108774400000000 with 4 generators>
@@ -178,7 +178,7 @@ gap> TopComponentOfWreathProductElement(x);
 gap> Territory(x);
 [ 1, 2, 3, 4, 5, 7 ]
 
-# Finally, let us compute the disjoint wreath cycle decompistion,
+# Finally, let us compute the disjoint wreath cycle decomposition,
 # i.e. the analogue of the disjoint cycle decomposition of a permutation.
 gap> wreathDecomp := WreathCycleDecomposition(x);;
 gap> Print(wreathDecomp);
