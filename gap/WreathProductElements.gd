@@ -58,7 +58,8 @@ DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 ## <ManSection>
 ## <Attr Name="WreathCycleDecomposition" Arg="x"/>
 ## <Description>
-##   returns the wreath cycle decomposition of <A>x</A>.
+##   returns the wreath cycle decomposition of <A>x</A>,
+##   i.e. a list containing wreath cycles.
 ##   The argument <A>x</A> must be a wreath product element.
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
@@ -87,9 +88,11 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ## <#/GAPDoc>
 DeclareAttribute( "Yade", IsWreathCycle );
 
+
 #############################################################################
 # Components:
 #############################################################################
+
 
 ## <#GAPDoc Label="ComponentsOfWreathProduct">
 ## <ManSection>

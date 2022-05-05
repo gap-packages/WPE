@@ -4,6 +4,9 @@
 The generic representation of wreath product elements and in particular their (sparse) wreath cycle decompositions
 can be used to speed up certain operations in wreath products. <P/>
 
+In particular this package provides efficient methods for finding conjugating elements, conjugacy classes, and centralisers.
+The implementations are based on <Cite Key="wpeConjugacy"/> and references therein.
+
 <Section Label="Operations List">
 <Heading>Operations List</Heading>
 
@@ -13,7 +16,9 @@ of the generic representation of wreath product elements.<P/>
 We include python scripts in the <C>dev/</C> directory that benchmark
 the &WPE; and native &GAP; implementations of these operations separately.
 The comparison of the runtimes admits of the conclusion that the &WPE; implementations are
-a magnitude faster than the native &GAP; implementations.<P/>
+a magnitude faster than the native &GAP; implementations.
+We can now solve these computational tasks for large wreath products
+that were previously not feasible in &GAP;<P/>
 
 <Subsection Label="Wreath Product Representations">
 <Heading>Wreath Product Representations</Heading>
