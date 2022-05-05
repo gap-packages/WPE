@@ -18,21 +18,24 @@ gap> LoadPackage("WPE");;
 # that is embedded into a symmetric group.
 # This is the native GAP wreath product command.
 gap> K := AlternatingGroup(5);;
-gap> H := SymmetricGroup(7);;
+gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);
-<permutation group of size 14108774400000000 with 4 generators>
+<permutation group of size 311040000 with 10 generators>
 
+###############################################################################
 # The method `WreathProductElementList` is the preferred way to create
 # a wreath product element by specifying its components.
-gap> gList := [ (2,3,5), (1,4,3), (1,3,2,5,4), (2,5,4), (2,3)(4,5), (1,2)(3,4), (1,5,2,4,3), (1,4,7)(2,3,5,6) ];;
+gap> gList := [ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3)(2,4) ];;
 gap> g := WreathProductElementList(G, gList);
-(1,16,31,5,17,35,2,18,33)(3,20,34)(4,19,32)(6,14,21,26,7,12,25,29,8,11,23,27)(9,13,22,28)(10,15,24,30)
+(1,15,3,11,5,12)(2,14)(4,13)(6,18,8,20)(7,19,10,17)(9,16)
 gap> g in G;
 true
+
 # On the other hand, the method `ListWreathProductElement` can be used
 # to get a list containing the components of a wreath product element.
 gap> ListWreathProductElement(G, g) = gList;
 true
+
 # The package author has implemented these methods in GAP lib
 # in order to translate between list representations
 # of wreath product elements and other representations.
@@ -44,14 +47,15 @@ true
 gap> IsWreathCycle(gList);
 false
 
+###############################################################################
 # If the wreath product element is "sparse", i.e. has only a few non-trivial components,
 # it might be easier to create it by embedding its non-trivial components
 # into G directly and taking the product.
 # Note however, that `WreathProductElementList` might be faster than this approach.
-gap> h := (1,2,3)^Embedding(G,3) * (1,5,2,4,3)^Embedding(G,6) * (1,3,6)^Embedding(G, 8);
-(1,11,27,4,14,29,3,13,26,5,15,30,2,12,28)
+gap> h := (1,2,3)^Embedding(G,2) * (1,5,2,4,3)^Embedding(G,4) * (1,2,4)^Embedding(G, 5);
+(1,6,17,4,9,19,3,8,16,5,10,20,2,7,18)
 gap> hList := ListWreathProductElement(G, h);
-[ (), (), (1,2,3), (), (), (1,5,2,4,3), (), (1,3,6) ]
+[ (), (1,2,3), (), (1,5,2,4,3), (1,2,4) ]
 gap> IsWreathCycle(hList);
 true
 ]]></Example>
@@ -67,13 +71,14 @@ how we can display wreath products elements in an intuitive way.
 <P/>
 <Example><![CDATA[
 gap> LoadPackage("WPE");;
+
 # Construct an imprimitive wreath product
 # that is embedded into a symmetric group.
 # This is the native GAP wreath product command.
 gap> K := AlternatingGroup(5);;
-gap> H := SymmetricGroup(7);;
+gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);
-<permutation group of size 14108774400000000 with 4 generators>
+<permutation group of size 311040000 with 10 generators>
 
 # Construct an isomorphism to the generic wreath product that is provided in WPE.
 # In the background, we use the Low-Level functions
@@ -81,73 +86,71 @@ gap> G := WreathProduct(K, H);
 # and wrap the list representations in a `WreathProductElement` representation.
 gap> iso := IsomorphismToGenericWreathProduct(G);;
 gap> W := Image(iso);
-<group of size 14108774400000000 with 4 generators>
+<group of size 311040000 with 4 generators>
 
+###############################################################################
 # Suppose we are given some element in the group G,
 # and would like to view its components in a nice way.
-gap> g := (1,16,31,5,17,35,2,18,33)(3,20,34)(4,19,32)(6,14,21,26,7,12,25,29,8,11,23,27)(9,13,22,28)(10,15,24,30);;
+gap> g := (1,15,8,20)(2,14,7,19,5,12,6,18,3,11,10,17)(4,13,9,16);;
+
 # First we translate the element g into a generic wreath product element.
 gap> w := g ^ iso;
-< wreath product element with 7 base components >
+< wreath product element with 4 base components >
 
 # If we want to print this element in a "machine-readable" way,
 # we could use one of the following methods.
 gap> Print(w);
-( (2,3,5), (1,4,3), (1,3,2,5,4), (2,5,4), (2,3)(4,5), (1,2)(3,4), (1,5,2,4,3); (1,4,7)(2,3,5,6) )
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
 gap> L := ListWreathProductElement(W, w);
-[ (2,3,5), (1,4,3), (1,3,2,5,4), (2,5,4), (2,3)(4,5), (1,2)(3,4), (1,5,2,4,3), (1,4,7)(2,3,5,6) ]
+[ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3,2,4) ]
 gap> L = ListWreathProductElement(G, g);
 true
 
 # Usually, we want to display this element in a nice format instead,
 # which is "human-readable" and allows us to quickly distinguish components.
 gap> Display(w);
-     1        2          3          4         5           6            7             top       
-( (2,3,5), (1,4,3), (1,3,2,5,4), (2,5,4), (2,3)(4,5), (1,2)(3,4), (1,5,2,4,3); (1,4,7)(2,3,5,6) )
+       1            2            3          4        top   
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
 
 # There are many display options available for adjusting the display behaviour for wreath product elements to your liking.
 # For example, we might want to display the element vertically.
 # We can do this only once for the `Display` command without changing the default display options like this:
 gap> Display(w, rec(horizontal := false));
-  1: (2,3,5)
-  2: (1,4,3)
-  3: (1,3,2,5,4)
-  4: (2,5,4)
-  5: (2,3)(4,5)
-  6: (1,2)(3,4)
-  7: (1,5,2,4,3)
-top: (1,4,7)(2,3,5,6)
+  1: (1,5,2,4,3)
+  2: (1,3,5,2,4)
+  3: (1,5,3,4,2)
+  4: (1,4,5)
+top: (1,3,2,4)
 gap> Display(w);
-     1        2          3          4         5           6            7             top       
-( (2,3,5), (1,4,3), (1,3,2,5,4), (2,5,4), (2,3)(4,5), (1,2)(3,4), (1,5,2,4,3); (1,4,7)(2,3,5,6) )
+       1            2            3          4        top   
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
 
 # We can also change the default display options via the following command.
 gap> SetDisplayOptionsForWreathProductElements(rec(horizontal := false));
 gap> Display(w);
-  1: (2,3,5)
-  2: (1,4,3)
-  3: (1,3,2,5,4)
-  4: (2,5,4)
-  5: (2,3)(4,5)
-  6: (1,2)(3,4)
-  7: (1,5,2,4,3)
-top: (1,4,7)(2,3,5,6)
+  1: (1,5,2,4,3)
+  2: (1,3,5,2,4)
+  3: (1,5,3,4,2)
+  4: (1,4,5)
+top: (1,3,2,4)
 
 # All changes to the default behaviour can be reverted via the following command.
 gap> ResetDisplayOptionsForWreathProductElements();
 gap> Display(w);
-     1        2          3          4         5           6            7             top       
-( (2,3,5), (1,4,3), (1,3,2,5,4), (2,5,4), (2,3)(4,5), (1,2)(3,4), (1,5,2,4,3); (1,4,7)(2,3,5,6) )
+       1            2            3          4        top   
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
 
 # But sometimes, it is sufficient to just look at some components of a wreath product element.
 # We can directly use the list representation to access the components on a Low-Level
 # or we can use High-Level functions on wreath product elements instead.
 gap> a := BaseComponentOfWreathProductElement(w, 3);
-(1,3,2,5,4)
+(1,5,3,4,2)
 gap> a = L[3];
+true
 gap> b := TopComponentOfWreathProductElement(w);
-(1,4,7)(2,3,5,6)
-gap> b = L[8];
+(1,3,2,4)
+gap> b = L[5];
+true
 ]]></Example>
 <P/>
 
