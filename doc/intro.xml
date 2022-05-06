@@ -18,7 +18,7 @@ For a complete list of operations that exploit the generic representation, see C
 For example, the computation of all <M>886\,640</M> conjugacy classses of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
 takes about 12 seconds with &WPE;. With native &GAP; this computation is not feasible. <P/>
 <Example><![CDATA[
-gap> LoadPackage("WPE");
+gap> LoadPackage("WPE");;
 gap> K := MathieuGroup(22);;
 gap> H := AlternatingGroup(9);;
 gap> G := WreathProduct(K, H);;
