@@ -81,7 +81,7 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ##   the function returns the yade evaluated at the point <A>i</A>.
 ##   The argument <A>x</A> must be a wreath cycle
 ##   and the optional argument <A>i</A> must be an integer
-##   from the territory of <A>x</A>.
+##   from the territory of <A>x</A>. See Definition 11 in <Cite Key="wpeConjugacy"/>
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
