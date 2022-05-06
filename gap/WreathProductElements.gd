@@ -106,11 +106,11 @@ DeclareGlobalFunction( "DisplayOptionsForWreathProductElements" );
 
 ## <#GAPDoc Label="SetDisplayOptionsForWreathProductElements">
 ## <ManSection>
-## <Func Name="SetDisplayOptionsForWreathProductElements" Arg="opts"/>
+## <Func Name="SetDisplayOptionsForWreathProductElements" Arg="optrec"/>
 ## <Description>
 ##   sets the current global display options for wreath product elements. <P/>
-##   The argument <A>opts</A> must be a record with components that are valid display options. (see <Ref Label="Display Functions"/>)
-##   The components for the current global display options are set to the values specified by the components in <A>opts</A>.
+##   The argument <A>optrec</A> must be a record with components that are valid display options. (see <Ref Label="Display Functions"/>)
+##   The components for the current global display options are set to the values specified by the components in <A>optrec</A>.
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
