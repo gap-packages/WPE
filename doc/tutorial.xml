@@ -58,7 +58,9 @@ it might be easier to create it by embedding its non-trivial components
 into <M>G</M> directly and taking the product.
 Note however, that <C>WreathProductElementList</C> might be faster. <P/>
 <Example><![CDATA[
-gap> h := (1,2,3)^Embedding(G,2) * (1,5,2,4,3)^Embedding(G,4) * (1,2,4)^Embedding(G, 5);
+gap> h := (1,2,3) ^ Embedding(G,2)
+        * (1,5,2,4,3) ^ Embedding(G,4)
+        * (1,2,4) ^ Embedding(G, 5);
 (1,6,17,4,9,19,3,8,16,5,10,20,2,7,18)
 gap> hList := ListWreathProductElement(G, h);
 [ (), (1,2,3), (), (1,5,2,4,3), (1,2,4) ]
