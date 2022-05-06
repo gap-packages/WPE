@@ -75,7 +75,7 @@ BindGlobal( "WPE_DisplayOptionsDefault", Immutable(rec(
 # Current options, mutable entries
 BindGlobal( "WPE_DisplayOptions", ShallowCopy(WPE_DisplayOptionsDefault));
 
-BindGlobal( "DisplayOptionsForWreathProductElements",
+InstallGlobalFunction( DisplayOptionsForWreathProductElements,
 function()
     Display(WPE_DisplayOptions);
 end);
@@ -91,12 +91,12 @@ function(optionsBase, optionsUpdate)
     od;
 end);
 
-BindGlobal( "SetDisplayOptionsForWreathProductElements",
+InstallGlobalFunction( SetDisplayOptionsForWreathProductElements,
 function(options)
     WPE_SetDisplayOptions(WPE_DisplayOptions, options);
 end);
 
-BindGlobal( "ResetDisplayOptionsForWreathProductElements",
+InstallGlobalFunction( ResetDisplayOptionsForWreathProductElements,
 function()
     SetDisplayOptionsForWreathProductElements(WPE_DisplayOptionsDefault);
 end);

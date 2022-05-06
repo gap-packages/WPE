@@ -90,6 +90,44 @@ DeclareAttribute( "Yade", IsWreathCycle );
 
 
 #############################################################################
+# Display:
+#############################################################################
+
+
+## <#GAPDoc Label="DisplayOptionsForWreathProductElements">
+## <ManSection>
+## <Func Name="DisplayOptionsForWreathProductElements" Arg=""/>
+## <Description>
+##   prints the current global display options for wreath product elements.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "DisplayOptionsForWreathProductElements" );
+
+## <#GAPDoc Label="SetDisplayOptionsForWreathProductElements">
+## <ManSection>
+## <Func Name="SetDisplayOptionsForWreathProductElements" Arg="opts"/>
+## <Description>
+##   sets the current global display options for wreath product elements. <P/>
+##   The argument <A>opts</A> must be a record with components that are valid display options. (see <Ref Label="Display Functions"/>)
+##   The components for the current global display options are set to the values specified by the components in <A>opts</A>.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+
+DeclareGlobalFunction( "SetDisplayOptionsForWreathProductElements" );
+## <#GAPDoc Label="ResetDisplayOptionsForWreathProductElements">
+## <ManSection>
+## <Func Name="ResetDisplayOptionsForWreathProductElements" Arg=""/>
+## <Description>
+##   resets the current global display options for wreath product elements to default.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "ResetDisplayOptionsForWreathProductElements" );
+
+
+#############################################################################
 # Components:
 #############################################################################
 
@@ -174,7 +212,23 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## <Oper Name="IsomorphismToGenericWreathProduct" Arg="G"/>
 ## <Description>
 ##   returns an isomorphism from a specialized wreath product <A>G</A>
-##   to a generic wreath product.
+##   to a generic wreath product. <P/>
+## <Example><![CDATA[
+## gap> K := AlternatingGroup(5);;
+## gap> H := SymmetricGroup(4);;
+## gap> G := WreathProduct(K, H);
+## <permutation group of size 311040000 with 10 generators>
+## gap> iso := IsomorphismToGenericWreathProduct(G);;
+## gap> W := Image(iso);
+## <group of size 311040000 with 4 generators>
+## ]]></Example>
+##   For an overview on wreath product representation in &GAP; see <Ref Sect="Wreath Product Representations"/>. <P/>
+##   In the background, it uses the Low-Level functions
+##   <C>ListWreathProductElement</C> and <C>WreathProductElementList</C>
+##   and wraps the <C>IsList</C> representations into <C>IsWreathProductElement</C> representations. <P/>
+##   For performant code, we recommend to use these Low-Level functions instead of <C>IsomorphismToGenericWreathProduct</C>.
+##   All functions for <C>IsWreathProductElement</C> also work on <C>IsList</C> objects that represent a wreath product element.
+##   However, it is not checked that the <C>IsList</C> object actually represents a wreath product element.
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
