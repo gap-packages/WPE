@@ -16,7 +16,16 @@ The implementations are based on <Cite Key="wpeConjugacy"/> and references there
 For a complete list of operations that exploit the generic representation, see Chapter <Ref Chap="Operations"/>. <P/>
 
 For example, the computation of all <M>886\,640</M> conjugacy classses of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
-takes about 12 seconds with &WPE; vs. about TODO minutes with native &GAP;.
+takes about 12 seconds with &WPE;. With native &GAP; this computation is not feasible. <P/>
+<Example><![CDATA[
+gap> LoadPackage("WPE");
+gap> K := MathieuGroup(22);;
+gap> H := AlternatingGroup(9);;
+gap> G := WreathProduct(K, H);;
+gap> C := ConjugacyClasses(G);;
+gap> Size(C);
+886640
+]]></Example>
 </Section>
 
 <Section Label="Intro Notation">
