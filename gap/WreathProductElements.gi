@@ -69,7 +69,8 @@ end);
 BindGlobal( "WPE_DisplayOptionsDefault", Immutable(rec(
     horizontal := true,
     labels := true,
-    boldLabels := false,
+    labelStyle := "none",
+    labelColor := "black",
 )));
 
 # Current options, mutable entries
@@ -87,8 +88,35 @@ function(optionsBase, optionsUpdate)
         if not IsBound(optionsBase.(r)) then
             ErrorNoReturn("Invalid option to Display: ", r);
         fi;
+        if r = "labelStyle" and not optionsUpdate.(r) in ["none", "bold", "faint"] then
+            ErrorNoReturn("Invalid value to labelStyle: ", optionsUpdate.(r));
+        fi;
+        if r = "labelColor" and not optionsUpdate.(r) in ["black", "red", "blue"] then
+            ErrorNoReturn("Invalid value to labelStyle: ", optionsUpdate.(r));
+        fi;
         optionsBase.(r) := optionsUpdate.(r);
     od;
+end);
+
+BindGlobal("WPE_SetLabelFont",
+function(options)
+    # Intensity
+    if options.labelStyle = "bold" then
+        WriteAll(STDOut, "\033[1m");
+    elif options.labelStyle = "faint" then
+        WriteAll(STDOut, "\033[2m");
+    fi;
+    # Color
+    if options.labelColor = "red" then
+        WriteAll(STDOut, "\033[31m");
+    elif options.labelColor = "blue" then
+        WriteAll(STDOut, "\033[34m");
+    fi;
+end);
+
+BindGlobal("WPE_IsLabelFontDefault",
+function(options)
+    return options.labelStyle = "none" and options.labelColor = "black";
 end);
 
 InstallGlobalFunction( SetDisplayOptionsForWreathProductElements,
@@ -173,17 +201,13 @@ function(x, options)
             fi;
             # Element does not fit into the line, hence print and clear buffer
             if Length(prefix) + Length(bufferElm) + Length(suffix) + widthLines > widthScreen then
+                WPE_SetLabelFont(displayOptions);
                 if displayOptions.labels then
                     if Length(bufferLabels) > Length(blanks) then
-                        if displayOptions.boldLabels then
-                            Print("\033[1m");
-                        fi;
                         Print(bufferLabels, "\n");
-                        if displayOptions.boldLabels then
-                            Print("\033[0m");
-                        fi;
                     fi;
                 fi;
+                WriteAll(STDOut, "\033[0m");
                 if widthLines > Length(blanks) then
                     for line in bufferLines do
                         Print(line, "\n");
@@ -278,15 +302,11 @@ function(x, options)
         else
             Append(bufferLines, bufferElm);
         fi;
+        WPE_SetLabelFont(displayOptions);
         if displayOptions.labels then
-            if displayOptions.boldLabels then
-                Print("\033[1m");
-            fi;
             Print(bufferLabels, "\n");
-            if displayOptions.boldLabels then
-                Print("\033[0m");
-            fi;
         fi;
+        WriteAll(STDOut, "\033[0m");
         for line in bufferLines do
             Print(line, "\n");
         od;
@@ -307,20 +327,22 @@ function(x, options)
         fi;
         # Print Components
         for i in [1..degI + 1] do
+            WPE_SetLabelFont(displayOptions);
             if displayOptions.labels then
                 if i <= degI then
                     label := i;
                 else
                     label := "top";
                 fi;
-                if displayOptions.boldLabels then
-                    Print("\033[1m");
-                fi;
-                Print(String(label, L), ": ");
-                if displayOptions.boldLabels then
-                    Print("\033[0m");
+                # Hack for test suite
+                if WPE_IsLabelFontDefault(displayOptions) then
+                    Print(String(label, L) , ": ");
+                else
+                    WriteAll(STDOut, String(label, L));
+                    WriteAll(STDOut, ": ");
                 fi;
             fi;
+            WriteAll(STDOut, "\033[0m");
             # The element might be too long, thus we need inline breaks.
             bufferElm := strElms[i];
             j := 1;
