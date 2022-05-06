@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>GAP (WPE) - Chapter 2: Functions</title>
+<title>GAP (WPE) - Chapter 2: Tutorial</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -15,130 +15,194 @@
 <body class="chap2"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap2_mj.html">[MathJax on]</a></p>
-<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
-<div class="ChapSects"><a href="chap2.html#X86FA580F8055B274">2 <span class="Heading">Functions</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X82B72BB07C506D3B">2.1 <span class="Heading">Function List</span></a>
+<p><a id="X81932F777898AD72" name="X81932F777898AD72"></a></p>
+<div class="ChapSects"><a href="chap2.html#X81932F777898AD72">2 <span class="Heading">Tutorial</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X87B9F4D88731E1BC">2.1 <span class="Heading">Create Wreath Product Elements</span></a>
 </span>
-<div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A13B6B47BA67183">2.1-1 ComponentsOfWreathProduct</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84D9A60E8614F35E">2.1-2 TopGroupOfWreathProduct</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E1A2F01848423EA">2.1-3 BaseGroupOfWreathProduct</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F1EB294829E86E5">2.1-4 TopComponentOfWreathProductElement</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X86B4BB78813D437E">2.1-5 BaseComponentOfWreathProductElement</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C57D9497D8BBC23">2.1-6 Territory</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F7DF936839FE1C7">2.1-7 IsWreathCycle</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X85C1618F78451F65">2.1-8 IsSparseWreathCycle</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X82BDC56A7B4298CE">2.1-9 WreathCycleDecomposition</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8774A5FB80432D63">2.1-10 SparseWreathCycleDecomposition</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X811E86D882A03219">2.1-11 ConjugatorWreathCycleToSparse</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7ED422DB79830AF7">2.1-12 Yade</a></span>
-</div></div>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X845244398480C75E">2.2 <span class="Heading">Display Wreath Product Elements</span></a>
+</span>
+</div>
 </div>
 
-<h3>2 <span class="Heading">Functions</span></h3>
+<h3>2 <span class="Heading">Tutorial</span></h3>
 
-<p>Here we include a list of all functions that are provided to the User.</p>
+<p>This chapter is a collection of tutorials that show how to work with wreath products in <strong class="pkg">GAP</strong> in conjunction with the package <strong class="pkg">WPE</strong>.</p>
 
-<p><a id="X82B72BB07C506D3B" name="X82B72BB07C506D3B"></a></p>
+<p><a id="X87B9F4D88731E1BC" name="X87B9F4D88731E1BC"></a></p>
 
-<h4>2.1 <span class="Heading">Function List</span></h4>
+<h4>2.1 <span class="Heading">Create Wreath Product Elements</span></h4>
 
-<p>The following functions are designed to improve the User experience when working or experimenting with wreath products and their elements. Most functions are about presenting elements in an intuitive way and giving access to useful information.</p>
+<p>In this section we present an example session which demonstrates how we can create wreath products elements by specifying its components.</p>
 
-<p><a id="X7A13B6B47BA67183" name="X7A13B6B47BA67183"></a></p>
+<p>In the following we will work with the wreath product <span class="SimpleMath">G = Alt(5) ≀ Sym(4)</span>.</p>
 
-<h5>2.1-1 ComponentsOfWreathProduct</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ComponentsOfWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the groups [K, H] of <var class="Arg">W = K wr H</var>. The argument <var class="Arg">W</var> must be a wreath product. (see <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("WPE");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := AlternatingGroup(5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := SymmetricGroup(4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := WreathProduct(K, H);</span>
+&lt;permutation group of size 311040000 with 10 generators&gt;
+</pre></div>
 
-<p><a id="X84D9A60E8614F35E" name="X84D9A60E8614F35E"></a></p>
+<p>The method <code class="code">WreathProductElementList</code> is the preferred way to create a wreath product element by specifying its components.</p>
 
-<h5>2.1-2 TopGroupOfWreathProduct</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopGroupOfWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the top group of the wreath product <var class="Arg">W</var>. (see <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gList := [ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3)(2,4) ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := WreathProductElementList(G, gList);</span>
+(1,15,3,11,5,12)(2,14)(4,13)(6,18,8,20)(7,19,10,17)(9,16)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g in G;</span>
+true
+</pre></div>
 
-<p><a id="X7E1A2F01848423EA" name="X7E1A2F01848423EA"></a></p>
+<p>On the other hand, the method <code class="code">ListWreathProductElement</code> can be used to get a list containing the components of a wreath product element.</p>
 
-<h5>2.1-3 BaseGroupOfWreathProduct</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseGroupOfWreathProduct</code>( <var class="Arg">W</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the base group of the wreath product <var class="Arg">W</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th factor of the base group of <var class="Arg">W</var>. (see <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ListWreathProductElement(G, g);</span>
+[ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3)(2,4) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">last = gList;</span>
+true
+</pre></div>
 
-<p><a id="X7F1EB294829E86E5" name="X7F1EB294829E86E5"></a></p>
+<p>The package author has implemented the methods <code class="func">ListWreathProductElement</code> (<span class="RefLink">???</span>) and <code class="func">WreathProductElementList</code> (<span class="RefLink">???</span>) in <strong class="pkg">GAP</strong> in order to translate between list representations of wreath product elements and other representations. The naming conventions are the same as for <code class="code">ListPerm</code> and <code class="code">PermList</code>.</p>
 
-<h5>2.1-4 TopComponentOfWreathProductElement</h5>
+<p>Moreover, all functions that work for <code class="code">IsWreathProductElement</code> can also be used on these list representations. However, it is not checked if the list indeed represents a wreath product element.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopComponentOfWreathProductElement</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the top component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
 
-<p><a id="X86B4BB78813D437E" name="X86B4BB78813D437E"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsWreathCycle(gList);</span>
+false
+</pre></div>
 
-<h5>2.1-5 BaseComponentOfWreathProductElement</h5>
+<p>If the wreath product element is "sparse", i.e. has only a few non-trivial components, it might be easier to create it by embedding its non-trivial components into <span class="SimpleMath">G</span> directly and taking the product. Note however, that <code class="code">WreathProductElementList</code> might be faster.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseComponentOfWreathProductElement</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>returns the base component of <var class="Arg">x</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th base component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element and the optional argument <var class="Arg">i</var> must be an integer. (see <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>)</p>
 
-<p><a id="X7C57D9497D8BBC23" name="X7C57D9497D8BBC23"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">h := (1,2,3) ^ Embedding(G,2)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      * (1,5,2,4,3) ^ Embedding(G,4)</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      * (1,2,4) ^ Embedding(G, 5);</span>
+(1,6,17,4,9,19,3,8,16,5,10,20,2,7,18)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">hList := ListWreathProductElement(G, h);</span>
+[ (), (1,2,3), (), (1,5,2,4,3), (1,2,4) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsWreathCycle(hList);</span>
+true
+</pre></div>
 
-<h5>2.1-6 Territory</h5>
+<p><a id="X845244398480C75E" name="X845244398480C75E"></a></p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Territory</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>returns the territory of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+<h4>2.2 <span class="Heading">Display Wreath Product Elements</span></h4>
 
-<p><a id="X7F7DF936839FE1C7" name="X7F7DF936839FE1C7"></a></p>
+<p>In this section we present an example session which demonstrates how we can display wreath products elements in an intuitive way. Wreath product elements are viewed, printed and displayed (see section <a href="/usr/local/Cellar/gap/4.11.1/libexec/doc/ref/chap6.html#X8074A8387C9DB9A8"><span class="RefLink">Reference: View and Print</span></a> for the distinctions between these operations) as extended tuple representations (see section <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>).</p>
 
-<h5>2.1-7 IsWreathCycle</h5>
+<p>Suppose we are given some element <span class="SimpleMath">g</span> in the wreath product <span class="SimpleMath">G = Alt(5) ≀ Sym(4)</span>, and would like to view its components in a nice way.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>tests whether <var class="Arg">x</var> is a wreath cycle. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
 
-<p><a id="X85C1618F78451F65" name="X85C1618F78451F65"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("WPE");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := AlternatingGroup(5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := SymmetricGroup(4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := WreathProduct(K, H);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismToGenericWreathProduct(G);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">W := Image(iso);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := (1,15,8,20)(2,14,7,19,5,12,6,18,3,11,10,17)(4,13,9,16);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g in G;</span>
+true
+</pre></div>
 
-<h5>2.1-8 IsSparseWreathCycle</h5>
+<p>First we translate the element <span class="SimpleMath">g</span> into a generic wreath product element <span class="SimpleMath">w</span>. <strong class="pkg">GAP</strong> uses <code class="code">ViewObj</code> to print <span class="SimpleMath">w</span> in a compressed form.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSparseWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>tests whether <var class="Arg">x</var> is a sparse wreath cycle. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X855D897C7E0D01C7"><span class="RefLink">1.4</span></a>)</p>
 
-<p><a id="X82BDC56A7B4298CE" name="X82BDC56A7B4298CE"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w := g ^ iso;</span>
+&lt; wreath product element with 4 base components &gt;
+</pre></div>
 
-<h5>2.1-9 WreathCycleDecomposition</h5>
+<p>If we want to print this element in a "machine-readable" way, we could use one of the following methods.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>returns the wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
 
-<p><a id="X8774A5FB80432D63" name="X8774A5FB80432D63"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(w);</span>
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := ListWreathProductElement(W, w);</span>
+[ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3,2,4) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L = ListWreathProductElement(G, g);</span>
+true
+</pre></div>
 
-<h5>2.1-10 SparseWreathCycleDecomposition</h5>
+<p>Usually, we want to display this element in a nice format instead, which is "human-readable" and allows us to quickly distinguish components.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SparseWreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>returns the sparse wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X855D897C7E0D01C7"><span class="RefLink">1.4</span></a>)</p>
 
-<p><a id="X811E86D882A03219" name="X811E86D882A03219"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w);</span>
+       1            2            3          4        top   
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
+</pre></div>
 
-<h5>2.1-11 ConjugatorWreathCycleToSparse</h5>
+<p>There are many display options available for adjusting the display behaviour for wreath product elements to your liking. (see <a href="chap3.html#X8227AD6B7FC637DE"><span class="RefLink">3.4</span></a>) For example, we might want to display the element vertically. We can do this only once for a single execution of the `Display` command without changing the default display options like this:</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ConjugatorWreathCycleToSparse</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>returns a list of wreath product elements <span class="SimpleMath">c_1, ..., c_l</span>, such that for each wreath cycle <span class="SimpleMath">w_k</span> in the decompositon of <var class="Arg">x</var>, the element <span class="SimpleMath">w_k^{c_k}</span> is the corresponding sparse wreath cycle in the sparse wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element. (see <a href="chap1.html#X855D897C7E0D01C7"><span class="RefLink">1.4</span></a>)</p>
 
-<p><a id="X7ED422DB79830AF7" name="X7ED422DB79830AF7"></a></p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w, rec(horizontal := false));</span>
+  1: (1,5,2,4,3)
+  2: (1,3,5,2,4)
+  3: (1,5,3,4,2)
+  4: (1,4,5)
+top: (1,3,2,4)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w);</span>
+       1            2            3          4        top   
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
+</pre></div>
 
-<h5>2.1-12 Yade</h5>
+<p>We can also change the default display options via the following command.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Yade</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>returns the yade of the wreath cycle <var class="Arg">x</var> evaluated at the smallest territory point. If the optional argument <var class="Arg">i</var> is provided, the function returns the yade evaluated at the point <var class="Arg">i</var>. The argument <var class="Arg">x</var> must be a wreath cycle and the optional argument <var class="Arg">i</var> must be an integer. (see <a href="chap1.html#X867C059E7E460EFA"><span class="RefLink">1.3</span></a>)</p>
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SetDisplayOptionsForWreathProductElements(rec(horizontal := false));</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w);</span>
+  1: (1,5,2,4,3)
+  2: (1,3,5,2,4)
+  3: (1,5,3,4,2)
+  4: (1,4,5)
+top: (1,3,2,4)
+</pre></div>
+
+<p>All changes to the default behaviour can be reverted via the following command.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ResetDisplayOptionsForWreathProductElements();</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w);</span>
+       1            2            3          4        top   
+( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
+</pre></div>
+
+<p>But sometimes, it is sufficient to just look at some components of a wreath product element. We can directly use the list representation to access the components on a Low-Level or we can use High-Level functions on wreath product elements instead.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a := BaseComponentOfWreathProductElement(w, 3);</span>
+(1,5,3,4,2)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a = L[3];</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">b := TopComponentOfWreathProductElement(w);</span>
+(1,3,2,4)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">b = L[5];</span>
+true
+</pre></div>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
 <p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>

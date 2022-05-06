@@ -1,9 +1,9 @@
 [![CI](https://github.com/FriedrichRober/WPE/workflows/CI/badge.svg)](https://github.com/FriedrichRober/WPE/actions?query=workflow%3ACI+branch%3Amaster)
-[![Code Coverage](https://codecov.io/gh/FriedrichRober/WreathProductElements/coverage.svg?branch=master&token=)](https://codecov.io/gh/FriedrichRober/WreathProductElements)
+[![Code Coverage](https://codecov.io/gh/FriedrichRober/WPE/coverage.svg?branch=master&token=)](https://codecov.io/gh/FriedrichRober/WPE)
 
 # WPE - GAP package
 
-<ins>**W**</ins>reath<ins>**P**</ins>roduct<ins>**E**</ins>lements provides efficient methods for working with wreath products.
+WPE provides efficient methods for working with <ins>**W**</ins>reath <ins>**P**</ins>roduct <ins>**E**</ins>lements.
 
 ## Installation
 

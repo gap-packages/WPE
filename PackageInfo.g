@@ -1,5 +1,5 @@
 #
-# WreathProductElements: Provides efficient methods for working with wreath products.
+# WPE: Provides efficient methods for working with wreath product elements.
 #
 # This file contains package meta data. For additional information on
 # the meaning and correct usage of these fields, please consult the
@@ -9,9 +9,9 @@
 SetPackageInfo( rec(
 
 PackageName := "WPE",
-Subtitle := "Provides efficient methods for working with wreath products.",
-Version := "0.3",
-Date := "05/11/2021", # dd/mm/yyyy format
+Subtitle := "Provides efficient methods for working with wreath product elements.",
+Version := "0.4",
+Date := "06/05/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -60,7 +60,7 @@ PackageDoc := rec(
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "Provides efficient methods for working with wreath products.",
+  LongTitle := "Provides efficient methods for working with wreath product elements.",
 ),
 
 Dependencies := rec(

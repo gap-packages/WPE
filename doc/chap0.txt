@@ -3,13 +3,13 @@
                                      [1X WPE [101X
   
   
-         [1X Provides efficient methods for working with wreath products. [101X
+     [1X Provides efficient methods for working with wreath product elements. [101X
   
   
-                                     0.3dev
+                                      0.4
   
   
-                                5 November 2021
+                                   6 May 2022
   
   
                                 Friedrich Rober
@@ -28,27 +28,36 @@
     1.1 [33X[0;0YOverview[133X
     1.2 [33X[0;0YNotation[133X
     1.3 [33X[0;0YWreath Cycle Decomposition[133X
-    1.4 [33X[0;0YSparse Wreath Cycle Decomposition[133X
+    1.4 [33X[0;0YSparse Wreath Cycle[133X
     1.5 [33X[0;0YExample[133X
-  2 [33X[0;0YFunctions[133X
-    2.1 [33X[0;0YFunction List[133X
-      2.1-1 ComponentsOfWreathProduct
-      2.1-2 TopGroupOfWreathProduct
-      2.1-3 BaseGroupOfWreathProduct
-      2.1-4 TopComponentOfWreathProductElement
-      2.1-5 BaseComponentOfWreathProductElement
-      2.1-6 Territory
-      2.1-7 IsWreathCycle
-      2.1-8 IsSparseWreathCycle
-      2.1-9 WreathCycleDecomposition
-      2.1-10 SparseWreathCycleDecomposition
-      2.1-11 ConjugatorWreathCycleToSparse
-      2.1-12 Yade
-  3 [33X[0;0YOperations[133X
-    3.1 [33X[0;0YOperations List[133X
-      3.1-1 [33X[0;0YWreath Product Representations[133X
-      3.1-2 [33X[0;0YOperations for all Representations[133X
-      3.1-3 [33X[0;0YOperations for Generic Representation[133X
+  2 [33X[0;0YTutorial[133X
+    2.1 [33X[0;0YCreate Wreath Product Elements[133X
+    2.2 [33X[0;0YDisplay Wreath Product Elements[133X
+  3 [33X[0;0YFunctions[133X
+    3.1 [33X[0;0YGeneric Wreath Product Representation[133X
+      3.1-1 IsomorphismToGenericWreathProduct
+    3.2 [33X[0;0YAccessing Components[133X
+      3.2-1 ComponentsOfWreathProduct
+      3.2-2 TopGroupOfWreathProduct
+      3.2-3 BaseGroupOfWreathProduct
+      3.2-4 TopComponentOfWreathProductElement
+      3.2-5 BaseComponentOfWreathProductElement
+    3.3 [33X[0;0YProperties of Wreath Product Elements[133X
+      3.3-1 Territory
+      3.3-2 IsWreathCycle
+      3.3-3 IsSparseWreathCycle
+      3.3-4 WreathCycleDecomposition
+      3.3-5 Yade
+    3.4 [33X[0;0YPrinting, Viewing and Displaying[133X
+      3.4-1 ViewObj
+      3.4-2 DisplayOptionsForWreathProductElements
+      3.4-3 SetDisplayOptionsForWreathProductElements
+      3.4-4 ResetDisplayOptionsForWreathProductElements
+  4 [33X[0;0YOperations[133X
+    4.1 [33X[0;0YOperations List[133X
+      4.1-1 [33X[0;0YWreath Product Representations[133X
+      4.1-2 [33X[0;0YOperations for all Representations[133X
+      4.1-3 [33X[0;0YOperations for Generic Representation[133X
   
   
   [32X
