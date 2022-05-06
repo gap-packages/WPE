@@ -1,7 +1,7 @@
-<Chapter Label="Introduction">
+<Chapter Label="Intro">
 <Heading>Introduction</Heading>
 
-This chapter gives a short introduction and explains the notation
+This chapter serves as an introduction and explains the notation
 of the package &WPE;.
 
 <Section Label="Intro Overview">
@@ -15,7 +15,7 @@ In particular this package provides efficient methods for finding conjugating el
 The implementations are based on <Cite Key="wpeConjugacy"/> and references therein.
 For a complete list of operations that exploit the generic representation, see Chapter <Ref Chap="Operations"/>. <P/>
 
-For example, the computation of all <M>886,640</M> conjugacy classses of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
+For example, the computation of all <M>886\,640</M> conjugacy classses of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
 takes about 12 seconds with &WPE; vs. about TODO minutes with native &GAP;.
 </Section>
 
@@ -127,59 +127,75 @@ consists only of sparse wreath cycles.
 <Heading>Example</Heading>
 
 In this section we present an example session which demonstrates
-how we can access the generic representation of a wreath product.
-<P/>
-<Example><![CDATA[
-gap> LoadPackage("WPE");;
+how we can access the generic representation of a wreath product. <P/>
 
-# Construct an imprimitive wreath product
-# that is embedded into a symmetric group.
-# This is the native GAP wreath product command.
+First we construct the wreath product <M>G = \textrm{Alt}(5) \wr \textrm{Sym}(7)</M>.
+For this we use the native &GAP; command <C>WreathProduct</C> (see <Ref BookName="Reference" Sect="Wreath Products"/>).
+The resulting group is embedded into a symmetric group on <M>5 \cdot 7 = 35</M> points
+via the imprimitive action of the wreath product.
+The size of the group is
+<Display Mode="M">
+\vert G \vert = \vert\textrm{Alt}(5)\vert^7 \cdot \vert\textrm{Sym}(7)\vert = 60^7 \cdot 5\,040 = 14\,108\,774\,400\,000\,000\;.
+</Display><P/>
+<Example><![CDATA[
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);
 <permutation group of size 14108774400000000 with 4 generators>
+]]></Example>
 
-# Construct an isomorphism to the generic wreath product
-# that is provided in WPE.
+Now we construct an isomorphism to a wreath product given in generic representation
+that is provided in &WPE;. For this, we need to load the package.<P/>
+<Example><![CDATA[
+gap> LoadPackage("WPE");;
 gap> iso := IsomorphismToGenericWreathProduct(G);;
 gap> W := Image(iso);
 <group of size 14108774400000000 with 4 generators>
+]]></Example>
 
-# Let us compare how GAP displays elements in G and W respectively.
-# Elements in G are represented as permutations.
-# In this representation it is completely unclear
-# how the base and top components of this element look like.
+Let us compare how &GAP; displays elements in <M>G</M> and <M>W</M> respectively.
+Elements in <M>G</M> are represented as permutations.
+In this representation it is hard to see
+how the base and top components of this element look like. <P/>
+<Example><![CDATA[
 gap> g := (1,13,3,14,4,12,2,15,5,11)(6,31,21,7,35,25,9,33,23,8,34,24,10,32,22)(18,19,20);;
 gap> g in G;
 true
+]]></Example>
 
-# Elements in W are represented as generic wreath product elements
-# that makes it easy to read off the base and top component of the element
-# if you either print or display the element.
-# Otherwise, by default the element is printed in compressed form.
-# This printing behaviour is similar to matrices in GAP.
-gap> x := g^iso;
+Elements in <M>W</M> however are represented as generic wreath product elements. (see <Ref Sect="Intro Notation"/>)
+This allows us to easily read off the base and top component of the element
+by either printing or displaying the element.
+Otherwise, by default the element is viewed in compressed form. (see <Ref Sect="Display Functions"/>)
+This printing behaviour is similar to matrices in &GAP;. <P/>
+<Example><![CDATA[
+gap> x := g ^ iso;
 < wreath product element with 7 base components >
 gap> Print(x);
 ( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
 gap> Display(x);
        1           2       3      4         5       6   7       top     
 ( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
+]]></Example>
 
-# We can display each component easily with the provided commands.
+Furthermore, we can display each component easily with the provided commands. <P/>
+<Example><![CDATA[
 gap> BaseComponentOfWreathProductElement(x, 2);
 (2,5)(3,4)
 gap> TopComponentOfWreathProductElement(x);
 (1,3)(2,7,5)
+]]></Example>
 
-# We compute the territory of x,
-# i.e. the analogue of the support of a permutation.
+Next, we compute the territory of <M>x</M>,
+i.e. the analogue of the support of a permutation. <P/>
+<Example><![CDATA[
 gap> Territory(x);
 [ 1, 2, 3, 4, 5, 7 ]
+]]></Example>
 
-# Finally, let us compute the disjoint wreath cycle decomposition,
-# i.e. the analogue of the disjoint cycle decomposition of a permutation.
+Finally, let us compute the disjoint wreath cycle decomposition of <M>x</M>,
+i.e. the analogue of the disjoint cycle decomposition of a permutation. <P/>
+<Example><![CDATA[
 gap> wreathDecomp := WreathCycleDecomposition(x);;
 gap> Print(wreathDecomp);
 [ ( (), (), (), (3,4,5), (), (), (); () ), 
