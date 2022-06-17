@@ -233,3 +233,22 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
+
+
+#############################################################################
+# Cycle Index:
+#############################################################################
+
+
+## <#GAPDoc Label="CycleIndexWreathProductProductAction">
+## <ManSection>
+## <Func Name="CycleIndexWreathProductProductAction" Arg="K, H"/>
+## <Description>
+##   For two permutation groups <A>K</A> and <A>H</A>
+##   this function constructs the cycle index of
+##   the wreath product <M>K \wr H</M> in product action. <P/>
+##   The implementation is based on <Cite Key="HarrisonHigh"/> and <Cite Key="PalmerRobinson"/>.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "CycleIndexWreathProductProductAction");

@@ -19,5 +19,8 @@ ReadPackage( "WPE", "gap/ConjugacyClasses.gi");
 ## Centraliser
 ReadPackage( "WPE", "gap/Centraliser.gi");
 
+## Cycle Index
+ReadPackage( "WPE", "gap/CycleIndex.gi");
+
 ## Implement WreathProduct Operations
 ReadPackage( "WPE", "gap/Operations.gi");
