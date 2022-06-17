@@ -5,6 +5,7 @@
   [2XBaseComponentOfWreathProductElement[102X 3.2-5 
   [2XBaseGroupOfWreathProduct[102X 3.2-3 
   [2XComponentsOfWreathProduct[102X 3.2-1 
+  [2XCycleIndexWreathProductProductAction[102X 3.5-1 
   [2XDisplay[102X, for a wreath product element 3.4-1 
   [2XDisplayOptionsForWreathProductElements[102X 3.4-2 
   [2XIsomorphismToGenericWreathProduct[102X 3.1-1 

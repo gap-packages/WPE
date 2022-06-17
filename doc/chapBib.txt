@@ -2,9 +2,16 @@
   
   [1XReferences[101X
   
-  [[20XBNRW21[120X]  [16XBernhardt,  D.,  Niemeyer,  A.  C., Rober, F. and Wollenhaupt, L.[116X,
-  [17XConjugacy    classes   and   centralisers   in   wreath   products[117X   (2021),
-  ((https://arxiv.org/abs/2107.04645)).
+  [[20XBNRW22[120X]  [16XBernhardt,  D.,  Niemeyer,  A.  C., Rober, F. and Wollenhaupt, L.[116X,
+  [17XConjugacy  classes  and centralisers in wreath products[117X, [18XJournal of Symbolic
+  Computation[118X, [19X113[119X (2022), 97-125.
+  
+  [[20XHH68[120X]  [16XHarrison,  M. A. and High, R. G.[116X, [17XOn the cycle index of a product of
+  permutation groups[117X, [18XJournal of Combinatorial Theory[118X, [19X4[119X, 3 (1968), 277-299.
+  
+  [[20XPR73[120X]   [16XPalmer,   E.   M.  and  Robinson,  R.  W.[116X,  [17XEnumeration  under  two
+  representations  of  the  wreath  product[117X,  [18XActa Mathematica[118X, [19X131[119X, 1 (1973),
+  123--143.
   
   
   

@@ -14,7 +14,7 @@
   
   [33X[0;0YIn   particular   this   package  provides  efficient  methods  for  finding
   conjugating    elements,    conjugacy   classes,   and   centralisers.   The
-  implementations are based on [BNRW21] and references therein. For a complete
+  implementations are based on [BNRW22] and references therein. For a complete
   list of operations that exploit the generic representation, see Chapter [14X4[114X.[133X
   
   [33X[0;0YFor  example, the computation of all [22X886640[122X conjugacy classses of the wreath
@@ -62,9 +62,9 @@
   efficiently.[133X
   
   [33X[0;0YDetailed  information on [13Xwreath cycle decompositions[113X can be found in Chapter
-  2  in [BNRW21]. Chapters 3-5 in [BNRW21] describe how these can be exploited
+  2  in [BNRW22]. Chapters 3-5 in [BNRW22] describe how these can be exploited
   for  finding  conjugating elements, conjugacy classes, and centralisers, and
-  Chapter  6  in  [BNRW21]  contains a table of timings of sample computations
+  Chapter  6  in  [BNRW22]  contains a table of timings of sample computations
   done with [5XWPE[105X vs. native [5XGAP[105X.[133X
   
   [33X[0;0YWe use the notation from [14X1.2[114X in order to introduce the following concepts.[133X
@@ -112,7 +112,7 @@
   [22Xh[122X consists only of sparse wreath cycles.[133X
   
   [33X[0;0YMore  information on [13Xsparse wreath cycles[113X and centralisers of wreath product
-  elements can be found in Chapter 5 in [BNRW21].[133X
+  elements can be found in Chapter 5 in [BNRW22].[133X
   
   [33X[0;0Y[22XDefinition:[122X  We  say  that  a  wreath  cycle [22Xg = (g_1, ..., g_m; π) ∈ G[122X is a
   [13Xsparse  wreath  cycle[113X,  if there exists an [22Xi_0[122X such that [22Xg_i = 1[122X for all [22Xi ≠

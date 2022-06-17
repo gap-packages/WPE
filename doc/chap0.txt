@@ -6,10 +6,10 @@
      [1X Provides efficient methods for working with wreath product elements. [101X
   
   
-                                      0.4
+                                      0.5
   
   
-                                   6 May 2022
+                                  17 June 2022
   
   
                                 Friedrich Rober
@@ -53,6 +53,8 @@
       3.4-2 DisplayOptionsForWreathProductElements
       3.4-3 SetDisplayOptionsForWreathProductElements
       3.4-4 ResetDisplayOptionsForWreathProductElements
+    3.5 [33X[0;0YCycle Index of Wreath Products[133X
+      3.5-1 CycleIndexWreathProductProductAction
   4 [33X[0;0YOperations[133X
     4.1 [33X[0;0YOperations List[133X
       4.1-1 [33X[0;0YWreath Product Representations[133X

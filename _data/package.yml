@@ -1,7 +1,7 @@
 name: WPE
-version: "0.4"
+version: "0.5"
 license: "GPL-2.0-or-later"
-date: 2022-05-06
+date: 2022-06-17
 description: |
     Provides efficient methods for working with wreath product elements.
 
@@ -21,7 +21,7 @@ packageinfo: https://FriedrichRober.github.io/WPE/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/FriedrichRober/WPE/releases/download/v0.4/WPE-0.4.tar.gz
+      url: https://github.com/FriedrichRober/WPE/releases/download/v0.5/WPE-0.5.tar.gz
 
 abstract: |
 
@@ -32,7 +32,7 @@ citeas: |
     <p class='BibEntry'>
     [<span class='BibKey'>Rob22</span>]   <b class='BibAuthor'>Rober, F.</b>,
      <i class='BibTitle'>WPE, Provides efficient methods for working with wreath product elements.,
-             Version 0.4</i>
+             Version 0.5</i>
      (<span class='BibYear'>2022</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://FriedrichRober.github.io/WPE/">https://FriedrichRober.github.io/WPE/</a></span>.
@@ -40,14 +40,14 @@ citeas: |
     
 
 bibtex: |
-    @misc{ WPE0.4,
+    @misc{ WPE0.5,
       author =           {Rober, F.},
-      title =            {{WPE},  Provides efficient methods for working with wreath
-                          product elements., {V}ersion 0.4},
-      month =            {May},
+      title =            {{WPE},  Provides  efficient  methods  for working with
+                          wreath product elements., {V}ersion 0.5},
+      month =            {Jun},
       year =             {2022},
       note =             {GAP package},
-      howpublished =     {\href              {https://FriedrichRober.github.io/WPE/}
+      howpublished =     {\href          {https://FriedrichRober.github.io/WPE/}
                           {\texttt{https://FriedrichRober.github.io/}\discretionary
                           {}{}{}\texttt{WPE/}}},
       printedkey =       {Rob22}

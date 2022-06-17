@@ -129,7 +129,7 @@
   point. If the optional argument [3Xi[103X is provided, the function returns the yade
   evaluated  at  the  point  [3Xi[103X.  The argument [3Xx[103X must be a wreath cycle and the
   optional  argument  [3Xi[103X  must  be  an  integer  from  the  territory of [3Xx[103X. See
-  Definition 11 in [BNRW21] (see [14X1.3[114X)[133X
+  Definition 11 in [BNRW22] (see [14X1.3[114X)[133X
   
   
   [1X3.4 [33X[0;0YPrinting, Viewing and Displaying[133X[101X
@@ -200,4 +200,19 @@
   
   [33X[0;0Yresets  the  current  global  display options for wreath product elements to
   default.[133X
+  
+  
+  [1X3.5 [33X[0;0YCycle Index of Wreath Products[133X[101X
+  
+  [33X[0;0YThe  following  functions  construct  the  cycle index of wreath products in
+  certain actions.[133X
+  
+  [1X3.5-1 CycleIndexWreathProductProductAction[101X
+  
+  [33X[1;0Y[29X[2XCycleIndexWreathProductProductAction[102X( [3XK[103X, [3XH[103X ) [32X function[133X
+  
+  [33X[0;0YFor  two permutation groups [3XK[103X and [3XH[103X this function constructs the cycle index
+  of the wreath product [22XK ≀ H[122X in product action.[133X
+  
+  [33X[0;0YThe implementation is based on [HH68] and [PR73].[133X
   

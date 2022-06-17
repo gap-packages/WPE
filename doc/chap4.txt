@@ -7,7 +7,7 @@
   
   [33X[0;0YIn   particular   this   package  provides  efficient  methods  for  finding
   conjugating    elements,    conjugacy   classes,   and   centralisers.   The
-  implementations are based on [BNRW21] and references therein.[133X
+  implementations are based on [BNRW22] and references therein.[133X
   
   
   [1X4.1 [33X[0;0YOperations List[133X[101X

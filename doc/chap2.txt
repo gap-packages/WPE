@@ -42,10 +42,10 @@
   [4X[32X[104X
   
   [33X[0;0YThe  package  author  has  implemented  the methods [2XListWreathProductElement[102X
-  ([14XListWreathProductElement???[114X)          and          [2XWreathProductElementList[102X
-  ([14XWreathProductElementList???[114X)  in  [5XGAP[105X  in  order  to translate between list
-  representations  of  wreath  product elements and other representations. The
-  naming conventions are the same as for [10XListPerm[110X and [10XPermList[110X.[133X
+  ([14XReference:     ListWreathProductElement[114X)    and    [2XWreathProductElementList[102X
+  ([14XReference:  WreathProductElementList[114X)  in [5XGAP[105X in order to translate between
+  list  representations  of wreath product elements and other representations.
+  The naming conventions are the same as for [10XListPerm[110X and [10XPermList[110X.[133X
   
   [33X[0;0YMoreover,  all  functions  that  work for [10XIsWreathProductElement[110X can also be
   used  on  these list representations. However, it is not checked if the list

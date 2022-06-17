@@ -52,7 +52,7 @@
 
 <p>The package <strong class="pkg">WPE</strong> is about wreath product elements in their generic representation. This representation is more intuitive to the User when working with wreath products and additionally may have computational benefits over other representations.</p>
 
-<p>In particular this package provides efficient methods for finding conjugating elements, conjugacy classes, and centralisers. The implementations are based on <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW21]</a> and references therein. For a complete list of operations that exploit the generic representation, see Chapter <a href="chap4_mj.html#X7DE8E16C7C2D387B"><span class="RefLink">4</span></a>.</p>
+<p>In particular this package provides efficient methods for finding conjugating elements, conjugacy classes, and centralisers. The implementations are based on <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW22]</a> and references therein. For a complete list of operations that exploit the generic representation, see Chapter <a href="chap4_mj.html#X7DE8E16C7C2D387B"><span class="RefLink">4</span></a>.</p>
 
 <p>For example, the computation of all <span class="SimpleMath">\(886\,640\)</span> conjugacy classses of the wreath product <span class="SimpleMath">\(W = \textrm{M}_{22} \wr \textrm{A}_9\)</span> takes about 12 seconds with <strong class="pkg">WPE</strong>. With native <strong class="pkg">GAP</strong> this computation is not feasible.</p>
 
@@ -85,7 +85,7 @@
 
 <p>In a permutation group we have the well-known concept of a cycle decomposition. For wreath products we have a similar concept called <em>wreath cycle decomposition</em> that allows us to solve certain computational tasks more efficiently.</p>
 
-<p>Detailed information on <em>wreath cycle decompositions</em> can be found in Chapter 2 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW21]</a>. Chapters 3-5 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW21]</a> describe how these can be exploited for finding conjugating elements, conjugacy classes, and centralisers, and Chapter 6 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW21]</a> contains a table of timings of sample computations done with <strong class="pkg">WPE</strong> vs. native <strong class="pkg">GAP</strong>.</p>
+<p>Detailed information on <em>wreath cycle decompositions</em> can be found in Chapter 2 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW22]</a>. Chapters 3-5 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW22]</a> describe how these can be exploited for finding conjugating elements, conjugacy classes, and centralisers, and Chapter 6 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW22]</a> contains a table of timings of sample computations done with <strong class="pkg">WPE</strong> vs. native <strong class="pkg">GAP</strong>.</p>
 
 <p>We use the notation from <a href="chap1_mj.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a> in order to introduce the following concepts.</p>
 
@@ -121,7 +121,7 @@
 
 <p>The main motivation for introducing the concept of <em>sparse wreath cycles</em> is the efficient computation of centralisers of wreath product elements. Simply put, we compute the centraliser of an arbitrary element <span class="SimpleMath">\(g \in P\)</span> in <span class="SimpleMath">\(G\)</span> by conjugating it to a restricted representative <span class="SimpleMath">\(h = g^c \in P\)</span> and computing the centraliser of <span class="SimpleMath">\(h\)</span> in <span class="SimpleMath">\(G\)</span>. The wreath cycle decomposition of the representative <span class="SimpleMath">\(h\)</span> consists only of sparse wreath cycles.</p>
 
-<p>More information on <em>sparse wreath cycles</em> and centralisers of wreath product elements can be found in Chapter 5 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW21]</a>.</p>
+<p>More information on <em>sparse wreath cycles</em> and centralisers of wreath product elements can be found in Chapter 5 in <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW22]</a>.</p>
 
 <p><span class="SimpleMath">\(\bf{Definition:}\)</span> We say that a wreath cycle <span class="SimpleMath">\(g = (g_1, \ldots, g_m; \pi) \in G\)</span> is a <em>sparse wreath cycle</em>, if there exists an <span class="SimpleMath">\(i_0\)</span> such that <span class="SimpleMath">\(g_i = 1\)</span> for all <span class="SimpleMath">\(i \neq i_0\)</span>.</p>
 
@@ -145,7 +145,7 @@
 
 <p>In this section we present an example session which demonstrates how we can access the generic representation of a wreath product.</p>
 
-<p>First we construct the wreath product <span class="SimpleMath">\(G = \textrm{Alt}(5) \wr \textrm{Sym}(7)\)</span>. For this we use the native <strong class="pkg">GAP</strong> command <code class="code">WreathProduct</code> (see <a href="/usr/local/Cellar/gap/4.11.1/libexec/doc/ref/chap49_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">Reference: Wreath Products</span></a>). The resulting group is embedded into a symmetric group on <span class="SimpleMath">\(5 \cdot 7 = 35\)</span> points via the imprimitive action of the wreath product. The size of the group is</p>
+<p>First we construct the wreath product <span class="SimpleMath">\(G = \textrm{Alt}(5) \wr \textrm{Sym}(7)\)</span>. For this we use the native <strong class="pkg">GAP</strong> command <code class="code">WreathProduct</code> (see <a href="https://www.gap-system.org/Manuals/doc/ref/chap49_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">Reference: Wreath Products</span></a>). The resulting group is embedded into a symmetric group on <span class="SimpleMath">\(5 \cdot 7 = 35\)</span> points via the imprimitive action of the wreath product. The size of the group is</p>
 
 <p class="center">\[
 \vert G \vert = \vert\textrm{Alt}(5)\vert^7 \cdot \vert\textrm{Sym}(7)\vert = 60^7 \cdot 5\,040 = 14\,108\,774\,400\,000\,000\;.
