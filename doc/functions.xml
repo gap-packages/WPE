@@ -101,4 +101,13 @@ The following components of <A>optrec</A> are supported.
 
 </Section>
 
+<Section Label="Cycle Index">
+<Heading>Cycle Index of Wreath Products</Heading>
+
+The following functions construct the cycle index of wreath products in certain actions.
+
+<#Include Label="CycleIndexWreathProductProductAction">
+
+</Section>
+
 </Chapter>
