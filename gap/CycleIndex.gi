@@ -293,7 +293,7 @@ function(B, H)
     h := Size(H);
     n := Maximum(1, NrMovedPoints(H));
     m := NrMovedPoints(B);
-    R := PolynomialRing(Rationals, [1 .. m]);
+    R := PolynomialRing(Rationals, [1 .. m ^ n]);
 
     # Pre-compute list of inner polynomials
     # Inner iteration over partition of n
@@ -352,6 +352,76 @@ function(B, H)
     return res;
 end);
 
+# [Pól37] Pages 178-180
+BindGlobal("WPE_CycleIndexIA_GenericTop",
+function(B, H)
+    local Z_B, Z_H, b, h, n, m, R, polys_i, poly_i, res, prex, x, mon_k, b_k, h_k, k, prey, y, mono, i, j;
+
+    if IsTrivial(B) then
+        return CycleIndex(H);
+    fi;
+
+    if IsTrivial(H) then
+        return CycleIndex(B);
+    fi;
+
+    Z_B := ExtRepPolynomialRatFun(CycleIndex(B));
+    Z_H := ExtRepPolynomialRatFun(CycleIndex(H));
+    b := Size(B);
+    h := Size(H);
+    n := Maximum(1, NrMovedPoints(H));
+    m := NrMovedPoints(B);
+    R := PolynomialRing(Rationals, [1 .. m * n]);
+
+    polys_i := EmptyPlist(n);
+    for i in [1 .. n] do
+        poly_i := Zero(R);
+
+        for prex in [1 .. Length(Z_B) / 2] do
+            x := 2 * (prex - 1) + 1;
+            mon_k := Z_B[x];
+            b_k := Z_B[x + 1];
+            # Contains exponents of indeterminates
+            k := ListWithIdenticalEntries(m, 0);
+            for prey in [1 .. Length(mon_k) / 2] do
+                y := 2 * (prey - 1) + 1;
+                k[mon_k[y]] := mon_k[y + 1];
+            od;
+
+            mono := One(R);
+            for j in [1 .. m] do
+                mono := mono * Indeterminate(Rationals, j * i) ^ k[j];
+            od;
+
+            poly_i := poly_i + b_k * mono;
+        od;
+
+        Add(polys_i, poly_i);
+    od;
+
+    res := Zero(R);
+    for prex in [1 .. Length(Z_H) / 2] do
+        x := 2 * (prex - 1) + 1;
+        mon_k := Z_H[x];
+        h_k := Z_H[x + 1];
+        # Contains exponents of indeterminates
+        k := ListWithIdenticalEntries(n, 0);
+        for prey in [1 .. Length(mon_k) / 2] do
+            y := 2 * (prey - 1) + 1;
+            k[mon_k[y]] := mon_k[y + 1];
+        od;
+
+        mono := One(R);
+        for i in [1 .. n] do
+            mono := mono * polys_i[i] ^ k[i];
+        od;
+
+        res := res + h_k * mono;
+    od;
+
+    return res;
+end);
+
 InstallGlobalFunction(CycleIndexWreathProductProductAction,
 function(K, H)
     if IsNaturalSymmetricGroup(H) then
@@ -359,4 +429,9 @@ function(K, H)
     else
         return WPE_CycleIndexPA_GenericTop(K, H);
     fi;
+end);
+
+InstallGlobalFunction(CycleIndexWreathProductImprimitiveAction,
+function(K, H)
+    return WPE_CycleIndexIA_GenericTop(K, H);
 end);
