@@ -252,3 +252,16 @@ DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
 ## </ManSection>
 ## <#/GAPDoc>
 DeclareGlobalFunction( "CycleIndexWreathProductProductAction");
+
+## <#GAPDoc Label="CycleIndexWreathProductImprimitiveAction">
+## <ManSection>
+## <Func Name="CycleIndexWreathProductImprimitiveAction" Arg="K, H"/>
+## <Description>
+##   For two permutation groups <A>K</A> and <A>H</A>
+##   this function constructs the cycle index of
+##   the wreath product <M>K \wr H</M> in imprimitive action. <P/>
+##   The implementation is based on <Cite Key="Polya"/>.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "CycleIndexWreathProductImprimitiveAction");
