@@ -157,7 +157,7 @@ Now we construct an isomorphism to a wreath product given in generic representat
 that is provided in &WPE;. For this, we need to load the package.<P/>
 <Example><![CDATA[
 gap> LoadPackage("WPE");;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> W := Image(iso);
 <group of size 14108774400000000 with 4 generators>
 ]]></Example>

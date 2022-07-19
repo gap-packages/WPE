@@ -15,7 +15,7 @@ gap> # [Perm, Perm]
 gap> K := SymmetricGroup(5);;
 gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> TestOrder(iso, 20);
 true
 gap> 

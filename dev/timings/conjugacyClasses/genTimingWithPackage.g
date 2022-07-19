@@ -4,7 +4,7 @@ LoadPackage("WPE");;
 G := WreathProduct(groups.K, groups.H);;
 # If G is a matrix group, the construction of representatives is slow.
 if IsMatrixGroup(G) then
-    G := Image(IsomorphismToGenericWreathProduct(G));
+    G := Image(IsomorphismWreathProduct(G));
 fi;
 fileOut := "out_timingsWithPackage.csv";;
 ProfileFunctions(WPE_ConjugacyClasses);;

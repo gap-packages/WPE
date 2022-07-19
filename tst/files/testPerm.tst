@@ -4,7 +4,7 @@ gap> # [Perm, Perm]
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> TestIso(iso, 10);
 true
 gap> 
@@ -13,7 +13,7 @@ gap> # Renaming Points of K
 gap> K := AlternatingGroup([21,22,23,24,25]);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> TestIso(iso, 10);
 true
 gap> 
@@ -23,7 +23,7 @@ gap> # # Renaming Points of H
 gap> # K := AlternatingGroup(5);;
 gap> # H := SymmetricGroup([11,12,13,14,15,16,17]);;
 gap> # G := WreathProduct(K, H);;
-gap> # iso := IsomorphismToGenericWreathProduct(G);;
+gap> # iso := IsomorphismWreathProduct(G);;
 gap> # TestIso(iso, 10);
 gap> 
 gap> ### Not Working, since the constructed wreath product is not in standard imprimitive form. Bug in GAP?
@@ -35,6 +35,6 @@ gap> # gens2 := [(11,12,13,14,15,16,17), (11,12)];;
 gap> # hom := GroupHomomorphismByImages(Group(gens1), Group(gens2), gens1, gens2);;
 gap> # H := Source(hom);;
 gap> # G := WreathProduct(K, H, hom);;
-gap> # iso := IsomorphismToGenericWreathProduct(G);;
+gap> # iso := IsomorphismWreathProduct(G);;
 gap> # TestIso(iso, 10);
 gap> 

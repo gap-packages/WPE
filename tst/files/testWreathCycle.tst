@@ -2,7 +2,7 @@ gap> # [Perm, Perm]
 gap> K := SymmetricGroup(5);;
 gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> W := Image(iso);;
 gap> x := Image(Embedding(W,1), (1,2,3,4,5));;
 gap> IsWreathCycle(x);
