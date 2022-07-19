@@ -15,7 +15,8 @@ if sys.argv[1:]:
 
 MEMORY = '3G'
 
-for ROOT in ['centraliser', 'conjugacyClasses', 'cycleIndex'] :
+for ROOT in ['centraliser', 'conjugacyClasses', 'cycleIndexPA', 'cycleIndexIA'] :
+
     print('Working in %s' % ROOT)
 
     OUT = ROOT+'/out'
