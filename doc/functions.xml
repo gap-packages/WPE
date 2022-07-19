@@ -36,7 +36,7 @@ The following functions give access to components of wreath products and their e
 <Section Label="Wreath Product Element Functions">
 <Heading>Properties of Wreath Product Elements</Heading>
 
-The following functions give access to important properties of wreath products elements.
+The following functions give access to important properties of wreath product elements.
 
 <#Include Label="Territory">
 <#Include Label="IsWreathCycle">
@@ -86,7 +86,7 @@ The following components of <A>optrec</A> are supported.
 </Item>
 <Mark><C>labelColor</C></Mark>
 <Item>
-<K>"black"</K> for labels in black color. <E>DEFAULT</E> <P/>
+<K>"default"</K> for labels in the default GAP output color. <E>DEFAULT</E> <P/>
 <K>"red"</K> for labels in red color. <P/>
 <K>"blue"</K> for labels in blue color. <P/>
 </Item>

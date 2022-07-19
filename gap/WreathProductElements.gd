@@ -222,7 +222,7 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## gap> W := Image(iso);
 ## <group of size 311040000 with 4 generators>
 ## ]]></Example>
-##   For an overview on wreath product representation in &GAP; see <Ref Sect="Wreath Product Representations"/>. <P/>
+##   For an overview on wreath product representations in &GAP; see <Ref Sect="Wreath Product Representations"/>. <P/>
 ##   In the background, it uses the Low-Level functions
 ##   <C>ListWreathProductElement</C> and <C>WreathProductElementList</C>
 ##   and wraps the <C>IsList</C> representations into <C>IsWreathProductElement</C> representations. <P/>
