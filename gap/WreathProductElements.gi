@@ -70,7 +70,7 @@ BindGlobal( "WPE_DisplayOptionsDefault", Immutable(rec(
     horizontal := true,
     labels := true,
     labelStyle := "none",
-    labelColor := "black",
+    labelColor := "default",
 )));
 
 # Current options, mutable entries
@@ -91,7 +91,7 @@ function(optionsBase, optionsUpdate)
         if r = "labelStyle" and not optionsUpdate.(r) in ["none", "bold", "faint"] then
             ErrorNoReturn("Invalid value to labelStyle: ", optionsUpdate.(r));
         fi;
-        if r = "labelColor" and not optionsUpdate.(r) in ["black", "red", "blue"] then
+        if r = "labelColor" and not optionsUpdate.(r) in ["default", "red", "blue"] then
             ErrorNoReturn("Invalid value to labelStyle: ", optionsUpdate.(r));
         fi;
         optionsBase.(r) := optionsUpdate.(r);
@@ -116,7 +116,7 @@ end);
 
 BindGlobal("WPE_IsLabelFontDefault",
 function(options)
-    return options.labelStyle = "none" and options.labelColor = "black";
+    return options.labelStyle = "none" and options.labelColor = "default";
 end);
 
 InstallGlobalFunction( SetDisplayOptionsForWreathProductElements,
