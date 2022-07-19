@@ -4,7 +4,7 @@
 # elm           g, h                    : random elements
 LoadPackage("WPE");;
 G := WreathProduct(groups.K, groups.H);;
-iso := IsomorphismToGenericWreathProduct(G);;
+iso := IsomorphismWreathProduct(G);;
 W := Range(iso);;
 fileOut := Concatenation("./out_timingsWithPackage/", ID, ".csv");;
 w := g ^ iso;;

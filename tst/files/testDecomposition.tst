@@ -31,14 +31,14 @@ gap> # [Perm, Perm]
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> TestDecomp(iso, 10);
 true
 gap> # [Mat, Perm]
 gap> K := GL(3,5);;
 gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> TestDecomp(iso, 10);
 true
 gap> 

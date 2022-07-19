@@ -45,7 +45,7 @@ BindGlobal( "WPE_GenericWreathProduct", ApplicableMethod(WreathProduct,
     [DihedralGroup(8), SymmetricGroup(3), IdentityMapping(SymmetricGroup(3))]
 ));
 
-InstallMethod( IsomorphismToGenericWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
+InstallMethod( IsomorphismWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
 function(G)
     local grps, W, typ, iso;
     grps := ComponentsOfWreathProduct(G);

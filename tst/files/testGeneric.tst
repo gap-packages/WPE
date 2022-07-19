@@ -1,7 +1,7 @@
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(3);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> W := Image(iso);;
 gap> g := (1,12,9,3,13,10,5,15,8)(2,14,7)(4,11,6);;
 gap> x := g^iso;

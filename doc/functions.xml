@@ -15,7 +15,7 @@ The main way for the User to look at a wreath product in a "human-readable" way
 is by using an isomorphism from a specialised wreath product representation
 to a generic representation.
 
-<#Include Label="IsomorphismToGenericWreathProduct">
+<#Include Label="IsomorphismWreathProduct">
 
 </Section>
 

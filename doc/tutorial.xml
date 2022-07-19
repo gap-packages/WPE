@@ -87,7 +87,7 @@ gap> LoadPackage("WPE");;
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);;
-gap> iso := IsomorphismToGenericWreathProduct(G);;
+gap> iso := IsomorphismWreathProduct(G);;
 gap> W := Image(iso);;
 gap> g := (1,15,8,20)(2,14,7,19,5,12,6,18,3,11,10,17)(4,13,9,16);;
 gap> g in G;

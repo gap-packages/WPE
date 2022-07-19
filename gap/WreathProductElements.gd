@@ -207,9 +207,9 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 #############################################################################
 
 
-## <#GAPDoc Label="IsomorphismToGenericWreathProduct">
+## <#GAPDoc Label="IsomorphismWreathProduct">
 ## <ManSection>
-## <Oper Name="IsomorphismToGenericWreathProduct" Arg="G"/>
+## <Oper Name="IsomorphismWreathProduct" Arg="G"/>
 ## <Description>
 ##   returns an isomorphism from a specialized wreath product <A>G</A>
 ##   to a generic wreath product. <P/>
@@ -218,7 +218,7 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## gap> H := SymmetricGroup(4);;
 ## gap> G := WreathProduct(K, H);
 ## <permutation group of size 311040000 with 10 generators>
-## gap> iso := IsomorphismToGenericWreathProduct(G);;
+## gap> iso := IsomorphismWreathProduct(G);;
 ## gap> W := Image(iso);
 ## <group of size 311040000 with 4 generators>
 ## ]]></Example>
@@ -226,14 +226,13 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ##   In the background, it uses the Low-Level functions
 ##   <C>ListWreathProductElement</C> and <C>WreathProductElementList</C>
 ##   and wraps the <C>IsList</C> representations into <C>IsWreathProductElement</C> representations. <P/>
-##   For performant code, we recommend to use these Low-Level functions instead of <C>IsomorphismToGenericWreathProduct</C>.
+##   For performant code, we recommend to use these Low-Level functions instead of <C>IsomorphismWreathProduct</C>.
 ##   All functions for <C>IsWreathProductElement</C> also work on <C>IsList</C> objects that represent a wreath product element.
 ##   However, it is not checked that the <C>IsList</C> object actually represents a wreath product element.
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
-DeclareOperation( "IsomorphismToGenericWreathProduct", [HasWreathProductInfo] );
-
+DeclareOperation( "IsomorphismWreathProduct", [HasWreathProductInfo] );
 
 #############################################################################
 # Cycle Index:
