@@ -53,6 +53,24 @@ local x, y;
     if act <> OnPoints then
         TryNextMethod();
     fi;
+
+    # Check if g and h are elements in the same representation as the group G
+    if IsPermGroup(G) then
+        if not (IsPerm(g) and IsPerm(h)) then
+            TryNextMethod();
+        fi;
+    elif IsMatrixGroup(G) then
+        if not (IsMatrix(g) and IsMatrix(h)) then
+            TryNextMethod();
+        fi;
+    else
+        if not (IsWreathProductElement(g) and IsWreathProductElement(h) and
+                FamilyObj(g) = FamilyObj(h) and FamilyObj(One(G))!.defaultType = FamilyObj(g)) then
+            TryNextMethod();
+        fi;
+    fi;
+
+    # Check if elements are living inside the wreath product
     x := ListWreathProductElement(G, g);
     if x = fail then
         TryNextMethod();
@@ -78,6 +96,22 @@ InstallMethod( CentralizerOp, "perm group,elm", IsCollsElms,
             [ HasWreathProductInfo, IsObject ], OVERRIDENICE + 42,
 function( G, g )
     local x;
+
+    # Check if g is an element in the same representation as the group G
+    if IsPermGroup(G) then
+        if not (IsPerm(g)) then
+            TryNextMethod();
+        fi;
+    elif IsMatrixGroup(G) then
+        if not (IsMatrix(g)) then
+            TryNextMethod();
+        fi;
+    else
+        if not (IsWreathProductElement(g) and FamilyObj(One(G))!.defaultType = FamilyObj(g)) then
+            TryNextMethod();
+        fi;
+    fi;
+
     x := ListWreathProductElement(G, g);
     if x = fail then
         TryNextMethod();
