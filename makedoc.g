@@ -18,3 +18,5 @@ AutoDoc( rec( scaffold := rec(
         ),
         extract_examples := true,
         autodoc := true ) );
+
+Exec("dev/tests_doc/processTests.sh");
