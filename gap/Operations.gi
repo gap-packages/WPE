@@ -28,7 +28,7 @@ end);
 #M  ConjugacyClasses( <G> ) . . . . . . . . . . . . . . .  for wreath product
 ##
 InstallMethod( ConjugacyClasses, "for wreath product", true,
-               [HasWreathProductInfo], OVERRIDENICE + 42,
+               [HasWreathProductInfo], OVERRIDENICE + 4200,
 function(G)
 local iso;
     # TODO: remove this hack
@@ -47,7 +47,7 @@ end);
 #M  RepresentativeAction( <G> [,<Omega>], <d>, <e> [,<gens>,<acts>] [,<act>] ) . . . . . . . . . . . .  for wreath product
 ##
 InstallOtherMethod( RepresentativeActionOp, "for wreath product", true,
-               [HasWreathProductInfo, IsObject, IsObject, IsFunction], OVERRIDENICE + 42,
+               [HasWreathProductInfo, IsObject, IsObject, IsFunction], OVERRIDENICE + 4200,
 function(G, g, h, act)
 local x, y;
     if act <> OnPoints then
@@ -65,7 +65,7 @@ local x, y;
         fi;
     else
         if not (IsWreathProductElement(g) and IsWreathProductElement(h) and
-                FamilyObj(g) = FamilyObj(h) and FamilyObj(One(G))!.defaultType = FamilyObj(g)) then
+                FamilyObj(g) = FamilyObj(h) and FamilyObj(One(G)) = FamilyObj(g)) then
             TryNextMethod();
         fi;
     fi;
@@ -83,7 +83,7 @@ local x, y;
 end);
 
 InstallOtherMethod( RepresentativeActionOp, "for wreath product", true,
-               [HasWreathProductInfo, IsObject, IsObject], OVERRIDENICE + 42,
+               [HasWreathProductInfo, IsObject, IsObject], OVERRIDENICE + 4200,
 function(G, g, h)
     return RepresentativeActionOp(G, g, h, OnPoints);
 end);
@@ -92,8 +92,8 @@ end);
 ##
 #M  Centralizer( <G>, <e> ) . . . . . . . . . . . . . . . for wreath products
 ##
-InstallMethod( CentralizerOp, "perm group,elm", IsCollsElms,
-            [ HasWreathProductInfo, IsObject ], OVERRIDENICE + 42,
+InstallMethod( CentralizerOp, "for wreath product", IsCollsElms,
+            [ HasWreathProductInfo, IsObject ], OVERRIDENICE + 4200,
 function( G, g )
     local x;
 
@@ -107,7 +107,7 @@ function( G, g )
             TryNextMethod();
         fi;
     else
-        if not (IsWreathProductElement(g) and FamilyObj(One(G))!.defaultType = FamilyObj(g)) then
+        if not (IsWreathProductElement(g) and FamilyObj(One(G)) = FamilyObj(g)) then
             TryNextMethod();
         fi;
     fi;
@@ -118,3 +118,30 @@ function( G, g )
     fi;
     return WPE_Centraliser(G, x);
 end );
+
+#############################################################################
+##
+#M  CycleIndex( <G>, <dom>, <act> ) . . . . . . . . . . . . . . . for wreath products
+##
+InstallMethod(CycleIndexOp, "wreath product", true,
+            [HasWreathProductInfo, IsListOrCollection, IsFunction], 4200,
+function( G, dom, act )
+    local info, comp, K, H;
+    if dom <> MovedPoints(G) then
+        TryNextMethod();
+    fi;
+    if act <> OnPoints then
+        TryNextMethod();
+    fi;
+    info := WreathProductInfo(G);
+    comp := ComponentsOfWreathProduct(G);
+    K := comp[1];
+    H := comp[2];
+    if IsBound(info.permimpr) and info.permimpr then
+        return CycleIndexWreathProductImprimitiveAction(K, H);
+    elif IsBound(info.productType) and info.productType then
+        return CycleIndexWreathProductProductAction(K, H);
+    else
+        TryNextMethod();
+    fi;
+end);

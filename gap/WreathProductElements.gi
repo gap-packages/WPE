@@ -45,6 +45,12 @@ BindGlobal( "WPE_GenericWreathProduct", ApplicableMethod(WreathProduct,
     [DihedralGroup(8), SymmetricGroup(3), IdentityMapping(SymmetricGroup(3))]
 ));
 
+InstallGlobalFunction( "GenericWreathProduct",
+function(K, H)
+    return WPE_GenericWreathProduct(K, H, IdentityMapping(H));
+end);
+
+
 InstallMethod( IsomorphismWreathProduct, "wreath products", true, [HasWreathProductInfo], 1,
 function(G)
     local grps, W, typ, iso;
@@ -52,7 +58,7 @@ function(G)
     if not IsPermGroup(grps[2]) then
         ErrorNoReturn("Top group of <G> must be a permutation group");
     fi;
-    W := WPE_GenericWreathProduct(grps[1], grps[2], IdentityMapping(grps[2]));
+    W := GenericWreathProduct(grps[1], grps[2]);
     iso := GroupHomomorphismByFunction(G, W,
            g-> WreathProductElementList(W, ListWreathProductElement(G, g)),
            x -> WreathProductElementList(G, ListWreathProductElement(W, x)));
