@@ -1,47 +1,102 @@
-@article{wpeConjugacy,
-      title = {Conjugacy classes and centralisers in wreath products},
-      journal = {Journal of Symbolic Computation},
-      volume = {113},
-      pages = {97-125},
-      year = {2022},
-      issn = {0747-7171},
-      doi = {https://doi.org/10.1016/j.jsc.2022.02.005},
-      author = {Dominik Bernhardt and Alice C. Niemeyer and Friedrich Rober and Lucas Wollenhaupt},
-      keywords = {Wreath products, Centralisers, Conjugacy classes, Conjugacy problem, Permutation groups, Cycle decomposition},
-      abstract = {In analogy to the disjoint cycle decomposition in permutation groups, Ore and Specht define a decomposition of elements of the full monomial group and exploit this to describe conjugacy classes and centralisers of elements in the full monomial group. We generalise their results to wreath products whose base group need not be finite and whose top group acts faithfully on a finite set. We parameterise conjugacy classes and centralisers of elements in such wreath products explicitly. For finite wreath products, our approach yields efficient algorithms for finding conjugating elements, conjugacy classes, and centralisers.}
+
+% To our knowledge, first author to define a wreath cycle decomposition.
+% Conjugacy classes in monomial group via wreath cycle decomposition.
+@phdthesis{Specht,
+    AUTHOR = {Specht, Wilhelm},
+     TITLE = {Eine Verallgemeinerung der symmetrischen Gruppe},
+    SCHOOL = {Humboldt-Universität zu Berlin},
+      YEAR = {1932},
+       DOI = {http://dx.doi.org/10.18452/162},
 }
-@article{HarrisonHigh,
-      title = {On the cycle index of a product of permutation groups},
-      journal = {Journal of Combinatorial Theory},
-      volume = {4},
-      number = {3},
-      pages = {277-299},
-      year = {1968},
-      issn = {0021-9800},
-      doi = {https://doi.org/10.1016/S0021-9800(68)80008-0},
-      author = {Michael A. Harrison and Robert G. High},
-      abstract = {A new and useful operation on permutation groups is defined and studied. A formula for the cycle index polynomial of the new group is obtained. Applications are given to the enumeration of symmetry types of Post functions.}
+
+% Centralizers in monomial group via wreath cycle decomposition.
+@article {Ore,
+    AUTHOR = {Ore, Oystein},
+     TITLE = {Theory of monomial groups},
+   JOURNAL = {Trans. Amer. Math. Soc.},
+  FJOURNAL = {Transactions of the American Mathematical Society},
+    VOLUME = {51},
+      YEAR = {1942},
+     PAGES = {15--64},
+      ISSN = {0002-9947,1088-6850},
+   MRCLASS = {20.0X},
+  MRNUMBER = {5739},
+MRREVIEWER = {R.\ Brauer},
+       DOI = {10.2307/1989979},
+       URL = {https://doi.org/10.2307/1989979},
 }
-@article{PalmerRobinson,
-	author = {Palmer, E. M. and Robinson, R. W.},
-	date = {1973/12/01},
-	date-added = {2022-06-17 10:51:27 +0200},
-	date-modified = {2022-06-17 10:51:27 +0200},
-	doi = {10.1007/BF02392038},
-	id = {Palmer1973},
-	isbn = {1871-2509},
-	journal = {Acta Mathematica},
-	number = {1},
-	pages = {123--143},
-	title = {Enumeration under two representations of the wreath product},
-	volume = {131},
-	year = {1973}
+
+% Generalizing the results from Specht and Ore.
+% Solving conjugacy problem, computation of conjugacy classes and centralizers
+% in arbitrary wreath products.
+@article {WPE,
+    AUTHOR = {Bernhardt, Dominik and Niemeyer, Alice C. and Rober, Friedrich
+              and Wollenhaupt, Lucas},
+     TITLE = {Conjugacy classes and centralisers in wreath products},
+   JOURNAL = {J. Symbolic Comput.},
+  FJOURNAL = {Journal of Symbolic Computation},
+    VOLUME = {113},
+      YEAR = {2022},
+     PAGES = {97--125},
+      ISSN = {0747-7171,1095-855X},
+   MRCLASS = {20E22 (20E45)},
+  MRNUMBER = {4394743},
+MRREVIEWER = {Enrico\ Jabara},
+       DOI = {10.1016/j.jsc.2022.02.005},
+       URL = {https://doi.org/10.1016/j.jsc.2022.02.005},
+  KEYWORDS = {Wreath products, Centralisers, Conjugacy classes, Conjugacy problem, Permutation groups, Cycle decomposition},
+  ABSTRACT = {In analogy to the disjoint cycle decomposition in permutation groups, Ore and Specht define a decomposition of elements of the full monomial group and exploit this to describe conjugacy classes and centralisers of elements in the full monomial group. We generalise their results to wreath products whose base group need not be finite and whose top group acts faithfully on a finite set. We parameterise conjugacy classes and centralisers of elements in such wreath products explicitly. For finite wreath products, our approach yields efficient algorithms for finding conjugating elements, conjugacy classes, and centralisers.}
 }
-@article{Polya,
-      title={Kombinatorische Anzahlbestimmungen für Gruppen, Graphen und chemische Verbindungen},
-      author={Georg Pólya},
-      journal={Acta Mathematica},
-      year={1937},
-      volume={68},
-      pages={145-254}
+
+% Cycle index polynomial for monomial group in product action
+@article {HarrisonHigh,
+    AUTHOR = {Harrison, Michael A. and High, Robert G.},
+     TITLE = {On the cycle index of a product of permutation groups},
+   JOURNAL = {J. Combinatorial Theory},
+  FJOURNAL = {Journal of Combinatorial Theory},
+    VOLUME = {4},
+      YEAR = {1968},
+     PAGES = {277--299},
+      ISSN = {0021-9800},
+   MRCLASS = {20.20 (05.00)},
+  MRNUMBER = {218439},
+MRREVIEWER = {D.\ Livingstone},
+       DOI = {10.1016/0550-3213(68)90047-3},
+       URL = {https://doi.org/10.1016/0550-3213(68)90047-3},
+  ABSTRACT = {A new and useful operation on permutation groups is defined and studied. A formula for the cycle index polynomial of the new group is obtained. Applications are given to the enumeration of symmetry types of Post functions.}
+}
+
+% Cycle index polynomial for wreath product in product action
+@article {PalmerRobinson,
+    AUTHOR = {Palmer, E. M. and Robinson, R. W.},
+     TITLE = {Enumeration under two representations of the wreath product},
+   JOURNAL = {Acta Math.},
+  FJOURNAL = {Acta Mathematica},
+    VOLUME = {131},
+      YEAR = {1973},
+     PAGES = {123--143},
+      ISSN = {0001-5962,1871-2509},
+   MRCLASS = {05C30},
+  MRNUMBER = {409266},
+MRREVIEWER = {R.\ C.\ Read},
+       DOI = {10.1007/BF02392038},
+       URL = {https://doi.org/10.1007/BF02392038},
+}
+
+% Cycle index polynomial for wreath product in imprimitive action
+@article {Polya,
+    AUTHOR = {P\'olya, G.},
+     TITLE = {Kombinatorische {A}nzahlbestimmungen f\"ur {G}ruppen,
+              {G}raphen und chemische {V}erbindungen},
+   JOURNAL = {Acta Math.},
+  FJOURNAL = {Acta Mathematica},
+    VOLUME = {68},
+      YEAR = {1937},
+    NUMBER = {1},
+     PAGES = {145--254},
+      ISSN = {0001-5962,1871-2509},
+   MRCLASS = {99-04},
+  MRNUMBER = {1577579},
+       DOI = {10.1007/BF02546665},
+       URL = {https://doi.org/10.1007/BF02546665},
 }
