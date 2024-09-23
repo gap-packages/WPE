@@ -123,10 +123,10 @@ function(W, v)
     # Ugly Hack: deal with list rep
     conjToSparse := ConjugatorWreathCycleToSparse(v);
     if IsList(v) then
-        conjToSparseElm := List(conjToSparse, z -> WreathProductElementList(W, z));
+        conjToSparseElm := List(conjToSparse, z -> WreathProductElementListNC(W, z));
         conjToSparseProd := Product(conjToSparseElm);
         conjToSparseInvProd := conjToSparseProd ^ -1;
-        w := ListWreathProductElement(W, WreathProductElementList(W, v) ^ conjToSparseProd);
+        w := ListWreathProductElementNC(W, WreathProductElementListNC(W, v) ^ conjToSparseProd);
     else
         conjToSparseProd := Product(conjToSparse);
         conjToSparseInvProd := conjToSparseProd ^ -1;
@@ -167,7 +167,7 @@ function(W, v)
     # TODO: Remove Ugly Hack
     # Ugly Hack: deal with list rep
     if IsList(v) then
-        conjToSparseInv := List(conjToSparse, block -> List(block, c -> ListWreathProductElement(W, WreathProductElementList(W, c) ^ -1)));
+        conjToSparseInv := List(conjToSparse, block -> List(block, c -> ListWreathProductElementNC(W, WreathProductElementListNC(W, c) ^ -1)));
     else
         conjToSparseInv := List(conjToSparse, block -> List(block, c -> c ^ -1));
     fi;
@@ -209,7 +209,7 @@ function(W, v)
                 for k in terrDecomp[i,j] do
                     a[k] := WPE_BaseComponent(conjToSparse[i,j], k) * a[k] * WPE_BaseComponent(conjToSparseInv[i,j], k);
                 od;
-                a := WreathProductElementList(W, a);
+                a := WreathProductElementListNC(W, a);
                 Add(Cgens, a);
             od;
         od;
@@ -222,7 +222,7 @@ function(W, v)
         for gen in Kgens do
             c0[i] := gen;
             a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
-            a := WreathProductElementList(W, a);
+            a := WreathProductElementListNC(W, a);
             Add(Cgens, a);
         od;
     od;
@@ -231,7 +231,7 @@ function(W, v)
     c := cTrivial;
     for t in Tgens do
         a := WPE_Centraliser_Image(c, c0, t, h, gamma, GammaMinusTerr, terrDecomp, f, x, xInv, m);
-        a := WreathProductElementList(W, a);
+        a := WreathProductElementListNC(W, a);
         a := a ^ conjToSparseInvProd;
         Add(Cgens, a);
     od;

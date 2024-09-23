@@ -23,8 +23,8 @@
 ## <Attr Name="Territory" Arg="x"/>
 ## <Description>
 ##   returns the territory of <A>x</A>.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   The argument <A>x</A> must be a wreath product element
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -35,8 +35,8 @@ DeclareAttribute( "Territory", IsWreathProductElement );
 ## <Attr Name="IsWreathCycle" Arg="x"/>
 ## <Description>
 ##   tests whether <A>x</A> is a wreath cycle.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   The argument <A>x</A> must be a wreath product element
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -47,8 +47,8 @@ DeclareProperty( "IsWreathCycle", IsWreathProductElement );
 ## <Attr Name="IsSparseWreathCycle" Arg="x"/>
 ## <Description>
 ##   tests whether <A>x</A> is a sparse wreath cycle.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
+##   The argument <A>x</A> must be a wreath product element
+##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -60,8 +60,8 @@ DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 ## <Description>
 ##   returns the wreath cycle decomposition of <A>x</A>,
 ##   i.e. a list containing wreath cycles.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   The argument <A>x</A> must be a wreath product element
+##   (see&nbsp;<Ref Sect="Wreath Cycle"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -81,8 +81,8 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ##   the function returns the yade evaluated at the point <A>i</A>.
 ##   The argument <A>x</A> must be a wreath cycle
 ##   and the optional argument <A>i</A> must be an integer
-##   from the territory of <A>x</A>. See Definition 11 in <Cite Key="wpeConjugacy"/>
-##   (see&nbsp;<Ref Sect="Wreath Cycle"/>)
+##   from the territory of <A>x</A>
+##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>)
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -137,8 +137,8 @@ DeclareGlobalFunction( "ResetDisplayOptionsForWreathProductElements" );
 ## <Func Name="ComponentsOfWreathProduct" Arg="W"/>
 ## <Description>
 ##   returns the groups [K, H] of <A>W = K wr H</A>.
-##   The argument <A>W</A> must be a wreath product.
-##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+##   The argument <A>W</A> must be a wreath product
+##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -149,8 +149,8 @@ DeclareGlobalFunction( "ComponentsOfWreathProduct" );
 ## <Func Name="TopComponentOfWreathProductElement" Arg="x"/>
 ## <Description>
 ##   returns the top component of <A>x</A>.
-##   The argument <A>x</A> must be a wreath product element.
-##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+##   The argument <A>x</A> must be a wreath product element
+##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -161,8 +161,8 @@ DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="TopGroupOfWreathProduct" Arg="W"/>
 ## <Description>
-##   returns the top group of the wreath product <A>W</A>.
-##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+##   returns the top group <M>\langle 1_K \rangle^m \times H</M> of the wreath product <M>W = K \wr H</M>
+##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -179,8 +179,8 @@ DeclareOperation( "WPE_TopDegree", [IsWreathProductElement] );
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the <A>i</A>-th base component of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element
-##   and the optional argument <A>i</A> must be an integer.
-##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+##   and the optional argument <A>i</A> must be an integer
+##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -191,10 +191,10 @@ DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="BaseGroupOfWreathProduct" Arg="W, [i]"/>
 ## <Description>
-##   returns the base group of the wreath product <A>W</A>.
+##   returns the base group <M>K^m \times \langle 1_H</M> of the wreath product <M>W = K \wr H</M>.
 ##   If the optional argument <A>i</A> is provided,
-##   the function returns the <A>i</A>-th factor of the base group of <A>W</A>.
-##   (see&nbsp;<Ref Sect="Intro Notation"/>)
+##   the function returns the <A>i</A>-th factor of the base group of <A>W</A>
+##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
 ## </ManSection>
 ## <#/GAPDoc>
@@ -234,6 +234,28 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismWreathProduct", [HasWreathProductInfo] );
 
+
+## <#GAPDoc Label="GenericWreathProduct">
+## <ManSection>
+## <Func Name="GenericWreathProduct" Arg="G"/>
+## <Description>
+##   returns a wreath product in the generic representation. <P/>
+## <Example><![CDATA[
+## gap> K := AlternatingGroup(5);;
+## gap> H := SymmetricGroup(4);;
+## gap> W := GenericWreathProduct(K, H);
+## <group of size 311040000 with 4 generators>
+## ]]></Example>
+##   For an overview on wreath product representations in &GAP; see <Ref Sect="Wreath Product Representations"/>. <P/>
+##   We recommend using <C>IsomorphismWreathProduct</C> instead of this function,
+##   to benefit in all computations from the best suitable representation.
+##   Computations might be slow in the generic representation,
+##   as only a few specialized algorithms are available right now.
+## </Description>
+## </ManSection>
+## <#/GAPDoc>
+DeclareGlobalFunction( "GenericWreathProduct" );
+
 #############################################################################
 # Cycle Index:
 #############################################################################
@@ -244,7 +266,7 @@ DeclareOperation( "IsomorphismWreathProduct", [HasWreathProductInfo] );
 ## <Func Name="CycleIndexWreathProductProductAction" Arg="K, H"/>
 ## <Description>
 ##   For two permutation groups <A>K</A> and <A>H</A>
-##   this function constructs the cycle index of
+##   this function constructs the cycle index polynomial of
 ##   the wreath product <M>K \wr H</M> in product action. <P/>
 ##   The implementation is based on <Cite Key="HarrisonHigh"/> and <Cite Key="PalmerRobinson"/>.
 ## </Description>
@@ -257,7 +279,7 @@ DeclareGlobalFunction( "CycleIndexWreathProductProductAction");
 ## <Func Name="CycleIndexWreathProductImprimitiveAction" Arg="K, H"/>
 ## <Description>
 ##   For two permutation groups <A>K</A> and <A>H</A>
-##   this function constructs the cycle index of
+##   this function constructs the cycle index polynomial of
 ##   the wreath product <M>K \wr H</M> in imprimitive action. <P/>
 ##   The implementation is based on <Cite Key="Polya"/>.
 ## </Description>
