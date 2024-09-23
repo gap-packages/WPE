@@ -4,7 +4,7 @@
 Here we include a list of all functions that are provided to the User.<P/>
 
 The following functions are designed to improve the User experience
-when working or experimenting with wreath products and their elements.
+when working or experimenting with wreath products of finite groups and their elements.
 Most functions are about presenting elements in an intuitive way
 and giving access to useful information. <P/>
 
@@ -16,6 +16,7 @@ is by using an isomorphism from a specialised wreath product representation
 to a generic representation.
 
 <#Include Label="IsomorphismWreathProduct">
+<#Include Label="GenericWreathProduct">
 
 </Section>
 
@@ -57,11 +58,11 @@ The following functions give access to important properties of wreath product el
 <Description>
 Wreath product elements are viewed, printed and displayed (see
 section <Ref BookName="Reference" Sect="View and Print"/> for the distinctions between these
-operations) as extended tuples (see section <Ref Sect="Intro Notation"/>).
-For an example on the distinctions and outputs see <Ref Sect="Tutorial Display Wreath Product Elements"/>. <P/>
+operations) as extended tuples (see section <Ref Sect="Wreath Product"/>).
+For an example of the distinctions and outputs see <Ref Sect="Tutorial Display Wreath Product Elements"/>. <P/>
 
 The method <C>Display</C> allows an optional argument <A>optrec</A> which must be a record
-and modifies the display output for the execution of only this single command. <P/>
+and modifies the display output for the execution of a single instance of the command. <P/>
 
 For modifying the display output globally for all subsequent executions of <C>Display</C> see <Ref Func="SetDisplayOptionsForWreathProductElements"/>. <P/>
 
@@ -104,7 +105,7 @@ The following components of <A>optrec</A> are supported.
 <Section Label="Cycle Index">
 <Heading>Cycle Index of Wreath Products</Heading>
 
-The following functions construct the cycle index of wreath products in certain actions.
+The following functions construct the cycle index polynomial of wreath products in certain actions.
 
 <#Include Label="CycleIndexWreathProductImprimitiveAction">
 <#Include Label="CycleIndexWreathProductProductAction">
