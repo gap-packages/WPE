@@ -26,17 +26,17 @@ It contributes to
 in wreath products of groups.
 <P/>
 
-It allows access to a new representation of wreath products,
+It allows access to a representation of wreath products,
 which we refer to as the <E>generic representation</E>,
-that is more intuitive to the User when working with wreath products.
-Access is as straight-forward as using the provided command <C>GenericWreathProduct</C>
-or the preferred method via <C>IsomorphismWreathProduct</C>,
+that is more intuitive to the User when working with wreath products of groups.
+Access is as straight-forward as using the provided command <C>IsomorphismWreathProduct</C>
+on a wreath product created by the native &GAP; command <C>WreathProduct</C>,
 see <Ref Sect="Intro Representation"/> for an example. <P/>
 
 Additionally, this representation may have computational benefits over other representations.
-Note, that just by loading the package and without any additional setup,
-all optimizations are available for computations
-in wreath products created by the native GAP command <C>WreathProduct</C>,
+Note, that just by loading the package &WPE; and without any additional setup,
+all optimizations are applied to computations
+in wreath products created by the native &GAP; command <C>WreathProduct</C>,
 by exploiting the generic representation under the hood when appropiate.
 See <Ref Sect="Intro Computations"/> for a highlight showcase of such computational problems. <P/>
 
@@ -53,7 +53,7 @@ The implementations are based on an accompanying publication <Cite Key="WPE"/>,
 that generalizes results from <Cite Key="Specht"/> and <Cite Key="Ore"/> on monomial groups,
 wreath products whose top group is the full symmetric group. <P/>
 
-For example, the computation of all <M>886\,640</M> conjugacy classses of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
+For example, the computation of all <M>886\,640</M> conjugacy classses of elements of the wreath product <M>W = \textrm{M}_{22} \wr \textrm{A}_9</M>
 takes about 12 seconds with &WPE;. With native &GAP; this computation is not feasible. <P/>
 <Example><![CDATA[
 gap> LoadPackage("WPE");;
@@ -100,7 +100,7 @@ gap> G := WreathProduct(K, H);
 ]]></Example>
 
 Now we construct an isomorphism to a wreath product given in generic representation
-that is provided in &WPE;. For this, we need to load the package.<P/>
+that is provided in &WPE;. For this, we need to load the package &WPE;.<P/>
 <Example><![CDATA[
 gap> LoadPackage("WPE");;
 gap> iso := IsomorphismWreathProduct(G);;
@@ -108,10 +108,9 @@ gap> W := Image(iso);
 <group of size 14108774400000000 with 4 generators>
 ]]></Example>
 
-Let us compare how &GAP; displays elements in <M>G</M> and <M>W</M> respectively.
-Elements in <M>G</M> are represented as permutations.
-In this representation it is hard to see
-how the base and top components of this element look like (see <Ref Sect="Wreath Product"/>). <P/>
+Let us compare how &GAP; displays elements of <M>G</M> and <M>W</M> respectively.
+Elements of <M>G</M> are represented as permutations.
+In this representation it is hard to identify the base and top components of this element (see <Ref Sect="Wreath Product"/>). <P/>
 <Example><![CDATA[
 gap> g := (1,13,3,14,4,12,2,15,5,11)
 >         (6,31,21,7,35,25,9,33,23,8,34,24,10,32,22)
@@ -120,8 +119,8 @@ gap> g in G;
 true
 ]]></Example>
 
-Elements in <M>W</M> however are represented as generic wreath product elements (see <Ref Sect="Wreath Product"/>).
-This allows us to easily read off the base and top component of the element
+Elements of <M>W</M> however are represented as generic wreath product elements (see <Ref Sect="Wreath Product"/>).
+This allows us to read off the base and top component of the element easily
 by either printing or displaying the element.
 Otherwise, by default the element is viewed in compressed form (see <Ref Sect="Display Functions"/>).
 This printing behaviour is similar to the behaviour of matrices in &GAP;. <P/>
@@ -144,7 +143,7 @@ gap> TopComponentOfWreathProductElement(w);
 ]]></Example>
 
 <Subsection>
-<Heading>The Power of Component-Wise Representation</Heading>
+<Heading>The Power of Component-wise Representation</Heading>
 
 This component-wise representation is often exactly the one that we encounter in research on wreath products.
 Thus having it available on the computer greatly sharpens our intuition.
@@ -169,8 +168,8 @@ gap> Display(w ^ 6);
 Now let us be more advanced.
 Just by looking at the element <M>w</M>,
 we can deduce structural information on the conjugacy class <M>w^W</M>.
-All elements conjugate to <M>w</M> over <M>W = K \wr H</M> must have at least one trivial base component,
-since the territory of <M>w</M> (see <Ref Sect="Wreath Cycle"/>) contains exactly six elements and the top group acts on seven points.
+All elements conjugate to <M>w</M> in <M>W = K \wr H</M> must have at least one trivial base component,
+since the territory of <M>w</M> (see <Ref Sect="Wreath Cycle"/>) contains exactly six elements, whereas the top group acts on seven points.
 <Example><![CDATA[
 gap> Length(Territory(w));
 6
@@ -209,12 +208,12 @@ that benefit from the generic representation.
 As noted in the introduction,
 no additional setup is required
 if one wants to benefit from the optimizations for computations in wreath products.
-We simply create the wreath products via the native GAP command <Ref BookName="Reference" Oper="WreathProduct"/>,
-and the generic representation is used under the hood whenever appropiate. <P/>
+We simply create the wreath products via the native &GAP; command <Ref BookName="Reference" Oper="WreathProduct"/>,
+and the generic representation provided by &WPE; is used under the hood whenever appropiate. <P/>
 
 We only give a summary of some computational problems that now become approachable on the computer,
 and include examples for such computations in Chapter <Ref Chap="Tutorial"/>
-containing extensive GAP sessions that can be followed like a tutorial. <P/>
+containing extensive &GAP; sessions that can be followed like a tutorial. <P/>
 
 In the following let <M>G = K \wr H</M> be a wreath product of finite groups, where <M>H \leq \textrm{Sym}(m)</M>.
 Further let <M>x, y \in P = K \wr \textrm{Sym}(m)</M>
@@ -232,7 +231,7 @@ and if it does, explicitly compute such a conjugating element <M>c</M>.
 <Mark> Conjugacy Classes </Mark>
 <Item>
 Enumerate representatives of all conjugacy classes of elements of <M>G</M>,
-i.e. return elements <M>g_1, \dots, g_l</M> such that <M>g_1^G, \dots, g_l^G</M>
+i.e. return elements <M>g_1, \dots, g_\ell</M> such that <M>g_1^G, \dots, g_\ell^G</M>
 are the conjugacy classes of <M>G</M>.
 </Item>
 

@@ -31,7 +31,18 @@ Note that we use a semicolon to seperate the base component from the top compone
 Further we call the element <M>g_i</M> the <E><M>i</M>-th base component</E> of <M>g</M>. <P/>
 
 Analogously, the subgroup <M>B = K^m \times \langle 1_H \rangle \leq G</M> is called the <E>base group</E> of <M>G</M>
-and the subgroup <M>T = \langle 1_K \rangle^m \times H \leq G</M> is called the <E>top group</E> of <M>G</M>.
+and the subgroup <M>T = \langle 1_K \rangle^m \times H \leq G</M> is called the <E>top group</E> of <M>G</M>. <P/>
+
+With the above notation, the multiplication of two elements
+<Display Mode="M">
+g = (f, \pi) = (g_1, \ldots, g_m; \pi),\\
+h = (d, \sigma) = (h_1, \ldots, h_m; \sigma)
+</Display>
+of <M>G = K \wr H</M>, a wreath product of finite groups, can be written as
+<Display Mode="M">
+g \cdot h = (f \cdot d^{(\pi^{-1})}, \pi \cdot \sigma) = (g_1 \cdot h_{1^\pi}, \ldots, g_m \cdot h_{m^\pi}; \pi \cdot \sigma)\,.
+</Display>
+
 </Section>
 
 <Section Label="Wreath Cycle">
@@ -46,7 +57,7 @@ Chapters 3-5 in <Cite Key="WPE"/> describe how these can be exploited
 for finding conjugating elements, conjugacy classes, and centralisers in wreath products,
 and Chapter 6 in <Cite Key="WPE"/> contains a table of timings of sample computations done with &WPE; vs. native &GAP;. <P/>
 
-We use the notation from <Ref Sect="Wreath Product"/> in order to introduce the following concepts. <P/>
+We use the notation from Section <Ref Sect="Wreath Product"/> in order to introduce the following concepts. <P/>
 
 <M>\bf{Definition:}</M> We define the <E>territory</E> of an element <M>g = (g_1, \ldots, g_m; \pi) \in G</M>
 by <M>\textrm{terr}(g) := \textrm{supp}(\pi) \cup \{i : g_i \neq 1\}</M>,
@@ -80,13 +91,13 @@ We call such a decomposition a <E>wreath cycle decomposition</E>. <P/>
 <Section Label="Sparse Wreath Cycle">
 <Heading>Sparse Wreath Cycles</Heading>
 
-We use the notation from <Ref Sect="Wreath Product"/> in order to introduce the following concepts. <P/>
+We use the notation from Section <Ref Sect="Wreath Product"/> in order to introduce the following concepts. <P/>
 
 The main motivation for introducing the concept of <E>sparse wreath cycles</E>
 is the efficient computation of centralisers of wreath product elements.
 Simply put, we compute the centraliser <M>C_G(g)</M> of an arbitrary element <M>g \in P</M> in <M>G</M>
-by conjugating it to a restricted representative <M>h = g^c \in P</M>
-and computing the centraliser of <M>h</M> in <M>G</M>.
+by conjugating it in <M>P</M> to a restricted representative <M>h = g^c \in P</M>,
+computing the centraliser of <M>h</M> in <M>G</M> and then conjugating it back.
 The wreath cycle decomposition of the representative <M>h</M>
 consists only of sparse wreath cycles.<P/>
 
@@ -96,7 +107,7 @@ can be found in Chapter 5 in <Cite Key="WPE"/>.<P/>
 <M>\bf{Definition:}</M> We say that a wreath cycle <M>g = (g_1, \ldots, g_m; \pi) \in G</M> is a <E>sparse wreath cycle</E>,
 if there exists an <M>i_0</M> such that <M>g_i = 1</M> for all <M>i \neq i_0</M>.<P/>
 
-<M>\bf{Example:}</M> For example if we consider the wreath product <M> \textrm{Sym}(4) \wr \textrm{Sym}(5) </M>, the element
+<M>\bf{Example:}</M> For example, if we consider the wreath product <M> \textrm{Sym}(4) \wr \textrm{Sym}(5) </M>, the element
 <Display Mode="M">
 {\bf(} \;\; (),\, (1,2,3),\, (),\, (),\, ();\, (1,2,4) \;\; {\bf)}
 </Display>
@@ -112,7 +123,7 @@ A very important invariant under conjugation is the <E>yade</E> of a wreath cycl
 [(i)\pi^{0}]f \cdot [(i)\pi^{1}]f \cdots [(i)\pi^{|\pi| - 1}]f \;.
 </Display>
 
-<M>\bf{Example:}</M> For example, consider the wreath product <M> \textrm{Sym}(4) \wr \textrm{Sym}(5) </M>, and the wreath cycle
+<M>\bf{Example:}</M> Consider the wreath product <M> \textrm{Sym}(4) \wr \textrm{Sym}(5) </M>, and the wreath cycle
 <Display Mode="M">
 g = (f, \pi) = {\bf(} \;\; (),\, (1,2,3),\, (),\, (1,2),\, ();\, (1,2,4) \;\; {\bf)}.
 </Display>
@@ -126,7 +137,7 @@ and the yade evaluated at <M>j = 4</M> is given by
 </Display><P/>
 
 Up to conjugacy, the yade is independent under the chosen evaluation point <M>i</M>.
-Moreover, wreath cycles are conjugate over <M>G</M> if and only if the top components are conjugate over <M>H</M> and the yades are conjugate over <M>K</M>. More specific, we can conjugate a wreath cycle <M>g</M> to a sparse wreath cycle <M>h</M> such that the <M>i</M>-th base component of <M>h</M> contains the yade of <M>g</M> in <M>i</M>. This leads to the following result.
+Moreover, wreath cycles are conjugate over <M>G</M> if and only if the top components are conjugate over <M>H</M> and the yades are conjugate over <M>K</M>. More specific, we can conjugate a wreath cycle <M>g</M> to a sparse wreath cycle <M>h</M> such that the <M>i</M>-th base component of <M>h</M> contains the yade of <M>g</M> in <M>i</M>. This leads to the following result. <P/>
 
 <M>\bf{Theorem:}</M> Every element <M>g \in P</M> can be conjugated by some <M>c \in K^m \times \langle 1_H \rangle \leq P</M> to an element <M>h = g^c \in P</M>
 such that the wreath cycle decomposition of <M>h</M>
