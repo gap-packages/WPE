@@ -41,13 +41,24 @@ InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatr
 
 
 # Dirty Hack
-BindGlobal( "WPE_GenericWreathProduct", ApplicableMethod(WreathProduct,
+BindGlobal( "WPE_GenericWreathProduct_GAP", ApplicableMethod(WreathProduct,
     [DihedralGroup(8), SymmetricGroup(3), IdentityMapping(SymmetricGroup(3))]
 ));
 
-InstallGlobalFunction( "GenericWreathProduct",
-function(K, H)
-    return WPE_GenericWreathProduct(K, H, IdentityMapping(H));
+InstallGlobalFunction( "WPE_GenericWreathProduct",
+function(args)
+    local K, H, phi;
+    if Length(args) < 2 or Length(args) > 3 then
+        ErrorNoReturn("Unknown number of arguments");
+    fi;
+    K := args[1];
+    H := args[2];
+    if Length(args) = 3 then
+        phi := args[3];
+    else
+        phi := IdentityMapping(H);
+    fi;
+    return WPE_GenericWreathProduct_GAP(K, H, phi);
 end);
 
 
@@ -58,7 +69,7 @@ function(G)
     if not IsPermGroup(grps[2]) then
         ErrorNoReturn("Top group of <G> must be a permutation group");
     fi;
-    W := GenericWreathProduct(grps[1], grps[2]);
+    W := WPE_GenericWreathProduct(grps[1], grps[2]);
     iso := GroupHomomorphismByFunction(G, W,
            g-> WreathProductElementList(W, ListWreathProductElement(G, g)),
            x -> WreathProductElementList(G, ListWreathProductElement(W, x)));
@@ -146,14 +157,14 @@ InstallMethod( PrintObj, "wreath elements", true, [IsWreathProductElement], 1,
 function(x)
     local i,L,tenToL,degI;
     degI := WPE_TopDegree(x);
-    Print("( ");
+    Print("[ ");
     for i in [1..degI] do
         Print(String(WPE_BaseComponent(x, i)));
         if i < degI then
             Print(", ");
         fi;
     od;
-    Print("; ",String(WPE_TopComponent(x))," )");
+    Print(", ",String(WPE_TopComponent(x))," ]");
 end);
 
 InstallMethod( Display, "wreath elements", true, [IsWreathProductElement], 1,

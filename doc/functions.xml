@@ -16,7 +16,6 @@ is by using an isomorphism from a specialised wreath product representation
 to a generic representation.
 
 <#Include Label="IsomorphismWreathProduct">
-<#Include Label="GenericWreathProduct">
 
 </Section>
 
@@ -57,8 +56,8 @@ The following functions give access to important properties of wreath product el
 
 <Description>
 Wreath product elements are viewed, printed and displayed (see
-section <Ref BookName="Reference" Sect="View and Print"/> for the distinctions between these
-operations) as extended tuples (see section <Ref Sect="Wreath Product"/>).
+Section <Ref BookName="Reference" Sect="View and Print"/> for the distinctions between these
+operations) as generic wreath product elements (see Section <Ref Sect="Wreath Product"/>).
 For an example of the distinctions and outputs see <Ref Sect="Tutorial Display Wreath Product Elements"/>. <P/>
 
 The method <C>Display</C> allows an optional argument <A>optrec</A> which must be a record
@@ -67,6 +66,7 @@ and modifies the display output for the execution of a single instance of the co
 For modifying the display output globally for all subsequent executions of <C>Display</C> see <Ref Func="SetDisplayOptionsForWreathProductElements"/>. <P/>
 
 The following components of <A>optrec</A> are supported.
+Note, that in the following <E>labels</E> refer to the the printing output <Q><M>1, /ldots, m</M></Q> and <Q>top</Q> as seen in the tutorials.
 
 <List>
 <Mark><C>horizontal</C></Mark>

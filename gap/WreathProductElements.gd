@@ -22,7 +22,7 @@
 ## <ManSection>
 ## <Attr Name="Territory" Arg="x"/>
 ## <Description>
-##   returns the territory of <A>x</A>.
+##   returns a list, namely the territory of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>).
 ## </Description>
@@ -34,7 +34,7 @@ DeclareAttribute( "Territory", IsWreathProductElement );
 ## <ManSection>
 ## <Attr Name="IsWreathCycle" Arg="x"/>
 ## <Description>
-##   tests whether <A>x</A> is a wreath cycle.
+##   returns true or false. Tests whether <A>x</A> is a wreath cycle.
 ##   The argument <A>x</A> must be a wreath product element
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>).
 ## </Description>
@@ -46,7 +46,7 @@ DeclareProperty( "IsWreathCycle", IsWreathProductElement );
 ## <ManSection>
 ## <Attr Name="IsSparseWreathCycle" Arg="x"/>
 ## <Description>
-##   tests whether <A>x</A> is a sparse wreath cycle.
+##   returns true or false. Tests whether <A>x</A> is a sparse wreath cycle.
 ##   The argument <A>x</A> must be a wreath product element
 ##   (see&nbsp;<Ref Sect="Sparse Wreath Cycle"/>).
 ## </Description>
@@ -58,8 +58,7 @@ DeclareProperty( "IsSparseWreathCycle", IsWreathProductElement );
 ## <ManSection>
 ## <Attr Name="WreathCycleDecomposition" Arg="x"/>
 ## <Description>
-##   returns the wreath cycle decomposition of <A>x</A>,
-##   i.e. a list containing wreath cycles.
+##   returns a list containing wreath cycles, namely the wreath cycle decomposition of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element
 ##   (see&nbsp;<Ref Sect="Wreath Cycle"/>).
 ## </Description>
@@ -75,7 +74,7 @@ DeclareAttribute( "ConjugatorWreathCycleToSparse", IsWreathProductElement );
 ## <ManSection>
 ## <Attr Name="Yade" Arg="x, [i]"/>
 ## <Description>
-##   returns the yade of the wreath cycle <A>x</A>
+##   returns a group element, namely the yade of the wreath cycle <A>x</A>
 ##   evaluated at the smallest territory point.
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the yade evaluated at the point <A>i</A>.
@@ -136,7 +135,7 @@ DeclareGlobalFunction( "ResetDisplayOptionsForWreathProductElements" );
 ## <ManSection>
 ## <Func Name="ComponentsOfWreathProduct" Arg="W"/>
 ## <Description>
-##   returns the groups [K, H] of <A>W = K wr H</A>.
+##   returns a list of two groups [K, H], where <A>W = K wr H</A>.
 ##   The argument <A>W</A> must be a wreath product
 ##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
@@ -148,7 +147,7 @@ DeclareGlobalFunction( "ComponentsOfWreathProduct" );
 ## <ManSection>
 ## <Func Name="TopComponentOfWreathProductElement" Arg="x"/>
 ## <Description>
-##   returns the top component of <A>x</A>.
+##   returns a group element, namely the top component of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element
 ##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
@@ -161,7 +160,7 @@ DeclareOperation( "WPE_TopComponent", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="TopGroupOfWreathProduct" Arg="W"/>
 ## <Description>
-##   returns the top group <M>\langle 1_K \rangle^m \times H</M> of the wreath product <M>W = K \wr H</M>
+##   returns a group, namely the top group <M>\langle 1_K \rangle^m \times H</M> of the wreath product <M>W = K \wr H</M>
 ##   (see&nbsp;<Ref Sect="Wreath Product"/>).
 ## </Description>
 ## </ManSection>
@@ -175,7 +174,7 @@ DeclareOperation( "WPE_TopDegree", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="BaseComponentOfWreathProductElement" Arg="x, [i]"/>
 ## <Description>
-##   returns the base component of <A>x</A>.
+##   returns a group element, namely the base component of <A>x</A>.
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the <A>i</A>-th base component of <A>x</A>.
 ##   The argument <A>x</A> must be a wreath product element
@@ -191,7 +190,7 @@ DeclareOperation( "WPE_BaseComponent", [IsWreathProductElement] );
 ## <ManSection>
 ## <Func Name="BaseGroupOfWreathProduct" Arg="W, [i]"/>
 ## <Description>
-##   returns the base group <M>K^m \times \langle 1_H</M> of the wreath product <M>W = K \wr H</M>.
+##   returns a group, namely the base group <M>K^m \times \langle 1_H</M> of the wreath product <M>W = K \wr H</M>.
 ##   If the optional argument <A>i</A> is provided,
 ##   the function returns the <A>i</A>-th factor of the base group of <A>W</A>
 ##   (see&nbsp;<Ref Sect="Wreath Product"/>).
@@ -223,10 +222,10 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## <group of size 311040000 with 4 generators>
 ## ]]></Example>
 ##   For an overview on wreath product representations in &GAP; see <Ref Sect="Wreath Product Representations"/>. <P/>
-##   In the background, it uses the Low-Level functions
+##   In the background, it uses the low-level functions
 ##   <C>ListWreathProductElement</C> and <C>WreathProductElementList</C>
 ##   and wraps the <C>IsList</C> representations into <C>IsWreathProductElement</C> representations. <P/>
-##   For performant code, we recommend to use these Low-Level functions instead of <C>IsomorphismWreathProduct</C>.
+##   For performant code, we recommend to use these low-level functions instead of <C>IsomorphismWreathProduct</C>.
 ##   All functions for <C>IsWreathProductElement</C> also work on <C>IsList</C> objects that represent a wreath product element.
 ##   However, it is not checked that the <C>IsList</C> object actually represents a wreath product element.
 ## </Description>
@@ -234,27 +233,6 @@ DeclareOperation( "WPE_BaseGroup", [HasWreathProductInfo] );
 ## <#/GAPDoc>
 DeclareOperation( "IsomorphismWreathProduct", [HasWreathProductInfo] );
 
-
-## <#GAPDoc Label="GenericWreathProduct">
-## <ManSection>
-## <Func Name="GenericWreathProduct" Arg="G"/>
-## <Description>
-##   returns a wreath product in the generic representation. <P/>
-## <Example><![CDATA[
-## gap> K := AlternatingGroup(5);;
-## gap> H := SymmetricGroup(4);;
-## gap> W := GenericWreathProduct(K, H);
-## <group of size 311040000 with 4 generators>
-## ]]></Example>
-##   For an overview on wreath product representations in &GAP; see <Ref Sect="Wreath Product Representations"/>. <P/>
-##   We recommend using <C>IsomorphismWreathProduct</C> instead of this function,
-##   to benefit in all computations from the best suitable representation.
-##   Computations might be slow in the generic representation,
-##   as only a few specialized algorithms are available right now.
-## </Description>
-## </ManSection>
-## <#/GAPDoc>
-DeclareGlobalFunction( "GenericWreathProduct" );
 
 #############################################################################
 # Cycle Index:

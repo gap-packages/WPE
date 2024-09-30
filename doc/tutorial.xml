@@ -19,8 +19,21 @@ gap> G := WreathProduct(K, H);
 <permutation group of size 311040000 with 10 generators>
 ]]></Example>
 
+The resulting group <M>G</M> is embedded into a symmetric group on <M>5 \cdot 4 = 20</M> points
+via the imprimitive action of the wreath product.
+The size of the group is
+<Display Mode="M">
+\vert G \vert = \vert\textrm{Alt}(5)\vert^4 \cdot \vert\textrm{Sym}(4)\vert = 60^4 \cdot 24 = 311\,040\,000\;.
+</Display><P/>
+
+Suppose we would like to input the wreath product element
+<Display Mode="M">
+g = (\; (1,5,2,4,3),\, (1,3,5,2,4),\, (1,5,3,4,2),\, (1,4,5);\; (1,3)(2,4) \;)
+</Display>
+as an element of <M>G</M>.
 The method <C>WreathProductElementList</C> is the preferred way to create
-a wreath product element by specifying its components. <P/>
+a wreath product element by specifying its components.
+Note that we first specify the four base components and at the end the top component as the last entry. <P/>
 <Example><![CDATA[
 gap> gList := [ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3)(2,4) ];;
 gap> g := WreathProductElementList(G, gList);
@@ -77,7 +90,7 @@ how we can display wreath product elements in an intuitive way.
 
 Wreath product elements are viewed, printed and displayed (see
 section <Ref BookName="Reference" Sect="View and Print"/> for the distinctions between these
-operations) in extended tuple representations (see section <Ref Sect="Wreath Product"/>). <P/>
+operations) as generic wreath product elements (see section <Ref Sect="Wreath Product"/>). <P/>
 
 Suppose we are given some element <M>g</M> in the wreath product
 <M>G = \textrm{Alt}(5) \wr \textrm{Sym}(4)</M>,
@@ -105,7 +118,7 @@ If we want to print this element in a "machine-readable" way,
 we could use one of the following methods. <P/>
 <Example><![CDATA[
 gap> Print(w);
-( (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5); (1,3,2,4) )
+[ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3,2,4) ]
 gap> L := ListWreathProductElement(W, w);
 [ (1,5,2,4,3), (1,3,5,2,4), (1,5,3,4,2), (1,4,5), (1,3,2,4) ]
 gap> L = ListWreathProductElement(G, g);
@@ -121,9 +134,9 @@ gap> Display(w);
 ]]></Example>
 
 There are many display options available for adjusting the display behaviour
-for wreath product elements to your liking. (see <Ref Label="Display Functions"/>)
+for wreath product elements to your liking (see <Ref Label="Display Functions"/>).
 For example, we might want to display the element vertically.
-We can do this for a single execution of the `Display` command without
+We can do this for a single call to the `Display` command without
 changing the global display options like this: <P/>
 <Example><![CDATA[
 gap> Display(w, rec(horizontal := false));
@@ -158,7 +171,7 @@ gap> Display(w);
 
 But sometimes, it is sufficient to just look at some components
 of a wreath product element. We can directly use the list representation
-to access the components on a Low-Level or we can use High-Level
+to access the components on a low-level or we can use high-level
 functions on wreath product elements instead.
 <Example><![CDATA[
 gap> a := BaseComponentOfWreathProductElement(w, 3);
@@ -180,7 +193,7 @@ true
 As noted in the introduction,
 no additional setup is required
 if one wants to benefit from the optimizations for computations in wreath products.
-We simply create the wreath products via the native GAP command <Ref BookName="Reference" Oper="WreathProduct"/>,
+We simply create the wreath products via the native &GAP; command <Ref BookName="Reference" Oper="WreathProduct"/>,
 and the generic representation is used under the hood whenever appropiate. <P/>
 
 We include in the following sections examples for each computational problem listed in <Ref Sect="Intro Computations"/>.
@@ -220,19 +233,19 @@ true
 <Section>
 <Heading>Conjugacy Problem</Heading>
 
-Solve the conjugacy problem for <M>x</M> and <M>y</M> over <M>G</M>,
+We now demonstrate how to solve the conjugacy problem for <M>x</M> and <M>y</M> over <M>G</M>,
 i.e. decide whether there exists <M>c \in G</M> with <M>x^c = y</M>
 and if it does, explicitly compute such a conjugating element <M>c</M>. <P/>
 
-We continue the GAP session from <Ref Sect="Tutorial Efficient Computing"/> <P/>
+We continue the &GAP; session from Section <Ref Sect="Tutorial Efficient Computing"/>. <P/>
 
-To check in GAP whether two elements are conjugate in a group we use <Ref BookName="Reference" Func="RepresentativeAction"/>.
+To check in &GAP; whether two elements are conjugate in a group we use native &GAP; command <Ref BookName="Reference" Func="RepresentativeAction"/>.
 <Example><![CDATA[
 gap> RepresentativeAction(G, x, y);
 fail
 ]]></Example>
 The output <C>fail</C> indicates, that <M>x</M> and <M>y</M> are not conjugate over <M>G</M>.
-But how about the parent wreath product?
+But are <M>x</M> and <M>y</M> conjugate in the parent wreath product?
 <Example><![CDATA[
 gap> c := RepresentativeAction(P, x, y);
 (2,5)(3,4)(6,8,9,7)(11,29,25)(12,26,21,13,28,22,15,27,24,14,30,23)
@@ -242,26 +255,27 @@ gap> Display(c^iso);
 gap> x ^ c = y;
 true
 ]]></Example>
-We see, that indeed these elements are conjugate over the larger wreath product <M>P</M> by the conjugating element <M>c</M>.
+We see, that indeed these elements are conjugate over the larger wreath product <M>P</M> by the conjugating element <M>c \in P</M>.
 </Section>
 
 <Section>
 <Heading>Conjugacy Classes</Heading>
 
 Enumerate representatives of all conjugacy classes of elements of <M>G</M>,
-i.e. return elements <M>g_1, \dots, g_l</M> such that <M>g_1^G, \dots, g_l^G</M>
+i.e. return elements <M>g_1, \dots, g_\ell</M> such that <M>g_1^G, \dots, g_\ell^G</M>
 are the conjugacy classes of <M>G</M>. <P/>
 
-We continue the GAP session from <Ref Sect="Tutorial Efficient Computing"/> <P/>
+We continue the &GAP; session from Section <Ref Sect="Tutorial Efficient Computing"/>.
+In particular recall the definition of the isomorphism <C>iso</C>.<P/>
 
-To compute in GAP the conjugacy classes of a group we use  <Ref BookName="Reference" Attr="ConjugacyClasses"/>.
+To compute in &GAP; the conjugacy classes of elements of a group we use  <Ref BookName="Reference" Attr="ConjugacyClasses"/>.
 <Example><![CDATA[
 gap> CC := ConjugacyClasses(G);;
 gap> Length(CC);
 1960
 ]]></Example>
 
-We see that there are <M>1\,960</M> many conjugacy classes of <M>G</M>.
+We see that there are <M>1\,960</M> many conjugacy classes of elements of <M>G</M>.
 Let us look at a single conjugacy class.
 <Example><![CDATA[
 gap> A := CC[1617];
@@ -269,7 +283,7 @@ gap> A := CC[1617];
 ]]></Example>
 
 We can compute additional information about a conjugacy class on the go.
-For example, we can ask GAP for the number of elements in this class.
+For example, we can ask &GAP; for the number of elements in this class.
 <Example><![CDATA[
 gap> Size(A);
 60000
@@ -295,9 +309,10 @@ e.g. all cycles in the wreath cycle decomposition of <M>a</M> are sparse (see <R
 Compute the centralizer of <M>x</M> in <M>G</M>,
 i.e. compute a generating set of <M>C_G(x)</M>. <P/>
 
-We continue the GAP session from <Ref Sect="Tutorial Efficient Computing"/> <P/>
+We continue the &GAP; session from <Ref Sect="Tutorial Efficient Computing"/>.
+In particular recall the definition of the isomorphism <C>iso</C>.<P/>
 
-To compute in GAP the centralizer of an element in a group we use <Ref BookName="Reference" Oper="Centralizer"/>.
+To compute in &GAP; the centralizer of an element in a group we use <Ref BookName="Reference" Oper="Centralizer"/>.
 <Example><![CDATA[
 gap> C := Centralizer(G, x);
 Group([ (16,20)(17,19)(26,27)(28,30), (16,19,20,17)(26,28,27,30),
@@ -305,7 +320,7 @@ Group([ (16,20)(17,19)(26,27)(28,30), (16,19,20,17)(26,28,27,30),
 ]]></Example>
 
 We can compute additional information about the centralizer on the go.
-For example, we can ask GAP for the number of elements in <M>G</M> that centralize <M>x</M>.
+For example, we can ask &GAP; for the number of elements in <M>G</M> that centralize <M>x</M>.
 
 <Example><![CDATA[
 gap> Size(C);
@@ -337,7 +352,7 @@ gap> for g in GeneratorsOfGroup(C) do
 
 Compute the cycle index polynomial of <M>G</M> either for the imprimitive action or the product action.
 
-We do not continue the GAP session from <Ref Sect="Tutorial Efficient Computing"/> since the wreath product is too large
+We do not continue the &GAP; session from <Ref Sect="Tutorial Efficient Computing"/> since the wreath product is too large
 to make sense of the cycle index polynomial just by looking at it. Instead we use the following wreath product.
 
 <Example><![CDATA[
@@ -351,7 +366,7 @@ gap> Order(G_impr);
 72
 ]]></Example>
 
-To compute in GAP the cycle index of a a group we use <Ref BookName="Reference" Oper="CycleIndex"/>.
+To compute in &GAP; the cycle index of a a group we use <Ref BookName="Reference" Oper="CycleIndex"/>.
 Note that by default, the wreath product is given in imprimitive action.
 <Example><![CDATA[
 gap> c_impr := CycleIndex(G_impr);
@@ -396,9 +411,11 @@ Thus the package provides the functions <Ref Func="CycleIndexWreathProductImprim
 without writing down a representation of <M>K \wr H</M>.
 
 <Example><![CDATA[
-gap> c_impr = CycleIndexWreathProductImprimitiveAction(K, H);
+gap> c1 := CycleIndexWreathProductImprimitiveAction(K, H);;
+gap> c_impr = c1;
 true
-gap> c_prod = CycleIndexWreathProductProductAction(K, H);
+gap> c2 := CycleIndexWreathProductProductAction(K, H);;
+gap> c_prod = c2;
 true
 ]]></Example>
 
