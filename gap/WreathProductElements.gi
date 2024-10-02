@@ -45,8 +45,8 @@ BindGlobal( "WPE_GenericWreathProduct_GAP", ApplicableMethod(WreathProduct,
     [DihedralGroup(8), SymmetricGroup(3), IdentityMapping(SymmetricGroup(3))]
 ));
 
-InstallGlobalFunction( "WPE_GenericWreathProduct",
-function(args)
+BindGlobal( "WPE_GenericWreathProduct",
+function(args...)
     local K, H, phi;
     if Length(args) < 2 or Length(args) > 3 then
         ErrorNoReturn("Unknown number of arguments");

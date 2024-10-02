@@ -126,7 +126,7 @@ function(W, v)
         conjToSparseElm := List(conjToSparse, z -> WreathProductElementListNC(W, z));
         conjToSparseProd := Product(conjToSparseElm);
         conjToSparseInvProd := conjToSparseProd ^ -1;
-        w := ListWreathProductElementNC(W, WreathProductElementListNC(W, v) ^ conjToSparseProd);
+        w := ListWreathProductElementNC(W, WreathProductElementListNC(W, v) ^ conjToSparseProd, false);
     else
         conjToSparseProd := Product(conjToSparse);
         conjToSparseInvProd := conjToSparseProd ^ -1;
@@ -167,7 +167,7 @@ function(W, v)
     # TODO: Remove Ugly Hack
     # Ugly Hack: deal with list rep
     if IsList(v) then
-        conjToSparseInv := List(conjToSparse, block -> List(block, c -> ListWreathProductElementNC(W, WreathProductElementListNC(W, c) ^ -1)));
+        conjToSparseInv := List(conjToSparse, block -> List(block, c -> ListWreathProductElementNC(W, WreathProductElementListNC(W, c) ^ -1, false)));
     else
         conjToSparseInv := List(conjToSparse, block -> List(block, c -> c ^ -1));
     fi;
