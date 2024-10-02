@@ -6,7 +6,24 @@
 #
 LoadPackage( "WPE" );
 
-TestDirectory(DirectoriesPackageLibrary( "WPE", "tst/files"),
-  rec(exitGAP := true));
+docTests := TestDirectory(DirectoriesPackageLibrary( "WPE", "tst/files/doc"),
+  rec(
+    testOptions := rec(
+      width := 120,
+      compareFunction := "uptowhitespace",
 
-FORCE_QUIT_GAP(1); # if we ever get here, there was an error
+    ),
+  )
+);
+
+machineTests := TestDirectory(DirectoriesPackageLibrary( "WPE", "tst/files/machine-generated"),
+  rec()
+);
+
+humanTests := TestDirectory(DirectoriesPackageLibrary( "WPE", "tst/files/human-created"),
+  rec()
+);
+
+if not (docTests and machineTests and humanTests) then
+  FORCE_QUIT_GAP(1); # if we ever get here, there was an error
+fi;
