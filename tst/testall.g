@@ -26,4 +26,6 @@ humanTests := TestDirectory(DirectoriesPackageLibrary( "WPE", "tst/files/human-c
 
 if not (docTests and machineTests and humanTests) then
   FORCE_QUIT_GAP(1); # if we ever get here, there was an error
+else
+  FORCE_QUIT_GAP(0); # everything is fine
 fi;
