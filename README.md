@@ -1,5 +1,5 @@
-[![CI](https://github.com/FriedrichRober/WPE/workflows/CI/badge.svg)](https://github.com/FriedrichRober/WPE/actions?query=workflow%3ACI+branch%3Amaster)
-[![Code Coverage](https://codecov.io/gh/FriedrichRober/WPE/coverage.svg?branch=master&token=)](https://codecov.io/gh/FriedrichRober/WPE)
+[![CI](https://github.com/gap-packages/WPE/workflows/CI/badge.svg)](https://github.com/gap-packages/WPE/actions?query=workflow%3ACI+branch%3Amaster)
+[![Code Coverage](https://codecov.io/gh/gap-packages/WPE/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/WPE)
 
 # WPE - GAP package
 
@@ -8,7 +8,7 @@ WPE provides efficient methods for working with <ins>**W**</ins>reath <ins>**P**
 ## Installation
 
 **1.** To get the newest version of this GAP 4 package download the archive file `WPE-x.x.tar.gz` from
->   <https://FriedrichRober.github.io/WPE/>
+>   <https://gap-packages.github.io/WPE/>
 
 **2.** Locate a `pkg/` directory where GAP searches for packages, see
 >   [9.2 GAP Root Directories](https://www.gap-system.org/Manuals/doc/ref/chap9.html#X7A4973627A5DB27D)
@@ -29,7 +29,7 @@ Version `0.1` requires `GAP version >= 4.11`
 ## Documentation
 
 You can read the documentation online at
->   <https://FriedrichRober.github.io/WPE/doc/chap0.html>
+>   <https://gap-packages.github.io/WPE/doc/chap0.html>
 
 If you want to access it from within GAP by entering `?WPE` on the GAP prompt,
 you first have to build the manual by using `gap makedoc.g` from within the `WPE/` root directory.
@@ -37,7 +37,7 @@ you first have to build the manual by using `gap makedoc.g` from within the `WPE
 ## Bug reports
 
 Please submit bug reports, feature requests and suggestions via our issue tracker at
->  <https://github.com/FriedrichRober/WPE/issues>
+>  <https://github.com/gap-packages/WPE/issues>
 
 ## License
 
