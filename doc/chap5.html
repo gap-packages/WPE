@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (WPE) - Chapter 5: Operations</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap5"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap5_mj.html">[MathJax on]</a></p>
+<p><a id="X7DE8E16C7C2D387B" name="X7DE8E16C7C2D387B"></a></p>
+<div class="ChapSects"><a href="chap5.html#X7DE8E16C7C2D387B">5 <span class="Heading">Operations</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X8730A88E7DEB09F2">5.1 <span class="Heading">Operations List</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X787C52A28302EB30">5.1-1 <span class="Heading">Wreath Product Representations</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X80E9B35E7B9B7D98">5.1-2 <span class="Heading">Operations for all Representations</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X803D92AC7A29E51F">5.1-3 <span class="Heading">Operations for Permutation Representations</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X802ECAC97D3DA99E">5.1-4 <span class="Heading">Operations for Generic Representation</span></a>
+</span>
+</div></div>
+</div>
+
+<h3>5 <span class="Heading">Operations</span></h3>
+
+<p>The generic representation of wreath product elements in wreath products of finite groups and in particular their (sparse) wreath cycle decompositions can be used to speed up certain computations in wreath products.</p>
+
+<p>In particular this package provides efficient methods for finding conjugating elements, conjugacy classes, and centralisers. The implementations are based on <a href="chapBib.html#biBWPE">[BNRW22]</a> and references therein.</p>
+
+<p><a id="X8730A88E7DEB09F2" name="X8730A88E7DEB09F2"></a></p>
+
+<h4>5.1 <span class="Heading">Operations List</span></h4>
+
+<p>Here we include a list of operations that take advantage of the generic representation of wreath product elements.</p>
+
+<p>We include python scripts in the <code class="code">dev/</code> directory that benchmark the <strong class="pkg">WPE</strong> and native <strong class="pkg">GAP</strong> implementations of these operations separately. The comparison of the runtimes supports the conclusion that the <strong class="pkg">WPE</strong> implementations are an order of magnitude faster than the native <strong class="pkg">GAP</strong> implementations. We can now solve these computational tasks for large wreath products that were previously not feasible in <strong class="pkg">GAP</strong></p>
+
+<p><a id="X787C52A28302EB30" name="X787C52A28302EB30"></a></p>
+
+<h5>5.1-1 <span class="Heading">Wreath Product Representations</span></h5>
+
+<p>In the following let <span class="SimpleMath">G = K ≀ H</span> be a wreath product, where <span class="SimpleMath">H ≤ Sym(m)</span>.</p>
+
+<p>In <strong class="pkg">GAP</strong> the wreath product <span class="SimpleMath">G</span> can be given in one of the following representations :</p>
+
+
+<ul>
+<li><p>Generic Representation</p>
+
+</li>
+<li><p>Permutation Representation in Imprimitive Action</p>
+
+</li>
+<li><p>Permutation Representation in Product Action</p>
+
+</li>
+<li><p>Matrix Representation</p>
+
+</li>
+</ul>
+<p><a id="X80E9B35E7B9B7D98" name="X80E9B35E7B9B7D98"></a></p>
+
+<h5>5.1-2 <span class="Heading">Operations for all Representations</span></h5>
+
+<p>Further let <span class="SimpleMath">x, y ∈ P = K ≀ Sym(m)</span> be elements of the parent wreath product <span class="SimpleMath">P</span> which is given in the same representation as <span class="SimpleMath">G</span>.</p>
+
+<p>Additionaly let <span class="SimpleMath">z ∈ S</span> be an element of a group <span class="SimpleMath">S</span> given in the same representation as <span class="SimpleMath">G</span>.</p>
+
+<p>The following operations use implementations that exploit the generic representation and (sparse) wreath cycle decompositions :</p>
+
+
+<ul>
+<li><p><code class="code">RepresentativeAction(G, x, y)</code></p>
+
+</li>
+<li><p><code class="code">Centraliser(G, x)</code></p>
+
+</li>
+<li><p><code class="code">ConjugacyClasses(G)</code></p>
+
+</li>
+<li><p><code class="code">z in G</code></p>
+
+</li>
+</ul>
+<p><a id="X803D92AC7A29E51F" name="X803D92AC7A29E51F"></a></p>
+
+<h5>5.1-3 <span class="Heading">Operations for Permutation Representations</span></h5>
+
+<p>Here we assume that <span class="SimpleMath">G</span> is given in some permutation representation.</p>
+
+<p>The following operations use implementations that exploit the generic representation and (sparse) wreath cycle decompositions :</p>
+
+
+<ul>
+<li><p><code class="code">CycleIndex(G)</code></p>
+
+</li>
+</ul>
+<p><a id="X802ECAC97D3DA99E" name="X802ECAC97D3DA99E"></a></p>
+
+<h5>5.1-4 <span class="Heading">Operations for Generic Representation</span></h5>
+
+<p>Here we assume that <span class="SimpleMath">G</span> is given in generic representation.</p>
+
+<p>The following operations use implementations that exploit the generic representation and (sparse) wreath cycle decompositions :</p>
+
+
+<ul>
+<li><p><code class="code">Order(x)</code></p>
+
+</li>
+</ul>
+<p> </p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

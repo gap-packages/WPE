@@ -1,0 +1,82 @@
+  
+  [1X5 [33X[0;0YOperations[133X[101X
+  
+  [33X[0;0YThe  generic representation of wreath product elements in wreath products of
+  finite  groups  and in particular their (sparse) wreath cycle decompositions
+  can be used to speed up certain computations in wreath products.[133X
+  
+  [33X[0;0YIn   particular   this   package  provides  efficient  methods  for  finding
+  conjugating    elements,    conjugacy   classes,   and   centralisers.   The
+  implementations are based on [BNRW22] and references therein.[133X
+  
+  
+  [1X5.1 [33X[0;0YOperations List[133X[101X
+  
+  [33X[0;0YHere  we  include  a  list  of operations that take advantage of the generic
+  representation of wreath product elements.[133X
+  
+  [33X[0;0YWe  include  python scripts in the [10Xdev/[110X directory that benchmark the [5XWPE[105X and
+  native [5XGAP[105X implementations of these operations separately. The comparison of
+  the  runtimes  supports  the  conclusion that the [5XWPE[105X implementations are an
+  order  of  magnitude  faster than the native [5XGAP[105X implementations. We can now
+  solve  these  computational  tasks  for  large  wreath  products  that  were
+  previously not feasible in [5XGAP[105X[133X
+  
+  
+  [1X5.1-1 [33X[0;0YWreath Product Representations[133X[101X
+  
+  [33X[0;0YIn the following let [22XG = K ≀ H[122X be a wreath product, where [22XH ≤ Sym(m)[122X.[133X
+  
+  [33X[0;0YIn  [5XGAP[105X  the  wreath  product  [22XG[122X  can  be  given  in  one  of  the following
+  representations :[133X
+  
+  [30X    [33X[0;6YGeneric Representation[133X
+  
+  [30X    [33X[0;6YPermutation Representation in Imprimitive Action[133X
+  
+  [30X    [33X[0;6YPermutation Representation in Product Action[133X
+  
+  [30X    [33X[0;6YMatrix Representation[133X
+  
+  
+  [1X5.1-2 [33X[0;0YOperations for all Representations[133X[101X
+  
+  [33X[0;0YFurther let [22Xx, y ∈ P = K ≀ Sym(m)[122X be elements of the parent wreath product [22XP[122X
+  which is given in the same representation as [22XG[122X.[133X
+  
+  [33X[0;0YAdditionaly  let  [22Xz  ∈  S[122X  be  an  element  of  a  group [22XS[122X given in the same
+  representation as [22XG[122X.[133X
+  
+  [33X[0;0YThe  following  operations  use  implementations  that  exploit  the generic
+  representation and (sparse) wreath cycle decompositions :[133X
+  
+  [30X    [33X[0;6Y[10XRepresentativeAction(G, x, y)[110X[133X
+  
+  [30X    [33X[0;6Y[10XCentraliser(G, x)[110X[133X
+  
+  [30X    [33X[0;6Y[10XConjugacyClasses(G)[110X[133X
+  
+  [30X    [33X[0;6Y[10Xz in G[110X[133X
+  
+  
+  [1X5.1-3 [33X[0;0YOperations for Permutation Representations[133X[101X
+  
+  [33X[0;0YHere we assume that [22XG[122X is given in some permutation representation.[133X
+  
+  [33X[0;0YThe  following  operations  use  implementations  that  exploit  the generic
+  representation and (sparse) wreath cycle decompositions :[133X
+  
+  [30X    [33X[0;6Y[10XCycleIndex(G)[110X[133X
+  
+  
+  [1X5.1-4 [33X[0;0YOperations for Generic Representation[133X[101X
+  
+  [33X[0;0YHere we assume that [22XG[122X is given in generic representation.[133X
+  
+  [33X[0;0YThe  following  operations  use  implementations  that  exploit  the generic
+  representation and (sparse) wreath cycle decompositions :[133X
+  
+  [30X    [33X[0;6Y[10XOrder(x)[110X[133X
+  
+  [33X[0;0Y [133X
+  

@@ -15,7 +15,7 @@
 <body class="chap1"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2.html">[Next Chapter]</a>&nbsp;  </div>
 
@@ -25,33 +25,34 @@
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X8389AD927B74BA4A">1.1 <span class="Heading">Overview</span></a>
 </span>
 </div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7DD31B407B9402A3">1.2 <span class="Heading">Notation</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7950ED88879EE36F">1.2 <span class="Heading">Intuitive Research</span></a>
 </span>
-</div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X867C059E7E460EFA">1.3 <span class="Heading">Wreath Cycle Decomposition</span></a>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X83C9D5E6846B299E">1.2-1 <span class="Heading">The Power of Component-wise Representation</span></a>
 </span>
-</div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7B9157FB8383F109">1.4 <span class="Heading">Sparse Wreath Cycle</span></a>
-</span>
-</div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X85861B017AEEC50B">1.5 <span class="Heading">Example</span></a>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7D96C25680814773">1.3 <span class="Heading">Efficient Computing</span></a>
 </span>
 </div>
 </div>
 
 <h3>1 <span class="Heading">Introduction</span></h3>
 
-<p>This chapter serves as an introduction and explains the notation of the package <strong class="pkg">WPE</strong>.</p>
+<p>This chapter serves as an introduction and showcases some highlights of the package <strong class="pkg">WPE</strong>.</p>
 
 <p><a id="X8389AD927B74BA4A" name="X8389AD927B74BA4A"></a></p>
 
 <h4>1.1 <span class="Heading">Overview</span></h4>
 
-<p>The package <strong class="pkg">WPE</strong> is about wreath product elements in their generic representation. This representation is more intuitive to the User when working with wreath products and additionally may have computational benefits over other representations.</p>
+<p>The package <strong class="pkg">WPE</strong> (<b><u>W</u></b>reath <b><u>P</b></u>roduct <b><u>E</b></u>lements) provides methods to work with elements of finite groups which are wreath products. It contributes to <center> <b>intuitive research</b> and <b>efficient computing</b> <p/> </center> in wreath products of groups.</p>
 
-<p>In particular this package provides efficient methods for finding conjugating elements, conjugacy classes, and centralisers. The implementations are based on <a href="chapBib.html#biBwpeConjugacy">[BNRW22]</a> and references therein. For a complete list of operations that exploit the generic representation, see Chapter <a href="chap4.html#X7DE8E16C7C2D387B"><span class="RefLink">4</span></a>.</p>
+<p>It allows access to a representation of wreath products, which we refer to as the <em>generic representation</em>, that is more intuitive to the User when working with wreath products of groups. Access is as straight-forward as using the provided command <code class="code">IsomorphismWreathProduct</code> on a wreath product created by the native <strong class="pkg">GAP</strong> command <code class="code">WreathProduct</code>, see <a href="chap1.html#X7950ED88879EE36F"><span class="RefLink">1.2</span></a> for an example.</p>
 
-<p>For example, the computation of all <span class="SimpleMath">886640</span> conjugacy classses of the wreath product <span class="SimpleMath">W = M_22 ≀ A_9</span> takes about 12 seconds with <strong class="pkg">WPE</strong>. With native <strong class="pkg">GAP</strong> this computation is not feasible.</p>
+<p>Additionally, this representation may have computational benefits over other representations. Note, that just by loading the package <strong class="pkg">WPE</strong> and without any additional setup, all optimizations are applied to computations in wreath products created by the native <strong class="pkg">GAP</strong> command <code class="code">WreathProduct</code>, by exploiting the generic representation under the hood when appropiate. See <a href="chap1.html#X7D96C25680814773"><span class="RefLink">1.3</span></a> for a highlight showcase of such computational problems.</p>
+
+<p>In particular, this package provides efficient methods for finding <b>conjugating elements</b>, <b>conjugacy classes</b>, and <b>centralizers</b> in wreath products. The implementations are based on an accompanying publication <a href="chapBib.html#biBWPE">[BNRW22]</a>, that generalizes results from <a href="chapBib.html#biBSpecht">[Spe32]</a> and <a href="chapBib.html#biBOre">[Ore42]</a> on monomial groups, wreath products whose top group is the full symmetric group.</p>
+
+<p>For example, the computation of all <span class="SimpleMath">886640</span> conjugacy classses of elements of the wreath product <span class="SimpleMath">W = M_22 ≀ A_9</span> takes about 12 seconds with <strong class="pkg">WPE</strong>. With native <strong class="pkg">GAP</strong> this computation is not feasible.</p>
 
 
 <div class="example"><pre>
@@ -64,77 +65,15 @@
 886640
 </pre></div>
 
-<p><a id="X7DD31B407B9402A3" name="X7DD31B407B9402A3"></a></p>
+<p><a id="X7950ED88879EE36F" name="X7950ED88879EE36F"></a></p>
 
-<h4>1.2 <span class="Heading">Notation</span></h4>
+<h4>1.2 <span class="Heading">Intuitive Research</span></h4>
 
-<p>Let <span class="SimpleMath">G = K ≀ H</span> be a wreath product, where <span class="SimpleMath">H</span> is a permutation group of degree <span class="SimpleMath">m</span>. The wreath product is defined as the semidirect product of the function space <span class="SimpleMath">K^m</span> with <span class="SimpleMath">H</span>, where <span class="SimpleMath">π ∈ H</span> acts on <span class="SimpleMath">f ∈ K^m</span> by setting <span class="SimpleMath">f^{π} : {1, ..., m} → K, i ↦ [(i)π^{-1}]f</span>. We denote the parent wreath product by <span class="SimpleMath">P = K ≀ Sym(m) ≥ G</span>.</p>
+<p>One of the two main goals of the package is to provide the User with tools to conduct <b>intuitive research</b> in wreath products of groups on the computer.</p>
 
-<p>Formally we can write an element of <span class="SimpleMath">G</span> as a tuple <span class="SimpleMath">g = (f, π) ∈ G</span>, where <span class="SimpleMath">f ∈ K^m</span> is a function <span class="SimpleMath">f : {1, ..., m} → K</span> and <span class="SimpleMath">π ∈ H ≤ Sym(m)</span> is a permutation on <span class="SimpleMath">m</span> points. We call <span class="SimpleMath">f</span> the <em>base component</em> and <span class="SimpleMath">π</span> the <em>top component</em> of <span class="SimpleMath">g</span>.</p>
+<p>In this section we present an example session which demonstrates how we can access the generic representation of a wreath product. As noted in the introduction, no additional setup is required if one wants to benefit from the optimizations for computations in wreath products (see <a href="chap1.html#X7D96C25680814773"><span class="RefLink">1.3</span></a> for examples on this).</p>
 
-<p>We can naturally identify a map <span class="SimpleMath">f ∈ K^m</span> with a tuple <span class="SimpleMath">(g_1, ..., g_m)</span>, where each <span class="SimpleMath">g_i ∈ K</span> is the image of <span class="SimpleMath">i ∈ {1, ..., m}</span> under <span class="SimpleMath">f</span>. This yields a second useful notation for elements in <span class="SimpleMath">G</span> by writing <span class="SimpleMath">g = (g_1, ..., g_m; π)</span>. Note that we use a semicolon to seperate the base component from the top component. Further we call the element <span class="SimpleMath">g_i</span> the <em><span class="SimpleMath">i</span>-th base component</em> of <span class="SimpleMath">g</span>.</p>
-
-<p>Analogous, the subgroup <span class="SimpleMath">B = K^m × ⟨ 1_H ⟩ ≤ G</span> is called the <em>base group</em> of <span class="SimpleMath">G</span> and the subgroup <span class="SimpleMath">T = ⟨ 1_K ⟩^m × H ≤ G</span> is called the <em>top group</em> of <span class="SimpleMath">G</span>.</p>
-
-<p><a id="X867C059E7E460EFA" name="X867C059E7E460EFA"></a></p>
-
-<h4>1.3 <span class="Heading">Wreath Cycle Decomposition</span></h4>
-
-<p>In a permutation group we have the well-known concept of a cycle decomposition. For wreath products we have a similar concept called <em>wreath cycle decomposition</em> that allows us to solve certain computational tasks more efficiently.</p>
-
-<p>Detailed information on <em>wreath cycle decompositions</em> can be found in Chapter 2 in <a href="chapBib.html#biBwpeConjugacy">[BNRW22]</a>. Chapters 3-5 in <a href="chapBib.html#biBwpeConjugacy">[BNRW22]</a> describe how these can be exploited for finding conjugating elements, conjugacy classes, and centralisers, and Chapter 6 in <a href="chapBib.html#biBwpeConjugacy">[BNRW22]</a> contains a table of timings of sample computations done with <strong class="pkg">WPE</strong> vs. native <strong class="pkg">GAP</strong>.</p>
-
-<p>We use the notation from <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a> in order to introduce the following concepts.</p>
-
-<p><span class="SimpleMath">Definition:</span> We define the <em>territory</em> of an element <span class="SimpleMath">g = (g_1, ..., g_m; π) ∈ G</span> by <span class="SimpleMath">terr(g) := supp(π) ∪ {i : g_i ≠ 1}</span>, where <span class="SimpleMath">supp(π)</span> denotes the set of moved points of <span class="SimpleMath">π</span>.</p>
-
-<p><span class="SimpleMath">Definition:</span> Two elements <span class="SimpleMath">g, h ∈ G</span> are said to be <em>disjoint</em> if their territories are disjoint.</p>
-
-<p><span class="SimpleMath">Lemma:</span> Disjoint elements in <span class="SimpleMath">G</span> commute.</p>
-
-<p><span class="SimpleMath">Definition:</span> An element <span class="SimpleMath">g = (g_1, ..., g_m; π) ∈ G</span> is called a <em>wreath cycle</em> if either <span class="SimpleMath">π</span> is a cycle and <span class="SimpleMath">terr(g) = supp(π)</span>, or <span class="SimpleMath">|terr(g)| = 1</span>.</p>
-
-<p><span class="SimpleMath">Example:</span> For example if we consider the wreath product <span class="SimpleMath">Sym(4) ≀ Sym(5)</span>, the element</p>
-
-<p class="pcenter">( (), (1,2,3), (), (1,2), (); (1,2,4) )</p>
-
-<p>is a wreath cycle as described in the first case and the element</p>
-
-<p class="pcenter">( (), (), (1,3), (), (); () )</p>
-
-<p>is a wreath cycle as described in the second case. Moreover, these elements are disjoint and thus commute.</p>
-
-<p><span class="SimpleMath">Theorem:</span> Every element of <span class="SimpleMath">G</span> can be written as a finite product of disjoint wreath cycles in <span class="SimpleMath">P</span>. This decomposition is unique up to ordering of the factors. We call such a decomposition a <em>wreath cycle decomposition</em>.</p>
-
-<p><a id="X7B9157FB8383F109" name="X7B9157FB8383F109"></a></p>
-
-<h4>1.4 <span class="Heading">Sparse Wreath Cycle</span></h4>
-
-<p>We use the notation from <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a> in order to introduce the following concepts.</p>
-
-<p>The main motivation for introducing the concept of <em>sparse wreath cycles</em> is the efficient computation of centralisers of wreath product elements. Simply put, we compute the centraliser of an arbitrary element <span class="SimpleMath">g ∈ P</span> in <span class="SimpleMath">G</span> by conjugating it to a restricted representative <span class="SimpleMath">h = g^c ∈ P</span> and computing the centraliser of <span class="SimpleMath">h</span> in <span class="SimpleMath">G</span>. The wreath cycle decomposition of the representative <span class="SimpleMath">h</span> consists only of sparse wreath cycles.</p>
-
-<p>More information on <em>sparse wreath cycles</em> and centralisers of wreath product elements can be found in Chapter 5 in <a href="chapBib.html#biBwpeConjugacy">[BNRW22]</a>.</p>
-
-<p><span class="SimpleMath">Definition:</span> We say that a wreath cycle <span class="SimpleMath">g = (g_1, ..., g_m; π) ∈ G</span> is a <em>sparse wreath cycle</em>, if there exists an <span class="SimpleMath">i_0</span> such that <span class="SimpleMath">g_i = 1</span> for all <span class="SimpleMath">i ≠ i_0</span>.</p>
-
-<p><span class="SimpleMath">Example:</span> For example if we consider the wreath product <span class="SimpleMath">Sym(4) ≀ Sym(5)</span>, the element</p>
-
-<p class="pcenter">( (), (1,2,3), (), (), (); (1,2,4) )</p>
-
-<p>is a sparse wreath cycle, as well as the element</p>
-
-<p class="pcenter">( (), (), (1,3), (), (); () ) .</p>
-
-<p><span class="SimpleMath">Theorem:</span> Every element <span class="SimpleMath">g ∈ P</span> can be conjugated by some <span class="SimpleMath">c ∈ K^m × ⟨ 1_H ⟩ ≤ P</span> to an element <span class="SimpleMath">h = g^c ∈ P</span> such that the wreath cycle decomposition of <span class="SimpleMath">h</span> consists only of sparse wreath cycles.</p>
-
-<p><a id="X85861B017AEEC50B" name="X85861B017AEEC50B"></a></p>
-
-<h4>1.5 <span class="Heading">Example</span></h4>
-
-<p>In this section we present an example session which demonstrates how we can access the generic representation of a wreath product.</p>
-
-<p>First we construct the wreath product <span class="SimpleMath">G = Alt(5) ≀ Sym(7)</span>. For this we use the native <strong class="pkg">GAP</strong> command <code class="code">WreathProduct</code> (see <a href="https://www.gap-system.org/Manuals/doc/ref/chap49.html#X7DF2AEBC8518FFA4"><span class="RefLink">Reference: Wreath Products</span></a>). The resulting group is embedded into a symmetric group on <span class="SimpleMath">5 ⋅ 7 = 35</span> points via the imprimitive action of the wreath product. The size of the group is</p>
+<p>First we construct the wreath product <span class="SimpleMath">G = Alt(5) ≀ Sym(7)</span> (see <a href="chap2.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>). For this we use the native <strong class="pkg">GAP</strong> command <code class="func">WreathProduct</code> (<a href="https://docs.gap-system.org/doc/ref/chap49.html#X8786EFBC78D7D6ED"><span class="RefLink">Reference: WreathProduct</span></a>). The resulting group is embedded into a symmetric group on <span class="SimpleMath">5 ⋅ 7 = 35</span> points via the imprimitive action of the wreath product. The size of the group is</p>
 
 <p class="pcenter">| G | = |Alt(5)|^7 ⋅ |Sym(7)| = 60^7 ⋅ 5040 = 14108774400000000 .</p>
 
@@ -146,17 +85,17 @@
 &lt;permutation group of size 14108774400000000 with 4 generators&gt;
 </pre></div>
 
-<p>Now we construct an isomorphism to a wreath product given in generic representation that is provided in <strong class="pkg">WPE</strong>. For this, we need to load the package.</p>
+<p>Now we construct an isomorphism to a wreath product given in generic representation that is provided in <strong class="pkg">WPE</strong>. For this, we need to load the package <strong class="pkg">WPE</strong>.</p>
 
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("WPE");;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismToGenericWreathProduct(G);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismWreathProduct(G);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">W := Image(iso);</span>
 &lt;group of size 14108774400000000 with 4 generators&gt;
 </pre></div>
 
-<p>Let us compare how <strong class="pkg">GAP</strong> displays elements in <span class="SimpleMath">G</span> and <span class="SimpleMath">W</span> respectively. Elements in <span class="SimpleMath">G</span> are represented as permutations. In this representation it is hard to see how the base and top components of this element look like.</p>
+<p>Let us compare how <strong class="pkg">GAP</strong> displays elements of <span class="SimpleMath">G</span> and <span class="SimpleMath">W</span> respectively. Elements of <span class="SimpleMath">G</span> are represented as permutations. In this representation it is hard to identify the base and top components of this element (see <a href="chap2.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>).</p>
 
 
 <div class="example"><pre>
@@ -167,55 +106,106 @@
 true
 </pre></div>
 
-<p>Elements in <span class="SimpleMath">W</span> however are represented as generic wreath product elements. (see <a href="chap1.html#X7DD31B407B9402A3"><span class="RefLink">1.2</span></a>) This allows us to easily read off the base and top component of the element by either printing or displaying the element. Otherwise, by default the element is viewed in compressed form. (see <a href="chap3.html#X8227AD6B7FC637DE"><span class="RefLink">3.4</span></a>) This printing behaviour is similar to matrices in <strong class="pkg">GAP</strong>.</p>
+<p>Elements of <span class="SimpleMath">W</span> however are represented as generic wreath product elements (see <a href="chap2.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>). This allows us to read off the base and top component of the element easily by either printing or displaying the element. Otherwise, by default the element is viewed in compressed form (see <a href="chap4.html#X8227AD6B7FC637DE"><span class="RefLink">4.4</span></a>). This printing behaviour is similar to the behaviour of matrices in <strong class="pkg">GAP</strong>.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := g ^ iso;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w := g ^ iso;</span>
 &lt; wreath product element with 7 base components &gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(x);</span>
-( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(x);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(w);</span>
+[ (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (), (1,3)(2,7,5) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w);</span>
        1           2       3      4         5       6   7       top     
 ( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )
 </pre></div>
 
-<p>Furthermore, we can display each component easily with the provided commands.</p>
+<p>Furthermore, we can display and access each component easily with the provided commands.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BaseComponentOfWreathProductElement(x, 2);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BaseComponentOfWreathProductElement(w, 2);</span>
 (2,5)(3,4)
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TopComponentOfWreathProductElement(x);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TopComponentOfWreathProductElement(w);</span>
 (1,3)(2,7,5)
 </pre></div>
 
-<p>Next, we compute the territory of <span class="SimpleMath">x</span>, i.e. the analogue of the support of a permutation.</p>
+<p><a id="X83C9D5E6846B299E" name="X83C9D5E6846B299E"></a></p>
+
+<h5>1.2-1 <span class="Heading">The Power of Component-wise Representation</span></h5>
+
+<p>This component-wise representation is often exactly the one that we encounter in research on wreath products. Thus having it available on the computer greatly sharpens our intuition. We can make very non-trivial statements by looking at the components of such an element, and for the case of the element <span class="SimpleMath">w</span> even without a computer.</p>
+
+<p>Let us start off with an easy observation. Just by looking at the top component of <span class="SimpleMath">w</span>, i.e. <span class="SimpleMath">(1,3)(2,7,5)</span>, we can see that the smallest power of <span class="SimpleMath">w</span> that lies in the base group of <span class="SimpleMath">W</span> has exponent <span class="SimpleMath">6</span>, since it has to be equal to the order of the top component.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Territory(x);</span>
-[ 1, 2, 3, 4, 5, 7 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m := Order(w);</span>
+30
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">First( [1 .. m], k -&gt; IsOne(TopComponentOfWreathProductElement(w ^ k)) );</span>
+6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(w ^ 6);</span>
+       1            2            3       4        5       6        7       top
+( (1,2,3,5,4), (1,4,5,2,3), (1,2,3,5,4), (), (1,3,2,5,4), (), (1,3,2,5,4); () )
 </pre></div>
 
-<p>Finally, let us compute the disjoint wreath cycle decomposition of <span class="SimpleMath">x</span>, i.e. the analogue of the disjoint cycle decomposition of a permutation.</p>
+<p>Now let us be more advanced. Just by looking at the element <span class="SimpleMath">w</span>, we can deduce structural information on the conjugacy class <span class="SimpleMath">w^W</span>. All elements conjugate to <span class="SimpleMath">w</span> in <span class="SimpleMath">W = K ≀ H</span> must have at least one trivial base component, since the territory of <span class="SimpleMath">w</span> (see <a href="chap2.html#X83A8F3308644ACFA"><span class="RefLink">2.2</span></a>) contains exactly six elements, whereas the top group acts on seven points.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">wreathDecomp := WreathCycleDecomposition(x);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(wreathDecomp);</span>
-[ ( (), (), (), (3,4,5), (), (), (); () ), 
-  ( (1,3,4,2,5), (), (), (), (), (), (); (1,3) ), 
-  ( (), (2,5)(3,4), (), (), (1,2)(4,5), (), (); (2,7,5) ) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(Territory(w));</span>
+6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrMovedPoints(H);</span>
+7
 </pre></div>
 
+<p>On the other hand, all such elements must have at least three non-trivial base components, since the wreath cycle decomposition of <span class="SimpleMath">w</span> (see <a href="chap2.html#X83A8F3308644ACFA"><span class="RefLink">2.2</span></a>) contains exactly three wreath cycles with non-trivial yades (see <a href="chap2.html#X872BE72F7B2BBD6B"><span class="RefLink">2.3</span></a>).</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Number(WreathCycleDecomposition(w), c -&gt; not IsOne(Yade(c)));</span>
+3
+</pre></div>
+
+<p>Moreover, for each integer <span class="SimpleMath">k</span> with <span class="SimpleMath">3 ≤ k ≤ 6</span> there exists at least one conjugate element with exactly <span class="SimpleMath">k</span> non-trivial base components.</p>
+
+<p><a id="X7D96C25680814773" name="X7D96C25680814773"></a></p>
+
+<h4>1.3 <span class="Heading">Efficient Computing</span></h4>
+
+<p>One of the two main goals of the package is to empower the User to carry out <b>efficient computations</b> in wreath products of groups on the computer.</p>
+
+<p>In this section we present a highlight showcase of computational problems that benefit from the generic representation. As noted in the introduction, no additional setup is required if one wants to benefit from the optimizations for computations in wreath products. We simply create the wreath products via the native <strong class="pkg">GAP</strong> command <code class="func">WreathProduct</code> (<a href="https://docs.gap-system.org/doc/ref/chap49.html#X8786EFBC78D7D6ED"><span class="RefLink">Reference: WreathProduct</span></a>), and the generic representation provided by <strong class="pkg">WPE</strong> is used under the hood whenever appropiate.</p>
+
+<p>We only give a summary of some computational problems that now become approachable on the computer, and include examples for such computations in Chapter <a href="chap3.html#X81932F777898AD72"><span class="RefLink">3</span></a> containing extensive <strong class="pkg">GAP</strong> sessions that can be followed like a tutorial.</p>
+
+<p>In the following let <span class="SimpleMath">G = K ≀ H</span> be a wreath product of finite groups, where <span class="SimpleMath">H ≤ Sym(m)</span>. Further let <span class="SimpleMath">x, y ∈ P = K ≀ Sym(m)</span> be elements of the parent wreath product <span class="SimpleMath">P</span> which is given in the same representation as <span class="SimpleMath">G</span>.</p>
+
+
+<dl>
+<dt><strong class="Mark"> Conjugacy Problem </strong></dt>
+<dd><p>Solve the conjugacy problem for <span class="SimpleMath">x</span> and <span class="SimpleMath">y</span> over <span class="SimpleMath">G</span>, i.e. decide whether there exists <span class="SimpleMath">c ∈ G</span> with <span class="SimpleMath">x^c = y</span> and if it does, explicitly compute such a conjugating element <span class="SimpleMath">c</span>.</p>
+
+</dd>
+<dt><strong class="Mark"> Conjugacy Classes </strong></dt>
+<dd><p>Enumerate representatives of all conjugacy classes of elements of <span class="SimpleMath">G</span>, i.e. return elements <span class="SimpleMath">g_1, dots, g_ℓ</span> such that <span class="SimpleMath">g_1^G, dots, g_ℓ^G</span> are the conjugacy classes of <span class="SimpleMath">G</span>.</p>
+
+</dd>
+<dt><strong class="Mark"> Centralizer </strong></dt>
+<dd><p>Compute the centralizer of <span class="SimpleMath">x</span> in <span class="SimpleMath">G</span>, i.e. compute a generating set of <span class="SimpleMath">C_G(x)</span>.</p>
+
+</dd>
+<dt><strong class="Mark"> Cycle Index Polynomial</strong></dt>
+<dd><p>Compute the cycle index polynomial of <span class="SimpleMath">G</span> either for the imprimitive action or the product action.</p>
+
+</dd>
+</dl>
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
-<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>

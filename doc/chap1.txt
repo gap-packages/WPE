@@ -1,25 +1,38 @@
   
   [1X1 [33X[0;0YIntroduction[133X[101X
   
-  [33X[0;0YThis  chapter  serves  as  an  introduction and explains the notation of the
+  [33X[0;0YThis  chapter serves as an introduction and showcases some highlights of the
   package [5XWPE[105X.[133X
   
   
   [1X1.1 [33X[0;0YOverview[133X[101X
   
-  [33X[0;0YThe   package  [5XWPE[105X  is  about  wreath  product  elements  in  their  generic
-  representation.  This  representation  is  more  intuitive  to the User when
-  working  with  wreath  products  and  additionally  may  have  computational
-  benefits over other representations.[133X
+  [33X[0;0YThe  package  [5XWPE[105X  ([13XW[113Xreath  [13XP[113Xroduct [13XE[113Xlements). provides methods to work with
+  elements  of  finite  groups  which  are  wreath products. It contributes to
+  [13Xintuitive research[113X and [13Xefficient computing[113X in wreath products of groups.[133X
   
-  [33X[0;0YIn   particular   this   package  provides  efficient  methods  for  finding
-  conjugating    elements,    conjugacy   classes,   and   centralisers.   The
-  implementations are based on [BNRW22] and references therein. For a complete
-  list of operations that exploit the generic representation, see Chapter [14X4[114X.[133X
+  [33X[0;0YIt  allows  access to a representation of wreath products, which we refer to
+  as  the  [13Xgeneric  representation[113X,  that  is  more intuitive to the User when
+  working  with  wreath  products  of groups. Access is as straight-forward as
+  using  the  provided  command  [10XIsomorphismWreathProduct[110X  on a wreath product
+  created by the native [5XGAP[105X command [10XWreathProduct[110X, see [14X1.2[114X for an example.[133X
   
-  [33X[0;0YFor  example, the computation of all [22X886640[122X conjugacy classses of the wreath
-  product [22XW = M_22 ≀ A_9[122X takes about 12 seconds with [5XWPE[105X. With native [5XGAP[105X this
-  computation is not feasible.[133X
+  [33X[0;0YAdditionally, this representation may have computational benefits over other
+  representations.  Note, that just by loading the package [5XWPE[105X and without any
+  additional  setup,  all  optimizations are applied to computations in wreath
+  products  created by the native [5XGAP[105X command [10XWreathProduct[110X, by exploiting the
+  generic  representation  under  the  hood  when  appropiate.  See  [14X1.3[114X for a
+  highlight showcase of such computational problems.[133X
+  
+  [33X[0;0YIn   particular,   this  package  provides  efficient  methods  for  finding
+  [13Xconjugating   elements[113X,   [13Xconjugacy  classes[113X,  and  [13Xcentralisers[113X  in  wreath
+  products.  The  implementations  are  based  on  an accompanying publication
+  [BNRW22],  that  generalizes  results  from  [Spe32] and [Ore42] on monomial
+  groups, wreath products whose top group is the full symmetric group.[133X
+  
+  [33X[0;0YFor example, the computation of all [22X886640[122X conjugacy classses of elements of
+  the  wreath  product  [22XW  =  M_22 ≀ A_9[122X takes about 12 seconds with [5XWPE[105X. With
+  native [5XGAP[105X this computation is not feasible.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XLoadPackage("WPE");;[127X[104X
@@ -32,117 +45,21 @@
   [4X[32X[104X
   
   
-  [1X1.2 [33X[0;0YNotation[133X[101X
+  [1X1.2 [33X[0;0YIntuitive Research[133X[101X
   
-  [33X[0;0YLet  [22XG = K ≀ H[122X be a wreath product, where [22XH[122X is a permutation group of degree
-  [22Xm[122X.  The  wreath product is defined as the semidirect product of the function
-  space [22XK^m[122X with [22XH[122X, where [22Xπ ∈ H[122X acts on [22Xf ∈ K^m[122X by setting [22Xf^{π} : {1, ..., m}
-  → K, i ↦ [(i)π^{-1}]f[122X. We denote the parent wreath product by [22XP = K ≀ Sym(m)
-  ≥ G[122X.[133X
-  
-  [33X[0;0YFormally  we  can write an element of [22XG[122X as a tuple [22Xg = (f, π) ∈ G[122X, where [22Xf ∈
-  K^m[122X is a function [22Xf : {1, ..., m} → K[122X and [22Xπ ∈ H ≤ Sym(m)[122X is a permutation on
-  [22Xm[122X points. We call [22Xf[122X the [13Xbase component[113X and [22Xπ[122X the [13Xtop component[113X of [22Xg[122X.[133X
-  
-  [33X[0;0YWe  can naturally identify a map [22Xf ∈ K^m[122X with a tuple [22X(g_1, ..., g_m)[122X, where
-  each  [22Xg_i  ∈ K[122X is the image of [22Xi ∈ {1, ..., m}[122X under [22Xf[122X. This yields a second
-  useful  notation  for  elements in [22XG[122X by writing [22Xg = (g_1, ..., g_m; π)[122X. Note
-  that  we  use  a  semicolon  to  seperate  the  base  component from the top
-  component. Further we call the element [22Xg_i[122X the [13X[22Xi[122X-th base component[113X of [22Xg[122X.[133X
-  
-  [33X[0;0YAnalogous,  the subgroup [22XB = K^m × ⟨ 1_H ⟩ ≤ G[122X is called the [13Xbase group[113X of [22XG[122X
-  and the subgroup [22XT = ⟨ 1_K ⟩^m × H ≤ G[122X is called the [13Xtop group[113X of [22XG[122X.[133X
-  
-  
-  [1X1.3 [33X[0;0YWreath Cycle Decomposition[133X[101X
-  
-  [33X[0;0YIn   a  permutation  group  we  have  the  well-known  concept  of  a  cycle
-  decomposition.  For  wreath products we have a similar concept called [13Xwreath
-  cycle decomposition[113X that allows us to solve certain computational tasks more
-  efficiently.[133X
-  
-  [33X[0;0YDetailed  information on [13Xwreath cycle decompositions[113X can be found in Chapter
-  2  in [BNRW22]. Chapters 3-5 in [BNRW22] describe how these can be exploited
-  for  finding  conjugating elements, conjugacy classes, and centralisers, and
-  Chapter  6  in  [BNRW22]  contains a table of timings of sample computations
-  done with [5XWPE[105X vs. native [5XGAP[105X.[133X
-  
-  [33X[0;0YWe use the notation from [14X1.2[114X in order to introduce the following concepts.[133X
-  
-  [33X[0;0Y[22XDefinition:[122X We define the [13Xterritory[113X of an element [22Xg = (g_1, ..., g_m; π) ∈ G[122X
-  by  [22Xterr(g)  :=  supp(π)  ∪  {i : g_i ≠ 1}[122X, where [22Xsupp(π)[122X denotes the set of
-  moved points of [22Xπ[122X.[133X
-  
-  [33X[0;0Y[22XDefinition:[122X  Two  elements  [22Xg,  h  ∈  G[122X  are  said  to  be [13Xdisjoint[113X if their
-  territories are disjoint.[133X
-  
-  [33X[0;0Y[22XLemma:[122X Disjoint elements in [22XG[122X commute.[133X
-  
-  [33X[0;0Y[22XDefinition:[122X  An  element [22Xg = (g_1, ..., g_m; π) ∈ G[122X is called a [13Xwreath cycle[113X
-  if either [22Xπ[122X is a cycle and [22Xterr(g) = supp(π)[122X, or [22X|terr(g)| = 1[122X.[133X
-  
-  [33X[0;0Y[22XExample:[122X  For example if we consider the wreath product [22XSym(4) ≀ Sym(5)[122X, the
-  element[133X
-  
-  
-  [24X[33X[0;6Y( (), (1,2,3), (), (1,2), (); (1,2,4) )[133X[124X
-  
-  [33X[0;0Yis a wreath cycle as described in the first case and the element[133X
-  
-  
-  [24X[33X[0;6Y( (), (), (1,3), (), (); () )[133X[124X
-  
-  [33X[0;0Yis  a wreath cycle as described in the second case. Moreover, these elements
-  are disjoint and thus commute.[133X
-  
-  [33X[0;0Y[22XTheorem:[122X  Every  element of [22XG[122X can be written as a finite product of disjoint
-  wreath  cycles  in  [22XP[122X.  This  decomposition  is unique up to ordering of the
-  factors. We call such a decomposition a [13Xwreath cycle decomposition[113X.[133X
-  
-  
-  [1X1.4 [33X[0;0YSparse Wreath Cycle[133X[101X
-  
-  [33X[0;0YWe use the notation from [14X1.2[114X in order to introduce the following concepts.[133X
-  
-  [33X[0;0YThe  main  motivation for introducing the concept of [13Xsparse wreath cycles[113X is
-  the efficient computation of centralisers of wreath product elements. Simply
-  put,  we  compute  the  centraliser  of  an  arbitrary element [22Xg ∈ P[122X in [22XG[122X by
-  conjugating  it to a restricted representative [22Xh = g^c ∈ P[122X and computing the
-  centraliser  of [22Xh[122X in [22XG[122X. The wreath cycle decomposition of the representative
-  [22Xh[122X consists only of sparse wreath cycles.[133X
-  
-  [33X[0;0YMore  information on [13Xsparse wreath cycles[113X and centralisers of wreath product
-  elements can be found in Chapter 5 in [BNRW22].[133X
-  
-  [33X[0;0Y[22XDefinition:[122X  We  say  that  a  wreath  cycle [22Xg = (g_1, ..., g_m; π) ∈ G[122X is a
-  [13Xsparse  wreath  cycle[113X,  if there exists an [22Xi_0[122X such that [22Xg_i = 1[122X for all [22Xi ≠
-  i_0[122X.[133X
-  
-  [33X[0;0Y[22XExample:[122X  For example if we consider the wreath product [22XSym(4) ≀ Sym(5)[122X, the
-  element[133X
-  
-  
-  [24X[33X[0;6Y( (), (1,2,3), (), (), (); (1,2,4) )[133X[124X
-  
-  [33X[0;0Yis a sparse wreath cycle, as well as the element[133X
-  
-  
-  [24X[33X[0;6Y( (), (), (1,3), (), (); () ) .[133X[124X
-  
-  [33X[0;0Y[22XTheorem:[122X Every element [22Xg ∈ P[122X can be conjugated by some [22Xc ∈ K^m × ⟨ 1_H ⟩ ≤ P[122X
-  to  an  element  [22Xh  =  g^c ∈ P[122X such that the wreath cycle decomposition of [22Xh[122X
-  consists only of sparse wreath cycles.[133X
-  
-  
-  [1X1.5 [33X[0;0YExample[133X[101X
+  [33X[0;0YOne  of  the two main goals of the package is to provide the User with tools
+  to conduct [13Xintuitive research[113X in wreath products of groups on the computer.[133X
   
   [33X[0;0YIn  this section we present an example session which demonstrates how we can
-  access the generic representation of a wreath product.[133X
+  access  the  generic  representation  of  a  wreath product. As noted in the
+  introduction,  no  additional setup is required if one wants to benefit from
+  the  optimizations for computations in wreath products (see [14X1.3[114X for examples
+  on this).[133X
   
-  [33X[0;0YFirst  we  construct the wreath product [22XG = Alt(5) ≀ Sym(7)[122X. For this we use
-  the native [5XGAP[105X command [10XWreathProduct[110X (see [14X'Reference: Wreath Products'[114X). The
-  resulting  group is embedded into a symmetric group on [22X5 ⋅ 7 = 35[122X points via
-  the imprimitive action of the wreath product. The size of the group is[133X
+  [33X[0;0YFirst  we  construct  the  wreath product [22XG = Alt(5) ≀ Sym(7)[122X (see [14X2.1[114X). For
+  this we use the native [5XGAP[105X command [2XWreathProduct[102X ([14XReference: WreathProduct[114X).
+  The  resulting group is embedded into a symmetric group on [22X5 ⋅ 7 = 35[122X points
+  via the imprimitive action of the wreath product. The size of the group is[133X
   
   
   [24X[33X[0;6Y| G | = |Alt(5)|^7 ⋅ |Sym(7)| = 60^7 ⋅ 5040 = 14108774400000000 .[133X[124X
@@ -156,18 +73,18 @@
   
   [33X[0;0YNow  we  construct  an  isomorphism  to  a  wreath  product given in generic
   representation  that  is  provided  in  [5XWPE[105X.  For  this, we need to load the
-  package.[133X
+  package [5XWPE[105X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XLoadPackage("WPE");;[127X[104X
-    [4X[25Xgap>[125X [27Xiso := IsomorphismToGenericWreathProduct(G);;[127X[104X
+    [4X[25Xgap>[125X [27Xiso := IsomorphismWreathProduct(G);;[127X[104X
     [4X[25Xgap>[125X [27XW := Image(iso);[127X[104X
     [4X[28X<group of size 14108774400000000 with 4 generators>[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YLet  us  compare how [5XGAP[105X displays elements in [22XG[122X and [22XW[122X respectively. Elements
-  in  [22XG[122X  are represented as permutations. In this representation it is hard to
-  see how the base and top components of this element look like.[133X
+  [33X[0;0YLet  us  compare how [5XGAP[105X displays elements of [22XG[122X and [22XW[122X respectively. Elements
+  of  [22XG[122X  are represented as permutations. In this representation it is hard to
+  identify the base and top components of this element (see [14X2.1[114X).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27Xg := (1,13,3,14,4,12,2,15,5,11)[127X[104X
@@ -177,48 +94,119 @@
     [4X[28Xtrue[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YElements  in  [22XW[122X  however are represented as generic wreath product elements.
-  (see  [14X1.2[114X)  This  allows us to easily read off the base and top component of
-  the  element  by  either  printing  or displaying the element. Otherwise, by
-  default  the  element  is viewed in compressed form. (see [14X3.4[114X) This printing
-  behaviour is similar to matrices in [5XGAP[105X.[133X
+  [33X[0;0YElements  of  [22XW[122X  however  are represented as generic wreath product elements
+  (see  [14X2.1[114X).  This  allows  us  to read off the base and top component of the
+  element  easily  by either printing or displaying the element. Otherwise, by
+  default  the  element  is viewed in compressed form (see [14X4.4[114X). This printing
+  behaviour is similar to the behaviour of matrices in [5XGAP[105X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xx := g ^ iso;[127X[104X
+    [4X[25Xgap>[125X [27Xw := g ^ iso;[127X[104X
     [4X[28X< wreath product element with 7 base components >[128X[104X
-    [4X[25Xgap>[125X [27XPrint(x);[127X[104X
-    [4X[28X( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )[128X[104X
-    [4X[25Xgap>[125X [27XDisplay(x);[127X[104X
+    [4X[25Xgap>[125X [27XPrint(w);[127X[104X
+    [4X[28X[ (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (), (1,3)(2,7,5) ][128X[104X
+    [4X[25Xgap>[125X [27XDisplay(w);[127X[104X
     [4X[28X       1           2       3      4         5       6   7       top     [128X[104X
     [4X[28X( (1,3,4,2,5), (2,5)(3,4), (), (3,4,5), (1,2)(4,5), (), (); (1,3)(2,7,5) )[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YFurthermore,  we  can  display  each  component  easily  with  the  provided
-  commands.[133X
+  [33X[0;0YFurthermore,  we  can  display  and  access  each  component easily with the
+  provided commands.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XBaseComponentOfWreathProductElement(x, 2);[127X[104X
+    [4X[25Xgap>[125X [27XBaseComponentOfWreathProductElement(w, 2);[127X[104X
     [4X[28X(2,5)(3,4)[128X[104X
-    [4X[25Xgap>[125X [27XTopComponentOfWreathProductElement(x);[127X[104X
+    [4X[25Xgap>[125X [27XTopComponentOfWreathProductElement(w);[127X[104X
     [4X[28X(1,3)(2,7,5)[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YNext,  we  compute the territory of [22Xx[122X, i.e. the analogue of the support of a
-  permutation.[133X
+  
+  [1X1.2-1 [33X[0;0YThe Power of Component-wise Representation[133X[101X
+  
+  [33X[0;0YThis  component-wise  representation  is  often  exactly  the  one  that  we
+  encounter  in  research  on wreath products. Thus having it available on the
+  computer  greatly  sharpens  our  intuition.  We  can  make very non-trivial
+  statements by looking at the components of such an element, and for the case
+  of the element [22Xw[122X even without a computer.[133X
+  
+  [33X[0;0YLet  us  start  off  with  an  easy  observation. Just by looking at the top
+  component  of  [22Xw[122X, i.e. [22X(1,3)(2,7,5)[122X, we can see that the smallest power of [22Xw[122X
+  that lies in the base group of [22XW[122X has exponent [22X6[122X, since it has to be equal to
+  the order of the top component.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XTerritory(x);[127X[104X
-    [4X[28X[ 1, 2, 3, 4, 5, 7 ][128X[104X
+    [4X[25Xgap>[125X [27Xm := Order(w);[127X[104X
+    [4X[28X30[128X[104X
+    [4X[25Xgap>[125X [27XFirst( [1 .. m], k -> IsOne(TopComponentOfWreathProductElement(w ^ k)) );[127X[104X
+    [4X[28X6[128X[104X
+    [4X[25Xgap>[125X [27XDisplay(w ^ 6);[127X[104X
+    [4X[28X       1            2            3       4        5       6        7       top[128X[104X
+    [4X[28X( (1,2,3,5,4), (1,4,5,2,3), (1,2,3,5,4), (), (1,3,2,5,4), (), (1,3,2,5,4); () )[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YFinally,  let  us compute the disjoint wreath cycle decomposition of [22Xx[122X, i.e.
-  the analogue of the disjoint cycle decomposition of a permutation.[133X
+  [33X[0;0YNow let us be more advanced. Just by looking at the element [22Xw[122X, we can deduce
+  structural information on the conjugacy class [22Xw^W[122X. All elements conjugate to
+  [22Xw[122X  in  [22XW  =  K  ≀ H[122X must have at least one trivial base component, since the
+  territory  of  [22Xw[122X  (see  [14X2.2[114X)  contains exactly six elements, whereas the top
+  group acts on seven points.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XwreathDecomp := WreathCycleDecomposition(x);;[127X[104X
-    [4X[25Xgap>[125X [27XPrint(wreathDecomp);[127X[104X
-    [4X[28X[ ( (), (), (), (3,4,5), (), (), (); () ), [128X[104X
-    [4X[28X  ( (1,3,4,2,5), (), (), (), (), (), (); (1,3) ), [128X[104X
-    [4X[28X  ( (), (2,5)(3,4), (), (), (1,2)(4,5), (), (); (2,7,5) ) ][128X[104X
+    [4X[25Xgap>[125X [27XLength(Territory(w));[127X[104X
+    [4X[28X6[128X[104X
+    [4X[25Xgap>[125X [27XNrMovedPoints(H);[127X[104X
+    [4X[28X7[128X[104X
   [4X[32X[104X
+  
+  [33X[0;0YOn  the  other  hand, all such elements must have at least three non-trivial
+  base  components,  since  the  wreath  cycle  decomposition  of  [22Xw[122X (see [14X2.2[114X)
+  contains exactly three wreath cycles with non-trivial yades (see [14X2.3[114X).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XNumber(WreathCycleDecomposition(w), c -> not IsOne(Yade(c)));[127X[104X
+    [4X[28X3[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YMoreover,  for  each  integer  [22Xk[122X  with  [22X3  ≤ k ≤ 6[122X there exists at least one
+  conjugate element with exactly [22Xk[122X non-trivial base components.[133X
+  
+  
+  [1X1.3 [33X[0;0YEfficient Computing[133X[101X
+  
+  [33X[0;0YOne of the two main goals of the package is to empower the User to carry out
+  [13Xefficient computations[113X in wreath products of groups on the computer.[133X
+  
+  [33X[0;0YIn  this  section  we present a highlight showcase of computational problems
+  that  benefit from the generic representation. As noted in the introduction,
+  no   additional  setup  is  required  if  one  wants  to  benefit  from  the
+  optimizations  for  computations  in  wreath  products. We simply create the
+  wreath  products  via  the  native  [5XGAP[105X  command  [2XWreathProduct[102X  ([14XReference:
+  WreathProduct[114X), and the generic representation provided by [5XWPE[105X is used under
+  the hood whenever appropiate.[133X
+  
+  [33X[0;0YWe  only  give  a  summary  of  some  computational problems that now become
+  approachable  on the computer, and include examples for such computations in
+  Chapter  [14X3[114X  containing  extensive  [5XGAP[105X  sessions that can be followed like a
+  tutorial.[133X
+  
+  [33X[0;0YIn the following let [22XG = K ≀ H[122X be a wreath product of finite groups, where [22XH
+  ≤ Sym(m)[122X. Further let [22Xx, y ∈ P = K ≀ Sym(m)[122X be elements of the parent wreath
+  product [22XP[122X which is given in the same representation as [22XG[122X.[133X
+  
+  [8X Conjugacy Problem [108X
+        [33X[0;6YSolve  the  conjugacy  problem for [22Xx[122X and [22Xy[122X over [22XG[122X, i.e. decide whether
+        there  exists  [22Xc  ∈  G[122X with [22Xx^c = y[122X and if it does, explicitly compute
+        such a conjugating element [22Xc[122X.[133X
+  
+  [8X Conjugacy Classes [108X
+        [33X[0;6YEnumerate  representatives  of all conjugacy classes of elements of [22XG[122X,
+        i.e.  return  elements [22Xg_1, dots, g_ℓ[122X such that [22Xg_1^G, dots, g_ℓ^G[122X are
+        the conjugacy classes of [22XG[122X.[133X
+  
+  [8X Centralizer [108X
+        [33X[0;6YCompute  the  centralizer  of [22Xx[122X in [22XG[122X, i.e. compute a generating set of
+        [22XC_G(x)[122X.[133X
+  
+  [8X Cycle Index Polynomial[108X
+        [33X[0;6YCompute  the  cycle  index  polynomial of [22XG[122X either for the imprimitive
+        action or the product action.[133X
   

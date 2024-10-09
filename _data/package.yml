@@ -1,7 +1,7 @@
 name: WPE
-version: "0.5"
+version: "0.6"
 license: "GPL-2.0-or-later"
-date: 2022-06-17
+date: 2024-10-09
 description: |
     Provides efficient methods for working with wreath product elements.
 
@@ -13,7 +13,7 @@ maintainers:
     - name: Friedrich Rober
       url: mailto:friedrich.rober@rwth-aachen.de
 
-GAP: ">= 4.12"
+GAP: ">= 4.13"
 
 www: https://FriedrichRober.github.io/WPE/
 readme: README.md
@@ -21,35 +21,35 @@ packageinfo: https://FriedrichRober.github.io/WPE/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/FriedrichRober/WPE/releases/download/v0.5/WPE-0.5.tar.gz
+      url: https://github.com/FriedrichRober/WPE/releases/download/v0.6/WPE-0.6.tar.gz
 
 abstract: |
 
-status: dev
+status: deposited
 doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Rob22</span>]   <b class='BibAuthor'>Rober, F.</b>,
+    [<span class='BibKey'>Rob24</span>]   <b class='BibAuthor'>Rober, F.</b>,
      <i class='BibTitle'>WPE, Provides efficient methods for working with wreath product elements.,
-             Version 0.5</i>
-     (<span class='BibYear'>2022</span>)<br />
+             Version 0.6</i>
+     (<span class='BibYear'>2024</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://FriedrichRober.github.io/WPE/">https://FriedrichRober.github.io/WPE/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ WPE0.5,
+    @misc{ WPE,
       author =           {Rober, F.},
       title =            {{WPE},  Provides  efficient  methods  for working with
-                          wreath product elements., {V}ersion 0.5},
-      month =            {Jun},
-      year =             {2022},
+                          wreath product elements., {V}ersion 0.6},
+      month =            {Oct},
+      year =             {2024},
       note =             {GAP package},
       howpublished =     {\href          {https://FriedrichRober.github.io/WPE/}
                           {\texttt{https://FriedrichRober.github.io/}\discretionary
                           {}{}{}\texttt{WPE/}}},
-      printedkey =       {Rob22}
+      printedkey =       {Rob24}
     }
 

@@ -6,9 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<title>GAP (WPE) - Chapter 4: Operations</title>
+<title>GAP (WPE) - Chapter 4: Functions</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -18,110 +18,274 @@
 <body class="chap4"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
 
-<div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib_mj.html">[Next Chapter]</a>&nbsp;  </div>
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap5_mj.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap4.html">[MathJax off]</a></p>
-<p><a id="X7DE8E16C7C2D387B" name="X7DE8E16C7C2D387B"></a></p>
-<div class="ChapSects"><a href="chap4_mj.html#X7DE8E16C7C2D387B">4 <span class="Heading">Operations</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4_mj.html#X8730A88E7DEB09F2">4.1 <span class="Heading">Operations List</span></a>
+<p><a id="X86FA580F8055B274" name="X86FA580F8055B274"></a></p>
+<div class="ChapSects"><a href="chap4_mj.html#X86FA580F8055B274">4 <span class="Heading">Functions</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4_mj.html#X794F3F697C476F75">4.1 <span class="Heading">Generic Wreath Product Representation</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X787C52A28302EB30">4.1-1 <span class="Heading">Wreath Product Representations</span></a>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7DBA9EFB82F64741">4.1-1 IsomorphismWreathProduct</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4_mj.html#X7C29594383022EDB">4.2 <span class="Heading">Accessing Components</span></a>
 </span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X80E9B35E7B9B7D98">4.1-2 <span class="Heading">Operations for all Representations</span></a>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7A13B6B47BA67183">4.2-1 ComponentsOfWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X84D9A60E8614F35E">4.2-2 TopGroupOfWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7E1A2F01848423EA">4.2-3 BaseGroupOfWreathProduct</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7F1EB294829E86E5">4.2-4 TopComponentOfWreathProductElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X86B4BB78813D437E">4.2-5 BaseComponentOfWreathProductElement</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4_mj.html#X7BD2554F7FE49C2E">4.3 <span class="Heading">Properties of Wreath Product Elements</span></a>
 </span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X802ECAC97D3DA99E">4.1-3 <span class="Heading">Operations for Generic Representation</span></a>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7C57D9497D8BBC23">4.3-1 Territory</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7F7DF936839FE1C7">4.3-2 IsWreathCycle</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X85C1618F78451F65">4.3-3 IsSparseWreathCycle</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X82BDC56A7B4298CE">4.3-4 WreathCycleDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7ED422DB79830AF7">4.3-5 Yade</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4_mj.html#X8227AD6B7FC637DE">4.4 <span class="Heading">Printing, Viewing and Displaying</span></a>
 </span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7CA684548407A756">4.4-1 ViewObj</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X827699E287C25991">4.4-2 DisplayOptionsForWreathProductElements</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7F900588870902F7">4.4-3 SetDisplayOptionsForWreathProductElements</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X7D1989B185F184F8">4.4-4 ResetDisplayOptionsForWreathProductElements</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4_mj.html#X82513F74863B77AE">4.5 <span class="Heading">Cycle Index of Wreath Products</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X871F79767C6BC7C0">4.5-1 CycleIndexWreathProductImprimitiveAction</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4_mj.html#X799B029E79EACCC3">4.5-2 CycleIndexWreathProductProductAction</a></span>
 </div></div>
 </div>
 
-<h3>4 <span class="Heading">Operations</span></h3>
+<h3>4 <span class="Heading">Functions</span></h3>
 
-<p>The generic representation of wreath product elements and in particular their (sparse) wreath cycle decompositions can be used to speed up certain operations in wreath products.</p>
+<p>Here we include a list of all functions that are provided to the User.</p>
 
-<p>In particular this package provides efficient methods for finding conjugating elements, conjugacy classes, and centralisers. The implementations are based on <a href="chapBib_mj.html#biBwpeConjugacy">[BNRW22]</a> and references therein.</p>
+<p>The following functions are designed to improve the User experience when working or experimenting with wreath products of finite groups and their elements. Most functions are about presenting elements in an intuitive way and giving access to useful information.</p>
 
-<p><a id="X8730A88E7DEB09F2" name="X8730A88E7DEB09F2"></a></p>
+<p><a id="X794F3F697C476F75" name="X794F3F697C476F75"></a></p>
 
-<h4>4.1 <span class="Heading">Operations List</span></h4>
+<h4>4.1 <span class="Heading">Generic Wreath Product Representation</span></h4>
 
-<p>Here we include a list of operations that take advantage of the generic representation of wreath product elements.</p>
+<p>The main way for the User to look at a wreath product in a "human-readable" way is by using an isomorphism from a specialised wreath product representation to a generic representation.</p>
 
-<p>We include python scripts in the <code class="code">dev/</code> directory that benchmark the <strong class="pkg">WPE</strong> and native <strong class="pkg">GAP</strong> implementations of these operations separately. The comparison of the runtimes admits of the conclusion that the <strong class="pkg">WPE</strong> implementations are a magnitude faster than the native <strong class="pkg">GAP</strong> implementations. We can now solve these computational tasks for large wreath products that were previously not feasible in <strong class="pkg">GAP</strong></p>
+<p><a id="X7DBA9EFB82F64741" name="X7DBA9EFB82F64741"></a></p>
 
-<p><a id="X787C52A28302EB30" name="X787C52A28302EB30"></a></p>
+<h5>4.1-1 IsomorphismWreathProduct</h5>
 
-<h5>4.1-1 <span class="Heading">Wreath Product Representations</span></h5>
-
-<p>In the following let <span class="SimpleMath">\(G = K \wr H\)</span> be a wreath product, where <span class="SimpleMath">\(H \leq \textrm{Sym}(m)\)</span>.</p>
-
-<p>In <strong class="pkg">GAP</strong> the wreath product <span class="SimpleMath">\(G\)</span> can be given in one of the following representations :</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsomorphismWreathProduct</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>returns an isomorphism from a specialized wreath product <var class="Arg">G</var> to a generic wreath product.</p>
 
 
-<ul>
-<li><p>Generic Representation</p>
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := AlternatingGroup(5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := SymmetricGroup(4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := WreathProduct(K, H);</span>
+&lt;permutation group of size 311040000 with 10 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">iso := IsomorphismWreathProduct(G);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">W := Image(iso);</span>
+&lt;group of size 311040000 with 4 generators&gt;
+</pre></div>
 
-</li>
-<li><p>Permutation Representation in Imprimitive Action</p>
+<p>For an overview on wreath product representations in <strong class="pkg">GAP</strong> see <a href="chap5_mj.html#X787C52A28302EB30"><span class="RefLink">5.1-1</span></a>.</p>
 
-</li>
-<li><p>Permutation Representation in Product Action</p>
+<p>In the background, it uses the low-level functions <code class="code">ListWreathProductElement</code> and <code class="code">WreathProductElementList</code> and wraps the <code class="code">IsList</code> representations into <code class="code">IsWreathProductElement</code> representations.</p>
 
-</li>
-<li><p>Matrix Representation</p>
+<p>For performant code, we recommend to use these low-level functions instead of <code class="code">IsomorphismWreathProduct</code>. All functions for <code class="code">IsWreathProductElement</code> also work on <code class="code">IsList</code> objects that represent a wreath product element. However, it is not checked that the <code class="code">IsList</code> object actually represents a wreath product element.</p>
 
-</li>
-</ul>
-<p><a id="X80E9B35E7B9B7D98" name="X80E9B35E7B9B7D98"></a></p>
+<p><a id="X7C29594383022EDB" name="X7C29594383022EDB"></a></p>
 
-<h5>4.1-2 <span class="Heading">Operations for all Representations</span></h5>
+<h4>4.2 <span class="Heading">Accessing Components</span></h4>
 
-<p>Further let <span class="SimpleMath">\(x, y \in P = K \wr \textrm{Sym}(m)\)</span> be elements of the parent wreath product <span class="SimpleMath">\(P\)</span> which is given in the same representation as <span class="SimpleMath">\(G\)</span>.</p>
+<p>The following functions give access to components of wreath products and their elements.</p>
 
-<p>Additionaly let <span class="SimpleMath">\(z \in S\)</span> be an element of a group <span class="SimpleMath">\(S\)</span> given in the same representation as <span class="SimpleMath">\(G\)</span>.</p>
+<p><a id="X7A13B6B47BA67183" name="X7A13B6B47BA67183"></a></p>
 
-<p>The following operations use implementations that exploit the generic representation and (sparse) wreath cycle decompositions :</p>
+<h5>4.2-1 ComponentsOfWreathProduct</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ComponentsOfWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a list of two groups [K, H], where <var class="Arg">W = K wr H</var>. The argument <var class="Arg">W</var> must be a wreath product (see <a href="chap2_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>).</p>
+
+<p><a id="X84D9A60E8614F35E" name="X84D9A60E8614F35E"></a></p>
+
+<h5>4.2-2 TopGroupOfWreathProduct</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopGroupOfWreathProduct</code>( <var class="Arg">W</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a group, namely the top group <span class="SimpleMath">\(\langle 1_K \rangle^m \times H\)</span> of the wreath product <span class="SimpleMath">\(W = K \wr H\)</span> (see <a href="chap2_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>).</p>
+
+<p><a id="X7E1A2F01848423EA" name="X7E1A2F01848423EA"></a></p>
+
+<h5>4.2-3 BaseGroupOfWreathProduct</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseGroupOfWreathProduct</code>( <var class="Arg">W</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a group, namely the base group <span class="SimpleMath">\(K^m \times \langle 1_H\)</span> of the wreath product <span class="SimpleMath">\(W = K \wr H\)</span>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th factor of the base group of <var class="Arg">W</var> (see <a href="chap2_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>).</p>
+
+<p><a id="X7F1EB294829E86E5" name="X7F1EB294829E86E5"></a></p>
+
+<h5>4.2-4 TopComponentOfWreathProductElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TopComponentOfWreathProductElement</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a group element, namely the top component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element (see <a href="chap2_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>).</p>
+
+<p><a id="X86B4BB78813D437E" name="X86B4BB78813D437E"></a></p>
+
+<h5>4.2-5 BaseComponentOfWreathProductElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BaseComponentOfWreathProductElement</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a group element, namely the base component of <var class="Arg">x</var>. If the optional argument <var class="Arg">i</var> is provided, the function returns the <var class="Arg">i</var>-th base component of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element and the optional argument <var class="Arg">i</var> must be an integer (see <a href="chap2_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>).</p>
+
+<p><a id="X7BD2554F7FE49C2E" name="X7BD2554F7FE49C2E"></a></p>
+
+<h4>4.3 <span class="Heading">Properties of Wreath Product Elements</span></h4>
+
+<p>The following functions give access to important properties of wreath product elements.</p>
+
+<p><a id="X7C57D9497D8BBC23" name="X7C57D9497D8BBC23"></a></p>
+
+<h5>4.3-1 Territory</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Territory</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a list, namely the territory of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element (see <a href="chap2_mj.html#X83A8F3308644ACFA"><span class="RefLink">2.2</span></a>).</p>
+
+<p><a id="X7F7DF936839FE1C7" name="X7F7DF936839FE1C7"></a></p>
+
+<h5>4.3-2 IsWreathCycle</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns true or false. Tests whether <var class="Arg">x</var> is a wreath cycle. The argument <var class="Arg">x</var> must be a wreath product element (see <a href="chap2_mj.html#X83A8F3308644ACFA"><span class="RefLink">2.2</span></a>).</p>
+
+<p><a id="X85C1618F78451F65" name="X85C1618F78451F65"></a></p>
+
+<h5>4.3-3 IsSparseWreathCycle</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSparseWreathCycle</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns true or false. Tests whether <var class="Arg">x</var> is a sparse wreath cycle. The argument <var class="Arg">x</var> must be a wreath product element (see <a href="chap2_mj.html#X872BE72F7B2BBD6B"><span class="RefLink">2.3</span></a>).</p>
+
+<p><a id="X82BDC56A7B4298CE" name="X82BDC56A7B4298CE"></a></p>
+
+<h5>4.3-4 WreathCycleDecomposition</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WreathCycleDecomposition</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a list containing wreath cycles, namely the wreath cycle decomposition of <var class="Arg">x</var>. The argument <var class="Arg">x</var> must be a wreath product element (see <a href="chap2_mj.html#X83A8F3308644ACFA"><span class="RefLink">2.2</span></a>).</p>
+
+<p><a id="X7ED422DB79830AF7" name="X7ED422DB79830AF7"></a></p>
+
+<h5>4.3-5 Yade</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Yade</code>( <var class="Arg">x</var>[, <var class="Arg">i</var>] )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a group element, namely the yade of the wreath cycle <var class="Arg">x</var> evaluated at the smallest territory point. If the optional argument <var class="Arg">i</var> is provided, the function returns the yade evaluated at the point <var class="Arg">i</var>. The argument <var class="Arg">x</var> must be a wreath cycle and the optional argument <var class="Arg">i</var> must be an integer from the territory of <var class="Arg">x</var> (see <a href="chap2_mj.html#X872BE72F7B2BBD6B"><span class="RefLink">2.3</span></a>)</p>
+
+<p><a id="X8227AD6B7FC637DE" name="X8227AD6B7FC637DE"></a></p>
+
+<h4>4.4 <span class="Heading">Printing, Viewing and Displaying</span></h4>
+
+<p><a id="X7CA684548407A756" name="X7CA684548407A756"></a></p>
+
+<h5>4.4-1 ViewObj</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ViewObj</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrintObj</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Display</code>( <var class="Arg">x</var>[, <var class="Arg">optrec</var>] )</td><td class="tdright">(&nbsp;method&nbsp;)</td></tr></table></div>
+<p>Wreath product elements are viewed, printed and displayed (see Section <a href="https://docs.gap-system.org/doc/ref/chap6_mj.html#X8074A8387C9DB9A8"><span class="RefLink">Reference: View and Print</span></a> for the distinctions between these operations) as generic wreath product elements (see Section <a href="chap2_mj.html#X7DF2AEBC8518FFA4"><span class="RefLink">2.1</span></a>). For an example of the distinctions and outputs see <a href="chap3_mj.html#X7C85A3718343D842"><span class="RefLink">3.2</span></a>.</p>
+
+<p>The method <code class="code">Display</code> allows an optional argument <var class="Arg">optrec</var> which must be a record and modifies the display output for the execution of a single instance of the command.</p>
+
+<p>For modifying the display output globally for all subsequent executions of <code class="code">Display</code> see <code class="func">SetDisplayOptionsForWreathProductElements</code> (<a href="chap4_mj.html#X7F900588870902F7"><span class="RefLink">4.4-3</span></a>).</p>
+
+<p>The following components of <var class="Arg">optrec</var> are supported. Note, that in the following <em>labels</em> refer to the the printing output <q><span class="SimpleMath">\(1, /ldots, m\)</span></q> and <q>top</q> as seen in the tutorials.</p>
 
 
-<ul>
-<li><p><code class="code">RepresentativeAction(G, x, y)</code></p>
+<dl>
+<dt><strong class="Mark"><code class="code">horizontal</code></strong></dt>
+<dd><p><code class="keyw">true</code> to use the horizontal printer. <em>DEFAULT</em></p>
 
-</li>
-<li><p><code class="code">Centraliser(G, x)</code></p>
+<p><code class="keyw">false</code> to use the vertical printer.</p>
 
-</li>
-<li><p><code class="code">ConjugacyClasses(G)</code></p>
+</dd>
+<dt><strong class="Mark"><code class="code">labels</code></strong></dt>
+<dd><p><code class="keyw">true</code> to print labels. <em>DEFAULT</em></p>
 
-</li>
-<li><p><code class="code">z in G</code></p>
+<p><code class="keyw">false</code> to suppress labels.</p>
 
-</li>
-</ul>
-<p><a id="X802ECAC97D3DA99E" name="X802ECAC97D3DA99E"></a></p>
+</dd>
+<dt><strong class="Mark"><code class="code">labelStyle</code></strong></dt>
+<dd><p><code class="keyw">"none"</code> for labels in normal intensity. <em>DEFAULT</em></p>
 
-<h5>4.1-3 <span class="Heading">Operations for Generic Representation</span></h5>
+<p><code class="keyw">"bold"</code> for labels in increased intensity.</p>
 
-<p>Here we assume that <span class="SimpleMath">\(G\)</span> is given in Generic Representation.</p>
+<p><code class="keyw">"faint"</code> for labels in decreased intensity.</p>
 
-<p>The following operations use implementations that exploit the generic representation and (sparse) wreath cycle decompositions :</p>
+</dd>
+<dt><strong class="Mark"><code class="code">labelColor</code></strong></dt>
+<dd><p><code class="keyw">"default"</code> for labels in the default GAP output color. <em>DEFAULT</em></p>
+
+<p><code class="keyw">"red"</code> for labels in red color.</p>
+
+<p><code class="keyw">"blue"</code> for labels in blue color.</p>
+
+</dd>
+</dl>
+<p><a id="X827699E287C25991" name="X827699E287C25991"></a></p>
+
+<h5>4.4-2 DisplayOptionsForWreathProductElements</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DisplayOptionsForWreathProductElements</code>(  )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>prints the current global display options for wreath product elements.</p>
+
+<p><a id="X7F900588870902F7" name="X7F900588870902F7"></a></p>
+
+<h5>4.4-3 SetDisplayOptionsForWreathProductElements</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SetDisplayOptionsForWreathProductElements</code>( <var class="Arg">optrec</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>sets the current global display options for wreath product elements.</p>
+
+<p>The argument <var class="Arg">optrec</var> must be a record with components that are valid display options. (see <a href="chap4_mj.html#X8227AD6B7FC637DE"><span class="RefLink">4.4</span></a>) The components for the current global display options are set to the values specified by the components in <var class="Arg">optrec</var>.</p>
+
+<p><a id="X7D1989B185F184F8" name="X7D1989B185F184F8"></a></p>
+
+<h5>4.4-4 ResetDisplayOptionsForWreathProductElements</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ResetDisplayOptionsForWreathProductElements</code>(  )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>resets the current global display options for wreath product elements to default.</p>
+
+<p><a id="X82513F74863B77AE" name="X82513F74863B77AE"></a></p>
+
+<h4>4.5 <span class="Heading">Cycle Index of Wreath Products</span></h4>
+
+<p>The following functions construct the cycle index polynomial of wreath products in certain actions.</p>
+
+<p><a id="X871F79767C6BC7C0" name="X871F79767C6BC7C0"></a></p>
+
+<h5>4.5-1 CycleIndexWreathProductImprimitiveAction</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CycleIndexWreathProductImprimitiveAction</code>( <var class="Arg">K</var>, <var class="Arg">H</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>For two permutation groups <var class="Arg">K</var> and <var class="Arg">H</var> this function constructs the cycle index polynomial of the wreath product <span class="SimpleMath">\(K \wr H\)</span> in imprimitive action.</p>
+
+<p>The implementation is based on <a href="chapBib_mj.html#biBPolya">[P\t37]</a>.</p>
+
+<p><a id="X799B029E79EACCC3" name="X799B029E79EACCC3"></a></p>
+
+<h5>4.5-2 CycleIndexWreathProductProductAction</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CycleIndexWreathProductProductAction</code>( <var class="Arg">K</var>, <var class="Arg">H</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>For two permutation groups <var class="Arg">K</var> and <var class="Arg">H</var> this function constructs the cycle index polynomial of the wreath product <span class="SimpleMath">\(K \wr H\)</span> in product action.</p>
+
+<p>The implementation is based on <a href="chapBib_mj.html#biBHarrisonHigh">[HH68]</a> and <a href="chapBib_mj.html#biBPalmerRobinson">[PR73]</a>.</p>
 
 
-<ul>
-<li><p><code class="code">Order(x)</code></p>
-
-</li>
-</ul>
-<p> </p>
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap5_mj.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib_mj.html">[Next Chapter]</a>&nbsp;  </div>
-
-
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chap5_mj.html">5</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
 
 <hr />
-<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>

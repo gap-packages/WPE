@@ -2,24 +2,25 @@
   
   [1XIndex[101X
   
-  [2XBaseComponentOfWreathProductElement[102X 3.2-5 
-  [2XBaseGroupOfWreathProduct[102X 3.2-3 
-  [2XComponentsOfWreathProduct[102X 3.2-1 
-  [2XCycleIndexWreathProductProductAction[102X 3.5-1 
-  [2XDisplay[102X, for a wreath product element 3.4-1 
-  [2XDisplayOptionsForWreathProductElements[102X 3.4-2 
-  [2XIsomorphismToGenericWreathProduct[102X 3.1-1 
-  [2XIsSparseWreathCycle[102X 3.3-3 
-  [2XIsWreathCycle[102X 3.3-2 
-  [2XPrintObj[102X, for a wreath product element 3.4-1 
-  [2XResetDisplayOptionsForWreathProductElements[102X 3.4-4 
-  [2XSetDisplayOptionsForWreathProductElements[102X 3.4-3 
-  [2XTerritory[102X 3.3-1 
-  [2XTopComponentOfWreathProductElement[102X 3.2-4 
-  [2XTopGroupOfWreathProduct[102X 3.2-2 
-  [2XViewObj[102X, for a wreath product element 3.4-1 
-  [2XWreathCycleDecomposition[102X 3.3-4 
-  [2XYade[102X 3.3-5 
+  [2XBaseComponentOfWreathProductElement[102X 4.2-5 
+  [2XBaseGroupOfWreathProduct[102X 4.2-3 
+  [2XComponentsOfWreathProduct[102X 4.2-1 
+  [2XCycleIndexWreathProductImprimitiveAction[102X 4.5-1 
+  [2XCycleIndexWreathProductProductAction[102X 4.5-2 
+  [2XDisplay[102X, for a wreath product element 4.4-1 
+  [2XDisplayOptionsForWreathProductElements[102X 4.4-2 
+  [2XIsomorphismWreathProduct[102X 4.1-1 
+  [2XIsSparseWreathCycle[102X 4.3-3 
+  [2XIsWreathCycle[102X 4.3-2 
+  [2XPrintObj[102X, for a wreath product element 4.4-1 
+  [2XResetDisplayOptionsForWreathProductElements[102X 4.4-4 
+  [2XSetDisplayOptionsForWreathProductElements[102X 4.4-3 
+  [2XTerritory[102X 4.3-1 
+  [2XTopComponentOfWreathProductElement[102X 4.2-4 
+  [2XTopGroupOfWreathProduct[102X 4.2-2 
+  [2XViewObj[102X, for a wreath product element 4.4-1 
+  [2XWreathCycleDecomposition[102X 4.3-4 
+  [2XYade[102X 4.3-5 
   
   
   -------------------------------------------------------
