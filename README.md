@@ -22,7 +22,9 @@ which creates a subdirectory called `WPE/`.
 
 ## Requirements
 
-Versions `0.2` and above require `GAP version >= 4.12`
+Versions `0.6` and above require `GAP version >= 4.13`
+
+Versions `0.2 - 0.5` require `GAP version >= 4.12`
 
 Version `0.1` requires `GAP version >= 4.11`
 
