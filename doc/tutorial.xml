@@ -393,7 +393,7 @@ The coefficient is <C>1/12</C> and the monomial is encoded by <C>[ 1, 4, 2, 1 ]<
 The encoding of the monomial again consists of alternating entries,
 the first one encoding the indeterminant and the second one its exponent.
 For example <C>[ 1, 4, 2, 1 ]</C> translates to <C>x_1^4 * x_2^1</C>.
-For more details, see TODO <P/>
+For more details, see <Ref BookName="Reference" Sect="The Defining Attributes of Rational Functions"/>. <P/>
 
 If we want to consider the wreath product given in product action,
 we need to use the command <Ref BookName="Reference" Oper="WreathProductProductAction"/>
