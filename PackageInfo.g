@@ -10,8 +10,8 @@ SetPackageInfo( rec(
 
 PackageName := "WPE",
 Subtitle := "Provides efficient methods for working with wreath product elements.",
-Version := "0.6",
-Date := "09/10/2024", # dd/mm/yyyy format
+Version := "0.7",
+Date := "16/10/2024", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -30,10 +30,10 @@ Persons := [
 
 SourceRepository := rec(
     Type := "git",
-    URL := "https://github.com/FriedrichRober/WPE",
+    URL := "https://github.com/gap-packages/WPE",
 ),
 IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
-PackageWWWHome  := "https://FriedrichRober.github.io/WPE/",
+PackageWWWHome  := "https://gap-packages.github.io/WPE/",
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 ArchiveURL      := Concatenation( ~.SourceRepository.URL,
