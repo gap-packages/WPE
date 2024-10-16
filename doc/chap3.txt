@@ -411,7 +411,7 @@
   ][110X.  The  encoding of the monomial again consists of alternating entries, the
   first  one  encoding  the indeterminant and the second one its exponent. For
   example  [10X[  1,  4, 2, 1 ][110X translates to [10Xx_1^4 * x_2^1[110X. For more details, see
-  TODO[133X
+  [14X'Reference: The Defining Attributes of Rational Functions'[114X.[133X
   
   [33X[0;0YIf  we  want to consider the wreath product given in product action, we need
   to     use     the     command     [2XWreathProductProductAction[102X    ([14XReference:
