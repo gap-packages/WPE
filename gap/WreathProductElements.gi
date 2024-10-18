@@ -31,8 +31,8 @@ function(g, G)
     return ForAll([1 .. Length(l) - 1], i -> l[i] in K) and l[Length(l)] in H;
 end);
 
-InstallMethod( \in, "perm, and perm wreath product", true,[IsObject, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
-InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
+# InstallMethod( \in, "perm, and perm wreath product", true,[IsObject, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
+# InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
 
 
 #############################################################################
