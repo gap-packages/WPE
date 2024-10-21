@@ -9,7 +9,10 @@ gap> TestIn := function(G, n)
 >     return true;
 > end;;
 gap> TestInParentWreathProduct := function(G, n)
->     local P, i, g, h;
+>     local comp, K, H, P, i, g, h;
+>     comp := ComponentsOfWreathProduct(G);
+>     K := comp[1];
+>     H := comp[2];
 >     if IsPermGroup(G) and IsBound(WreathProductInfo(G).productType) then
 >         P := WreathProductProductAction(K, SymmetricGroup(MovedPoints(H)));
 >     else
@@ -74,9 +77,9 @@ true
 gap> TestInParent(G, 20);
 true
 
-# A_8 wr D_12
+# A_8 wr D_6
 gap> K := AlternatingGroup(8);;
-gap> H := DihedralGroup(IsPermGroup, 12);;
+gap> H := DihedralGroup(IsPermGroup, 6);;
 gap> G := WreathProductProductAction(K, H);;
 gap> TestIn(G, 20);
 true
