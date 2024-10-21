@@ -10,7 +10,7 @@ SetPackageInfo( rec(
 
 PackageName := "WPE",
 Subtitle := "Provides efficient methods for working with wreath product elements.",
-Version := "0.8",
+Version := "0.8dev",
 Date := "21/10/2024", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
