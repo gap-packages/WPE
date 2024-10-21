@@ -10,7 +10,11 @@ gap> TestIn := function(G, n)
 > end;;
 gap> TestInParentWreathProduct := function(G, n)
 >     local P, i, g, h;
->     P := WreathProduct(K, SymmetricGroup(MovedPoints(H)));
+>     if IsPermGroup(G) and IsBound(WreathProductInfo(G).productType) then
+>         P := WreathProductProductAction(K, SymmetricGroup(MovedPoints(H)));
+>     else
+>         P := WreathProduct(K, SymmetricGroup(MovedPoints(H)));
+>     fi;
 >     for i in [1..n] do
 >         g := PseudoRandom(P);
 >         if not g in P then
@@ -26,6 +30,7 @@ gap> TestInParentWreathProduct := function(G, n)
 >     od;
 >     return true;
 > end;;
+
 gap> TestInParent := function(G, n)
 >     local W, P, i, g, h;
 >     W := Group(GeneratorsOfGroup(G));
@@ -63,6 +68,17 @@ true
 gap> K := AlternatingGroup(8);;
 gap> H := DihedralGroup(IsPermGroup, 12);;
 gap> G := WreathProduct(K, H);;
+gap> TestIn(G, 20);
+true
+gap> TestInParentWreathProduct(G, 20);
+true
+gap> TestInParent(G, 20);
+true
+
+# A_8 wr D_12
+gap> K := AlternatingGroup(8);;
+gap> H := DihedralGroup(IsPermGroup, 12);;
+gap> G := WreathProductProductAction(K, H);;
 gap> TestIn(G, 20);
 true
 gap> TestInParentWreathProduct(G, 20);
