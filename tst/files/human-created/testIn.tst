@@ -30,7 +30,6 @@ gap> TestInParentWreathProduct := function(G, n)
 >     od;
 >     return true;
 > end;;
-
 gap> TestInParent := function(G, n)
 >     local W, P, i, g, h;
 >     W := Group(GeneratorsOfGroup(G));
