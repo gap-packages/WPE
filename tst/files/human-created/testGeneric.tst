@@ -1,3 +1,7 @@
+#
+gap> START_TEST("testGeneric.tst");
+
+#
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(3);;
 gap> G := WreathProduct(K, H);;
@@ -47,3 +51,6 @@ gap> Print(GeneratorsOfGroup(BaseGroupOfWreathProduct(W, 2)), "\n");
 [ [ (), (1,2,3,4,5), (), () ], [ (), (3,4,5), (), () ] ]
 gap> Print(GeneratorsOfGroup(TopGroupOfWreathProduct(W)), "\n");
 [ [ (), (), (), (1,2,3) ], [ (), (), (), (1,2) ] ]
+
+#
+gap> STOP_TEST("testGeneric.tst", 1);

@@ -1,3 +1,7 @@
+#
+gap> START_TEST("testOrder.tst");
+
+#
 gap> TestOrder := function(iso, n)
 >     local G,W,i,g,x;
 >     G := Source(iso);
@@ -18,4 +22,6 @@ gap> G := WreathProduct(K, H);;
 gap> iso := IsomorphismWreathProduct(G);;
 gap> TestOrder(iso, 20);
 true
-gap> 
+
+#
+gap> STOP_TEST("testOrder.tst", 1);

@@ -31,8 +31,47 @@ function(g, G)
     return ForAll([1 .. Length(l) - 1], i -> l[i] in K) and l[Length(l)] in H;
 end);
 
-# InstallMethod( \in, "perm, and perm wreath product", true,[IsObject, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
-# InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
+InstallMethod( \in, "perm, and perm wreath product", true,[IsPerm, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42,
+function(g, G)
+    local info, comps, n, i;
+    info := WreathProductInfo(G);
+    comps := ComponentsOfWreathProduct(G);
+    n := NrMovedPoints(comps[2]);
+    if not IsBound(info.projection) or Length(info.embeddings) < n + 1 then
+        if not IsBound(info.constructingMaps) then
+            info.constructingMaps := true;
+            for i in [1 .. n + 1] do
+                Embedding(G, i);
+            od;
+            Projection(G);
+            info.constructingProjection := false;
+        elif info.constructingMaps then
+            TryNextMethod();
+        fi;
+    fi;
+    return WPE_IN(g, G);
+end);
+
+InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42,
+function(g, G)
+    local info, comps, n, i;
+    info := WreathProductInfo(G);
+    comps := ComponentsOfWreathProduct(G);
+    n := NrMovedPoints(comps[2]);
+    if not IsBound(info.projection) or Length(info.embeddings) < n + 1 then
+        if not IsBound(info.constructingMaps) then
+            info.constructingMaps := true;
+            for i in [1 .. n + 1] do
+                Embedding(G, i);
+            od;
+            Projection(G);
+            info.constructingProjection := false;
+        elif info.constructingMaps then
+            TryNextMethod();
+        fi;
+    fi;
+    return WPE_IN(g, G);
+end);
 
 
 #############################################################################

@@ -1,4 +1,7 @@
-gap> # [Perm, Perm]
+#
+gap> START_TEST("testTrivial.tst");
+
+# [Perm, Perm]
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
@@ -18,4 +21,6 @@ gap> Order(oneW);
 1
 gap> IsWreathCycle(oneW);
 false
-gap> 
+
+#
+gap> STOP_TEST("testTrivial.tst");

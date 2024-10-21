@@ -1,3 +1,7 @@
+#
+gap> START_TEST("testHardConjugacy.tst");
+
+#
 gap> TestConjugacy := function(K, H, n)
 >     local G, P, i, g, h, c;
 >     G := WreathProduct(K, H);;
@@ -14,7 +18,12 @@ gap> TestConjugacy := function(K, H, n)
 >     od;
 >     return true;
 > end;;
+
+#
 gap> K := SymmetricGroup(10);;
 gap> H := DirectProduct([SymmetricGroup(5), SymmetricGroup(5)]);;
 gap> TestConjugacy(K, H, 5);
 true
+
+#
+gap> STOP_TEST("testHardConjugacy.tst", 1);

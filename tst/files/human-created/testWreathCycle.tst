@@ -1,4 +1,7 @@
-gap> # [Perm, Perm]
+#
+gap> START_TEST("testWreathCycle.tst");
+
+# [Perm, Perm]
 gap> K := SymmetricGroup(5);;
 gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);;
@@ -16,4 +19,6 @@ true
 gap> x := x * Image(Embedding(W,2), (1,2));;
 gap> IsWreathCycle(x);
 false
-gap> 
+
+#
+gap> STOP_TEST("testWreathCycle.tst", 1);
