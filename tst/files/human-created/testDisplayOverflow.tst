@@ -1,3 +1,7 @@
+#
+gap> START_TEST("testDisplayOverflow.tst");
+
+#
 gap> K := SymmetricGroup(15);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
@@ -261,3 +265,6 @@ gap> Display(w, rec(horizontal := false, labels := false));
 ()
 (1,36,2,3)(4,39,19,11,31,47,42,40,28,37,14,6,30,22,15,33,38,48,21,44,23,27\
   ,45,32,13,25,41,16,18,24,20,12,9,8,49,5,46,34)(7,10,43,50,17,29,26,35)
+
+#
+gap> STOP_TEST("testDisplayOverflow.tst", 1);

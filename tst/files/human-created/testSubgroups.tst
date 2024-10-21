@@ -1,3 +1,6 @@
+#
+gap> START_TEST("testSubgroups.tst");
+
 # Perm Rep
 gap> G := WreathProduct(SymmetricGroup(4), SymmetricGroup(8));;
 gap> x := (1,26,17,32,15,3,28,18,30,13,2,27,19,29,14,4,25,20,31,16)(5,21,8,24,7,23,6,22)(9,12);;
@@ -72,3 +75,6 @@ false
 gap> U := Group([x ^ c, y ^ c]);;
 gap> IsConjugate(G, K, U);
 true
+
+#
+gap> STOP_TEST("testSubgroups.tst", 1);

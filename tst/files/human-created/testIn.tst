@@ -1,3 +1,7 @@
+#
+gap> START_TEST("testIn.tst");
+
+#
 gap> TestIn := function(G, n)
 >     local i, g;
 >     for i in [1..n] do
@@ -8,6 +12,8 @@ gap> TestIn := function(G, n)
 >     od;
 >     return true;
 > end;;
+
+#
 gap> TestInParentWreathProduct := function(G, n)
 >     local comp, K, H, P, i, g, h;
 >     comp := ComponentsOfWreathProduct(G);
@@ -33,6 +39,8 @@ gap> TestInParentWreathProduct := function(G, n)
 >     od;
 >     return true;
 > end;;
+
+#
 gap> TestInParent := function(G, n)
 >     local W, P, i, g, h;
 >     W := Group(GeneratorsOfGroup(G));
@@ -96,3 +104,6 @@ gap> TestIn(G, 20);
 true
 gap> TestInParentWreathProduct(G, 20);
 true
+
+#
+gap> STOP_TEST("testIn.tst", 1);
