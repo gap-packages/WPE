@@ -1,3 +1,7 @@
+#
+gap> START_TEST("testDecomposition.tst");
+
+#
 gap> TestDecomp := function(iso, n)
 >     local W, i, x, wreathDecomp, sparseDecomp, conj;
 >     W := Range(iso);
@@ -27,18 +31,22 @@ gap> TestDecomp := function(iso, n)
 >     od;
 >     return true;
 > end;;
-gap> # [Perm, Perm]
+
+# [Perm, Perm]
 gap> K := AlternatingGroup(5);;
 gap> H := SymmetricGroup(7);;
 gap> G := WreathProduct(K, H);;
 gap> iso := IsomorphismWreathProduct(G);;
 gap> TestDecomp(iso, 10);
 true
-gap> # [Mat, Perm]
+
+# [Mat, Perm]
 gap> K := GL(3,5);;
 gap> H := SymmetricGroup(4);;
 gap> G := WreathProduct(K, H);;
 gap> iso := IsomorphismWreathProduct(G);;
 gap> TestDecomp(iso, 10);
 true
-gap> 
+
+#
+gap> STOP_TEST("testDecomposition.tst", 1);
