@@ -44,7 +44,7 @@ function(g, G)
                 Embedding(G, i);
             od;
             Projection(G);
-            info.constructingProjection := false;
+            info.constructingMaps := false;
         elif info.constructingMaps then
             TryNextMethod();
         fi;
@@ -65,7 +65,7 @@ function(g, G)
                 Embedding(G, i);
             od;
             Projection(G);
-            info.constructingProjection := false;
+            info.constructingMaps := false;
         elif info.constructingMaps then
             TryNextMethod();
         fi;
