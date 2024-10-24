@@ -28,7 +28,7 @@ function(g, G)
     n := NrMovedPoints(H);
     # In order to avoid a recursion depth trap, we need to construct
     # all embeddings and the projection before
-    # using the efficient membership in WPE_IN (after cooment [*]).
+    # using the efficient membership in WPE_IN (after comment [*]).
     # With higher assertion levels (for example after START_TEST),
     # homomorphisms (GroupHomomorphismByGenerators, etc.)
     # might check during creation whether the elements of the domain
