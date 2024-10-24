@@ -49,4 +49,4 @@ gap> TestDecomp(iso, 10);
 true
 
 #
-gap> STOP_TEST("testDecomposition.tst", 1);
+gap> STOP_TEST("testDecomposition.tst");

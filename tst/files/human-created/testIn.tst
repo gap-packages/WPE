@@ -106,4 +106,4 @@ gap> TestInParentWreathProduct(G, 20);
 true
 
 #
-gap> STOP_TEST("testIn.tst", 1);
+gap> STOP_TEST("testIn.tst");

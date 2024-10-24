@@ -267,4 +267,4 @@ gap> Display(w, rec(horizontal := false, labels := false));
   ,45,32,13,25,41,16,18,24,20,12,9,8,49,5,46,34)(7,10,43,50,17,29,26,35)
 
 #
-gap> STOP_TEST("testDisplayOverflow.tst", 1);
+gap> STOP_TEST("testDisplayOverflow.tst");

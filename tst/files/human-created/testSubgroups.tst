@@ -77,4 +77,4 @@ gap> IsConjugate(G, K, U);
 true
 
 #
-gap> STOP_TEST("testSubgroups.tst", 1);
+gap> STOP_TEST("testSubgroups.tst");
