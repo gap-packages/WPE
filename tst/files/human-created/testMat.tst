@@ -13,4 +13,4 @@ gap> TestIso(iso, 20);
 true
 
 #
-gap> STOP_TEST("testMat.tst", 1);
+gap> STOP_TEST("testMat.tst");

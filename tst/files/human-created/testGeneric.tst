@@ -53,4 +53,4 @@ gap> Print(GeneratorsOfGroup(TopGroupOfWreathProduct(W)), "\n");
 [ [ (), (), (), (1,2,3) ], [ (), (), (), (1,2) ] ]
 
 #
-gap> STOP_TEST("testGeneric.tst", 1);
+gap> STOP_TEST("testGeneric.tst");

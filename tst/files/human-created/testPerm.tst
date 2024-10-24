@@ -43,4 +43,4 @@ true
 # gap> # TestIso(iso, 10);
 
 #
-gap> STOP_TEST("testPerm.tst", 1);
+gap> STOP_TEST("testPerm.tst");

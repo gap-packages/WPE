@@ -24,4 +24,4 @@ gap> TestOrder(iso, 20);
 true
 
 #
-gap> STOP_TEST("testOrder.tst", 1);
+gap> STOP_TEST("testOrder.tst");

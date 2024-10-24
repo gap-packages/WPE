@@ -21,4 +21,4 @@ gap> IsWreathCycle(x);
 false
 
 #
-gap> STOP_TEST("testWreathCycle.tst", 1);
+gap> STOP_TEST("testWreathCycle.tst");

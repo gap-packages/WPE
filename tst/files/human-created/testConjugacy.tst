@@ -59,4 +59,4 @@ gap> TestConjugacy(K, H, 20);
 true
 
 #
-gap> STOP_TEST("testConjugacy.tst", 1);
+gap> STOP_TEST("testConjugacy.tst");
