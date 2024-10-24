@@ -20,58 +20,49 @@
 
 BindGlobal( "WPE_IN",
 function(g, G)
-    local l, grps, K, H;
+    local info, comps, K, H, n, i, l;
+    info := WreathProductInfo(G);
+    comps := ComponentsOfWreathProduct(G);
+    K := comps[1];
+    H := comps[2];
+    n := NrMovedPoints(H);
+    # In order to avoid a recursion depth trap, we need to construct
+    # all embeddings and the projection before
+    # using the efficient membership in WPE_IN (after cooment [*]).
+    # With higher assertion levels (for example after START_TEST),
+    # homomorphisms (GroupHomomorphismByGenerators, etc.)
+    # might check during creation whether the elements of the domain
+    # and range lie in the given groups.
+    # ListWreathProductElement (used below) and WreathProductElementList
+    # use the embeddings and the projection internally.
+    # So we cannot use ListWreathProductElement for an in-check,
+    # before the homomorphisms are constructed.
+    # The fix is to use some other method (TryNextMethod) for the
+    # in-check, while the projections and embeddings are being constructed.
+    if not IsBound(info.projection) or Length(info.embeddings) < n + 1 then
+        if not IsBound(info.constructingMaps) then
+            info.constructingMaps := true;
+            for i in [1 .. n + 1] do
+                Embedding(G, i);
+            od;
+            Projection(G);
+            info.constructingMaps := false;
+        elif info.constructingMaps then
+            TryNextMethod();
+        fi;
+    fi;
+    # [*]
+    # the actual efficient membership test
     l := ListWreathProductElement(G, g);
     if l = fail then
         return false;
     fi;
-    grps := ComponentsOfWreathProduct(G);
-    K := grps[1];
-    H := grps[2];
-    return ForAll([1 .. Length(l) - 1], i -> l[i] in K) and l[Length(l)] in H;
+    return ForAll([1 .. n], i -> l[i] in K) and l[n + 1] in H;
 end);
 
-InstallMethod( \in, "perm, and perm wreath product", true,[IsPerm, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42,
-function(g, G)
-    local info, comps, n, i;
-    info := WreathProductInfo(G);
-    comps := ComponentsOfWreathProduct(G);
-    n := NrMovedPoints(comps[2]);
-    if not IsBound(info.projection) or Length(info.embeddings) < n + 1 then
-        if not IsBound(info.constructingMaps) then
-            info.constructingMaps := true;
-            for i in [1 .. n + 1] do
-                Embedding(G, i);
-            od;
-            Projection(G);
-            info.constructingMaps := false;
-        elif info.constructingMaps then
-            TryNextMethod();
-        fi;
-    fi;
-    return WPE_IN(g, G);
-end);
+InstallMethod( \in, "perm, and perm wreath product", true,[IsPerm, IsPermGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
 
-InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42,
-function(g, G)
-    local info, comps, n, i;
-    info := WreathProductInfo(G);
-    comps := ComponentsOfWreathProduct(G);
-    n := NrMovedPoints(comps[2]);
-    if not IsBound(info.projection) or Length(info.embeddings) < n + 1 then
-        if not IsBound(info.constructingMaps) then
-            info.constructingMaps := true;
-            for i in [1 .. n + 1] do
-                Embedding(G, i);
-            od;
-            Projection(G);
-            info.constructingMaps := false;
-        elif info.constructingMaps then
-            TryNextMethod();
-        fi;
-    fi;
-    return WPE_IN(g, G);
-end);
+InstallMethod( \in, "matrix, and matrix wreath product", true, [IsMatrix, IsMatrixGroup and HasWreathProductInfo], OVERRIDENICE + 42, WPE_IN);
 
 
 #############################################################################
