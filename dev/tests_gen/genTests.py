@@ -28,4 +28,4 @@ for ROOT in ['centraliser', 'conjugacyClasses', 'cycleIndexPA', 'cycleIndexIA'] 
     pop = Popen([GAP, '-q', '-o', MEMORY, 'generate.g'], cwd = ROOT, stdin=PIPE, stdout=PIPE, stderr=STDOUT,encoding='utf8')
     pop.communicate()
     for FILE in [f for f in os.listdir(OUT) if os.path.isfile(os.path.join(OUT, f))] :
-        shutil.copyfile(OUT+'/'+FILE, '../../tst/files/gen/'+FILE)
+        shutil.copyfile(OUT+'/'+FILE, '../../tst/files/machine-generated/'+FILE)
