@@ -25,7 +25,7 @@ function(g, G)
     comps := ComponentsOfWreathProduct(G);
     K := comps[1];
     H := comps[2];
-    n := NrMovedPoints(H);
+    n := WPE_TopDegree(G);
     # In order to avoid a recursion depth trap, we need to construct
     # all embeddings and the projection before
     # using the efficient membership in WPE_IN (after comment [*]).
