@@ -61,6 +61,4 @@ This file describes changes in the WPE package.
 
 ## 0.1 (2021-05-25)
 
-- Initial release: generic representation of wreath products, isomorphisms
-  from permutation and matrix wreath products, wreath cycle decomposition,
-  and methods for the conjugacy problem, centralisers and conjugacy classes
+- Initial release
